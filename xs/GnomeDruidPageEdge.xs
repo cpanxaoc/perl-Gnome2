@@ -43,9 +43,9 @@ gnome_druid_page_edge_new_with_vals (class, position, antialiased, title=NULL, t
 	gboolean antialiased
 	const gchar *title
 	const gchar *text
-	GdkPixbuf *logo
-	GdkPixbuf *watermark
-	GdkPixbuf *top_watermark
+	GdkPixbuf_ornull *logo
+	GdkPixbuf_ornull *watermark
+	GdkPixbuf_ornull *top_watermark
     C_ARGS:
 	position, antialiased, title, text, logo, watermark, top_watermark
 

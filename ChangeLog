@@ -1,3 +1,11 @@
+2003/12/12 00:38 (+0100) kaffeetisch
+
+	* xs/GnomeDruidPageEdge.xs
+	* xs/GnomeDruidPageStandard.xs: Use GdkPixbuf_ornull for the logo
+	and watermark arguments in the new_with_vals constructors so that
+	you can actually omit and/or pass undef for them.  Makes
+	examples/druid.pl work again.
+
 2003/12/10 22:08 (+0100) kaffeetisch
 
 	R t/GnomeClientReal

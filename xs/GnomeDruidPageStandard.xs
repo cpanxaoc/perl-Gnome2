@@ -32,8 +32,8 @@ gnome_druid_page_standard_new (class)
 GtkWidget *
 gnome_druid_page_standard_new_with_vals (class, title, logo=NULL, top_watermark=NULL)
 	const gchar *title
-	GdkPixbuf *logo
-	GdkPixbuf *top_watermark
+	GdkPixbuf_ornull *logo
+	GdkPixbuf_ornull *top_watermark
     C_ARGS:
 	title, logo, top_watermark
 
