@@ -1,3 +1,16 @@
+2003/12/31 02:10 (-0500) muppetman
+
+	more warnings fixes:
+
+	* xs/GnomeApp.xs, xs/GnomeConfig.xs, xs/GnomeDruid.xs,
+	xs/GnomeInit.xs, xs/GnomeModuleInfo.xs, xs/GnomeUIDefs.xs:
+	don't let RETVAL be used uninitialized in alias switches.
+
+	* xs/Gnome2.xs: mark ax unused in functions which don't touch the
+	input stack, to hush compiler warnings
+
+	* xs/GnomeScore.xs: return type on PPCODE xsubs must be void.
+
 2003/12/29 16:32 (-0500) rwmcfa1
 
 	* perl-Gnome2.spec.in: use the new DATE replacement in conjunction with
