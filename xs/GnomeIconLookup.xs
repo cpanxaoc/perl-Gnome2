@@ -25,6 +25,12 @@ MODULE = Gnome2::IconLookup	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_
 ### GnomeIconTheme didn't appear until about 2.0.6, according to the changelogs
 ### for libgnomeui.
 
+BOOT:
+/* pass -Werror even if there are no xsubs at all */
+#ifndef GNOME_TYPE_ICON_THEME
+	PERL_UNUSED_VAR (file);
+#endif
+
 #ifdef GNOME_TYPE_ICON_THEME
 
 =for apidoc

@@ -1,3 +1,14 @@
+2004/05/21 16:08 (+0200) kaffeetisch
+
+	* xs/GnomeIconTheme.xs (data_to_hv): Check if display_name is NULL
+	before using it.
+
+	* xs/GnomeIconLookup.xs
+	* xs/GnomeIconTheme.xs
+	* xs/GnomePasswordDialog.xs
+	* xs/GnomeThumbnail.xs: Mark 'file' unused in case there are no
+	xsubs at all.
+
 2004/05/16 17:45 (+0200) kaffeetisch
 
 	* t/GnomeDruid.t: Add reference to the relevant bug to the

@@ -22,6 +22,12 @@
 
 MODULE = Gnome2::Thumbnail	PACKAGE = Gnome2::ThumbnailFactory	PREFIX = gnome_thumbnail_factory_
 
+BOOT:
+/* pass -Werror even if there are no xsubs at all */
+#ifndef GNOME_TYPE_THUMBNAIL_FACTORY
+	PERL_UNUSED_VAR (file);
+#endif
+
 #ifdef GNOME_TYPE_THUMBNAIL_FACTORY
 
 ##  GnomeThumbnailFactory *gnome_thumbnail_factory_new (GnomeThumbnailSize size) 

@@ -48,7 +48,8 @@ data_to_hv (const GnomeIconData * data)
 	hv_store (hv, "x1", 2, newSViv (data->x1), 0);
 	hv_store (hv, "y1", 2, newSViv (data->y1), 0);
 	hv_store (hv, "attach_points", 13, newRV_noinc ((SV*) av), 0);
-	hv_store (hv, "display_name", 12, newSVpv (data->display_name, PL_na), 0);
+	if (data->display_name)
+		hv_store (hv, "display_name", 12, newSVpv (data->display_name, PL_na), 0);
 
 	return hv;
 }
@@ -121,9 +122,15 @@ SvGnomeIconData (SV * sv)
 	return data;
 }
 
-#endif
+#endif /* GNOME_TYPE_ICON_THEME */
 
 MODULE = Gnome2::IconTheme	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_theme_
+
+BOOT:
+/* pass -Werror even if there are no xsubs at all */
+#ifndef GNOME_TYPE_ICON_THEME
+	PERL_UNUSED_VAR (file);
+#endif
 
 #ifdef GNOME_TYPE_ICON_THEME
 
