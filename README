@@ -52,16 +52,17 @@ ways:
 This module requires these other modules and libraries:
 
   perl >= 5.8.0
-  Glib >= 1.01 (perl module and requisite C libraries)
+  Glib >= 1.035 (perl module and requisite C libraries)
   Gtk2 >= 1.00 (perl module and requisite C libraries)
+  Gnome2::Canvas >= 0.91 (perl module and requisite C libraries)
   Gnome2::VFS >= 0.01 (perl module and requisite C libraries)
   libgnomeui > 2.x (C library) and dependencies
   libbonoboui > 2.x (C library) and dependencies
 
 To build this module from source, you'll also need
 
-  ExtUtils::Depends
-  ExtUtils::PkgConfig
+  ExtUtils::Depends >= 0.20
+  ExtUtils::PkgConfig >= 1.03
 
 				   Copyright
 				  -----------

@@ -11,9 +11,9 @@ use File::Spec;
 
 # minimum required version of dependencies we need to build
 our %build_reqs = (
-	'perl-ExtUtils-Depends'   => '0.200',
-	'perl-ExtUtils-PkgConfig' => '0.103',
-	'perl-Glib'               => '1.034',
+	'perl-ExtUtils-Depends'   => '0.20',
+	'perl-ExtUtils-PkgConfig' => '1.03',
+	'perl-Glib'               => '1.035',
 	'perl-Gtk2'               => '1.00',
 	'perl-Gnome2-Canvas'      => '0.91',
 	'perl-Gnome2-VFS'         => '0.01',
@@ -97,7 +97,6 @@ $gnome2->set_libs ($libgnomeui_pkgcfg{libs} . " " . $libbonoboui_pkgcfg{libs});
 $gnome2->add_xs (@xs_files);
 $gnome2->add_pm ('Gnome2.pm' => '$(INST_LIBDIR)/Gnome2.pm');
 $gnome2->add_typemaps (map {File::Spec->catfile(cwd(), $_)} 'build/gnome2perl.typemap', 'gnome.typemap');
-$gnome2->add_headers ('gnome2perl.h');
 
 $gnome2->install (qw(gnome2perl.h
                      build/gnome2perl-autogen.h

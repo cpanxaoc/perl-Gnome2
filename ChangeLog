@@ -1,3 +1,9 @@
+2004/02/12 19:55 (+0100) kaffeetisch
+
+	* Gnome2.pm
+	* Makefile.PL
+	* README: Version 0.92.
+
 2004/02/12 19:21 (+0100) kaffeetisch
 
 	* t/GnomeIconTheme.t: Only test if get_search_path returned
