@@ -39,7 +39,7 @@ gnome_popup_menu_new (class, uiinfo, accelgroup=NULL)
     ALIAS:
 	new_with_accelgroup = 1
     CODE:
-	if (ix == 1 || accelgroup == NULL)
+	if (ix == 1 || accelgroup != NULL)
 		RETVAL = gnome_popup_menu_new_with_accelgroup (uiinfo,
 		                                               accelgroup);
 	else
@@ -139,9 +139,9 @@ gnome_popup_menu_do_popup_modal (popup, pos_func, pos_data, event, user_data, fo
 		gperl_callback_destroy (callback);
 	} else
 		RETVAL = gnome_popup_menu_do_popup_modal
-					(GTK_WIDGET (popup), NULL, NULL,
-					 (GdkEventButton*) event, user_data,
-					 for_widget);
+		                        (GTK_WIDGET (popup), NULL, NULL,
+		                        (GdkEventButton*) event, user_data,
+		                        for_widget);
     OUTPUT:
 	RETVAL
 
@@ -150,6 +150,8 @@ void
 gnome_popup_menu_append (popup, uiinfo)
 	GtkWidget *popup
 	GnomeUIInfo *uiinfo
+
+MODULE = Gnome2::PopupMenu	PACKAGE = Gtk2::Widget	PREFIX = gnome_gtk_widget_
 
 ##  void gnome_gtk_widget_add_popup_items (GtkWidget *widget, GnomeUIInfo *uiinfo, gpointer user_data) 
 void
@@ -165,7 +167,3 @@ gnome_gtk_widget_add_popup_items (widget, uiinfo, user_data=NULL)
 		      "can't live without this functionality, email somebody "
 		      "on the authors list.  ignoring user_data");
 	gnome_gtk_widget_add_popup_items (widget, uiinfo, NULL);
-
-
-MODULE = Gnome2::PopupMenu	PACKAGE = Gnome2::PopupMenu	PREFIX = gnome_popup_menu_
-
