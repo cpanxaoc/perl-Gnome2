@@ -11,6 +11,7 @@ druid.pl
 genmaps.pl
 gnome2perl.h
 maps
+t/00.Gnome2.t
 xs/Gnome2.xs
 xs/GnomeAbout.xs
 xs/GnomeApp.xs
