@@ -1,3 +1,26 @@
+2003/12/13 21:35 (+0100) kaffeetisch
+
+	* t/GnomeAppHelper.t: Change the callback tests so that it's easy
+	to know if they were actually called.  Make the install_menu_hints
+	tests work.
+
+	* gnome2perl.h
+	* xs/GnomeAppHelper.xs: List all helper functions here.  Prefix
+	them with "gnome2perl_".
+
+	* xs/GnomeAppHelper.xs: Store and restore the "widget" member of
+	GnomeUIInfo's if it exists.  Use GNOME2PERL_WIDGET_ARRAY_INDEX
+	instead of the last used index + 1 for the widget's array index.
+	Allow GNOME_APP_UI_ITEM_CONFIGURABLE to have callbacks.  If there
+	is a callback, arrange for it to be invisible to the C backend --
+	otherwise the SV would be stored and later used as if it were a
+	function pointer, thus causing a segfault.  Use a global
+	GnomeUIBuilderData instead of a separate one for every function.
+
+	* xs/GnomeAppHelper.xs
+	* xs/GnomePopupMenu.xs: Refill the GnomeUIInfo's used here so that
+	we can warn about callbacks not working currently.
+
 2003/12/12 23:26 (+0100) kaffeetisch
 
 	* TODO: Removed reference to gnome-ui-init.  It's bound.

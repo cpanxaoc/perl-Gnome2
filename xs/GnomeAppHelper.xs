@@ -21,38 +21,9 @@
 #include "gnome2perl.h"
 
 /*
-custom handling for GnomeUIInfo
-*/
-#if 0
-typedef struct {
-	GnomeUIInfoType type;		/* Type of item */
-	gchar const *label;		/* String to use in item's label */
-	gchar const *hint;		/* Tooltip for toolbar items, status 
-					   bar message for menu items. */
-	gpointer moreinfo;		/* Extra information; depends on the
-					   type. */
-	gpointer user_data;		/* User data sent to the callback. */
-	gpointer unused_data;		/* Should be NULL (reserved). */
-	GnomeUIPixmapType pixmap_type;	/* Type of pixmap for this item. */
-	gconstpointer pixmap_info;	/* Pointer to pixmap information. */
-	guint accelerator_key;		/* Accelerator key, or 0 for none. */
-	GdkModifierType ac_mods;	/* Mask of modifier keys for the 
-					   accelerator. */
-	GtkWidget *widget;		/* Filled in by the gnome_app_create* 
-					   functions. */
-} GnomeUIInfo;
-#endif
-
-static GnomeUIInfo * svrv_to_uiinfo_tree (SV* sv, char * name);
-static void gnome2perl_parse_uiinfo_sv (SV * sv, GnomeUIInfo * info);
-static void refill_one (SV *data, GnomeUIInfo *info);
-static void refill_infos (SV *data, GnomeUIInfo *info);
-
-
-/*
  * this was originally SvGnomeUIInfo in Gtk-Perl-0.7008/Gnome/xs/Gnome.xs
  */
-static void
+void
 gnome2perl_parse_uiinfo_sv (SV * sv,
                             GnomeUIInfo * info)
 {
@@ -74,6 +45,8 @@ gnome2perl_parse_uiinfo_sv (SV * sv,
 			info->label = SvGChar (*s);
 		if ((s = hv_fetch (h, "hint", 4, 0)) && SvOK (*s))
 			info->hint = SvGChar (*s);
+		if ((s = hv_fetch (h, "widget", 6, 0)) && SvOK (*s))
+			info->widget = SvGtkWidget (*s);
 
 		/* 'subtree' and 'callback' are also allowed - they
                    have the bonus that we know what you mean if you
@@ -88,10 +61,11 @@ gnome2perl_parse_uiinfo_sv (SV * sv,
 			info->moreinfo = *s;
 		} else if ((s = hv_fetch(h, "callback", 8, 0)) && SvOK(*s)) {
 			if ((info->type != GNOME_APP_UI_ITEM) &&
+			    (info->type != GNOME_APP_UI_ITEM_CONFIGURABLE) &&
 			    (info->type != GNOME_APP_UI_TOGGLEITEM))
 				croak ("'callback' argument specified, but "
 				       "GnomeUIInfo type is not an item type");
-				info->moreinfo = *s;
+			info->moreinfo = *s;
 		}
 
 		if ((s = hv_fetch(h, "pixmap_type", 11, 0)) && SvOK(*s))
@@ -122,9 +96,14 @@ gnome2perl_parse_uiinfo_sv (SV * sv,
 		if ((s = av_fetch (a, 5, 0)) && SvOK (*s))
 			info->pixmap_info = SvPV_nolen (*s);
 		if ((s = av_fetch (a, 6, 0)) && SvOK (*s)) /* keysym */
-			info->accelerator_key = SvIV (*s);		  
+			info->accelerator_key = SvIV (*s);
 		if ((s = av_fetch (a, 7, 0)) && SvOK (*s))
-			info->ac_mods = SvGdkModifierType (*s);
+			info->ac_mods = SvGdkModifierType (*s);	  
+
+#		define GNOME2PERL_WIDGET_ARRAY_INDEX 8
+
+		if ((s = av_fetch (a, GNOME2PERL_WIDGET_ARRAY_INDEX, 0)) && SvOK (*s))
+			info->widget = SvGtkWidget (*s);
 	}
 
 	/* Decide what to do with the moreinfo */
@@ -138,16 +117,16 @@ gnome2perl_parse_uiinfo_sv (SV * sv,
 		/* Now we can recurse */
 		/* Hope user_data doesn't get mangled... */
 		info->user_data = info->moreinfo;
-		info->moreinfo = svrv_to_uiinfo_tree (info->moreinfo,
-		                                      "'subtree' or 'moreinfo'");
+		info->moreinfo =
+		  gnome2perl_svrv_to_uiinfo_tree (info->moreinfo,
+		                                  "'subtree' or 'moreinfo'");
 		break;
 
 	    case GNOME_APP_UI_ITEM:
 	    case GNOME_APP_UI_ITEM_CONFIGURABLE:
 	    case GNOME_APP_UI_TOGGLEITEM:
-		/* thanks to gperl_signal_connect and GnomeUIBuilderInfo,
-		 * there's nothing interesting to do at this point to set
-		 * up a callback.  :-) */
+		info->user_data = info->moreinfo;
+		info->moreinfo = NULL;
 		break;
 
 	    case GNOME_APP_UI_HELP:
@@ -164,8 +143,8 @@ gnome2perl_parse_uiinfo_sv (SV * sv,
 	}
 }
 
-static GnomeUIInfo *
-svrv_to_uiinfo_tree (SV* sv, char * name)
+GnomeUIInfo *
+gnome2perl_svrv_to_uiinfo_tree (SV* sv, char * name)
 {
 	AV * av;
 	int i, count;
@@ -179,12 +158,12 @@ svrv_to_uiinfo_tree (SV* sv, char * name)
 	av = (AV*)SvRV (sv);
 	/* add one to turn from last index to length... */
 	count = av_len (av) + 1;
-	/* and stick another one on the end of the array as the terminator */
 	infos = gperl_alloc_temp (sizeof(GnomeUIInfo) * (count+1));
 	for (i = 0; i < count; i++) {
 		SV ** svp = av_fetch (av, i, FALSE);
 		gnome2perl_parse_uiinfo_sv (*svp, infos + i);
 	}
+	/* and stick another one on the end of the array as the terminator */
 	infos[count].type = GNOME_APP_UI_ENDOFINFO;
 	
 	return infos;
@@ -194,24 +173,22 @@ svrv_to_uiinfo_tree (SV* sv, char * name)
 GnomeUIInfo *
 SvGnomeUIInfo (SV * sv)
 {
-	return svrv_to_uiinfo_tree (sv, "variable");
+	return gnome2perl_svrv_to_uiinfo_tree (sv, "variable");
 }
 
-
-static void
-refill_one (SV *data, GnomeUIInfo *info)
+void
+gnome2perl_refill_info_common (SV *data, GnomeUIInfo *info)
 {
 	if (info->widget) {
 		if (SvTYPE(SvRV(data)) == SVt_PVHV) {
 			hv_store ((HV*)SvRV(data), "widget", 6,
 			          newSVGtkWidget (info->widget), FALSE);
 		} else {
-			/* Always on the last position */
-			int pos = av_len((AV*)SvRV(data)) + 1;
-			av_store ((AV*)SvRV(data), pos,
+			av_store ((AV*)SvRV(data), GNOME2PERL_WIDGET_ARRAY_INDEX,
 			          newSVGtkWidget (info->widget));
 		}
 	}
+
 	switch (info->type) {
 	    case GNOME_APP_UI_SUBTREE:
 	    case GNOME_APP_UI_SUBTREE_STOCK:
@@ -220,7 +197,7 @@ refill_one (SV *data, GnomeUIInfo *info)
 		 * the SV reference to the subtree array in info->user_data.
 		 * it should still be there, provided there's no mangling
 		 * in the library. */
-		refill_infos (info->user_data, info->moreinfo);
+		gnome2perl_refill_infos (info->user_data, info->moreinfo);
 		break;
 
 	    default:
@@ -228,33 +205,76 @@ refill_one (SV *data, GnomeUIInfo *info)
 	}
 }
 
-static void
-refill_infos (SV *data, GnomeUIInfo *infos)
+
+void
+gnome2perl_refill_info (SV *data, GnomeUIInfo *info)
+{
+	gnome2perl_refill_info_common (data, info);
+}
+
+void
+gnome2perl_refill_info_popup (SV *data, GnomeUIInfo *info)
+{
+	gnome2perl_refill_info_common (data, info);
+
+	switch (info->type) {
+	    case GNOME_APP_UI_ITEM:
+	    case GNOME_APP_UI_ITEM_CONFIGURABLE:
+	    case GNOME_APP_UI_TOGGLEITEM:
+		if (info->user_data) {
+			warn ("You used the 'callback' (or 'moreinfo') type in"
+			      " a GnomeUIInfo structure -- I don't know how to"
+			      " make that work though.  Ignoring callback");
+			info->user_data = NULL;
+		}
+		break;
+	}
+}
+
+void
+gnome2perl_refill_infos (SV *data, GnomeUIInfo *infos)
 {
 	int i, count;
 	AV* a = (AV*)SvRV (data);
 	count = av_len(a) + 1;
 	for (i = 0; i < count; i++) {
 		SV** s = av_fetch(a, i, 0);
-		refill_one (*s, infos + i);
+		gnome2perl_refill_info (*s, infos + i);
+	}
+}
+
+void
+gnome2perl_refill_infos_popup (SV *data, GnomeUIInfo *infos)
+{
+	int i, count;
+	AV* a = (AV*)SvRV (data);
+	count = av_len(a) + 1;
+	for (i = 0; i < count; i++) {
+		SV** s = av_fetch(a, i, 0);
+		gnome2perl_refill_info_popup (*s, infos + i);
 	}
 }
 
 static void
-do_ui_signal_connect (GnomeUIInfo * uiinfo,
-                      const char * signal_name,
-                      GnomeUIBuilderData * uibdata)
+gnome2perl_ui_signal_connect (GnomeUIInfo * uiinfo,
+                              const char * signal_name,
+                              GnomeUIBuilderData * uibdata)
 {
-	/*warn ("do_ui_signal_connect (moreinfo:0x%x)\n", uiinfo->moreinfo);*/
-	if (uiinfo->moreinfo)
+	if (uiinfo->user_data)
 		gperl_signal_connect (newSVGObject (G_OBJECT (uiinfo->widget)),
 		                      (char*) signal_name,
-		                      uiinfo->moreinfo,
 		                      uiinfo->user_data,
+		                      uiinfo->moreinfo,
 		                      G_SIGNAL_RUN_FIRST);
 }
 
-/* typedef void (* GnomeUISignalConnectFunc) (GnomeUIInfo *uiinfo, const char *signal_name, GnomeUIBuilderData *uibdata)  */
+GnomeUIBuilderData ui_builder_data = {
+	gnome2perl_ui_signal_connect,
+	NULL,
+	FALSE,
+	NULL,
+	(GtkDestroyNotify) gperl_callback_destroy
+};
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gnome2	PREFIX = gnome_
 
@@ -358,17 +378,9 @@ gnome_app_fill_menu (menu_shell, uiinfo, accel_group, uline_accels, pos)
 	GtkAccelGroup *accel_group
 	gboolean uline_accels
 	gint pos
-    PREINIT:
-	GnomeUIBuilderData uibdata;
     CODE:
-	uibdata.connect_func = do_ui_signal_connect;
-	uibdata.data = NULL;
-	uibdata.is_interp = FALSE;
-	uibdata.relay_func = NULL;
-	uibdata.destroy_func = NULL;
-	gnome_app_fill_menu_custom (menu_shell, uiinfo, &uibdata,
-	                            accel_group, uline_accels, pos);
-	refill_infos (ST (1), uiinfo);
+	gnome_app_fill_menu_custom (menu_shell, uiinfo, &ui_builder_data, accel_group, uline_accels, pos);
+	gnome2perl_refill_infos (ST (1), uiinfo);
 
 =for apidoc
 
@@ -402,16 +414,9 @@ gnome_app_fill_toolbar (toolbar, uiinfo, accel_group)
 	GtkToolbar *toolbar
 	GnomeUIInfo *uiinfo
 	GtkAccelGroup *accel_group
-    PREINIT:
-	GnomeUIBuilderData uibdata;
     CODE:
-	uibdata.connect_func = do_ui_signal_connect;
-	uibdata.data = NULL;
-	uibdata.is_interp = FALSE;
-	uibdata.relay_func = NULL;
-	uibdata.destroy_func = NULL;
-	gnome_app_fill_toolbar_custom (toolbar, uiinfo, &uibdata, accel_group);
-	refill_infos (ST (1), uiinfo);
+	gnome_app_fill_toolbar_custom (toolbar, uiinfo, &ui_builder_data, accel_group);
+	gnome2perl_refill_infos (ST (1), uiinfo);
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gnome2::App	PREFIX = gnome_app_
 
@@ -420,7 +425,7 @@ MODULE = Gnome2::AppHelper	PACKAGE = Gnome2::App	PREFIX = gnome_app_
 ##gnome_app_ui_configure_configurable (uiinfo)
 ##	GnomeUIInfo* uiinfo
 
-### void gnome_app_create_menus (GnomeApp *app, GnomeUIInfo *uiinfo) 
+## void gnome_app_create_menus (GnomeApp *app, GnomeUIInfo *uiinfo) 
 ### void gnome_app_create_menus_interp (GnomeApp *app, GnomeUIInfo *uiinfo, GtkCallbackMarshal relay_func, gpointer data, GtkDestroyNotify destroy_func) 
 ### void gnome_app_create_menus_with_data (GnomeApp *app, GnomeUIInfo *uiinfo, gpointer user_data) 
 ### void gnome_app_create_menus_custom (GnomeApp *app, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata) 
@@ -435,22 +440,15 @@ gnome_app_create_menus (app, uiinfo)
     ALIAS:
 	create_menus = 0
 	create_toolbar = 1
-    PREINIT:
-	GnomeUIBuilderData uibdata;
     CODE:
-	uibdata.connect_func = do_ui_signal_connect;
-	uibdata.data = NULL;
-	uibdata.is_interp = FALSE;
-	uibdata.relay_func = NULL;
-	uibdata.destroy_func = NULL;
 	if (ix == 0)
-		gnome_app_create_menus_custom (app, uiinfo, &uibdata);
+		gnome_app_create_menus_custom (app, uiinfo, &ui_builder_data);
 	else
-		gnome_app_create_toolbar_custom (app, uiinfo, &uibdata);
-	refill_infos (ST (1), uiinfo);
+		gnome_app_create_toolbar_custom (app, uiinfo, &ui_builder_data);
 
+	gnome2perl_refill_infos (ST (1), uiinfo);
 
-### void gnome_app_insert_menus (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo) 
+## void gnome_app_insert_menus (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo) 
 ### void gnome_app_insert_menus_custom (GnomeApp *app, const gchar *path, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata) 
 ### void gnome_app_insert_menus_with_data (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo, gpointer data) 
 ### void gnome_app_insert_menus_interp (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo, GtkCallbackMarshal relay_func, gpointer data, GtkDestroyNotify destroy_func) 
@@ -459,16 +457,9 @@ gnome_app_insert_menus (app, path, menuinfo)
 	GnomeApp *app
 	const gchar *path
 	GnomeUIInfo *menuinfo
-    PREINIT:
-	GnomeUIBuilderData uibdata;
     CODE:
-	uibdata.connect_func = do_ui_signal_connect;
-	uibdata.data = NULL;
-	uibdata.is_interp = FALSE;
-	uibdata.relay_func = NULL;
-	uibdata.destroy_func = NULL;
-	gnome_app_insert_menus_custom (app, path, menuinfo, &uibdata);
-	refill_infos (ST (2), menuinfo);
+	gnome_app_insert_menus_custom (app, path, menuinfo, &ui_builder_data);
+	gnome2perl_refill_infos (ST (2), menuinfo);
 	
 
 ## void gnome_app_remove_menus (GnomeApp *app, const gchar *path, gint items) 
@@ -502,6 +493,7 @@ gnome_app_setup_toolbar (class, toolbar, dock_item)
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gnome2::AppBar	PREFIX = gnome_app_
 
+# FIXME: get rid of the ALIAS.
 ## void gnome_app_install_appbar_menu_hints (GnomeAppBar* appbar, GnomeUIInfo* uiinfo) 
 void
 gnome_app_install_appbar_menu_hints (appbar, uiinfo)
@@ -517,6 +509,7 @@ MODULE = Gnome2::AppHelper	PACKAGE = Gtk2::Statusbar	PREFIX = gnome_app_
 =for object Gnome2::AppHelper
 =cut
 
+# FIXME: get rid of the ALIAS.
 ## void gnome_app_install_statusbar_menu_hints (GtkStatusbar* bar, GnomeUIInfo* uiinfo) 
 void
 gnome_app_install_statusbar_menu_hints (bar, uiinfo)

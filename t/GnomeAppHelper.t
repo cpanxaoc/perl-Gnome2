@@ -22,8 +22,8 @@ SKIP: {
   #############################################################################
 
   my $menubar_info = [
-    { type => "item", label => "Item", callback => sub { } },
-    { type => "toggleitem", label => "Toggle", callback => sub { } },
+    { type => "item", label => "Item", callback => sub { warn @_; } },
+    { type => "toggleitem", label => "Toggle", callback => sub { warn @_; } },
     {
       type => "subtree",
       label => "Radio Items",
@@ -33,7 +33,9 @@ SKIP: {
           moreinfo => [
             {
               type => "item",
-              label => "A"
+              label => "A",
+              callback => sub { warn @_; },
+              hint => "Don't click me!"
             },
             {
               type => "item",
@@ -68,14 +70,10 @@ SKIP: {
   ];
 
   my $toolbar_info = [
-    [ "item", "Item", undef, sub { }, undef, undef, undef, undef ],
+    [ "item", "Item", undef, sub { warn @_; }, undef, undef, undef, undef ],
     { type => "separator" },
-    { type => "toggleitem", label => "Toggle", callback => sub { } }
+    { type => "toggleitem", label => "Toggle", callback => sub { warn @_; } }
   ];
-
-  my $appbar_info = [ { type => "item", label => "Hmm" } ];
-  my $statusbar_info = [ { type => "item", label => "hMm" } ];
-  my $menu_info = [ { type => "item", label => "hmM" } ];
 
   #############################################################################
 
@@ -111,8 +109,9 @@ SKIP: {
   my $appbar = Gnome2::AppBar -> new(1, 1, "always");
   my $statusbar = Gtk2::Statusbar -> new();
 
-  # FIXME: why do these give me warnings?
-  # $appbar -> install_menu_hints($appbar_info);
-  # $statusbar -> install_menu_hints($statusbar_info);
-  # $app -> install_menu_hints($menu_info);
+  $app -> set_statusbar($appbar);
+
+  $appbar -> install_menu_hints($menubar_info);
+  $statusbar -> install_menu_hints($menubar_info);
+  $app -> install_menu_hints($menubar_info);
 }

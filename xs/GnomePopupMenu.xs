@@ -42,6 +42,8 @@ gnome_popup_menu_new (class, uiinfo, accelgroup=NULL)
 		                                               accelgroup);
 	else
 		RETVAL = gnome_popup_menu_new (uiinfo);
+
+	gnome2perl_refill_infos_popup (ST (1), uiinfo);
     OUTPUT:
 	RETVAL
 
@@ -151,6 +153,9 @@ void
 gnome_popup_menu_append (popup, uiinfo)
 	GtkWidget *popup
 	GnomeUIInfo *uiinfo
+    CODE:
+	gnome_popup_menu_append (popup, uiinfo);
+	gnome2perl_refill_infos_popup (ST (1), uiinfo);
 
 MODULE = Gnome2::PopupMenu	PACKAGE = Gtk2::Widget	PREFIX = gnome_gtk_widget_
 
@@ -171,3 +176,4 @@ gnome_gtk_widget_add_popup_items (widget, uiinfo, user_data=NULL)
 		      "can't live without this functionality, email somebody "
 		      "on the authors list.  ignoring user_data");
 	gnome_gtk_widget_add_popup_items (widget, uiinfo, NULL);
+	gnome2perl_refill_infos_popup (ST (1), uiinfo);

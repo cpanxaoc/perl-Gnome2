@@ -38,6 +38,12 @@
 #include "gnome2perl-autogen.h"
 
 GnomeUIInfo *SvGnomeUIInfo (SV *sv);
+
+void gnome2perl_parse_uiinfo_sv (SV * sv, GnomeUIInfo * info);
+GnomeUIInfo * gnome2perl_svrv_to_uiinfo_tree (SV* sv, char * name);
+void gnome2perl_refill_infos (SV *data, GnomeUIInfo *infos);
+void gnome2perl_refill_infos_popup (SV *data, GnomeUIInfo *info);
+
 char **SvGnomeCharArray (SV *ref);
 
 #endif /* _GNOME2PERL_H_ */
