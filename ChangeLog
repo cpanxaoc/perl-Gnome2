@@ -1,3 +1,7 @@
+2004/05/22 17:50 (+0200) kaffeetisch
+
+	* t/GnomeIconTheme.t: Check if the icon data is a hash reference.
+
 2004/05/21 16:08 (+0200) kaffeetisch
 
 	* xs/GnomeAppHelper.xs: Make gnome2perl_popup_menu_activate_func,
