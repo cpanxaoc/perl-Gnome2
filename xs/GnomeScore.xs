@@ -44,7 +44,7 @@ Returns a reference to an array per player, containing the name, the score and t
 
 =cut
 ##  gint gnome_score_get_notable(const gchar *gamename, const gchar *level, gchar ***names, gfloat **scores, time_t **scoretimes);
-SV *
+void
 gnome_score_get_notable (class, gamename, level)
 	const gchar *gamename
 	const gchar *level
