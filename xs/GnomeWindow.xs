@@ -18,6 +18,9 @@
  * $Header$
  */
 
+/* the stuff in gnome-window.h was deprecated as of Oct '03 */
+#define GNOME_DISABLE_DEPRECATED
+
 #include "gnome2perl.h"
 
 MODULE = Gnome2::Window	PACKAGE = Gtk2::Window	PREFIX = gnome_window_
