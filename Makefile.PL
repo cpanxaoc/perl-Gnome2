@@ -137,7 +137,8 @@ $gnome2->add_headers ('gnome2perl.h');
 
 $gnome2->install (qw(gnome2perl.h
                      build/gnome2perl-autogen.h
-                     build/gnome2perl-version.h));
+                     build/gnome2perl-version.h
+                     build/gnome2perl-vfs-gtypes.h));
 $gnome2->save_config ('build/IFiles.pm');
 
 WriteMakefile(

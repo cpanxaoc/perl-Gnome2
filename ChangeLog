@@ -1,3 +1,7 @@
+2003/10/08 00:33 (+0200) kaffeetisch
+
+	* Makefile.PL: Install gnome2perl-vfs-gtypes.h.
+
 2003/10/07 23:57 (+0200) kaffeetisch
 
 	* genmaps.pl: Include xs/gnome2perl-vfs-gtypes.c when compiling
