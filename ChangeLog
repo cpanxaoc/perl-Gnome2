@@ -1,3 +1,12 @@
+2003/09/21 00:05 muppetman (EDT, not back in time)
+
+	* AUTHORS: torsten forgot to credit himself :-)
+
+	* xs/GnomeIconLookup.xs, xs/GnomeIconTheme.xs, xs/GnomeThumbnail.xs:
+	GnomeIconTheme and GnomeThumbnailFactory didn't appear until about 2.0.6,
+	according to the changelogs for libgnomeui.  only compile this stuff if we
+	have the right types defined.
+
 2003/09/20 23:32 rwmcfa1
 
 	* xs/GnomeIconTheme.xs: list -> results, type-o i guess. wouldn't 
