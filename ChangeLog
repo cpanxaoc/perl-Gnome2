@@ -1,3 +1,8 @@
+2004/05/29 18:39 (+0200) kaffeetisch
+
+	* Gnome2.pm
+	* NEWS: Unstable version 1.010.
+
 2004/05/28 23:58 (+0200) kaffeetisch
 
 	* Gnome2.pm: Actually use() Gnome2::Canvas so users of Gnome2 are
