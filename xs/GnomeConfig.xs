@@ -82,7 +82,7 @@ get_string_with_default (class, path)
 	Gnome2::Config::Private::get_string_with_default = 2
 	Gnome2::Config::Private::get_translated_string_with_default = 3
     PREINIT:
-	char *retval;
+	char *retval = NULL;
 	gboolean def;
     PPCODE:
 	switch (ix) {
@@ -125,7 +125,7 @@ get_int_with_default (class, path)
 	Gnome2::Config::get_int_with_default = 0
 	Gnome2::Config::Private::get_int_with_default = 1
     PREINIT:
-	int retval;
+	int retval = 0;
 	gboolean def;
     PPCODE:
 	switch (ix) {
@@ -164,7 +164,7 @@ get_float_with_default (class, path)
 	Gnome2::Config::get_float_with_default = 0
 	Gnome2::Config::Private::get_float_with_default = 1
     PREINIT:
-	gdouble retval;
+	gdouble retval = 0.0;
 	gboolean def;
     PPCODE:
 	switch (ix) {
@@ -202,8 +202,8 @@ get_bool_with_default (class, path)
 	Gnome2::Config::get_bool_with_default = 0
 	Gnome2::Config::Private::get_bool_with_default = 1
     PREINIT:
-	gboolean retval;
-	gboolean def;
+	gboolean retval = FALSE;
+	gboolean def = FALSE;
     PPCODE:
 	switch (ix) {
 		case 0: retval = gnome_config_get_bool_with_default (path, &def); break;
