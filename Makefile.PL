@@ -6,9 +6,6 @@ use 5.008;
 use ExtUtils::MakeMaker;
 use Cwd;
 use File::Spec;
-use ExtUtils::Depends;
-use Glib::PkgConfig;
-use Gtk2::CodeGen;
 
 # minimum required version of Gtk2 with which we can work.
 my $req_gtk2_ver = '0.90';
@@ -20,11 +17,13 @@ unless (eval "use ExtUtils::Depends;"
            # just seeing if Glib is available isn't enough, make sure
            # it's recent enough, too 
            . "use Gtk2 $req_gtk2_ver;"
+           . "use Gtk2::CodeGen;"
            . "1") {
    warn "$@\n";
    WriteMakefile(
          PREREQ_FATAL => 1,
          PREREQ_PM    => {
+            Glib::              => $req_gtk2_ver, # keep this in sync
             Gtk2::              => $req_gtk2_ver, # keep this in sync
             ExtUtils::Depends:: => 0.1,
          },
