@@ -57,10 +57,12 @@ MODULE = Gnome2::PopupMenu	PACKAGE = Gtk2::Menu	PREFIX = gnome_popup_menu_
 
 ##  void gnome_popup_menu_attach (GtkWidget *popup, GtkWidget *widget, gpointer user_data) 
 void
-gnome_popup_menu_attach (popup, widget, user_data=NULL)
+gnome_popup_menu_attach_to (popup, widget, user_data=NULL)
 	GtkWidget *popup
 	GtkWidget *widget
 	SV * user_data
+    CODE:
+	gnome_popup_menu_attach (popup, widget, user_data);
 
 ####  void gnome_popup_menu_do_popup (GtkWidget *popup, GtkMenuPositionFunc pos_func, gpointer pos_data, GdkEventButton *event, gpointer user_data, GtkWidget *for_widget) 
 void

@@ -65,8 +65,8 @@ SKIP: {
 
   $window -> add($button);
 
-  $popup -> attach($button);
-  $popup -> attach($button, "blub");
+  $popup -> attach_to($button);
+  $popup -> attach_to($button, "blub");
 
   if (join("", Gtk2 -> get_version_info()) >= 220) {
     my $event = Gtk2::Gdk::Event -> new("button_press");

@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 8;
+use constant TESTS => 9;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -34,14 +34,16 @@ SKIP: {
   my $application = Gnome2::Program -> init("Test",
                                             "0.1",
                                             "libgnomeui",
-                                            human_readable_name => "Test 0.1");
+                                            app_prefix => "/gtk2perl",
+                                            app_sysconfdir => "/gtk2perl/etc");
 
+  is_deeply([$application -> get(qw(app_prefix app_sysconfdir))], [qw(/gtk2perl /gtk2perl/etc)]);
   is_deeply(\@ARGV, [qw(--name bla --class blub --urgs)]);
 
   isa_ok($application, "Gnome2::Program");
   is($application -> get_program(), $application);
 
-  is($application -> get_human_readable_name(), "Test 0.1");
+  is($application -> get_human_readable_name(), "Test");
   is($application -> get_app_id(), "Test");
   is($application -> get_app_version(), "0.1");
 
