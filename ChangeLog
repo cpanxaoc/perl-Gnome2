@@ -1,3 +1,8 @@
+2003/09/23 13:38 (+0200) kaffeetisch
+
+	* t/GnomeIconTheme.t: Altered test #2 to only check whether the return
+	value is defined.
+
 2003/09/22 09:26 rwmcfa1
 
 	* t/GnomeIconEntry.t: set_max_saved does not exist til after 2.3.3 so 

@@ -27,9 +27,8 @@ SKIP: {
 
   # XXX: $theme -> get_example_icon_name();
 
-  my $factory = Gnome2::ThumbnailFactory -> new("normal");
-  is_deeply([$theme -> lookup_sync(undef, "/usr/bin/perl", "", "none")],
-            ["gnome-mime-application", []]);
+  my $icon = $theme -> lookup_sync(undef, "/usr/bin/perl", "", "none");
+  ok(defined($icon -> [0]));
 
   # XXX: $theme -> list_icons("gnome-unknown");
 
