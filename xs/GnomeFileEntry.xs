@@ -1,3 +1,7 @@
+/*
+ * $Header$
+ */
+
 #include "gnome2perl.h"
 
 MODULE = Gnome2::FileEntry	PACKAGE = Gnome2::FileEntry	PREFIX = gnome_file_entry_

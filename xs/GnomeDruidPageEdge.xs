@@ -1,3 +1,7 @@
+/*
+ * $Header$
+ */
+
 #include "gnome2perl.h"
 
 MODULE = Gnome2::DruidPageEdge	PACKAGE = Gnome2::DruidPageEdge	PREFIX = gnome_druid_page_edge_

@@ -1,3 +1,7 @@
+/*
+ * $Header$
+ */
+
 #include "gnome2perl.h"
 
 MODULE = Gnome2::Init	PACKAGE = Gnome2	PREFIX = gnome_

@@ -1,3 +1,7 @@
+/*
+ *  * $Header$
+ *   */
+
 #ifndef _GNOME2PERL_H_
 #define _GNOME2PERL_H_
 

@@ -1,3 +1,7 @@
+/*
+ * $Header$
+ */
+
 #include "gnome2perl.h"
 
 // typedef void (*GnomeInteractFunction) (GnomeClient *client, gint key, GnomeDialogType dialog_type, gpointer data) 

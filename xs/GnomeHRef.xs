@@ -1,3 +1,7 @@
+/*
+ * $Header$
+ */
+
 #include "gnome2perl.h"
 
 MODULE = Gnome2::HRef	PACKAGE = Gnome2::HRef	PREFIX = gnome_href_

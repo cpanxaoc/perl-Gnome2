@@ -1,3 +1,7 @@
+#
+# $Header$
+#
+
 package Gnome2;
 
 use 5.008;

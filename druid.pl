@@ -1,4 +1,8 @@
 #!/usr/bin/perl -w -I ../G/blib/arch -I ../Gtk2/blib/arch -I ../G/blib/lib -I ../Gtk2/blib/lib -I ../blib/arch -I ../blib/lib -Iblib/arch -Iblib/lib
+#
+# $Header$
+#
+
 #use blib '../G';
 #use blib '../Gtk2';
 #use blib '.';

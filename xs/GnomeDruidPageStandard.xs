@@ -1,3 +1,7 @@
+/*
+ * $Header$
+ */
+
 #include "gnome2perl.h"
 
 MODULE = Gnome2::DruidPageStandard	PACKAGE = Gnome2::DruidPageStandard	PREFIX = gnome_druid_page_standard_

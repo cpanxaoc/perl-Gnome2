@@ -1,3 +1,7 @@
+/*
+ * $Header$
+ */
+
 #include "gnome2perl.h"
 
 MODULE = Gnome2::Druid	PACKAGE = Gnome2::Druid	PREFIX = gnome_druid_

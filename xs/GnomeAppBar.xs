@@ -1,3 +1,7 @@
+/*
+ * $Header$
+ */
+
 #include "gnome2perl.h"
 
 MODULE = Gnome2::AppBar	PACKAGE = Gnome2::AppBar	PREFIX = gnome_appbar_
