@@ -64,6 +64,7 @@ gnome_date_edit_set_flags (gde, flags)
 	GnomeDateEdit *gde
 	GnomeDateEditFlags flags
 
+# FIXME: this should return GnomeDateEditFlags.
 ## int gnome_date_edit_get_flags (GnomeDateEdit *gde) 
 int
 gnome_date_edit_get_flags (gde)
