@@ -59,7 +59,7 @@ This module requires these other modules and libraries:
   libgnomeui > 2.x (C library) and dependencies
   libbonoboui > 2.x (C library) and dependencies
 
-To build this module from source, you'll also need
+To build this module from source, you'll also need:
 
   ExtUtils::Depends >= 0.20
   ExtUtils::PkgConfig >= 1.03

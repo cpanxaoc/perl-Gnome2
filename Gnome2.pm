@@ -13,11 +13,11 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.92';
+our $VERSION = '0.93';
 
 sub dl_load_flags { 0x01 }
 
-bootstrap Gnome2 $VERSION;
+Gnome2 -> bootstrap($VERSION);
 
 # Preloaded methods go here.
 
@@ -114,6 +114,16 @@ Use gnome_app_insert_menus instead.
 
 Gnome2::Program->get has been renamed to ->get_program to avoid a clash with
 GObject->get.
+
+=item gnome_popup_menu_attach
+
+Gtk2::Menu->attach has been renamed to ->attach_to to avoid a clash with
+gtk_menu_attach.
+
+=item gnome_popup_menu_append
+
+Gtk2::Menu->append has been renamed to ->append_from to avoid a clash with
+gtk_menu_shell_append.
 
 =back
 
