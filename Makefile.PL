@@ -38,7 +38,7 @@ $gnome2->save_config ('build/IFiles.pm');
 WriteMakefile(
     NAME            => 'Gnome2',
     VERSION_FROM    => 'Gnome2.pm', # finds $VERSION
-    PREREQ_PM       => {Gtk2 => 0.20}, # e.g., Module::Name => 1.1
+    PREREQ_PM       => {Gtk2 => 0.24}, # e.g., Module::Name => 1.1
     ABSTRACT_FROM   => 'Gnome2.pm', # retrieve abstract from module
     XSPROTOARG      => '-noprototypes',
     $gnome2->get_makefile_vars,
