@@ -1,3 +1,18 @@
+2003/09/30 15:56 (+0200) kaffeetisch
+
+	* druid.pl: Use Gnome2::Program->get_program instead of ->get.
+
+	* t/GnomeDruid.t: Complete GnomeDruid test.
+
+	* t/GnomeEntry.t: Disable a test which would cause GConf to add a
+	key to its DB.
+
+	* xs/GnomeDruidPageEdge.xs: Provide defaults for the title, text,
+	logo, watermark and top_watermark parameters.
+
+	* xs/GnomeDruidPageStandard.xs: Provide defaults for the logo and
+	top_watermark parameters.
+
 2003/09/29 16:33 (+0200) kaffeetisch
 
 	* xs/GnomeDateEdit.xs

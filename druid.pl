@@ -28,14 +28,10 @@ Gnome2::Program->init ('Druid Test', '1.0beta', 'libgnomeui',
                        show_crash_dialog => FALSE,
 		       app_libdir => cwd);
 
-## we have to use get_property instead of get here because 
-## Gnome2::Program::get clobbers Glib::Object::get.
-print "app-libdir ".(Gnome2::Program->get->get_property ('app_libdir'))."\n";
-## or, we could do it this way.
-print "app-libdir ".(Glib::Object::get (Gnome2::Program->get, 'app_libdir'))."\n";
+print "app-libdir ".(Gnome2::Program->get_program->get ('app_libdir'))."\n";
 
 #use Data::Dumper;
-#print Dumper([ Gnome2::Program->get->list_properties ]);
+#print Dumper([ Gnome2::Program->get_program->list_properties ]);
 
 ($druid, $window) = Gnome2::Druid->new_with_window ("Test Druid", undef, TRUE);
 

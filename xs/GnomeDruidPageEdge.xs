@@ -41,15 +41,15 @@ gnome_druid_page_edge_new_aa (class, position)
 
 ## GtkWidget * gnome_druid_page_edge_new_with_vals (GnomeEdgePosition position, gboolean antialiased, const gchar *title, const gchar *text, GdkPixbuf *logo, GdkPixbuf *watermark, GdkPixbuf *top_watermark);
 GtkWidget *
-gnome_druid_page_edge_new_with_vals (class, position, antialiased, title, text, logo, watermark, top_watermark)
+gnome_druid_page_edge_new_with_vals (class, position, antialiased, title=NULL, text=NULL, logo=NULL, watermark=NULL, top_watermark=NULL)
 	SV * class
 	GnomeEdgePosition position
 	gboolean antialiased
 	const gchar *title
 	const gchar *text
-	GdkPixbuf_ornull *logo
-	GdkPixbuf_ornull *watermark
-	GdkPixbuf_ornull *top_watermark
+	GdkPixbuf *logo
+	GdkPixbuf *watermark
+	GdkPixbuf *top_watermark
     C_ARGS:
 	position, antialiased, title, text, logo, watermark, top_watermark
 
