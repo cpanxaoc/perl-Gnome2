@@ -1,7 +1,8 @@
 2003/11/21 02:15 (-0500) muppetman
 
-	* xs/GnomeAppHelper.xs, xs/GnomeWindow.xs: shuffle docs around to
-	keep from clobbering docs from other extensions.
+	* xs/GnomeAppHelper.xs, xs/GnomeWindow.xs, xs/GnomePopupMenu.xs,
+	xs/GnomeThumbnail.xs: shuffle docs around to keep from clobbering
+	docs from other extensions.
 
 2003/11/15 12:13 (+0100) kaffeetisch
 
