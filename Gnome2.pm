@@ -7,6 +7,7 @@ use strict;
 use warnings;
 
 use Gtk2;
+use Gnome2::Canvas;
 use Gnome2::VFS;
 
 require DynaLoader;
