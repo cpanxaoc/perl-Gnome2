@@ -1,3 +1,12 @@
+2004/09/14 00:08 (+0200) kaffeetisch
+
+	* t/GnomeIconList.t, t/GnomePasswordDialog.t, t/GnomeProgram.t,
+	xs/Gnome2.xs, xs/GnomeIconList.xs, xs/GnomePasswordDialog.xs,
+	xs/GnomeProgram.xs: Make all version checks refer to stable
+	releases.
+
+	* Gnome2.pm, NEWS: Version 1.020.
+
 2004/08/29 20:00 (+0200) kaffeetisch
 
 	* Gnome2.pm, NEWS: Version 1.014.

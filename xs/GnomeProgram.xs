@@ -83,7 +83,7 @@ gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
 	pargv = gperl_argv_new ();
 	/* note that we have *not* modifed @ARGV.
 	 */
-#if LIBGNOME_CHECK_VERSION (2, 7, 2) /* FIXME: 2.8 */
+#if LIBGNOME_CHECK_VERSION (2, 8, 0)
 {
 	GObjectClass *class;
 	GParameter *params = NULL;

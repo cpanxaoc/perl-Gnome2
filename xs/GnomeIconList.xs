@@ -162,7 +162,7 @@ gnome_icon_list_unselect_icon (gil, pos)
 	GnomeIconList *gil
 	int pos
 
-#if LIBGNOMEUI_CHECK_VERSION (2, 7, 1) /* FIXME: 2.8 */
+#if LIBGNOMEUI_CHECK_VERSION (2, 8, 0)
 
 ##  void gnome_icon_list_select_all (GnomeIconList *gil) 
 void

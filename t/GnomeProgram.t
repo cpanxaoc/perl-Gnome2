@@ -33,7 +33,7 @@ SKIP: {
 
   my $application;
 
-  if (Gnome2 -> CHECK_VERSION (2, 7, 2)) { # FIXME: 2.8
+  if (Gnome2 -> CHECK_VERSION (2, 8, 0)) {
     $application = Gnome2::Program -> init("Test",
                                            "0.1",
                                            "libgnomeui",

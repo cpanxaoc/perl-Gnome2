@@ -1,3 +1,21 @@
+Overview of changes in Gnome2 1.020
+===================================
+
+ Since 1.001 (the previous stable series)
+ ----------------------------------------
+  * Many internal changes and fixes to the test suite.
+  * Possibility to use construct-only properties with
+    Gnome2::Program::init.
+  * A Gnome2::enums page that lists all enums and their values.
+  * API additions:
+    - Some new things in GnomePasswordDialog.
+    - Gnome2::AuthenticationManager::dialog_is_visible.
+    - Gnome2::IconList::select_all.
+
+ Since 1.014
+ -----------
+  * Nada.
+
 Overview of changes in Gnome2 1.014
 ===================================
 

@@ -19,7 +19,7 @@ SKIP: {
 
   SKIP: {
     skip("dialog_is_visible is new in 2.8", 1)
-      unless (Gnome2 -> CHECK_VERSION(2, 7, 92)); # FIXME: 2.8
+      unless (Gnome2 -> CHECK_VERSION(2, 8, 0));
 
     ok(!Gnome2::AuthenticationManager -> dialog_is_visible());
   }
@@ -54,7 +54,7 @@ SKIP: {
 
   SKIP: {
     skip("things new in 2.8.0", 1)
-      unless (Gnome2 -> CHECK_VERSION(2, 7, 2)); # FIXME: 2.8
+      unless (Gnome2 -> CHECK_VERSION(2, 8, 0));
 
     $dialog -> set_show_userpass_buttons(1);
     ok(!$dialog -> anon_selected());

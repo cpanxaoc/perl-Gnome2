@@ -54,7 +54,7 @@ SKIP: {
 
   SKIP: {
     skip("select_all is new in 2.8", 0)
-      unless (Gnome2 -> CHECK_VERSION(2, 7, 1)); # FIXME: 2.8
+      unless (Gnome2 -> CHECK_VERSION(2, 8, 0));
 
     $list -> select_all();
   }
