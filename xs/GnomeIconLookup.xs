@@ -41,21 +41,23 @@ MODULE = Gnome2::IconLookup	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_
 #	 GnomeIconLookupFlags flags
 #	 GnomeIconLookupResultFlags *result
 
-# FIXME: we should allow 'undef' for custom_icon.
-#        how do you that without manually handling the whole stack?
 ##  char *gnome_icon_lookup_sync (GnomeIconTheme *icon_theme, GnomeThumbnailFactory *thumbnail_factory, const char *file_uri, const char *custom_icon, GnomeIconLookupFlags flags, GnomeIconLookupResultFlags *result) 
 void
 gnome_icon_lookup_sync (icon_theme, thumbnail_factory, file_uri, custom_icon, flags)
 	GnomeIconTheme *icon_theme
 	GnomeThumbnailFactory_ornull *thumbnail_factory
 	const char *file_uri
-	const char *custom_icon
+	SV *custom_icon
 	GnomeIconLookupFlags flags
     PREINIT:
 	GnomeIconLookupResultFlags result;
 	char *icon;
+	const char *real_custom_icon = NULL;
     PPCODE:
-	icon = gnome_icon_lookup_sync (icon_theme, thumbnail_factory, file_uri, custom_icon, flags, &result);
+	if (SvPOK (custom_icon))
+		real_custom_icon = (const char *) SvPV_nolen (custom_icon);
+
+	icon = gnome_icon_lookup_sync (icon_theme, thumbnail_factory, file_uri, real_custom_icon, flags, &result);
 	EXTEND (sp, 2);
 	PUSHs (sv_2mortal (newSVpv (icon, PL_na)));
 	PUSHs (sv_2mortal (newSVGnomeIconLookupFlags (result)));

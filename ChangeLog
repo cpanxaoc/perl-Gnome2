@@ -1,3 +1,8 @@
+2003/09/21 20:13 kaffeetisch
+
+	* xs/GnomeIconLookup.xs: Allow undef to be passed for the cutom_icon
+	parameter to gnome_icon_lookup_sync.
+
 2003/09/21 19:55 kaffeetisch
 
 	* TODO: Remove GnomePixmap. It's deprecated.
