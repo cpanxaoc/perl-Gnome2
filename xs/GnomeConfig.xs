@@ -22,7 +22,7 @@
 
 /* ------------------------------------------------------------------------- */
 
-void *
+static void *
 SvGnomeConfigIterator (SV *object)
 {
 	MAGIC *mg;
@@ -33,7 +33,7 @@ SvGnomeConfigIterator (SV *object)
 	return (void *) mg->mg_ptr;
 }
 
-SV *
+static SV *
 newSVGnomeConfigIterator (const char *app_id)
 {
 	SV *object = (SV *) newHV ();

@@ -22,38 +22,41 @@
 
 #ifdef GNOME_TYPE_ICON_THEME
 
-HV * 
-data_to_hv (const GnomeIconData * data)
+static SV * 
+newSVGnomeIconData (const GnomeIconData * data)
 {
 	HV * hv = newHV ();
-	AV * av = newAV ();
-	int i;
 
-	if (!data)
-		return hv;
+	if (data) {
+		AV * av = newAV ();
+		int i;
 
-	for (i = 0; i < data->n_attach_points; i++) {
-		AV * av_points = newAV ();
-		GnomeIconDataPoint point = (data->attach_points)[i];
+		for (i = 0; i < data->n_attach_points; i++) {
+			AV * av_points = newAV ();
+			GnomeIconDataPoint point = (data->attach_points)[i];
 
-		av_store (av_points, 0, newSViv (point.x));
-		av_store (av_points, 1, newSViv (point.y));
+			av_store (av_points, 0, newSViv (point.x));
+			av_store (av_points, 1, newSViv (point.y));
 
-		av_store (av, i, newRV_noinc ((SV*) av_points));
+			av_store (av, i, newRV_noinc ((SV*) av_points));
+		}
+
+		hv_store (hv, "has_embedded_rect", 17, newSVuv (data->has_embedded_rect), 0);
+		hv_store (hv, "x0", 2, newSViv (data->x0), 0);
+		hv_store (hv, "y0", 2, newSViv (data->y0), 0);
+		hv_store (hv, "x1", 2, newSViv (data->x1), 0);
+		hv_store (hv, "y1", 2, newSViv (data->y1), 0);
+		hv_store (hv, "attach_points", 13, newRV_noinc ((SV*) av), 0);
+		if (data->display_name)
+			hv_store (hv, "display_name", 12, newSVpv (data->display_name, PL_na), 0);
 	}
 
-	hv_store (hv, "has_embedded_rect", 17, newSVuv (data->has_embedded_rect), 0);
-	hv_store (hv, "x0", 2, newSViv (data->x0), 0);
-	hv_store (hv, "y0", 2, newSViv (data->y0), 0);
-	hv_store (hv, "x1", 2, newSViv (data->x1), 0);
-	hv_store (hv, "y1", 2, newSViv (data->y1), 0);
-	hv_store (hv, "attach_points", 13, newRV_noinc ((SV*) av), 0);
-	hv_store (hv, "display_name", 12, newSVpv (data->display_name, PL_na), 0);
-
-	return hv;
+	return newRV_noinc ((SV *) hv);
 }
 
-GnomeIconData * 
+#if 0 /* not used at the moment */
+
+static GnomeIconData * 
 SvGnomeIconData (SV * sv)
 {
 	HV * hv = (HV*) SvRV (sv);
@@ -123,7 +126,15 @@ SvGnomeIconData (SV * sv)
 
 #endif
 
+#endif /* GNOME_TYPE_ICON_THEME */
+
 MODULE = Gnome2::IconTheme	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_theme_
+
+BOOT:
+/* pass -Werror even if there are no xsubs at all */
+#ifndef GNOME_TYPE_ICON_THEME
+	PERL_UNUSED_VAR (file);
+#endif
 
 #ifdef GNOME_TYPE_ICON_THEME
 
@@ -229,7 +240,7 @@ gnome_icon_theme_lookup_icon (theme, icon_name, size)
 
 	EXTEND (sp, 3);
 	PUSHs (sv_2mortal (newSVpv (filename, PL_na)));
-	PUSHs (sv_2mortal (newRV_noinc ((SV*) data_to_hv (icon_data))));
+	PUSHs (sv_2mortal (newSVGnomeIconData (icon_data)));
 	PUSHs (sv_2mortal (newSViv (base_size)));
 
 	g_free (filename);

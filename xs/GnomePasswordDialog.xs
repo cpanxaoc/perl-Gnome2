@@ -22,6 +22,12 @@
 
 MODULE = Gnome2::PasswordDialog		PACKAGE = Gnome2::PasswordDialog	PREFIX = gnome_password_dialog_
 
+BOOT:
+/* pass -Werror even if there are no xsubs at all */
+#ifndef GNOME_TYPE_PASSWORD_DIALOG
+	PERL_UNUSED_VAR (file);
+#endif
+
 #ifdef GNOME_TYPE_PASSWORD_DIALOG
 
 ##  GtkWidget* gnome_password_dialog_new (const char *dialog_title, const char *message, const char *username, const char *password, gboolean readonly_username) 

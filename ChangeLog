@@ -1,3 +1,36 @@
+2004/05/21 16:08 (+0200) kaffeetisch
+
+	* xs/GnomeAppHelper.xs: Make gnome2perl_popup_menu_activate_func,
+	gnome2perl_popup_menu_activate_func_destroy,
+	gnome2perl_refill_info_common, gnome2perl_refill_info,
+	gnome2perl_refill_info_popup, and ui_builder_data static.
+
+	* xs/GnomeConfig.xs: Make SvGnomeConfigIterator and
+	newSVGnomeConfigIterator static.
+
+	* xs/GnomeIconList.xs: Make newSVGnome2PerlIconListFlags static
+	and comment it out, it's unused.
+
+	* xs/GnomeIconTheme.xs: Rename data_to_hv to newSVGnomeIconData,
+	make it static and let it handle the RV creation.  Make
+	SvGnomeIconData static and comment it out -- it's not used
+	currently.
+
+	* xs/GnomeProgram.xs: Make handle_module_info static.
+
+	* xs/GnomeWindowIcon.xs: Make newSVGnomeCharArray static.
+
+	Merge from the stable-1-00 branch:
+
+	* xs/GnomeIconTheme.xs (data_to_hv): Check if display_name is NULL
+	before using it.
+
+	* xs/GnomeIconLookup.xs
+	* xs/GnomeIconTheme.xs
+	* xs/GnomePasswordDialog.xs
+	* xs/GnomeThumbnail.xs: Mark 'file' unused in case there are no
+	xsubs at all.
+
 2004/05/16 17:46 (+0200) kaffeetisch
 
 	* t/GnomeThumbnail.t: Correct skip count.

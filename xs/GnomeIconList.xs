@@ -42,13 +42,17 @@ gnome2perl_icon_list_flags_get_type (void)
 	return etype;
 }
 
-SV *
+#if 0 /* unused at the moment */
+
+static SV *
 newSVGnome2PerlIconListFlags (Gnome2PerlIconListFlags flags)
 {
 	return gperl_convert_back_flags (gnome2perl_icon_list_flags_get_type (), flags);
 }
 
-Gnome2PerlIconListFlags
+#endif
+
+static Gnome2PerlIconListFlags
 SvGnome2PerlIconListFlags (SV *sv)
 {
 	return gperl_convert_flags (gnome2perl_icon_list_flags_get_type (), sv);

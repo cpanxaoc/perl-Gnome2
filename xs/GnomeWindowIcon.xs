@@ -22,7 +22,7 @@
 
 /* ------------------------------------------------------------------------- */
 
-char **
+static char **
 newSVGnomeCharArray (SV *ref)
 {
 	AV *array;

@@ -20,7 +20,7 @@
 
 #include "gnome2perl.h"
 
-const GnomeModuleInfo *
+static const GnomeModuleInfo *
 handle_module_info (SV * module_info)
 {
 	const GnomeModuleInfo * real_module_info = NULL;

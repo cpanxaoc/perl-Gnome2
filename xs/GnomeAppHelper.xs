@@ -21,7 +21,7 @@
 #include "gnome2perl.h"
 #include <gperl_marshal.h>
 
-void
+static void
 gnome2perl_popup_menu_activate_func (GtkObject *object,
                                      gpointer data,
                                      GtkWidget *for_widget)
@@ -55,7 +55,7 @@ gnome2perl_popup_menu_activate_func (GtkObject *object,
 	}
 }
 
-void
+static void
 gnome2perl_popup_menu_activate_func_destroy (SV *callback)
 {
 	/* FIXME: Any idea how to destroy the callback?
@@ -227,7 +227,7 @@ SvGnomeUIInfo (SV * sv)
 	return gnome2perl_svrv_to_uiinfo_tree (sv, "variable");
 }
 
-void
+static void
 gnome2perl_refill_info_common (SV *data, GnomeUIInfo *info)
 {
 	if (info->widget) {
@@ -242,7 +242,7 @@ gnome2perl_refill_info_common (SV *data, GnomeUIInfo *info)
 }
 
 
-void
+static void
 gnome2perl_refill_info (SV *data, GnomeUIInfo *info)
 {
 	gnome2perl_refill_info_common (data, info);
@@ -263,7 +263,7 @@ gnome2perl_refill_info (SV *data, GnomeUIInfo *info)
 	}
 }
 
-void
+static void
 gnome2perl_refill_info_popup (SV *data, GnomeUIInfo *info)
 {
 	gnome2perl_refill_info_common (data, info);
@@ -337,7 +337,8 @@ gnome2perl_ui_signal_connect (GnomeUIInfo * uiinfo,
 		                      G_SIGNAL_RUN_FIRST);
 }
 
-GnomeUIBuilderData ui_builder_data = {
+static GnomeUIBuilderData
+ui_builder_data = {
 	gnome2perl_ui_signal_connect,
 	NULL,
 	FALSE,
