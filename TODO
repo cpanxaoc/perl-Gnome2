@@ -22,3 +22,16 @@ libgnomeui:
 	gnome-stock-icons (not all are deprecated)
 	gnome-vfs-util (no bindings for gnome-vfs, either!)
 
+libnautilus-2.0:
+	needed for writing nautilus components in perl, but requires binding
+	for libbonobo/libbonobo-ui
+
+libvte:
+	this is terminal emulator widget that deprecated libzvt
+
+librsvg:
+	this is the library that renders SVG (Scalable Vector Graphics) images;
+	since it will be more and more needed, should go in too (even if not in
+	the Gnome2::* namespace?)
+
+Also, libgstreamer should be wrapped, as soon as it's considered stable.
