@@ -14,12 +14,3 @@ ok(Gnome2::I18N -> get_language_list("LC_MESSAGES"));
 
 Gnome2::I18N -> push_c_numeric_locale();
 Gnome2::I18N -> pop_c_numeric_locale();
-
-###############################################################################
-
-#Glib::Idle -> add(sub {
-#  Gtk2 -> main_quit();
-#  return 0;
-#});
-#
-#Gtk2 -> main();

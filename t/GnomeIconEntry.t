@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $entry = Gnome2::IconEntry -> new("sometimes", "I wish you were here");
   isa_ok($entry, "Gnome2::IconEntry");
@@ -36,13 +36,4 @@ SKIP: {
 
   $entry -> set_max_saved(23)
     if (join("", Gnome2 -> get_version_info()) >= 233);
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

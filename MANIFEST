@@ -30,6 +30,7 @@ t/GnomeDruid.t
 t/GnomeEntry.t
 t/GnomeFileEntry.t
 t/GnomeFontPicker.t
+t/GnomeHelp
 t/GnomeHRef.t
 t/GnomeI18N.t
 t/GnomeIconEntry.t
@@ -42,6 +43,8 @@ t/GnomeProgram.t
 t/GnomeScore
 t/GnomeScores.t
 t/GnomeThumbnail.t
+t/GnomeURL
+t/GnomeUtil.t
 xs/BonoboDock.xs
 xs/BonoboDockItem.xs
 xs/Gnome2.xs
@@ -79,4 +82,5 @@ xs/GnomeSound.xs
 xs/GnomeThumbnail.xs
 xs/GnomeUIDefs.xs
 xs/GnomeURL.xs
+xs/GnomeUtil.xs
 xs/GnomeWindow.xs

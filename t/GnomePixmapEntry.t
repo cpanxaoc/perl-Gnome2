@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $entry = Gnome2::PixmapEntry -> new("schmih", "Schmah", 1);
   isa_ok($entry, "Gnome2::PixmapEntry");
@@ -31,13 +31,4 @@ SKIP: {
   $entry -> set_preview_size(23, 42);
 
   $entry -> get_filename();
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

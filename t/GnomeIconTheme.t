@@ -22,7 +22,7 @@ SKIP: {
   skip("GnomeIconTheme is new in 2.0.6", 7)
     unless (join("", Gnome2 -> get_version_info()) >= 206);
 
-  ###############################################################################
+  #############################################################################
 
   my $theme = Gnome2::IconTheme -> new();
   isa_ok($theme, "Gnome2::IconTheme");
@@ -58,13 +58,4 @@ SKIP: {
   is($theme -> get_search_path(), "/usr/share/icons");
 
   $theme -> set_custom_theme("Crux");
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

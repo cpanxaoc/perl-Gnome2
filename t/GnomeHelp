@@ -1,0 +1,23 @@
+#!/usr/bin/perl -w
+use strict;
+use Gnome2;
+
+# $Header$
+
+###############################################################################
+
+SKIP: {
+  skip("You don't appear to have the GNOME session manager running.", 0)
+    unless (-d "$ENV{ HOME }/.gconfd" &&
+            -d "$ENV{ HOME }/.gnome2");
+
+  my $application = Gnome2::Program -> init("zenity", "0.1", "libgnomeui", app_datadir => "/usr/share");
+
+  skip("Couldn't connect to the session manager.", 0)
+    unless (Gnome2::Client -> new() -> connected());
+
+  #############################################################################
+
+  Gnome2::Help -> display("zenity.xml");
+  Gnome2::Help -> display_desktop($application, "panel", "launchers.html");
+}

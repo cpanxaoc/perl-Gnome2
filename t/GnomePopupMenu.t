@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $uiinfo = [
     { type => "item", label => "Item" },
@@ -49,7 +49,7 @@ SKIP: {
     { type => "item", label => "Really?" }
   ];
 
-  ###############################################################################
+  #############################################################################
 
   my $popup = Gnome2::PopupMenu -> new($uiinfo);
   isa_ok($popup, "Gtk2::Menu");
@@ -100,13 +100,4 @@ SKIP: {
 
   $button -> add_popup_items($uiinfo);
   $button -> add_popup_items($uiinfo, undef);
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $link = Gnome2::HRef -> new("ftp://ftp.freenet.de/pub/", "Freenet");
   isa_ok($link, "Gnome2::HRef");
@@ -29,13 +29,4 @@ SKIP: {
 
   $link -> set_text("Hmm");
   is($link -> get_text(), "Hmm");
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

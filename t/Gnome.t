@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   foreach (Gnome2::ModuleInfo -> libgnome(),
            Gnome2::ModuleInfo -> libgnomeui(),
@@ -34,14 +34,14 @@ SKIP: {
   ok(-e Gnome2 -> user_private_dir_get());
   ok(-e Gnome2 -> user_accels_dir_get());
 
-  ###############################################################################
+  #############################################################################
 
   is(Gnome2::UIDefs -> pad, 8);
   is(Gnome2::UIDefs -> key_name_find, "f");
   is(Gnome2::UIDefs -> key_name_replace, "r");
   like(Gnome2::UIDefs -> key_name_pause_game, qr/^\d+$/);
 
-  ###############################################################################
+  #############################################################################
 
   is(Gnome2::GConf -> get_gnome_libs_settings_relative("test"),
      "/apps/gnome-settings/Test/test");
@@ -49,14 +49,14 @@ SKIP: {
   is(Gnome2::GConf -> get_app_settings_relative($application, "test"),
      "/apps/Test/test");
 
-  ###############################################################################
+  #############################################################################
 
   my $window = Gtk2::Window -> new("toplevel");
 
   $window -> toplevel_set_title("test.doc", "Test", ".doc");
   is($window -> get_title(), "test : Test");
 
-  ###############################################################################
+  #############################################################################
 
   my $about = Gnome2::About -> new("Test",
                                    "0.1",
@@ -67,13 +67,4 @@ SKIP: {
                                    "Where's my calculator?");
 
   isa_ok($about, "Gtk2::Dialog");
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

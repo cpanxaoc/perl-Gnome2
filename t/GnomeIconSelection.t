@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $selection = Gnome2::IconSelection -> new();
   isa_ok($selection, "Gnome2::IconSelection");
@@ -36,13 +36,4 @@ SKIP: {
 
   $selection -> select_icon("yes.xpm");
   is($selection -> get_icon(1), "/usr/share/pixmaps/yes.xpm");
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

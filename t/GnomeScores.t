@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $scores = Gnome2::Scores -> new([qw(bla blub)],
                                      [1.3, 1.1127],
@@ -36,13 +36,4 @@ SKIP: {
   $scores -> set_colors(Gtk2::Gdk::Color -> new(0, 0, 0));
   $scores -> set_logo_label_title("Blub");
   $scores -> set_current_player(1);
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

@@ -48,13 +48,4 @@ SKIP: {
   $app_bar -> set_prompt("Hmm?", 0);
   is($app_bar -> get_response(), "");
   $app_bar -> clear_prompt();
-
-  #############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

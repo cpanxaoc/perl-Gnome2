@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $entry = Gnome2::Entry -> new();
   isa_ok($entry, "Gnome2::Entry");
@@ -40,13 +40,4 @@ SKIP: {
   $entry -> prepend_history(1, "blub");
   $entry -> append_history(0, "blab");
   $entry -> clear_history();
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $app = Gnome2::App -> new("test", "Test");
   isa_ok($app, "Gnome2::App");
@@ -54,13 +54,4 @@ SKIP: {
 
   isa_ok($app -> get_dock(), "Gnome2::Bonobo::Dock");
   isa_ok($app -> get_dock_item_by_name("dock item"), "Gnome2::Bonobo::DockItem");
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

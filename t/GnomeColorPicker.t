@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $picker = Gnome2::ColorPicker -> new();
   isa_ok($picker, "Gnome2::ColorPicker");
@@ -41,13 +41,4 @@ SKIP: {
 
   $picker -> set_title("May The Force Be With You!");
   is($picker -> get_title(), "May The Force Be With You!");
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

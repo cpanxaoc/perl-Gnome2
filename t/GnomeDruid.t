@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $druid = Gnome2::Druid -> new();
   isa_ok($druid, "Gnome2::Druid");
@@ -39,13 +39,4 @@ SKIP: {
   $dummy_page -> finish();
   $dummy_page -> prepare();
   $dummy_page -> next();
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

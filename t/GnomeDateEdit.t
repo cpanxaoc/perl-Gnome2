@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $edit = Gnome2::DateEdit -> new(time(), 1, 1);
   isa_ok($edit, "Gnome2::DateEdit");
@@ -38,13 +38,4 @@ SKIP: {
   $edit -> set_flags([qw(show_time 24_hr)]);
   # XXX: is_deeply([$edit -> get_flags()], [qw(show_time 24_hr)]);
   is($edit -> get_flags(), 3);
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

@@ -58,19 +58,20 @@ gnome_help_display (class, file_name, link_id=NULL)
 #	char **envp
 #	GError **error
 
-##  gboolean gnome_help_display_uri (const char *help_uri, GError **error) 
-gboolean
-gnome_help_display_uri (class, help_uri)
-	SV * class
-	const char *help_uri
-    PREINIT:
-	GError *error = NULL;
-    CODE:
-	RETVAL = gnome_help_display_uri (help_uri, &error);
-	if (!RETVAL)
-		gperl_croak_gerror("Gnome2::Help->display_uri", error);
-    OUTPUT:
-	RETVAL
+# API docs: «You should never need to call this function directly in code [...]»
+###  gboolean gnome_help_display_uri (const char *help_uri, GError **error) 
+#gboolean
+#gnome_help_display_uri (class, help_uri)
+#	SV * class
+#	const char *help_uri
+#    PREINIT:
+#	GError *error = NULL;
+#    CODE:
+#	RETVAL = gnome_help_display_uri (help_uri, &error);
+#	iif (!RETVAL)
+#		gperl_croak_gerror("Gnome2::Help->display_uri", error);
+#    OUTPUT:
+#	RETVAL
 
 ###  gboolean gnome_help_display_uri_with_env (const char *help_uri, char **envp, GError **error) 
 #gboolean

@@ -1,3 +1,29 @@
+2003/09/26 16:20 (+0200) kaffeetisch
+
+	* TODO: Added libbonoboui.  Added explanations to gnome-config,
+	gnome-triggers and GnomeThemeFile.
+
+	* t/*: Removed unneeded main loops.  Fixed comments.
+
+	* t/GnomeIconList.t: Filled the skeleton.
+
+	* t/GnomeProgram.t: Changed human readable program name to avoid line
+	wrapping.
+
+	* xs/GnomeHelp.xs: Comment out gnome_help_display_uri.
+
+	* xs/GnomeIconTheme.xs: Removed IconData prototypes.  They're not
+	needed.
+
+	A t/GnomeHelp
+	A t/GnomeURL
+	* MANIFEST: Initial tests.  Not run by make test since they require
+	user interaction.
+
+	A xs/GnomeUtil.xs
+	A t/GnomeUtil.t
+	* MANIFEST: Initial implementation of GnomeUtil.
+
 2003/09/26 04:40 (-0400) muppetman
 
 	* Gnome2.pm, META.yml, README, debian/changelog: release 0.36

@@ -27,23 +27,14 @@ SKIP: {
   my $application = Gnome2::Program -> init("Test",
                                             "0.1",
                                             "libgnomeui",
-                                            human_readable_name => "Test v0.1");
+                                            human_readable_name => "Test 0.1");
 
   isa_ok($application, "Gnome2::Program");
   is($application -> get_program(), $application);
 
-  is($application -> get_human_readable_name(), "Test v0.1");
+  is($application -> get_human_readable_name(), "Test 0.1");
   is($application -> get_app_id(), "Test");
   is($application -> get_app_version(), "0.1");
 
   ok(-e $application -> locate_file("libdir", "libgnome-2.so", 1));
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

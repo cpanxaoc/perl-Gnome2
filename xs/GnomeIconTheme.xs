@@ -257,17 +257,4 @@ gboolean
 gnome_icon_theme_rescan_if_needed (theme)
 	GnomeIconTheme *theme
 
-MODULE = Gnome2::IconTheme	PACKAGE = Gnome2::IconData	PREFIX = gnome_icon_data_
-
-# FIXME
-###  GnomeIconData * gnome_icon_data_dup (const GnomeIconData *icon_data) 
-#GnomeIconData *
-#gnome_icon_data_dup (icon_data)
-#	 const GnomeIconData *icon_data
-#
-###  void gnome_icon_data_free (GnomeIconData *icon_data) 
-#void
-#gnome_icon_data_free (icon_data)
-#	 GnomeIconData *icon_data
-
 #endif

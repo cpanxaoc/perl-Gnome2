@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $menubar_info = [
     { type => "item", label => "Item", callback => sub { } },
@@ -77,7 +77,7 @@ SKIP: {
   my $statusbar_info = [ { type => "item", label => "hMm" } ];
   my $menu_info = [ { type => "item", label => "hmM" } ];
 
-  ###############################################################################
+  #############################################################################
 
   Gnome2 -> accelerators_sync();
 
@@ -115,13 +115,4 @@ SKIP: {
   # $appbar -> install_menu_hints($appbar_info);
   # $statusbar -> install_menu_hints($statusbar_info);
   # $app -> install_menu_hints($menu_info);
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

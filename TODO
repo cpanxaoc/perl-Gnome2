@@ -6,19 +6,19 @@ need examples
 
 these haven't been done yet (going from the reference doc indices):
 
-libbonobo:
+libbonobo, libbonoboui:
 	not touched.  should it go in a separate module?  (still in this
 	namespace, but...)
 
 libgnome:
 	gnome-exec (perl offers the same features natively)
-	gnome-config
-	gnome-triggers
+	gnome-config (the docs say it's not for mainstream apps)
+	gnome-triggers (failed to implement this one)
 
 libgnomeui:
 	gnome-ui-init (the parameters... the gnome_init stuff is deprecated)
 	GnomeIconLookup
-	GnomeThemeFile
+	GnomeThemeFile (no GObject, so I'll wait till someone begs for it)
 	gnome-stock-icons (not all are deprecated)
 	gnome-vfs-util (no bindings for gnome-vfs, either!)
 

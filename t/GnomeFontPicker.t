@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  ###############################################################################
+  #############################################################################
 
   my $picker = Gnome2::FontPicker -> new();
   isa_ok($picker, "Gnome2::FontPicker");
@@ -45,13 +45,4 @@ SKIP: {
 
   $picker -> set_preview_text("Brown foxes suck.");
   is($picker -> get_preview_text(), "Brown foxes suck.");
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }

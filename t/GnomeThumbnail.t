@@ -22,7 +22,7 @@ SKIP: {
   skip("GnomeThumbnail is new in 2.0.6", 2)
     unless (join("", Gnome2 -> get_version_info()) >= 206);
 
-  ###############################################################################
+  #############################################################################
 
   my $uri = "file:///usr/share/pixmaps/yes.xpm";
   my $file = "/usr/share/pixmaps/yes.xpm";
@@ -46,13 +46,4 @@ SKIP: {
   # XXX: $thumbnail -> is_valid($uri, $mtime);
   $thumbnail -> md5($uri);
   $thumbnail -> path_for_uri($uri, "large");
-
-  ###############################################################################
-
-  Glib::Idle -> add(sub {
-    Gtk2 -> main_quit();
-    return 0;
-  });
-
-  Gtk2 -> main();
 }
