@@ -13,7 +13,8 @@ our %build_reqs = (
 	'perl-ExtUtils-PkgConfig' => '0.1',
 	'perl-Glib'               => '1.00rc1',
 	'perl-Gtk2'               => '1.00rc1',
-	'Gnome'                  => '2.0.0.0',
+	'Gnome'                   => '2.0.0',
+	'Bonobo'                  => '2.0.0',
 );
 
 # minimum required version of dependancies we need to run
@@ -47,9 +48,12 @@ unless (eval "use ExtUtils::Depends;"
 # now let's get started on the real work...
 # in theory, getting what we need to build libgnomeui should 
 # also get everything we need for libgnome.
-%pkgcfg = ExtUtils::PkgConfig->find ('libgnomeui-2.0 >= '.$build_reqs{Gnome});
+%gnome_pkgcfg =
+	ExtUtils::PkgConfig->find ("libgnomeui-2.0 >= $build_reqs{Gnome}");
+$runtime_reqs{Gnome} = $gnome_pkgcfg{modversion};
 
-$runtime_reqs{Gnome} = $pkgcfg{modversion};
+%bonobo_pkgcfg =
+	ExtUtils::PkgConfig->find("libbonoboui-2.0 >= $build_reqs{Bonobo}");
 
 mkdir 'build', 0777;
 
@@ -65,8 +69,8 @@ Gtk2::CodeGen->write_boot;
 # will chain from this one.
 
 $gnome2 = ExtUtils::Depends->new ('Gnome2', 'Gtk2', 'Glib');
-$gnome2->set_inc ($pkgcfg{cflags});
-$gnome2->set_libs ($pkgcfg{libs});
+$gnome2->set_inc ($gnome_pkgcfg{cflags} . " " . $bonobo_pkgcfg{cflags});
+$gnome2->set_libs ($gnome_pkgcfg{libs} . " " . $bonobo_pkgcfg{libs});
 $gnome2->add_xs (<xs/*.xs>);
 $gnome2->add_pm ('Gnome2.pm' => '$(INST_LIBDIR)/Gnome2.pm');
 my $cwd = cwd();

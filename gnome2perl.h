@@ -26,6 +26,8 @@
 #undef _ /* gnome and perl disagree on this one */
 #include <gnome.h>
 #include <libgnome/libgnometypebuiltins.h>
+#include <bonobo.h>
+#include <bonobo/bonobo-ui-type-builtins.h>
 #include "gnome2perl-autogen.h"
 
 /*

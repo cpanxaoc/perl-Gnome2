@@ -29,7 +29,8 @@ gconfgtk-2.0
 	'/usr/include/libgnome-2.0/libgnome/',
 	'/usr/include/libgnomeui-2.0/libgnomeui/',
 	'/usr/include/libgnomecanvas-2.0/libgnomecanvas/',
-#	'/usr/include/libbonobo-2.0/bonobo/',
+	'/usr/include/libbonobo-2.0/bonobo/',
+	'/usr/include/libbonoboui-2.0/bonobo/'
 );
 
 foreach $dir (@dirs) {
@@ -51,6 +52,7 @@ print '#include <stdio.h>
 #include <gnome.h>
 #include <libgnomecanvas/libgnomecanvas.h>
 #include <libgnome/libgnometypebuiltins.h>
+#include <bonobo/bonobo-ui-type-builtins.h>
 
 const char * find_base (GType gtype)
 {
