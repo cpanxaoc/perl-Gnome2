@@ -38,6 +38,7 @@ buttons (druid)
 		case 2: RETVAL = druid->next; break;
 		case 3: RETVAL = druid->cancel; break;
 		case 4: RETVAL = druid->finish; break;
+		default: RETVAL = NULL;
 	}
     OUTPUT:
 	RETVAL

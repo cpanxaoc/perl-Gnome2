@@ -34,6 +34,7 @@ module_info (class)
 		case 0: RETVAL = (GnomeModuleInfo*) LIBGNOME_MODULE; break;
 		case 1: RETVAL = (GnomeModuleInfo*) LIBGNOME_MODULE; break;
 		case 2: RETVAL = (GnomeModuleInfo*) gnome_bonobo_module_info_get (); break;
+		default: RETVAL = NULL;
 	}
     OUTPUT:
 	RETVAL
@@ -53,6 +54,7 @@ members (module_info)
 		case 1: RETVAL = newSVpv (module_info->version, PL_na); break;
 		case 2: RETVAL = newSVpv (module_info->description, PL_na); break;
 		case 3: RETVAL = newSVpv (module_info->opt_prefix, PL_na); break;
+		default: RETVAL = &PL_sv_undef;
 	}
     OUTPUT:
 	RETVAL

@@ -37,6 +37,7 @@ dirs (class)
 		case 0: RETVAL = gnome_user_dir_get (); break;
 		case 1: RETVAL = gnome_user_private_dir_get (); break;
 		case 2: RETVAL = gnome_user_accels_dir_get (); break;
+		default: RETVAL = NULL;
 	}
     OUTPUT:
 	RETVAL

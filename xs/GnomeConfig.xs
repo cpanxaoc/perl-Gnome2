@@ -62,6 +62,7 @@ get_string (class, path)
 		case 1: RETVAL = gnome_config_get_translated_string (path); break;
 		case 2: RETVAL = gnome_config_private_get_string (path); break;
 		case 3: RETVAL = gnome_config_private_get_translated_string (path); break;
+		default: RETVAL = NULL;
 	}
     OUTPUT:
 	RETVAL
@@ -109,6 +110,7 @@ get_int (class, path)
 	switch (ix) {
 		case 0: RETVAL = gnome_config_get_int (path); break;
 		case 1: RETVAL = gnome_config_private_get_int (path); break;
+		default: RETVAL = 0;
 	}
     OUTPUT:
 	RETVAL
@@ -147,6 +149,7 @@ get_float (class, path)
 	switch (ix) {
 		case 0: RETVAL = gnome_config_get_float (path); break;
 		case 1: RETVAL = gnome_config_private_get_float (path); break;
+		default: RETVAL = 0.0;
 	}
     OUTPUT:
 	RETVAL
@@ -186,6 +189,7 @@ get_bool (class, path)
 	switch (ix) {
 		case 0: RETVAL = gnome_config_get_bool (path); break;
 		case 1: RETVAL = gnome_config_private_get_bool (path); break;
+		default: RETVAL = FALSE;
 	}
     OUTPUT:
 	RETVAL
@@ -380,6 +384,7 @@ bools (class, path)
 		case 1: RETVAL = gnome_config_private_has_section (path); break;
 		case 2: RETVAL = gnome_config_sync_file ((char *) path); break;
 		case 3: RETVAL = gnome_config_private_sync_file ((char *) path); break;
+		default: RETVAL = FALSE;
 	}
     OUTPUT:
 	RETVAL
@@ -418,6 +423,7 @@ get_real_path (class, path)
 	switch (ix) {
 		case 0: RETVAL = gnome_config_get_real_path (path); break;
 		case 1: RETVAL = gnome_config_private_get_real_path (path); break;
+		default: RETVAL = NULL;
 	}
     OUTPUT:
 	RETVAL

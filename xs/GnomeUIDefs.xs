@@ -155,6 +155,7 @@ constants (class)
 
 		case 52: key[0] = GNOME_KEY_NAME_NEW_GAME; RETVAL = newSVpv (key, PL_na); break;
 		case 53: RETVAL = newSViv (GNOME_KEY_MOD_NEW_GAME); break;
+		default: RETVAL = &PL_sv_undef;
 	}
     OUTPUT:
 	RETVAL

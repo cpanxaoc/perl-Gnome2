@@ -46,6 +46,7 @@ members (app)
 		case 6: RETVAL = newSVBonoboDockLayout (app->layout); break;
 		case 7: RETVAL = newSVGtkAccelGroup (app->accel_group); break;
 		case 8: RETVAL = newSVuv (app->enable_layout_config); break;
+		default: RETVAL = &PL_sv_undef;
 	}
     OUTPUT:
 	RETVAL
