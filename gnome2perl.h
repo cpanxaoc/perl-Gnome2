@@ -28,6 +28,7 @@
 #include <libgnome/libgnometypebuiltins.h>
 #include <bonobo.h>
 #include <bonobo/bonobo-ui-type-builtins.h>
+#include "gnome2perl-version.h"
 #include "gnome2perl-autogen.h"
 
 /*

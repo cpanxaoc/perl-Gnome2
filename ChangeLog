@@ -1,3 +1,13 @@
+2003/09/21 11:00 muppetman
+
+	* Makefile.PL, gnome2perl.h: add a slight hack to generate version-
+	checking macros a la GTK_CHECK_VERSION for the libraries that don't
+	do that for us.
+
+	* xs/GnomeIconEntry.xs: use the shiny new LIBGNOMEUI_CHECK_VERSION() to
+	avoid trying to compile gnome_icon_entry_set_max_saved on versions
+	prior to 2.3.3 (because they don't have it).
+
 2003/09/21 16:06 kaffeetisch
 
 	* TODO: Updated to reflect recent changes.
@@ -8,8 +18,8 @@
 
 	* xs/GnomeIconLookup.xs, xs/GnomeIconTheme.xs, xs/GnomeThumbnail.xs:
 	GnomeIconTheme and GnomeThumbnailFactory didn't appear until about 2.0.6,
-	according to the changelogs for libgnomeui.  only compile this stuff if we
-	have the right types defined.
+	according to the changelogs for libgnomeui.  only compile this stuff if
+	we have the right types defined.
 
 2003/09/20 23:32 rwmcfa1
 

@@ -55,6 +55,10 @@ $runtime_reqs{Gnome} = $gnome_pkgcfg{modversion};
 %bonobo_pkgcfg =
 	ExtUtils::PkgConfig->find("libbonoboui-2.0 >= $build_reqs{Bonobo}");
 
+%cfgs = (libgnomeui => \%gnome_pkgcfg,
+         libbonobo => \%bonobo_pkgcfg,
+	);
+
 mkdir 'build', 0777;
 
 #
@@ -62,6 +66,23 @@ mkdir 'build', 0777;
 #
 Gtk2::CodeGen->parse_maps ('gnome2perl');
 Gtk2::CodeGen->write_boot;
+
+open VERSION, ">build/gnome2perl-version.h";
+foreach my $pkg (keys %cfgs) {
+	my $stem = uc $pkg;
+	my @modversion = split /\./, $cfgs{$pkg}{modversion};
+	print VERSION "#define $stem\_MAJOR_VERSION   ($modversion[0])\n";
+	print VERSION "#define $stem\_MINOR_VERSION   ($modversion[1])\n";
+	print VERSION "#define $stem\_MICRO_VERSION   ($modversion[2])\n";
+	print VERSION
+	     "#define $stem\_CHECK_VERSION(major,minor,micro) \\\n"
+	   . "    ($stem\_MAJOR_VERSION > (major) || \\\n"
+	   . "     ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION > (minor)) || \\\n"
+	   . "     ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION == (minor) && \\\n"
+	   . "      $stem\_MICRO_VERSION >= (micro)))\n";
+}
+close VERSION;
+
 
 # now we're ready to start creating the makefile.
 # we need to use ExtUtils::Depends to get relevant information out of
@@ -77,7 +98,9 @@ my $cwd = cwd();
 $gnome2->add_typemaps (map {File::Spec->catfile($cwd,$_)} 'build/gnome2perl.typemap', 'gnomeuiinfo.typemap');
 $gnome2->add_headers ('gnome2perl.h');
 
-$gnome2->install (qw(gnome2perl.h build/gnome2perl-autogen.h));
+$gnome2->install (qw(gnome2perl.h
+                     build/gnome2perl-autogen.h
+                     build/gnome2perl-version.h));
 $gnome2->save_config ('build/IFiles.pm');
 
 WriteMakefile(
