@@ -1,3 +1,11 @@
+2003/07/18 12:49 muppetman
+
+	* xs/GnomeProgram.xs: change default for the module_info to
+	libgnomeui (since that's what most people want) and allow it to
+	be omitted.
+
+	* Gnome2.pm META.yml README: bump version number to 0.28 for release
+
 2003/07/11 01:00 muppetman
 
 	* gnomeuiinfo.typemap, gnome2perl.h, Makefile.PL, xs/GnomeAppHelper.xs:
