@@ -2,6 +2,8 @@
 # $Header$
 #
 
+test suite!!!
+need examples
 
 these haven't been done yet (going from the reference doc indices):
 
@@ -23,7 +25,7 @@ libgnomeui:
 	anything that has to do with GnomeUIInfo, all the gnome-app-helper stuff
 	gnome-ui-init (the parameters... the gnome_init stuff is deprecated)
 	gnome-window
-	gnome-popup-menu (more GnomeUIInfo)
+	gnome-popup-menu (well, it's not complete)
 	GnomeIconEntry
 	GnomeIconList
 	GnomeIconLookup
