@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 19;
+use constant TESTS => 23;
 use Test::More tests => TESTS;
 
 # $Header$
