@@ -11,6 +11,7 @@ TODO
 druid.pl
 genmaps.pl
 gnome2perl.h
+gnomeuiinfo.typemap
 maps
 t/00.Gnome2.t
 xs/Gnome2.xs
