@@ -13,10 +13,10 @@ use File::Spec;
 our %build_reqs = (
 	'perl-ExtUtils-Depends'   => '0.20',
 	'perl-ExtUtils-PkgConfig' => '1.03',
-	'perl-Glib'               => '1.039',
+	'perl-Glib'               => '1.04',
 	'perl-Gtk2'               => '1.00',
-	'perl-Gnome2-Canvas'      => '0.91',
-	'perl-Gnome2-VFS'         => '0.01',
+	'perl-Gnome2-Canvas'      => '1.00',
+	'perl-Gnome2-VFS'         => '1.00',
 	'Gnome'                   => '2.0.0',
 	'Bonobo'                  => '2.0.0',
 );
@@ -25,14 +25,12 @@ our %build_reqs = (
 # dependencies and install them.
 unless (eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
            . "use ExtUtils::PkgConfig '$build_reqs{'perl-ExtUtils-PkgConfig'}';"
-	   . "use Gtk2::CodeGen;"
-           . "use Glib::MakeHelper;" # for do_pod_files()
-           # just seeing if Glib is available isn't enough, make sure
-           # it's recent enough, too 
            . "use Glib '$build_reqs{'perl-Glib'}';"
            . "use Gtk2 '$build_reqs{'perl-Gtk2'}';"
            . "use Gnome2::Canvas '$build_reqs{'perl-Gnome2-Canvas'}';"
            . "use Gnome2::VFS '$build_reqs{'perl-Gnome2-VFS'}';"
+	   . "use Gtk2::CodeGen;"
+           . "use Glib::MakeHelper;"
            . "1") {
    warn "$@\n";
    WriteMakefile(

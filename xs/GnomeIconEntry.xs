@@ -61,7 +61,7 @@ gnome_icon_entry_set_history_id (ientry, history_id)
 
 #### this appeared sometime between 2.3.0 and 2.3.3.1 ...
 
-#if LIBGNOMEUI_CHECK_VERSION(2,3,3)
+#if LIBGNOMEUI_CHECK_VERSION(2, 4, 0)
 
 ##  void gnome_icon_entry_set_max_saved (GnomeIconEntry *ientry, guint max_saved) 
 void

@@ -25,8 +25,8 @@ SKIP: {
   # is($entry -> get_history_id(), "urgs");
 
   SKIP: {
-    skip("set_max_saved is new in 2.3.3", 1)
-      unless (Gnome2 -> CHECK_VERSION(2, 3, 3));
+    skip("set_max_saved is new in 2.4.0", 1)
+      unless (Gnome2 -> CHECK_VERSION(2, 4, 0));
 
     $entry -> set_max_saved(23);
     is($entry -> get_max_saved(), 23);

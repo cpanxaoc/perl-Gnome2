@@ -79,7 +79,7 @@ CHECK_VERSION (class, major, minor, micro)
 
 MODULE = Gnome2		PACKAGE = Gnome2::AuthenticationManager	PREFIX = gnome_authentication_manager_
 
-#if LIBGNOMEUI_CHECK_VERSION (2, 3, 6)
+#if LIBGNOMEUI_CHECK_VERSION (2, 4, 0)
 
 ## void gnome_authentication_manager_init (void)
 void

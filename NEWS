@@ -1,3 +1,8 @@
+Overview of changes in Gnome2 1.00
+==================================
+
+* Depend on Glib 1.04, Gnome2::Canvas 1.00, and Gnome2::VFS 1.00.
+
 Overview of changes in Gnome2 0.94
 ==================================
 

@@ -12,8 +12,8 @@ use Test::More tests => TESTS;
 SKIP: {
   do "t/TestBoilerplate";
 
-  skip("GnomePasswordDialog and GnomeAuthenticationManager didn't appear until 2.3.6", TESTS)
-    unless (Gnome2 -> CHECK_VERSION(2, 3, 6));
+  skip("GnomePasswordDialog and GnomeAuthenticationManager didn't appear until 2.4.0", TESTS)
+    unless (Gnome2 -> CHECK_VERSION(2, 4, 0));
 
   Gnome2::AuthenticationManager -> init();
 
@@ -29,8 +29,8 @@ SKIP: {
   $dialog -> set_readonly_username(1);
 
   SKIP: {
-    skip("things new in 2.5.1", 2)
-      unless (Gnome2 -> CHECK_VERSION(2, 5, 1));
+    skip("things new in 2.6.0", 2)
+      unless (Gnome2 -> CHECK_VERSION(2, 6, 0));
 
     $dialog -> set_show_username(1);
     $dialog -> set_show_domain(1);

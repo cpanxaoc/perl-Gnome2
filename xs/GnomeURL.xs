@@ -38,7 +38,7 @@ gnome_url_show (class, url)
 	RETVAL
 
 
-#if LIBGNOME_CHECK_VERSION (2,1,1)
+#if LIBGNOME_CHECK_VERSION (2, 2, 0)
 
 =for apidoc __gerror__
 =cut

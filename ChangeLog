@@ -1,3 +1,20 @@
+2004/03/29 19:55 (+0200) kaffeetisch
+
+	* Gnome2.pm
+	* Makefile.PL
+	* NEWS
+	* README: Version 1.00.
+
+	* t/GnomeConfig.t
+	* t/GnomeEntry.t
+	* t/GnomeIconEntry.t
+	* t/GnomePasswordDialog.t
+	* xs/Gnome2.xs
+	* xs/GnomeHelp.xs
+	* xs/GnomeIconEntry.xs
+	* xs/GnomePasswordDialog.xs
+	* xs/GnomeURL.xs: Refer to stable releases only.
+
 2004/03/11 16:17 (+0100) kaffeetisch
 
 	* Gnome2.pm
@@ -10,7 +27,7 @@
 
 	* xs/GnomeHelp.xs
 	* xs/GnomeURL.xs: Use the new __gerror__ keyword to mark those
-	function that may croak on error.
+	functions that may croak on error.
 
 2004/03/02 05:06 (+0100) kaffeetisch
 

@@ -52,10 +52,10 @@ ways:
 This module requires these other modules and libraries:
 
   perl >= 5.8.0
-  Glib >= 1.039 (perl module and requisite C libraries)
+  Glib >= 1.04 (perl module and requisite C libraries)
   Gtk2 >= 1.00 (perl module and requisite C libraries)
-  Gnome2::Canvas >= 0.91 (perl module and requisite C libraries)
-  Gnome2::VFS >= 0.01 (perl module and requisite C libraries)
+  Gnome2::Canvas >= 1.00 (perl module and requisite C libraries)
+  Gnome2::VFS >= 1.00 (perl module and requisite C libraries)
   libgnomeui > 2.x (C library) and dependencies
   libbonoboui > 2.x (C library) and dependencies
 

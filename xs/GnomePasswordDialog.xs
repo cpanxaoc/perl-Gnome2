@@ -74,7 +74,7 @@ gnome_password_dialog_get_password (password_dialog)
 
 # --------------------------------------------------------------------------- #
 
-#if LIBGNOMEUI_CHECK_VERSION (2, 5, 1)
+#if LIBGNOMEUI_CHECK_VERSION (2, 6, 0)
 
 ## void gnome_password_dialog_set_show_username (GnomePasswordDialog *password_dialog, gboolean show)
 void
@@ -130,6 +130,6 @@ gnome_password_dialog_get_domain (password_dialog)
     CLEANUP:
 	g_free (RETVAL);
 
-#endif /* 2.5.1 */
+#endif /* 2.6.0 */
 
 #endif /* GNOME_TYPE_PASSWORD_DIALOG */

@@ -99,7 +99,7 @@ gnome_help_display_desktop (class, program, doc_id, file_name, link_id=NULL)
     OUTPUT:
 	RETVAL
 
-#if LIBGNOME_CHECK_VERSION (2,1,1)
+#if LIBGNOME_CHECK_VERSION (2, 2, 0)
 
 =for apidoc __gerror__
 =cut
