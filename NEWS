@@ -1,3 +1,9 @@
+Overview of changes in Gnome2 1.011
+===================================
+
+* Bind and test Gnome2::IconList::select_all.
+* Test Gnome2::DruidPageStandard::set_contents_background.
+
 Overview of changes in Gnome2 1.010
 ===================================
 
