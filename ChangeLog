@@ -1,3 +1,10 @@
+2004/04/27 20:45 (+0200) kaffeetisch
+
+	Merge from the stable-1-00 branch:
+
+	* Makefile.PL: Add Gnome2::Canvas to PREREQ_PM as well so that it
+	(hopefully) gets picked up by CPAN(PLUS).pm.
+
 2004/04/25 13:38 (+0200) kaffeetisch
 
 	* t/GnomeDruid.t: Add reference to the relevant bug to the
