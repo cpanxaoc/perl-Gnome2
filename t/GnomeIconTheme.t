@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 9;
+use constant TESTS => 10;
 use Test::More tests => TESTS;
 
 Gnome2::VFS -> init();
@@ -44,10 +44,10 @@ SKIP: {
 
   my ($file,
       $icon_data,
-      $size) = $theme -> lookup_icon("gnome-starthere", 48);
+      $size) = $theme -> lookup_icon("gnome-fs-directory", 48);
 
   ok(-e $file);
-  # FIXME: $icon_data?
+  isa_ok($icon_data, "HASH");
   like($size, qr/^\d+$/);
 
   $theme -> set_allow_svg(1);
