@@ -20,8 +20,6 @@
 
 #include "gnome2perl.h"
 
-GnomeUIInfo * SvGnomeUIInfo (SV * sv);
-
 /*
 custom handling for GnomeUIInfo
 */
