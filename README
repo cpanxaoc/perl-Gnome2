@@ -1,6 +1,6 @@
 
-Gnome2 version 0.49
-===================
+				    Gnome2
+				   --------
 
 The Gnome2 module allows a perl developer to use the Gnome libraries.  Find out
 more about Gnome+ at http://www.gnome.org.
@@ -15,7 +15,8 @@ Also have a look at the gtk2-perl website and sourceforge project page,
 http://gtk2-perl.sourceforge.net
 
 
-INSTALLATION
+				 Installation
+				--------------
 
 To install this module type the following:
 
@@ -45,7 +46,8 @@ ways:
     use lib '/some/other/place/lib/perl5/site_perl';
   
 
-DEPENDENCIES
+				 Dependencies
+				--------------
 
 This module requires these other modules and libraries:
 
@@ -61,6 +63,7 @@ To build this module from source, you'll also need
   ExtUtils::Depends
   ExtUtils::PkgConfig
 
-COPYRIGHT AND LICENCE
+				   Copyright
+				  -----------
 
 Copyright (C) 2003 by the gtk2-perl team (see the file AUTHORS)

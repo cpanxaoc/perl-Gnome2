@@ -14,8 +14,13 @@ SKIP: {
     unless (-d "$ENV{ HOME }/.gconfd" &&
             -d "$ENV{ HOME }/.gnome2");
 
+  skip("Couldn't initialize Gtk2", TESTS)
+    unless (Gtk2 -> init_check());
+
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
+
+  #############################################################################
 
   Gnome2::Program -> module_register("libgnome");
   ok(Gnome2::Program -> module_registered("libgnome"));
