@@ -261,3 +261,5 @@ gnome_interaction_key_return (class, key, cancel_shutdown)
 	Gnome2::Client::interaction_key_return = 0
     C_ARGS:
 	key, cancel_shutdown
+    CLEANUP:
+	PERL_UNUSED_VAR (ix);

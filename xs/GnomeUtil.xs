@@ -29,6 +29,8 @@ g_extension_pointer (class, path)
 	extension = 0
     C_ARGS:
 	path
+    CLEANUP:
+	PERL_UNUSED_VAR (ix);
 
 gchar_own *
 gnome_util_prepend_user_home (class, file)
