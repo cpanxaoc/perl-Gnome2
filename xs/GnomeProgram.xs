@@ -20,8 +20,14 @@ gnome_program_init (class, app_id, app_version, module_info, ...)
 	char ** argv;
 	const GnomeModuleInfo * real_module_info = NULL;
     CODE:
-	/* FIXME check validity of stack item count before doing 
-	 *       anything else */
+	/* check validity of stack item count before doing anything else */
+	if (items > 4 && 0 != ((items - 4) % 2)) {
+		/* caller didn't specify an even number of parameters... */
+		croak ("Usage: Gnome2::Program->init (app_id, app_version, module_info)\n"
+		       "   or: Gnome2::Program->init (app_id, app_ver, mod_info, prop => val, ...)\n"
+		       "   there may be any number of prop/val pairs, but there must be a value\n"
+		       "   for every prop");
+	}
 
 	/* let's see what the user passed for module_info */
 	if (module_info == &PL_sv_undef) {
@@ -68,8 +74,30 @@ gnome_program_init (class, app_id, app_version, module_info, ...)
 	 * themselves (they are still owned by their SVs) */
 	g_free (argv);
 
-	/* FIXME should get properties off the stack and handle them here! */
-	warn ("FIXME -- need to implement getting object properties off the arg stack in Gnome2::Program::init");
+	/* get properties off the stack and set them */
+	for (i = 4 ; i < items ; i += 2) {
+		const char * property_name;
+		GValue gvalue = {0,};
+		GParamSpec * pspec;
+
+		property_name = SvPV_nolen (ST (i));
+		pspec = g_object_class_find_property 
+		                          (G_OBJECT_GET_CLASS (RETVAL),
+		                           property_name);
+		if (!pspec)
+			/* we should do a lot more cleanup here, 
+			 * in principle, but the GnomeProgram is a 
+			 * singleton, and most people aren't going to
+			 * accept an exception on initializing it. */
+			croak ("property %s not found in object class %s",
+			       property_name, G_OBJECT_TYPE_NAME (RETVAL));
+
+		g_value_init (&gvalue, G_PARAM_SPEC_VALUE_TYPE (pspec));
+		gperl_value_from_sv (&gvalue, ST (i+1));
+		g_object_set_property (G_OBJECT (RETVAL), property_name,
+		                       &gvalue);
+		g_value_unset (&gvalue);
+	}
 
     OUTPUT:
 	RETVAL

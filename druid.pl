@@ -8,6 +8,7 @@
 #use blib '.';
 
 use Gnome2;
+use Cwd;
 
 use constant TRUE => 1;
 use constant FALSE => 0;
@@ -25,9 +26,19 @@ $end_page_text =
 # it does, however, mean that the program will spit out lots of GConf-CRITICAL
 # warnings, and present the user with a warning that the app couldn't 
 # initialize properly. but this is a test, and we want to see things like that.
-Gnome2::Program->init ('Druid Test', '1.0beta', 'libgnomeui');
+###Gnome2::Program->init ('Druid Test', '1.0beta', 'libgnomeui');
+Gnome2::Program->init ('Druid Test', '1.0beta', 'libgnomeui',
+                       show_crash_dialog => FALSE,
+		       app_libdir => cwd);
 
+## we have to use get_property instead of get here because 
+## Gnome2::Program::get clobbers G::Object::get.
+print "app-libdir ".(Gnome2::Program->get->get_property ('app_libdir'))."\n";
+## or, we could do it this way.
+print "app-libdir ".(G::Object::get (Gnome2::Program->get, 'app_libdir'))."\n";
 
+#use Data::Dumper;
+#print Dumper([ Gnome2::Program->get->list_properties ]);
 
 ($druid, $window) = Gnome2::Druid->new_with_window ("Test Druid", undef, TRUE);
 
