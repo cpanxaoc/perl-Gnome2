@@ -81,8 +81,6 @@ our %pod_files = (
 	Glib::MakeHelper->do_pod_files (@xs_files),
 );
 
-Glib::MakeHelper->do_pod_files (@xs_files),
-
 #
 # autogeneration
 #
