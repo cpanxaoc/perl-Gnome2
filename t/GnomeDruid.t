@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 16;
+use constant TESTS => 17;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -75,6 +75,7 @@ SKIP: {
 
   my $middle = Gnome2::DruidPageStandard -> new_with_vals("Blub");
   isa_ok($middle, "Gnome2::DruidPageStandard");
+  isa_ok($middle -> vbox(), "Gtk2::VBox");
 
   $middle = Gnome2::DruidPageStandard -> new();
   isa_ok($middle, "Gnome2::DruidPageStandard");

@@ -7,6 +7,11 @@
 	* xs/GnomeConfig.xs: Implement and test vector setters and
 	getters.
 
+	* t/GnomeDruid.t
+	* xs/GnomeDruidPageStandard.xs: Add and test an accessor for the
+	vbox member.  (Thanks to Gustavo Noronha Silva for discovering it
+	and to muppet for providing a patch.)
+
 2003/12/12 00:38 (+0100) kaffeetisch
 
 	* xs/GnomeDruidPageEdge.xs

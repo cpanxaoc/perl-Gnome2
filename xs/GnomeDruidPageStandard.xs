@@ -87,3 +87,12 @@ gnome_druid_page_standard_append_item (druid_page_standard, question, item, addi
 	GtkWidget *item
 	const gchar *additional_info
 
+# Since the vbox member isn't available as an object property, we provide a
+# separate accessor.
+GtkWidget *
+vbox (druid_page_standard)
+	GnomeDruidPageStandard * druid_page_standard
+    CODE:
+	RETVAL = druid_page_standard->vbox;
+    OUTPUT:
+	RETVAL
