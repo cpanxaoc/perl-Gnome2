@@ -19,7 +19,7 @@
  */
 
 /* the stuff in gnome-window.h was deprecated as of Oct '03 */
-#define GNOME_DISABLE_DEPRECATED
+#undef GNOME_DISABLE_DEPRECATED
 
 #include "gnome2perl.h"
 

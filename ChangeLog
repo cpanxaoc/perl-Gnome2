@@ -1,3 +1,16 @@
+2004/01/26 01:47 (-0500) muppetman
+
+	* xs/GnomeWindow.xs: bad muppet, that should've been
+	#undef GNOME_DISABLE_DEPRECATED.
+
+2004/01/25 23:26 (-0500) muppetman
+
+	* xs/GnomeClient.xs, xs/GnomeUtil.xs: hush unused var warnings
+
+	* xs/GnomeWindow.xs: #define GNOME_DISABLE_DEPRECATED, so
+	gnome_window_toplevel_set_title() is defined at compile time.  (it
+	was deprecated in october of '03.)
+
 2004/01/24 21:44 (-0500) rwmcfa1
 
 	* Makefile.PL: removed runtime_reqs stuff, replaced by the pkg-config 
