@@ -1,5 +1,5 @@
 
-Gnome2 version 0.34
+Gnome2 version 0.36
 ===================
 
 The Gnome2 module allows a perl developer to use the Gnome libraries.
@@ -52,10 +52,14 @@ DEPENDENCIES
 This module requires these other modules and libraries:
 
   perl >= 5.8.0
-  Glib >= 0.90 (perl module and requisite C libraries)
-  Gtk2 >= 0.90 (perl module and requisite C libraries)
-  libgnomeui > 2.x (C library)
+  Glib >= 1.00rc2 (perl module and requisite C libraries)
+  Gtk2 >= 1.00rc2 (perl module and requisite C libraries)
+  libgnomeui > 2.x (C library) and dependencies
 
+To build this module from source, you'll also need
+
+  ExtUtils::Depends
+  ExtUtils::PkgConfig
 
 COPYRIGHT AND LICENCE
 

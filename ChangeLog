@@ -1,3 +1,17 @@
+2003/09/26 04:40 (-0400) muppetman
+
+	* Gnome2.pm, META.yml, README, debian/changelog: release 0.36
+
+	* Gnome2.pm: removed extraneous Exporter stuff.  we export nothing,
+	don't waste the space.  add L<> to stuff in See Also.  update the
+	Authors section to reflect the fact that torsten > is da man.
+
+	* t/GnomeI18N.t: removed the no-op main loop to quell strange
+	behavior that made the test turn up "dubious".
+
+	* t/GnomePopupMenu.t: there is no Gtk2::Gdk::Event->new(), so the
+	event synthesizing code just makes the test fail.  disabled for now.
+
 2003/09/25 16:22 (+0200) kaffeetisch
 
 	A t/GnomeI18N.t

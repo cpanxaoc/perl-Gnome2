@@ -1,3 +1,9 @@
+libgnome2-perl (0.36-1) unstable; urgency=low
+
+  * Updated for 0.36 release.
+
+ -- muppet <scott at asofyet dot org>  Thu, 25 Sep 2003 22:00:24 -0400
+
 libgnome2-perl (0.34-1) unstable; urgency=low
 
   * Updated for 0.34 release.

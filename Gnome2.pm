@@ -10,29 +10,11 @@ use warnings;
 
 use Gtk2;
 
-require Exporter;
 require DynaLoader;
 
-our @ISA = qw(Exporter DynaLoader);
+our @ISA = qw(DynaLoader);
 
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
-
-# This allows declaration	use Gnome2 ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
-our %EXPORT_TAGS = ( 'all' => [ qw(
-	
-) ] );
-
-our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
-
-our @EXPORT = qw(
-	
-);
-
-our $VERSION = '0.34';
+our $VERSION = '0.36';
 
 sub dl_load_flags { 0x01 }
 
@@ -77,13 +59,15 @@ FIXME we have no other documentation, but we probably need it.
 
 =head1 SEE ALSO
 
-perl(1), Glib(3pm), Gtk2(3pm).
+L<perl>(1), L<Glib>(3pm), L<Gtk2>(3pm).
 
 =head1 AUTHOR
 
-muppet E<lt>scott at asofyet dot orgE<gt>
+muppet E<lt>scott at asofyet dot orgE<gt> did the initial stuff.
 
-If you want to own this project, please let me know.
+Torsten Schoenfeld E<lt>kaffeetisch at web dot deE<gt> took over between
+0.34 and 0.36, and implemented lots of tests and missing functionality,
+and corrected several of muppet's mistakes.
 
 =head1 COPYRIGHT AND LICENSE
 
