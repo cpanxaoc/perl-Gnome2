@@ -1,3 +1,8 @@
+2005/03/06	kaffeetisch
+
+	* t/GnomeDateEdit.t: Mark failing test as TODO till we have a
+	solution for the Test::More issue.
+
 2005/02/10 22:15 (+0100) kaffeetisch
 
 	* Gnome2.pm: Do it like all the other cool kids and alter
