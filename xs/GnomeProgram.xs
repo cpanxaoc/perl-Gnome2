@@ -27,7 +27,7 @@ gnome_program_init (class, app_id, app_version, module_info, ...)
 		char * modname = SvPV_nolen (module_info);
 		if (strEQ ("libgnomeui", modname)) {
 			real_module_info = LIBGNOMEUI_MODULE;
-		} else if (streq ("libgnome", modname)) {
+		} else if (strEQ ("libgnome", modname)) {
 			real_module_info = LIBGNOME_MODULE;
 		} else {
 			croak ("you passed a string for module_info, but it wasn't one of 'libgnomeui' or 'libgnome'");
@@ -128,7 +128,9 @@ GnomeModuleInfo *
 gnome_program_module_load (class, mod_name)
 	SV * class
 	const char * mod_name
-    C_ARGS:
-	mod_name
-
+    CODE:
+	/* just to keep the compiler from complaing about const */
+	RETVAL = (GnomeModuleInfo*)gnome_program_module_load(mod_name);
+    OUTPUT:
+	RETVAL
 
