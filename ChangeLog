@@ -1,3 +1,7 @@
+2004/08/29 20:00 (+0200) kaffeetisch
+
+	* Gnome2.pm, NEWS: Version 1.014.
+
 2004/08/28 13:55 (+0200) kaffeetisch
 
 	* t/GnomePasswordDialog.t, xs/Gnome2.xs: Bind and test the newly

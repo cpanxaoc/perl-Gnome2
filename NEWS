@@ -1,3 +1,10 @@
+Overview of changes in Gnome2 1.014
+===================================
+
+* Bind and test gnome_authentication_manager_dialog_is_visible.
+* Generate a Gnome2::enums man page with all enum and flag values.
+  [Kevin C. Krinke]
+
 Overview of changes in Gnome2 1.013
 ===================================
 
