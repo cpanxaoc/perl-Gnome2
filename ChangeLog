@@ -1,3 +1,13 @@
+2003/09/21 19:55 kaffeetisch
+
+	* TODO: Remove GnomePixmap. It's deprecated.
+
+	* t/GnomeClient
+	* t/GnomeClienReal: Fix indention.
+
+	* xs/GnomeClient.xs: Fix gnome_client_request_interaction.  Should work
+	now, but doesn't.
+
 2003/09/21 18:24 kaffeetisch
 
 	* xs/GnomeIconTheme.xs: Free strdup'ed strings.
