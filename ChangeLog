@@ -1,3 +1,8 @@
+2003/11/02 14:22 (-0500) muppetman
+
+	* Makefile.PL: Gtk2 and Glib have been corrected, no more silly
+	"atleast" version checks.
+
 2003/11/02 20:37 (+0100) kaffeetisch
 
 	* xs/GnomeApp.xs
