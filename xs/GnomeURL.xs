@@ -35,6 +35,9 @@ gnome_url_show (class, url)
     OUTPUT:
 	RETVAL
 
+
+#if LIBGNOME_CHECK_VERSION (2,1,1)
+
 ##  gboolean gnome_url_show_with_env (const char *url, char **envp, GError **error) 
 gboolean
 gnome_url_show_with_env (class, url, env_ref)
@@ -54,3 +57,4 @@ gnome_url_show_with_env (class, url, env_ref)
     OUTPUT:
 	RETVAL
 
+#endif

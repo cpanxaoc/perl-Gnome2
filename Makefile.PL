@@ -54,14 +54,16 @@ unless (eval "use ExtUtils::Depends;"
 # now let's get started on the real work...
 # in theory, getting what we need to build libgnomeui should 
 # also get everything we need for libgnome.
-my %gnome_pkgcfg = ExtUtils::PkgConfig->find ("libgnomeui-2.0 >= $build_reqs{Gnome}");
-$runtime_reqs{Gnome} = $gnome_pkgcfg{modversion};
+my %libgnomeui_pkgcfg = ExtUtils::PkgConfig->find ("libgnomeui-2.0 >= $build_reqs{Gnome}");
+my %libgnome_pkgcfg = ExtUtils::PkgConfig->find ("libgnome-2.0");
+$runtime_reqs{Gnome} = $libgnomeui_pkgcfg{modversion};
 
-my %bonobo_pkgcfg = ExtUtils::PkgConfig->find("libbonoboui-2.0 >= $build_reqs{Bonobo}");
+my %libbonoboui_pkgcfg = ExtUtils::PkgConfig->find("libbonoboui-2.0 >= $build_reqs{Bonobo}");
 
 my %cfgs = (
-	libgnomeui => \%gnome_pkgcfg,
-	libbonoboui => \%bonobo_pkgcfg,
+	libgnome => \%libgnome_pkgcfg,
+	libgnomeui => \%libgnomeui_pkgcfg,
+	libbonoboui => \%libbonoboui_pkgcfg,
 );
 
 mkdir 'build', 0777;
@@ -87,6 +89,9 @@ Glib::MakeHelper->do_pod_files (@xs_files),
 Gtk2::CodeGen->parse_maps ('gnome2perl');
 Gtk2::CodeGen->write_boot;
 
+#
+# create version guards for the libs that don't provide them.
+#
 open VERSION, ">build/gnome2perl-version.h";
 foreach my $pkg (keys %cfgs) {
 	my $stem = uc $pkg;
@@ -99,7 +104,8 @@ foreach my $pkg (keys %cfgs) {
 	   . "    ($stem\_MAJOR_VERSION > (major) || \\\n"
 	   . "     ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION > (minor)) || \\\n"
 	   . "     ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION == (minor) && \\\n"
-	   . "      $stem\_MICRO_VERSION >= (micro)))\n";
+	   . "      $stem\_MICRO_VERSION >= (micro)))\n"
+	   . "\n";
 }
 close VERSION;
 
@@ -110,8 +116,8 @@ close VERSION;
 # will chain from this one.
 
 my $gnome2 = ExtUtils::Depends->new ('Gnome2', 'Gtk2', 'Glib', 'Gnome2::VFS');
-$gnome2->set_inc ($gnome_pkgcfg{cflags} . " " . $bonobo_pkgcfg{cflags});
-$gnome2->set_libs ($gnome_pkgcfg{libs} . " " . $bonobo_pkgcfg{libs});
+$gnome2->set_inc ($libgnomeui_pkgcfg{cflags} . " " . $libbonoboui_pkgcfg{cflags});
+$gnome2->set_libs ($libgnomeui_pkgcfg{libs} . " " . $libbonoboui_pkgcfg{libs});
 $gnome2->add_xs (@xs_files);
 $gnome2->add_pm ('Gnome2.pm' => '$(INST_LIBDIR)/Gnome2.pm');
 $gnome2->add_typemaps (map {File::Spec->catfile(cwd(), $_)} 'build/gnome2perl.typemap', 'gnome.typemap');

@@ -74,6 +74,7 @@ gnome_help_display (class, file_name, link_id=NULL)
 #	const char *link_id
 #	GError **error
 
+# added to libgnome in 2.1.1
 ###  gboolean gnome_help_display_with_doc_id_and_env (GnomeProgram *program, const char *doc_id, const char *file_name, const char *link_id, char **envp, GError **error) 
 #gboolean
 #gnome_help_display_with_doc_id_and_env (program, doc_id, file_name, link_id, envp, error)
@@ -98,6 +99,7 @@ gnome_help_display (class, file_name, link_id=NULL)
 #    OUTPUT:
 #	RETVAL
 
+# added to libgnome in 2.1.1
 ###  gboolean gnome_help_display_uri_with_env (const char *help_uri, char **envp, GError **error) 
 #gboolean
 #gnome_help_display_uri_with_env (help_uri, envp, error)
@@ -121,6 +123,8 @@ gnome_help_display_desktop (class, program, doc_id, file_name, link_id=NULL)
     OUTPUT:
 	RETVAL
 
+#if LIBGNOME_CHECK_VERSION (2,1,1)
+
 ##  gboolean gnome_help_display_desktop_with_env (GnomeProgram *program, const char *doc_id, const char *file_name, const char *link_id, char **envp, GError **error) 
 gboolean
 gnome_help_display_desktop_with_env (class, program, doc_id, file_name, link_id, env_ref)
@@ -143,3 +147,4 @@ gnome_help_display_desktop_with_env (class, program, doc_id, file_name, link_id,
     OUTPUT:
 	RETVAL
 
+#endif

@@ -1,3 +1,13 @@
+2003/12/09 15:41 (-0500) muppetman
+
+	* Makefile.PL: a little bit churn on the pkg-config names, so we can
+	get info on and create version guard macros for libgnome and whatever
+	else.
+
+	* xs/GnomeHelp.xs, xs/GnomeURL.xs: the _with_env functions didn't
+	exist until libgnome 2.2.1; use version guards to avoid missing
+	symbols.
+
 2003/12/04 19:02 (+0100) kaffeetisch
 
 	* gnome2perl.h
