@@ -37,6 +37,7 @@
 #include "gnome2perl-version.h"
 #include "gnome2perl-autogen.h"
 
-GnomeUIInfo * SvGnomeUIInfo (SV * sv);
+GnomeUIInfo *SvGnomeUIInfo (SV *sv);
+char **SvGnomeCharArray (SV *ref);
 
 #endif /* _GNOME2PERL_H_ */

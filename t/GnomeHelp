@@ -20,4 +20,5 @@ SKIP: {
 
   Gnome2::Help -> display("zenity.xml");
   Gnome2::Help -> display_desktop($application, "panel", "launchers.html");
+  Gnome2::Help -> display_desktop_with_env($application, "panel", "launchers.html", "", [map { "$_=" . $ENV{ $_ } } (keys(%ENV))]);
 }

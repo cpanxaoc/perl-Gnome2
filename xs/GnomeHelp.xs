@@ -20,6 +20,34 @@
 
 #include "gnome2perl.h"
 
+/* ------------------------------------------------------------------------- */
+
+char **SvGnomeCharArray (SV *ref)
+{
+	char **result = NULL;
+
+	if (SvOK (ref))
+		if (SvRV (ref) && SvTYPE (SvRV (ref)) == SVt_PVAV) {
+			AV *array = (AV *) SvRV (ref);
+			SV **string;
+
+			int i, length = av_len (array);
+			result = g_new0 (char *, length + 2);
+
+			for (i = 0; i <= length; i++)
+				if ((string = av_fetch (array, i, 0)) && SvOK (*string))
+					result[i] = SvPV_nolen (*string);
+
+			result[length + 1] = NULL;
+		}
+		else
+			croak ("the environment parameter must be an array reference");
+
+	return result;
+}
+
+/* ------------------------------------------------------------------------- */
+
 MODULE = Gnome2::Help	PACKAGE = Gnome2::Help	PREFIX = gnome_help_
 
 ##  gboolean gnome_help_display (const char *file_name, const char *link_id, GError **error) 
@@ -70,7 +98,6 @@ gnome_help_display (class, file_name, link_id=NULL)
 #    OUTPUT:
 #	RETVAL
 
-# FIXME: implement?
 ###  gboolean gnome_help_display_uri_with_env (const char *help_uri, char **envp, GError **error) 
 #gboolean
 #gnome_help_display_uri_with_env (help_uri, envp, error)
@@ -94,14 +121,25 @@ gnome_help_display_desktop (class, program, doc_id, file_name, link_id=NULL)
     OUTPUT:
 	RETVAL
 
-# FIXME: implement?
-###  gboolean gnome_help_display_desktop_with_env (GnomeProgram *program, const char *doc_id, const char *file_name, const char *link_id, char **envp, GError **error) 
-#gboolean
-#gnome_help_display_desktop_with_env (program, doc_id, file_name, link_id, envp, error)
-#	GnomeProgram *program
-#	const char *doc_id
-#	const char *file_name
-#	const char *link_id
-#	char **envp
-#	GError **error
+##  gboolean gnome_help_display_desktop_with_env (GnomeProgram *program, const char *doc_id, const char *file_name, const char *link_id, char **envp, GError **error) 
+gboolean
+gnome_help_display_desktop_with_env (class, program, doc_id, file_name, link_id, env_ref)
+	GnomeProgram *program
+	const char *doc_id
+	const char *file_name
+	const char *link_id
+	SV *env_ref
+    PREINIT:
+	char **envp;
+	GError *error = NULL;
+    CODE:
+	envp = SvGnomeCharArray (env_ref);
+
+	RETVAL = gnome_help_display_desktop_with_env (program, doc_id, file_name, link_id, envp, &error);
+	if (!RETVAL)
+		gperl_croak_gerror("Gnome2::Help->display_desktop", error);
+
+	g_free (envp);
+    OUTPUT:
+	RETVAL
 

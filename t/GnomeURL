@@ -19,4 +19,5 @@ SKIP: {
   #############################################################################
 
   Gnome2::URL -> show("http://ftp.freenet.de");
+  Gnome2::URL -> show_with_env("http://ftp.freenet.de", [map { "$_=" . $ENV{ $_ } } (keys(%ENV))]);
 }

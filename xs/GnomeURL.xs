@@ -35,11 +35,22 @@ gnome_url_show (class, url)
     OUTPUT:
 	RETVAL
 
-# FIXME: implement.
-###  gboolean gnome_url_show_with_env (const char *url, char **envp, GError **error) 
-#gboolean
-#gnome_url_show_with_env (url, envp, error)
-#	const char *url
-#	char **envp
-#	GError **error
+##  gboolean gnome_url_show_with_env (const char *url, char **envp, GError **error) 
+gboolean
+gnome_url_show_with_env (class, url, env_ref)
+	const char *url
+	SV *env_ref
+    PREINIT:
+	char **envp;
+	GError *error = NULL;
+    CODE:
+	envp = SvGnomeCharArray (env_ref);
+
+	RETVAL = gnome_url_show_with_env (url, envp, &error);
+	if (!RETVAL)
+		gperl_croak_gerror("Gnome2::URL->show", error);
+
+	g_free (envp);
+    OUTPUT:
+	RETVAL
 

@@ -1,3 +1,13 @@
+2003/12/04 19:02 (+0100) kaffeetisch
+
+	* gnome2perl.h
+	* t/GnomeHelp
+	* t/GnomeURL
+	* xs/GnomeHelp.xs
+	* xs/GnomeURL.xs: Implement and test
+	Gnome2::Help::display_desktop_with_env and
+	Gnome2::URL::show_with_env.
+
 2003/12/02 20:40 (+0100) kaffeetisch
 
 	* gnome.typemap: Use T_GPERL_GENERIC_WRAPPER for GnomeUIInfo's.
