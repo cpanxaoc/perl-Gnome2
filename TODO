@@ -23,7 +23,6 @@ libgnomeui:
 	gnome-ui-init (the parameters... the gnome_init stuff is deprecated)
 	GnomeIconLookup
 	GnomeThemeFile
-	GnomePixmap
 
 	gnome-stock-icons (not all are deprecated)
 	gnome-uidefs (like gnome-stock-icons, not GEnums, looks messy)
