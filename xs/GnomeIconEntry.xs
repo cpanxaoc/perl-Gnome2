@@ -73,6 +73,6 @@ gnome_icon_entry_set_max_saved (ientry, max_saved)
 #endif
 
 ##  GtkWidget *gnome_icon_entry_pick_dialog (GnomeIconEntry *ientry) 
-GtkWidget *
+GtkWidget_ornull *
 gnome_icon_entry_pick_dialog (ientry)
 	GnomeIconEntry *ientry

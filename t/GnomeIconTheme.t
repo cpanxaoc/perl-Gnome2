@@ -19,7 +19,7 @@ SKIP: {
   skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
-  skip("GnomeIconTheme is new in 2.0.6", 7)
+  skip("GnomeIconTheme is new in 2.0.6", TESTS)
     unless (join("", Gnome2 -> get_version_info()) >= 206);
 
   #############################################################################

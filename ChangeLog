@@ -1,3 +1,10 @@
+2003/11/01 01:33 (-0500) muppetman
+
+	* t/GnomeIconList.t: put in a FIXME 
+	* t/GnomeIconTheme.t: wasn't skipping enough tests
+	* xs/GnomeIconEntry.xs: if NULL is possible on return, use _ornull.
+	this hushes the cast warnings from t/GnomeIconEntry.t.
+
 2003/10/31 20:09 (+0100) kaffeetisch
 
 	* xs/GnomeIconTheme.xs: Use newRV_noinc instead of newRV_inc to

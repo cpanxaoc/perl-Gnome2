@@ -85,5 +85,10 @@ SKIP: {
 
   # isa_ok($list -> get_icon_pixbuf_item(1), "Gnome2::Canvas::Pixbuf");
 
+# FIXME
+# on rh8, with libgnomeui-2.0 version 2.0.3, this line causes the test
+# to segfault and pop up the Gnome crash dialog when running under
+# make test, but not when running directly from the terminal.  probably
+# something strange going on with refcounts somewhere.  -mup
   $list -> clear();
 }
