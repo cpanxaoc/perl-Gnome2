@@ -22,6 +22,7 @@ $end_page_text =
 # it does, however, mean that the program will spit out lots of GConf-CRITICAL
 # warnings, and present the user with a warning that the app couldn't 
 # initialize properly. but this is a test, and we want to see things like that.
+#Gnome2::Program->init ('Druid Test', '1.0beta');
 ###Gnome2::Program->init ('Druid Test', '1.0beta', 'libgnomeui');
 Gnome2::Program->init ('Druid Test', '1.0beta', 'libgnomeui',
                        show_crash_dialog => FALSE,

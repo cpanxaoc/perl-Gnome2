@@ -25,7 +25,7 @@ MODULE = Gnome2::Program	PACKAGE = Gnome2::Program	PREFIX = gnome_program_
 
 ##  GnomeProgram * gnome_program_init (const char *app_id, const char *app_version, const GnomeModuleInfo *module_info, int argc, char **argv, const char *first_property_name, ...) 
 GnomeProgram *
-gnome_program_init (class, app_id, app_version, module_info, ...)
+gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
 	SV * class
 	const char * app_id
 	const char * app_version
@@ -47,8 +47,10 @@ gnome_program_init (class, app_id, app_version, module_info, ...)
 	}
 
 	/* let's see what the user passed for module_info */
-	if (module_info == &PL_sv_undef) {
+	if (!module_info || !SvTRUE (module_info)) {
 		/* go ahead and pass NULL.  you get libgnome initialized. */
+		/*FIXME FIXME is it right to change default to libgnomeui?*/
+		real_module_info = LIBGNOMEUI_MODULE;
 	} else if (SvPOK (module_info)) {
 		/* name of a module.  this is a limited-support hack. */
 		char * modname = SvPV_nolen (module_info);
