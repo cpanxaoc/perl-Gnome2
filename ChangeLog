@@ -1,3 +1,11 @@
+2003/11/14 19:50 (+0100) kaffeetisch
+
+	* xs/GnomeIconList.xs
+	* xs/GnomeIconTheme.xs
+	* xs/GnomeProgram.xs: Plug even more memory leaks.
+
+	* xs/GnomeClient.xs: Make gnome_client_add_static_arg work.
+
 2003/11/12 22:13 (+0100) kaffeetisch
 
 	* xs/GnomeIconTheme.xs

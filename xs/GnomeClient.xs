@@ -134,14 +134,10 @@ void
 gnome_client_add_static_arg (client, ...)
 	GnomeClient *client
     PREINIT:
-	gint i;
-	gchar ** argv;
+	int i;
     CODE:
-	argv = g_new0 (gchar*, items - 1);
 	for (i = 1; i < items; i++)
-		argv[i - 1] = SvGChar (ST (i));
-	gnome_client_add_static_arg (client, argv, NULL);
-	g_free (argv);
+		gnome_client_add_static_arg (client, SvGChar (ST (i)), NULL);
 
 ## void gnome_client_set_current_directory (GnomeClient *client, const gchar *dir) 
 void
