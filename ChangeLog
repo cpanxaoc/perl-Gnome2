@@ -12,6 +12,8 @@
 
 	* Makefile.PL: require Gtk2 >= 0.20
 
+	* README, MANIFEST: added
+
 2003/05/17 09:06 rwmcfa1
 
 	* Glade/*: first pass at GladeXML added
