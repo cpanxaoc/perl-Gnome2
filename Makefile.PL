@@ -20,11 +20,6 @@ our %build_reqs = (
 	'Bonobo'                  => '2.0.0',
 );
 
-# minimum required version of dependancies we need to run
-our %runtime_reqs = (
-	'Gnome'	=> undef,
-);
-
 # Writing a fake Makefile ensures that CPAN will pick up the correct
 # dependencies and install them.
 unless (eval "use ExtUtils::Depends;"
@@ -56,7 +51,6 @@ unless (eval "use ExtUtils::Depends;"
 # also get everything we need for libgnome.
 my %libgnomeui_pkgcfg = ExtUtils::PkgConfig->find ("libgnomeui-2.0 >= $build_reqs{Gnome}");
 my %libgnome_pkgcfg = ExtUtils::PkgConfig->find ("libgnome-2.0");
-$runtime_reqs{Gnome} = $libgnomeui_pkgcfg{modversion};
 
 my %libbonoboui_pkgcfg = ExtUtils::PkgConfig->find("libbonoboui-2.0 >= $build_reqs{Bonobo}");
 
@@ -142,7 +136,6 @@ sub postamble
 	return Glib::MakeHelper->postamble_clean ()
 	     . Glib::MakeHelper->postamble_docs (@main::xs_files)
 	     . Glib::MakeHelper->postamble_rpms (
-			'GNOME_RUN' => $runtime_reqs{'Gnome'},
 			'GNOME' => $build_reqs{'Gnome'},
 			'PERL_EXTUTILS_DEPENDS' => 
 				$build_reqs{'perl-ExtUtils-Depends'},
