@@ -1,3 +1,14 @@
+2003/12/14 05:37 (+0100) kaffeetisch
+
+	* xs/GnomeAppHelper.xs
+	* xs/GnomePopupMenu.xs: Use custom marshalling for all callbacks
+	specified in GnomeUIInfo's used from GnomePopupMenu.  In addition
+	to making callbacks work, this even solves the user data problem
+	in GnomePopupMenu.  Many thanks to muppet for this great idea.
+
+	* t/GnomePopupMenu.t: Add some user data and callback bits to test
+	our new toys.
+
 2003/12/13 23:41 (+0100) kaffeetisch
 
 	* t/GnomeConfig.t

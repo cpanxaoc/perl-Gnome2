@@ -19,6 +19,47 @@
  */
 
 #include "gnome2perl.h"
+#include <gperl_marshal.h>
+
+void
+gnome2perl_popup_menu_activate_func (GtkObject *object,
+                                     gpointer data,
+                                     GtkWidget *for_widget)
+{
+	/* We stored the SV in the widget.  Get it. */
+	SV *callback = g_object_get_data (G_OBJECT (object), "gnome2perl_popup_menu_callback");
+
+	if (callback) {
+		dGPERL_CALLBACK_MARSHAL_SP;
+		GPERL_CALLBACK_MARSHAL_INIT (callback);
+		
+		ENTER;
+		SAVETMPS;
+		
+		PUSHMARK (SP);
+		
+		EXTEND (SP, 3);
+		PUSHs (sv_2mortal (newSVGtkObject (object)));
+		PUSHs (sv_2mortal (newSVsv (data)));
+		PUSHs (sv_2mortal (newSVGtkWidget (for_widget)));
+		
+		PUTBACK;
+		
+		call_sv (callback, G_DISCARD);
+		
+		FREETMPS;
+		LEAVE;
+	}
+}
+
+void
+gnome2perl_popup_menu_activate_func_destroy (SV *callback)
+{
+	/* FIXME: Any idea how to destroy the callback?
+	SvREFCNT_dec (callback); */
+}
+
+/* ------------------------------------------------------------------------- */
 
 /*
  * this was originally SvGnomeUIInfo in Gtk-Perl-0.7008/Gnome/xs/Gnome.xs
@@ -122,19 +163,26 @@ gnome2perl_parse_uiinfo_sv (SV * sv,
 		                                  "'subtree' or 'moreinfo'");
 		break;
 
-	    case GNOME_APP_UI_ITEM:
-	    case GNOME_APP_UI_ITEM_CONFIGURABLE:
-	    case GNOME_APP_UI_TOGGLEITEM:
-		info->user_data = info->moreinfo;
-		info->moreinfo = NULL;
-		break;
-
 	    case GNOME_APP_UI_HELP:
 		if (info->moreinfo == NULL)
 			croak("GnomeUIInfo type requires a 'moreinfo' argument, "
 			      "but none was specified");
 		/* It's just a string */
 		info->moreinfo = SvGChar ((SV*)info->moreinfo);
+		break;
+
+	    case GNOME_APP_UI_ITEM:
+	    case GNOME_APP_UI_ITEM_CONFIGURABLE:
+	    case GNOME_APP_UI_TOGGLEITEM:
+		if (info->moreinfo) {
+			/* We simply swap moreinfo and user_data here so that
+			   the GnomePopupMenu functions don't see the SV but our
+			   custom marshaller.  GnomeAppHelper isn't directly
+			   affected since we use the GnomeUIBuilderData thingy
+			   there anyway. */
+			info->user_data = info->moreinfo;
+			info->moreinfo = gnome2perl_popup_menu_activate_func;
+		}
 		break;
 
 	    default:
@@ -188,6 +236,13 @@ gnome2perl_refill_info_common (SV *data, GnomeUIInfo *info)
 			          newSVGtkWidget (info->widget));
 		}
 	}
+}
+
+
+void
+gnome2perl_refill_info (SV *data, GnomeUIInfo *info)
+{
+	gnome2perl_refill_info_common (data, info);
 
 	switch (info->type) {
 	    case GNOME_APP_UI_SUBTREE:
@@ -205,28 +260,37 @@ gnome2perl_refill_info_common (SV *data, GnomeUIInfo *info)
 	}
 }
 
-
-void
-gnome2perl_refill_info (SV *data, GnomeUIInfo *info)
-{
-	gnome2perl_refill_info_common (data, info);
-}
-
 void
 gnome2perl_refill_info_popup (SV *data, GnomeUIInfo *info)
 {
 	gnome2perl_refill_info_common (data, info);
 
 	switch (info->type) {
+	    case GNOME_APP_UI_SUBTREE:
+	    case GNOME_APP_UI_SUBTREE_STOCK:
+	    case GNOME_APP_UI_RADIOITEMS:
+		/* in gnome2perl_parse_uiinfo_sv, we stashed a pointer to
+		 * the SV reference to the subtree array in info->user_data.
+		 * it should still be there, provided there's no mangling
+		 * in the library. */
+		gnome2perl_refill_infos_popup (info->user_data, info->moreinfo);
+		break;
+
 	    case GNOME_APP_UI_ITEM:
 	    case GNOME_APP_UI_ITEM_CONFIGURABLE:
 	    case GNOME_APP_UI_TOGGLEITEM:
-		if (info->user_data) {
-			warn ("You used the 'callback' (or 'moreinfo') type in"
-			      " a GnomeUIInfo structure -- I don't know how to"
-			      " make that work though.  Ignoring callback");
-			info->user_data = NULL;
-		}
+		/* user_data contains the SV.  Store it in the widget so that
+		   the custom marshaller can recover and call it. */
+		if (info->user_data)
+			g_object_set_data_full (
+			  G_OBJECT (info->widget),
+			  "gnome2perl_popup_menu_callback",
+			  info->user_data,
+			  (GDestroyNotify)
+			    gnome2perl_popup_menu_activate_func_destroy);
+		break;
+
+	    default:
 		break;
 	}
 }
@@ -260,11 +324,13 @@ gnome2perl_ui_signal_connect (GnomeUIInfo * uiinfo,
                               const char * signal_name,
                               GnomeUIBuilderData * uibdata)
 {
+	/* We're using user_data here instead of moreinfo because we swapped
+	   them in gnome2perl_parse_uiinfo_sv. */
 	if (uiinfo->user_data)
 		gperl_signal_connect (newSVGObject (G_OBJECT (uiinfo->widget)),
 		                      (char*) signal_name,
 		                      uiinfo->user_data,
-		                      uiinfo->moreinfo,
+		                      NULL,
 		                      G_SIGNAL_RUN_FIRST);
 }
 

@@ -37,7 +37,8 @@ SKIP: {
             },
             {
               type => "item",
-              label => "B"
+              label => "B",
+              callback => sub { warn @_; }
             }
           ]
         }
@@ -71,7 +72,7 @@ SKIP: {
   $window -> add($button);
 
   $popup -> attach($button);
-  $popup -> attach($button, undef);
+  $popup -> attach($button, "blub");
 
   if (join("", Gtk2 -> get_version_info()) >= 220) {
     my $event = Gtk2::Gdk::Event -> new("button_press");
@@ -83,7 +84,7 @@ SKIP: {
       },
       undef,
       $event,
-      undef,
+      "bla",
       $button
     );
   }
@@ -96,10 +97,10 @@ SKIP: {
   #   },
   #   undef,
   #   $event,
-  #   undef,
+  #   "bla",
   #   $button
   # );
 
-  $button -> add_popup_items($uiinfo);
-  $button -> add_popup_items($uiinfo, undef);
+  $window -> add_popup_items($uiinfo);
+  $window -> add_popup_items($uiinfo, "blab");
 }
