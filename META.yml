@@ -1,6 +1,6 @@
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         Gnome2
-version:      0.28
+version:      0.32
 version_from: Gnome2.pm
 installdirs:  site
 requires:

@@ -1,3 +1,8 @@
+2003/08/22 01:57 muppetman
+
+	* Gnome2.pm, README, META.yml, debian/changelog, MANIFEST:
+	updated for 0.32 release
+
 2003/08/19 21:11 rwmcfa1
 
 	* Makefile.PL: added realclean removal of build dir to postamble 
