@@ -176,8 +176,10 @@ gnome_program_locate_file (program, domain, file_name, only_if_exists)
 	path = gnome_program_locate_file (program, domain, file_name,
 	                                  only_if_exists, &ret_locations);
 
-	if (path)
+	if (path) {
 		XPUSHs (sv_2mortal (newSVGChar (path)));
+		g_free (path);
+	}
 
 	for (; ret_locations != NULL; ret_locations = ret_locations->next) {
 		XPUSHs (sv_2mortal (newSVGChar ((gchar*)ret_locations->data)));

@@ -223,6 +223,8 @@ gnome_icon_theme_lookup_icon (theme, icon_name, size)
 	PUSHs (sv_2mortal (newRV_noinc ((SV*) data_to_hv (icon_data))));
 	PUSHs (sv_2mortal (newSViv (base_size)));
 
+	g_free (filename);
+
 ##  gboolean gnome_icon_theme_has_icon (GnomeIconTheme *theme, const char *icon_name) 
 gboolean
 gnome_icon_theme_has_icon (theme, icon_name)

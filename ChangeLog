@@ -1,3 +1,10 @@
+2003/11/12 22:13 (+0100) kaffeetisch
+
+	* xs/GnomeIconTheme.xs
+	* xs/GnomeProgram.xs: Plug some memory leaks.
+
+	* xs/GnomeUtil.xs: Use gchar_own instead of CLEANUP sections.
+
 2003/11/11 00:36 (-0500) muppetman
 
 	* MANIFEST, debian/*: remove the debian packaging files, since having

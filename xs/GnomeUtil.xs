@@ -30,25 +30,19 @@ g_extension_pointer (class, path)
     C_ARGS:
 	path
 
-gchar *
+gchar_own *
 gnome_util_prepend_user_home (class, file)
-	gchar *file
+	const gchar *file
     C_ARGS:
 	file
-    CLEANUP:
-	g_free (RETVAL);
 
-gchar *
+gchar_own *
 gnome_util_home_file (class, file)
-	gchar *file
+	const gchar *file
     C_ARGS:
 	file
-    CLEANUP:
-	g_free (RETVAL);
 
 char *
 gnome_util_user_shell (class)
     C_ARGS:
 	/* void */
-    CLEANUP:
-	g_free (RETVAL);
