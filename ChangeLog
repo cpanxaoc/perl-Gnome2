@@ -1,3 +1,7 @@
+2003/08/18 12:34 muppetman
+
+	* debian/*: patch from james curbo adds debian packaging stuff
+
 2003/07/25 10:21 muppetman
 
 	* Gnome2.pm, README: bump version to 0.30
