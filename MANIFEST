@@ -1,19 +1,22 @@
 AUTHORS
 ChangeLog
+Gnome2.pm
+LICENSE
+MANIFEST
+MANIFEST.SKIP
+META.yml			Module meta-data in YAML
+Makefile.PL
+README
+TODO
+copyright.pod
+doctypes
 examples/druid.pl
 examples/session-management.pl
 genmaps.pl
 gnome.typemap
-Gnome2.pm
 gnome2perl.h
-LICENSE
-Makefile.PL
-MANIFEST
-MANIFEST.SKIP
 maps
-META.yml			Module meta-data in YAML
 perl-Gnome2.spec.in
-README
 t/Gnome.t
 t/GnomeApp.t
 t/GnomeAppBar.t
@@ -26,8 +29,8 @@ t/GnomeDruid.t
 t/GnomeEntry.t
 t/GnomeFileEntry.t
 t/GnomeFontPicker.t
-t/GnomeHelp
 t/GnomeHRef.t
+t/GnomeHelp
 t/GnomeI18N.t
 t/GnomeIconEntry.t
 t/GnomeIconList.t
@@ -43,7 +46,6 @@ t/GnomeThumbnail.t
 t/GnomeURL
 t/GnomeUtil.t
 t/TestBoilerplate
-TODO
 xs/BonoboDock.xs
 xs/BonoboDockItem.xs
 xs/Gnome2.xs
@@ -63,8 +65,8 @@ xs/GnomeEntry.xs
 xs/GnomeFileEntry.xs
 xs/GnomeFontPicker.xs
 xs/GnomeGConf.xs
-xs/GnomeHelp.xs
 xs/GnomeHRef.xs
+xs/GnomeHelp.xs
 xs/GnomeI18N.xs
 xs/GnomeIconEntry.xs
 xs/GnomeIconList.xs

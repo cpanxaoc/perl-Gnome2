@@ -31,7 +31,7 @@
 
 #include <libbonoboui.h>
 
-#include "gnome2perl-version.h"
+#include "gnome2perl-versions.h"
 #include "gnome2perl-autogen.h"
 
 GnomeUIInfo *SvGnomeUIInfo (SV *sv);

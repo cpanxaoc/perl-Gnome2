@@ -1,3 +1,15 @@
+2004/02/10 17:01 (+0100) kaffeetisch
+
+	Applying a patch from muppet.
+
+	A copyright.pod
+	A doctypes
+	* MANIFEST
+	* Makefile.PL
+	* gnome2perl.h: Use the new features of ExtUtils::Depends and
+	ExtUtils::PkgConfig.  Depend on Gnome2::Canvas.  Use
+	'gnome2perl-versions.h' for the version macros.
+
 2004/01/27 19:40 (+0100) kaffeetisch
 
 	* t/GnomeClient: Use the correct
