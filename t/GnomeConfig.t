@@ -87,6 +87,7 @@ SKIP: {
   Gnome2::Config::Private -> set_float("/Geometry/Ratio", 1.23);
   is(Gnome2::Config::Private -> get_float("/Geometry/Ratio"), 1.23);
 
+  # TODO: due to a libgnome bug, get_float_with_default returns integers.
   # is_deeply([Gnome2::Config::Private -> get_float_with_default("/Geometry/Whops=0.5")], [1, 0.5]);
   # is_deeply([Gnome2::Config::Private -> get_float_with_default("/Geometry/Ratio")], [0, 1.23]);
 
