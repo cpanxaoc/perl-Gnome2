@@ -15,7 +15,6 @@ libgnome:
 	gnome-triggers (failed to implement this one)
 
 libgnomeui:
-	gnome-ui-init (the parameters... the gnome_init stuff is deprecated)
 	GnomeThemeFile (no GObject, so I'll wait till someone begs for it)
 	gnome-vfs-util
 
