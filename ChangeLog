@@ -11,7 +11,8 @@
 	* genmaps.pl
 	* gnome2perl.h
 	* gnome2perl.typemap
-	* maps: Remove all references to GnomeVFS.  It's going to get its own package.
+	* maps: Remove all references to GnomeVFS.  It's going to get its
+	own package.
 
 2003/10/12 21:49 (+0200) kaffeetisch
 
