@@ -12,6 +12,9 @@ use Test::More tests => TESTS;
 SKIP: {
   do "t/TestBoilerplate";
 
+  skip "GnomePasswordDialog and GnomeAuthenticationManager didn't appear until 2.3.6", TESTS
+	unless Gnome2->check_version (2, 3, 6);
+
   Gnome2::AuthenticationManager -> init();
 
   my $dialog = Gnome2::PasswordDialog -> new("Bla", "Bla!", "bla", "alb", 1);
