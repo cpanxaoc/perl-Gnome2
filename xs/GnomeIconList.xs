@@ -136,14 +136,14 @@ void
 gnome_icon_list_get_selection (gil)
 	GnomeIconList *gil
     PREINIT:
-	GList * list, * i;
+	GList * list;
     PPCODE:
 	list = gnome_icon_list_get_selection (gil);
 	if (!list)
 		XSRETURN_EMPTY;
-	for (i = list ; i != NULL ; i = i->next)
+	for (; list != NULL; list = list->next)
 		/* cast to avoid warning. */
-		XPUSHs (sv_2mortal (newSViv ((gint) i->data)));
+		XPUSHs (sv_2mortal (newSViv ((gint) list->data)));
 	g_list_free (list);
 
 ##  void gnome_icon_list_focus_icon (GnomeIconList *gil, gint idx) 
@@ -189,7 +189,7 @@ gnome_icon_list_set_separators (gil, sep)
 	const char *sep
 
 ##  gchar * gnome_icon_list_get_icon_filename (GnomeIconList *gil, int idx) 
-gchar *
+gchar_own *
 gnome_icon_list_get_icon_filename (gil, idx)
 	GnomeIconList *gil
 	int idx

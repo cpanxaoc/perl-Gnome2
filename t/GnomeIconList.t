@@ -58,7 +58,7 @@ SKIP: {
   is($list -> get_selection_mode(), "multiple");
 
   $list -> select_icon(1);
-  is($list -> get_selection(), 1);
+  is_deeply([$list -> get_selection()], [1]);
 
   $list -> unselect_icon(1);
   $list -> unselect_all();

@@ -1,3 +1,24 @@
+2003/10/18 22:53 (+0200) kaffeetisch
+
+	* t/GnomeIconList.t: Alter $list -> get_selection test to be more
+	accurate.
+
+	* t/GnomeIconTheme.t: Implement $theme -> list_icons test.
+
+	* xs/GnomeIconList.xs
+	* xs/GnomeIconTheme.xs
+	* xs/GnomeProgram.xs: Don't use a temporary G(S)List in
+	gnome_icon_list_get_selection, gnome_icon_theme_list_icons and
+	gnome_program_locate_file.
+
+	* xs/GnomeIconEntry.xs
+	* xs/GnomeIconList.xs
+	* xs/GnomeIconSelection.xs
+	* xs/GnomePixmapEntry.xs: Use gchar_own instead of gchar for the
+	return value of gnome_icon_entry_get_filename,
+	gnome_icon_list_get_icon_filename, gnome_icon_selection_get_icon
+	and gnome_pixmap_entry_get_filename.
+
 2003/10/17 22:02 (+0200) kaffeetisch
 
 	R t/GnomeVFSOps

@@ -52,7 +52,7 @@ gnome_icon_selection_clear (gis, not_shown)
 	gboolean not_shown
 
 ##  gchar * gnome_icon_selection_get_icon (GnomeIconSelection * gis, gboolean full_path) 
-gchar *
+gchar_own *
 gnome_icon_selection_get_icon (gis, full_path)
 	GnomeIconSelection * gis
 	gboolean full_path

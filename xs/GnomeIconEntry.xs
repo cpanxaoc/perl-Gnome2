@@ -38,7 +38,7 @@ gnome_icon_entry_set_pixmap_subdir (ientry, subdir)
 	const gchar *subdir
 
 ##  gchar *gnome_icon_entry_get_filename(GnomeIconEntry *ientry) 
-gchar *
+gchar_own *
 gnome_icon_entry_get_filename (ientry)
 	GnomeIconEntry *ientry
 

@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 7;
+use constant TESTS => 8;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -32,7 +32,7 @@ SKIP: {
   my @icon = $theme -> lookup_sync(undef, "/usr/bin/perl", undef, "none");
   ok( scalar(@icon) == 2 and defined($icon[0]) );
 
-  # XXX: $theme -> list_icons("gnome-unknown");
+  ok($theme -> list_icons());
 
   is($theme -> has_icon("gnome-unknown"), 1);
 

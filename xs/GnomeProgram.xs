@@ -168,7 +168,7 @@ gnome_program_locate_file (program, domain, file_name, only_if_exists)
 	gboolean only_if_exists
     PREINIT:
 	gchar * path;
-	GSList * ret_locations = NULL, * i = NULL;
+	GSList * ret_locations = NULL;
     PPCODE:
 	path = gnome_program_locate_file (program, domain, file_name,
 	                                  only_if_exists, &ret_locations);
@@ -176,9 +176,9 @@ gnome_program_locate_file (program, domain, file_name, only_if_exists)
 	if (path)
 		XPUSHs (sv_2mortal (newSVGChar (path)));
 
-	for (i = ret_locations; i != NULL ; i = i->next) {
-		XPUSHs (sv_2mortal (newSVGChar ((gchar*)i->data)));
-		g_free (i->data);
+	for (; ret_locations != NULL; ret_locations = ret_locations->next) {
+		XPUSHs (sv_2mortal (newSVGChar ((gchar*)ret_locations->data)));
+		g_free (ret_locations->data);
 	}
 
 	g_slist_free (ret_locations);

@@ -232,14 +232,14 @@ gnome_icon_theme_list_icons (theme, context=NULL)
 	GnomeIconTheme *theme
 	const char *context
     PREINIT:
-	GList * results, * i;
+	GList * results;
     PPCODE:
 	results = gnome_icon_theme_list_icons (theme, context);
 	if (!results)
 		XSRETURN_EMPTY;
-	for (i = results ; i != NULL ; i = i->next) {
-		XPUSHs (sv_2mortal (newSVpv (i->data, PL_na)));
-		g_free (i->data);
+	for (; results != NULL; results = results->next) {
+		XPUSHs (sv_2mortal (newSVpv (results->data, PL_na)));
+		g_free (results->data);
 	}
 	g_list_free (results);
 

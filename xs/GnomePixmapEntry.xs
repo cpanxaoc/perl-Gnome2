@@ -62,7 +62,7 @@ gnome_pixmap_entry_set_preview_size (pentry, preview_w, preview_h)
 	gint preview_h
 
 ##  gchar *gnome_pixmap_entry_get_filename(GnomePixmapEntry *pentry) 
-gchar *
+gchar_own *
 gnome_pixmap_entry_get_filename (pentry)
 	GnomePixmapEntry *pentry
 
