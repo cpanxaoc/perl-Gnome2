@@ -1,3 +1,10 @@
+2003/07/05 07:08 pcg
+
+	* META.yml: Add module meta-data in YAML for CPAN.
+
+        * xs/GnomeAppBar.xs, xs/GnomeGConf.xs: use gchar_own* to avoid
+        memleak.
+
 2003/07/02 16:12 rwmcfa1
 
 	* maps: removed all of the deprecated widgets, they had no xs files

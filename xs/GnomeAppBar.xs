@@ -95,7 +95,7 @@ gnome_appbar_clear_prompt (appbar)
 	GnomeAppBar * appbar
 
 ## gchar * gnome_appbar_get_response (GnomeAppBar * appbar) 
-gchar *
+gchar_own *
 gnome_appbar_get_response (appbar)
 	GnomeAppBar * appbar
 
