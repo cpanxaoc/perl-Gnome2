@@ -1,3 +1,7 @@
+2004/05/16 17:46 (+0200) kaffeetisch
+
+	* t/GnomeThumbnail.t: Correct skip count.
+
 2004/04/27 20:45 (+0200) kaffeetisch
 
 	Merge from the stable-1-00 branch:

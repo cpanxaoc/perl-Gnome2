@@ -13,7 +13,7 @@ SKIP: {
   our $application;
   do "t/TestBoilerplate";
 
-  skip("GnomeThumbnail is new in 2.0.6", 2)
+  skip("GnomeThumbnail is new in 2.0.6", 4)
     unless (Gnome2 -> CHECK_VERSION(2, 0, 6));
 
   #############################################################################
