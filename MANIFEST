@@ -1,6 +1,7 @@
 AUTHORS
 ChangeLog
 examples/druid.pl
+examples/session-management.pl
 genmaps.pl
 gnome.typemap
 Gnome2.pm
@@ -18,7 +19,6 @@ t/GnomeApp.t
 t/GnomeAppBar.t
 t/GnomeAppHelper.t
 t/GnomeClient
-t/GnomeClientReal
 t/GnomeColorPicker.t
 t/GnomeConfig.t
 t/GnomeDateEdit.t

@@ -1,3 +1,12 @@
+2003/12/10 22:08 (+0100) kaffeetisch
+
+	R t/GnomeClientReal
+	A examples/session-management.pl
+	* MANIFEST: Completely revamp the "real world" GnomeClient test
+	case and move it to the examples directory.
+
+	* xs/GnomeClient.xs: Remove a FIXME comment.
+
 2003/12/10 02:02 (+0100) kaffeetisch
 
 	A t/GnomeConfig.t

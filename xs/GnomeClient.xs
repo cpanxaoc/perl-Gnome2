@@ -230,7 +230,6 @@ const gchar *
 gnome_client_get_desktop_id (client)
 	GnomeClient * client
 
-# FIXME: the callback isn't called. why?
 ## void gnome_client_request_interaction (GnomeClient *client, GnomeDialogType dialog_type, GnomeInteractFunction function, gpointer data) 
 ## void gnome_client_request_interaction_interp (GnomeClient *client, GnomeDialogType dialog_type, GtkCallbackMarshal function, gpointer data, GtkDestroyNotify destroy) 
 void
