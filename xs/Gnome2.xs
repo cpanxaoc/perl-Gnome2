@@ -44,6 +44,7 @@ gnome_get_version_info (class)
 	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MAJOR_VERSION)));
 	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MINOR_VERSION)));
 	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MICRO_VERSION)));
+	PERL_UNUSED_VAR (ax);
 
 bool
 gnome_check_version (class, major, minor, micro)
@@ -64,6 +65,7 @@ bonobo_get_version_info (class)
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MAJOR_VERSION)));
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MINOR_VERSION)));
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MICRO_VERSION)));
+	PERL_UNUSED_VAR (ax);
 
 MODULE = Gnome2		PACKAGE = Gnome2::AuthenticationManager	PREFIX = gnome_authentication_manager_
 
