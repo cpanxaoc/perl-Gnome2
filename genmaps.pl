@@ -1,41 +1,20 @@
-#read !grep _TYPE_ /usr/include/gtk-2.0/gtk/*.h | grep get_type  
-#% s/^.*[ \t]\([_A-Z0-9]*_TYPE_[_A-Z0-9]*\)[ \t].*$/\1/ 
-#
+#!/usr/bin/perl -w
+use strict;
+
 # $Header$
-#
 
-
-=out
-
-libgnome-2.0
-libgnomeui-2.0
-libgnomecanvas-2.0
-libgnomeprint-2.0
-libgnomeprintui-2.0
-libbonobo-2.0
-libbonoboui-2.0
-libnautilus
-libpanelapplet-2.0
-esound
-ORBit-2.0
-gnome-mime-data-2.0
-gnome-vfs-2.0
-gconf-2.0
-gconfgtk-2.0
-
-=cut
-
-@dirs = (
-	'/usr/include/libgnome-2.0/libgnome',
-	'/usr/include/libgnomeui-2.0/libgnomeui',
-	'/usr/include/libgnomecanvas-2.0/libgnomecanvas',
-	'/usr/include/libbonobo-2.0/bonobo',
-	'/usr/include/libbonoboui-2.0/bonobo',
-	'build',
+my @types = ();
+my @dirs = (
+  '/usr/include/libgnome-2.0/libgnome',
+  '/usr/include/libgnomeui-2.0/libgnomeui',
+  '/usr/include/libgnomecanvas-2.0/libgnomecanvas',
+  '/usr/include/libbonobo-2.0/bonobo',
+  '/usr/include/libbonoboui-2.0/bonobo',
+  'build',
 );
 
-foreach $dir (@dirs) {
-	@lines = `grep _TYPE_ $dir/*.h | grep get_type`;
+foreach my $dir (@dirs) {
+	my @lines = `grep _TYPE_ $dir/*.h | grep get_type`;
 	foreach (@lines) {
 		chomp;
 		s/^.*\s([A-Z][A-Z0-9_]*_TYPE_[A-Z0-9_]*)\s.*$/$1/;
@@ -116,34 +95,34 @@ print '
 close FOO;
 select STDOUT;
 
-system 'gcc -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -Wall -o foo foo.c xs/gnome2perl-vfs-gtypes.c `pkg-config libgnomeui-2.0 libgnomecanvas-2.0 --cflags --libs`'
+system 'gcc -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -Wall -o foo foo.c xs/gnome2perl-vfs-gtypes.c `pkg-config libgnomeui-2.0 --cflags --libs`'
 	and die "couldn't compile helper program";
 
 # these are matched in order; for example, GnomePrinter must test before
 # GnomePrint to avoid matching the wrong thing.
-@packagemap = (
-#	[ Art          => 'Gnome2::Art' ], # no gobject hooks
-	[ GnomeCanvas  => 'Gnome2::Canvas' ],
-	[ GnomeVFS     => 'Gnome2::VFS' ],
-	[ Bonobo       => 'Gnome2::Bonobo' ],
-	[ Gnome        => 'Gnome2' ], # fallback
+my @packagemap = (
+  [ GnomeVFS     => 'Gnome2::VFS' ],
+  [ Bonobo       => 'Gnome2::Bonobo' ],
+  [ Gnome        => 'Gnome2' ], # fallback
 );
 
 foreach (`./foo`) {
-	chomp;
-	my @p = split;
-	my $pkg = 'Gnome2';
-	my $prefix = 'Gnome';
-	foreach $f (@packagemap) {
-		my $t = $f->[0];
-		if ($p[1] =~ /^$t/) {
-			$prefix = $f->[0];
-			$pkg = $f->[1];
-			last;
-		}
-	}
-	(my $fullname = $p[1]) =~ s/^$prefix/$pkg\::/;
-	$fullname =~ s/\::$//;
-	print join("\t", @p, $fullname), "\n";
-}
+  chomp;
 
+  my @typemap = split;
+  my $prefix = 'Gnome';
+  my $pkg = 'Gnome2';
+
+  foreach my $mapping (@packagemap) {
+    my $type = $mapping->[0];
+    if ($typemap[1] =~ /^$type/) {
+      $prefix = $mapping->[0];
+      $pkg = $mapping->[1];
+      last;
+    }
+  }
+
+  (my $fullname = $typemap[1]) =~ s/^$prefix/$pkg\::/;
+  $fullname =~ s/\::$//;
+  print join("\t", @typemap, $fullname), "\n";
+}
