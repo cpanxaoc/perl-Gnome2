@@ -59,6 +59,12 @@ $button->signal_connect (clicked => sub {
 $druid_page->append_item ("test gnome_sound_play / Gnome2::Sound->play", $button, "sample filename is hard-coded");
 
 
+$button = Gtk2::Button->new ("About");
+# everything after authors may default on Gnome2::About->new.
+$button->signal_connect (clicked => sub { Gnome2::About->new ("Druid Test", "0.2", "(c) 2003 by muppet and the Gnome authors whose example he ported", "decreasingly simple example of using a Gnome2::Druid and other widgets", ['muppet', 'Gnome authors'])->show; 1 });
+$druid_page->append_item ("test gnome_sound_play / Gnome2::Sound->play", $button, "sample filename is hard-coded");
+
+
 $druid_page = Gnome2::DruidPageEdge->new_with_vals ('finish', FALSE,
 						   "Goodbye",
 						   $end_page_text,
