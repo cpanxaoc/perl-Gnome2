@@ -80,7 +80,7 @@ gnome_program_init (class, app_id, app_version, module_info, ...)
 		GValue gvalue = {0,};
 		GParamSpec * pspec;
 
-		property_name = SvPV_nolen (ST (i));
+		property_name = SvGChar (ST (i));
 		pspec = g_object_class_find_property 
 		                          (G_OBJECT_GET_CLASS (RETVAL),
 		                           property_name);
