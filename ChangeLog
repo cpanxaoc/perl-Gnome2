@@ -1,4 +1,4 @@
-2003/09/22 09:26 rwmcfa1
+2003/09/23 09:26 rwmcfa1
 
 	* t/GnomeIconTheme.t: return value of test #2 is an array, have to 
 	catch it as such or else we'll get only the flags which on my system
