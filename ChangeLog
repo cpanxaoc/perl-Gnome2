@@ -1,3 +1,9 @@
+2003/09/27 01:35 (+0200) kaffeetisch
+
+	* t/GnomePopupMenu.t: Re-enabled the popup code, but make it skip it if
+	we are not running 2.2.0 (which introduced Gtk2::Gdk::Event->new) or
+	above.
+
 2003/09/26 16:20 (+0200) kaffeetisch
 
 	* TODO: Added libbonoboui.  Added explanations to gnome-config,
