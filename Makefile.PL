@@ -38,6 +38,7 @@ unless (eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
          PREREQ_PM    => {
             'Glib'                => $build_reqs{'perl-Glib'},
             'Gtk2'                => $build_reqs{'perl-Gtk2'},
+            'Gnome2::Canvas'      => $build_reqs{'perl-Gnome2-Canvas'},
             'Gnome2::VFS'         => $build_reqs{'perl-Gnome2-VFS'},
             'ExtUtils::Depends'   => $build_reqs{'perl-ExtUtils-Depends'},
             'ExtUtils::PkgConfig' => $build_reqs{'perl-ExtUtils-PkgConfig'},

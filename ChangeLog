@@ -1,3 +1,8 @@
+2004/04/27 20:45 (+0200) kaffeetisch
+
+	* Makefile.PL: Add Gnome2::Canvas to PREREQ_PM as well so that it
+	(hopefully) gets picked up by CPAN(PLUS).pm.
+
 2004/03/29 19:55 (+0200) kaffeetisch
 
 	* Gnome2.pm
