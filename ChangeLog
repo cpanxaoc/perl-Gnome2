@@ -1,3 +1,11 @@
+2003/09/29 16:33 (+0200) kaffeetisch
+
+	* xs/GnomeDateEdit.xs
+	* t/GnomeDateEdit.t: Change gnome_date_edit_get_flags to return a
+	proper flag value instead of a plain integer.
+
+	* t/GnomeThumbnail.t: Add comment to methods that are segfaulting.
+
 2003/09/27 01:35 (+0200) kaffeetisch
 
 	* t/GnomePopupMenu.t: Re-enabled the popup code, but make it skip it if

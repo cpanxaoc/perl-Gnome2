@@ -41,9 +41,11 @@ SKIP: {
   $factory -> save_thumbnail($thumbnail, $uri, $mtime);
   $factory -> create_failed_thumbnail($uri, $mtime);
 
-  $thumbnail -> scale_down_pixbuf(5, 5);
-  # XXX: $thumbnail -> has_uri($uri);
-  # XXX: $thumbnail -> is_valid($uri, $mtime);
+  # XXX: why do these segfault?
+  # $thumbnail -> has_uri($uri);
+  # $thumbnail -> is_valid($uri, $mtime);
+
   $thumbnail -> md5($uri);
   $thumbnail -> path_for_uri($uri, "large");
+  $thumbnail -> scale_down_pixbuf(5, 5);
 }

@@ -36,6 +36,5 @@ SKIP: {
   $edit -> set_popup_range(6, 12);
 
   $edit -> set_flags([qw(show_time 24_hr)]);
-  # XXX: is_deeply([$edit -> get_flags()], [qw(show_time 24_hr)]);
-  is($edit -> get_flags(), 3);
+  is_deeply($edit -> get_flags(), [qw(show-time 24-hr)]);
 }

@@ -21,6 +21,13 @@
 
 #include "gnome2perl.h"
 
+static SV *
+date_edit_flags_to_sv (gint flags)
+{
+	return gperl_convert_back_flags (GNOME_TYPE_DATE_EDIT_FLAGS,
+	                                 flags);
+}
+
 MODULE = Gnome2::DateEdit	PACKAGE = Gnome2::DateEdit	PREFIX = gnome_date_edit_
 
 GtkWidget *
@@ -64,11 +71,14 @@ gnome_date_edit_set_flags (gde, flags)
 	GnomeDateEdit *gde
 	GnomeDateEditFlags flags
 
-# FIXME: this should return GnomeDateEditFlags.
 ## int gnome_date_edit_get_flags (GnomeDateEdit *gde) 
-int
+SV *
 gnome_date_edit_get_flags (gde)
 	GnomeDateEdit *gde
+    CODE:
+	RETVAL = date_edit_flags_to_sv (gnome_date_edit_get_flags (gde));
+    OUTPUT:
+	RETVAL
 
 ## time_t gnome_date_edit_get_initial_time(GnomeDateEdit *gde) 
 time_t
