@@ -1,3 +1,10 @@
+Overview of changes in Gnome2 1.001
+===================================
+
+* Fix some building and testing issues.
+* Fix a bug in Gnome2::IconTheme.
+* Make Gnome2.pm use() Gnome2::Canvas so that Gnome2::IconList works.
+
 Overview of changes in Gnome2 1.00
 ==================================
 
