@@ -44,7 +44,7 @@ SKIP: {
 
   my ($file,
       $icon_data,
-      $size) = $theme -> lookup_icon("gnome-starthere", 48);
+      $size) = $theme -> lookup_icon("gnome-fs-directory", 48);
 
   ok(-e $file);
   isa_ok($icon_data, "HASH");
