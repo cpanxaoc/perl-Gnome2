@@ -79,9 +79,9 @@ gnome_about_new (class, name, version, copyright, comments, authors, documenters
 			d[1] = NULL;
 		}
 	}
-        RETVAL = gnome_about_new (name, version, copyright, comments,
+	RETVAL = gnome_about_new (name, version, copyright, comments,
 	                          a, d, translator_credits, logo_pixbuf);
 	g_free (a);
 	g_free (d);
      OUTPUT:
-        RETVAL
+	RETVAL
