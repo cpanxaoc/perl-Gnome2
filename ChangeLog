@@ -1,3 +1,8 @@
+2003/06/05 23:11 muppetman
+
+	* maps: removed GnomeCanvas stuff, so that it can go into its own
+	module.
+
 2003/05/22 12:00 muppetman
 
 	* AUTHORS, LICENSE, most files: added copyright and license
