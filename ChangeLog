@@ -1,3 +1,8 @@
+2003/11/29 17:01 (+0100) kaffeetisch
+
+	* gnome2perl.h: Include bonobo/bonobo-dock.h and
+	bonobo/bonobo-dock-item.h.
+
 2003/11/29 09:15 (-0500) muppetman
 
 	* xs/GnomeAppHelper.xs: remove unused variables.
