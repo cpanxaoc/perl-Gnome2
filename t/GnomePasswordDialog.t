@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 5;
+use constant TESTS => 6;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -43,6 +43,14 @@ SKIP: {
 
     $dialog -> set_domain("urgs");
     is($dialog -> get_domain(), "urgs");
+  }
+
+  SKIP: {
+    skip("things new in 2.8.0", 1)
+      unless (Gnome2 -> CHECK_VERSION(2, 7, 2)); # FIXME: 2.8
+
+    $dialog -> set_show_userpass_buttons(1);
+    ok(!$dialog -> anon_selected());
   }
 
   # $dialog -> run_and_block();

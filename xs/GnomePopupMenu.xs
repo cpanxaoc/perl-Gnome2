@@ -20,6 +20,9 @@
 
 #include "gnome2perl.h"
 
+/* gnome-popup-menu.h was deprecated in 2003. */
+#undef GNOME_DISABLE_DEPRECATED
+
 extern void gtk2perl_menu_position_func (GtkMenu       * menu,
                                          gint          * x,
                                          gint          * y,

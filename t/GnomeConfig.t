@@ -137,6 +137,7 @@ SKIP: {
 
   #############################################################################
 
+  # ok(Gnome2::Config -> sync());
   # ok(Gnome2::Config -> sync_file("Test"));
   # ok(Gnome2::Config::Private -> sync_file("Test"));
 
@@ -149,6 +150,8 @@ SKIP: {
 
   Gnome2::Config -> drop_file("Test");
   Gnome2::Config::Private -> drop_file("Test");
+
+  Gnome2::Config -> drop_all();
 
   #############################################################################
 

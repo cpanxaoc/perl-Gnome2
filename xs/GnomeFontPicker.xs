@@ -20,6 +20,9 @@
 
 #include "gnome2perl.h"
 
+/* gnome-font-picker.h was deprecated in 2003 */
+#undef GNOME_DISABLE_DEPRECATED
+
 MODULE = Gnome2::FontPicker	PACKAGE = Gnome2::FontPicker	PREFIX = gnome_font_picker_
 
 GtkWidget *

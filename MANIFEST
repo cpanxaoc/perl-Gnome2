@@ -43,6 +43,7 @@ t/GnomePopupMenu.t
 t/GnomeProgram.t
 t/GnomeScore
 t/GnomeScores.t
+t/GnomeSound
 t/GnomeThumbnail.t
 t/GnomeURL
 t/GnomeUtil.t

@@ -1,3 +1,28 @@
+2004/07/18 19:44 (+0200) kaffeetisch
+
+	A t/GnomeSound
+	* MANIFEST: Add a test for GnomeSound.  It's not run during make
+	test though, because we can't be sure there's a sound server
+	running.
+
+	* t/GnomeConfig.t: Test drop_all.
+
+	* t/GnomeIconList.t: Test icon_is_visible and get_icon_at.
+
+	* t/GnomeThumbnail.t: Use a version check for has_uri and is_valid
+	instead of the unconditional skip now that the bug has been fixed.
+
+	* t/GnomePasswordDialog.t
+	* xs/GnomePasswordDialog.xs: Bind and test
+	set_show_userpass_buttons and anon_selected.
+
+	* xs/GnomeColorPicker.xs
+	* xs/GnomeEntry.xs
+	* xs/GnomeFontPicker.xs
+	* xs/GnomeIconTheme.xs
+	* xs/GnomePopupMenu.xs: Add #undef GNOME_DISABLE_DEPRECATED to
+	stuff that was deprecated after we wrapped it.
+
 2004/06/28 19:35 (+0200) kaffeetisch
 
 	* Gnome2.pm

@@ -37,7 +37,7 @@ SKIP: {
 
   SKIP: {
     skip("has_uri and is_valid are broken", 2)
-      unless (0); # FIXME: add version check once #141044 is fixed.
+      unless (Gnome2 -> CHECK_VERSION(2, 8, 0));
 
     like($thumbnail -> has_uri($uri), qr/^(|1)$/);
     like($thumbnail -> is_valid($uri, $mtime), qr/^(|1)$/);

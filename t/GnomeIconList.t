@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 10;
+use constant TESTS => 12;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -68,12 +68,11 @@ SKIP: {
   $list -> set_icon_border(5);
   $list -> set_separators("--");
 
-  # FIXME: why does moveto() yield a warning? why is $list not a Gtk2::Widget?
+  # FIXME: why does moveto() yield a warning?
   # $list -> moveto(1, 0.0);
-  # is($list -> icon_is_visible(1), "none");
 
-  # FIXME: need a window and a main loop for this.
-  # is($list -> get_icon_at(20, 20), 1);
+  is($list -> icon_is_visible(1), "none");
+  is($list -> get_icon_at(20, 20), -1);
 
   like($list -> get_items_per_line(), qr/^\d+$/);
 

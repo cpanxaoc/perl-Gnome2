@@ -20,6 +20,9 @@
 
 #include "gnome2perl.h"
 
+/* gnome-color-picker.h was deprecated in 2003 */
+#undef GNOME_DISABLE_DEPRECATED
+
 MODULE = Gnome2::ColorPicker	PACKAGE = Gnome2::ColorPicker	PREFIX = gnome_color_picker_
 
 GtkWidget *

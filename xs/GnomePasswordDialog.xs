@@ -138,4 +138,21 @@ gnome_password_dialog_get_domain (password_dialog)
 
 #endif /* 2.6.0 */
 
+# --------------------------------------------------------------------------- #
+
+#if LIBGNOMEUI_CHECK_VERSION (2, 7, 2) /* FIXME: 2.8 */
+
+##  void gnome_password_dialog_set_show_userpass_buttons (GnomePasswordDialog *password_dialog, gboolean show_userpass_buttons)
+void
+gnome_password_dialog_set_show_userpass_buttons (password_dialog, show_userpass_buttons)
+	GnomePasswordDialog *password_dialog
+	gboolean show_userpass_buttons
+
+##  gboolean gnome_password_dialog_anon_selected (GnomePasswordDialog *password_dialog)
+gboolean
+gnome_password_dialog_anon_selected (password_dialog)
+	GnomePasswordDialog *password_dialog
+
+#endif /* 2.8.0 */
+
 #endif /* GNOME_TYPE_PASSWORD_DIALOG */

@@ -20,6 +20,9 @@
 
 #include "gnome2perl.h"
 
+/* gnome-entry.h was deprecated in 2003 */
+#undef GNOME_DISABLE_DEPRECATED
+
 MODULE = Gnome2::Entry	PACKAGE = Gnome2::Entry	PREFIX = gnome_entry_
 
 ## GtkWidget * gnome_entry_new (const gchar *history_id) 

@@ -20,6 +20,9 @@
 
 #include "gnome2perl.h"
 
+/* gnome-icon-theme.h was deprecated in 2003. */
+#undef GNOME_DISABLE_DEPRECATED
+
 #ifdef GNOME_TYPE_ICON_THEME
 
 static SV * 
