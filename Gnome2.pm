@@ -32,7 +32,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.28';
+our $VERSION = '0.30';
 
 sub dl_load_flags { 0x01 }
 
@@ -77,7 +77,7 @@ FIXME we have no other documentation, but we probably need it.
 
 =head1 SEE ALSO
 
-perl(1), Glib(1), Gtk2(1).
+perl(1), Glib(3pm), Gtk2(3pm).
 
 =head1 AUTHOR
 

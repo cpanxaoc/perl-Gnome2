@@ -1,3 +1,7 @@
+2003/07/25 10:21 muppetman
+
+	* Gnome2.pm, README: bump version to 0.30
+
 2003/07/23 16:46 muppetman
 
 	* README, Makefile.PL: update required versionf of Gtk2 and Glib to
