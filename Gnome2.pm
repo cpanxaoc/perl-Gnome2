@@ -81,7 +81,7 @@ perl(1), Glib(3pm), Gtk2(3pm).
 
 =head1 AUTHOR
 
-muppet E<lt>scott@asofyet.orgE<gt>
+muppet E<lt>scott at asofyet dot orgE<gt>
 
 If you want to own this project, please let me know.
 
