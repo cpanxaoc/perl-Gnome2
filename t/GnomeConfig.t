@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 48;
+use constant TESTS => 50;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -87,9 +87,13 @@ SKIP: {
   Gnome2::Config::Private -> set_float("/Geometry/Ratio", 1.23);
   is(Gnome2::Config::Private -> get_float("/Geometry/Ratio"), 1.23);
 
-  # TODO: due to a libgnome bug, get_float_with_default returns integers.
-  # is_deeply([Gnome2::Config::Private -> get_float_with_default("/Geometry/Whops=0.5")], [1, 0.5]);
-  # is_deeply([Gnome2::Config::Private -> get_float_with_default("/Geometry/Ratio")], [0, 1.23]);
+  SKIP: {
+    skip("get_float_with_default was broken prior to 2.5.4", 2)
+      unless (Gnome2 -> check_version(2, 5, 4));
+
+    is_deeply([Gnome2::Config::Private -> get_float_with_default("/Geometry/Whops=0.5")], [1, 0.5]);
+    is_deeply([Gnome2::Config::Private -> get_float_with_default("/Geometry/Ratio")], [0, 1.23]);
+  }
 
   Gnome2::Config::Private -> set_bool("/State/Hidden", 1);
   ok(Gnome2::Config::Private -> get_bool("/State/Hidden"));
