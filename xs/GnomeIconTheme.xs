@@ -39,7 +39,7 @@ data_to_hv (const GnomeIconData * data)
 		av_store (av_points, 0, newSViv (point.x));
 		av_store (av_points, 1, newSViv (point.y));
 
-		av_store (av, i, newRV_inc ((SV*) av_points));
+		av_store (av, i, newRV_noinc ((SV*) av_points));
 	}
 
 	hv_store (hv, "has_embedded_rect", 17, newSVuv (data->has_embedded_rect), 0);
@@ -47,7 +47,7 @@ data_to_hv (const GnomeIconData * data)
 	hv_store (hv, "y0", 2, newSViv (data->y0), 0);
 	hv_store (hv, "x1", 2, newSViv (data->x1), 0);
 	hv_store (hv, "y1", 2, newSViv (data->y1), 0);
-	hv_store (hv, "attach_points", 13, newRV_inc ((SV*) av), 0);
+	hv_store (hv, "attach_points", 13, newRV_noinc ((SV*) av), 0);
 	hv_store (hv, "display_name", 12, newSVpv (data->display_name, PL_na), 0);
 
 	return hv;
