@@ -1,3 +1,7 @@
+2003/10/12 21:49 (+0200) kaffeetisch
+
+	* xs/Gnome2.xs: Remove calls to UNUSED.
+
 2003/10/09 02:42 (+0200) kaffeetisch
 
 	* genmaps.pl: Make warnings and strict safe.  Use descriptive
