@@ -35,6 +35,11 @@ gnome_font_picker_set_title (gfp, title)
 	GnomeFontPicker *gfp
 	const gchar *title
 
+## const gchar* gnome_font_picker_get_title (GnomeFontPicker *gfp) 
+const gchar*
+gnome_font_picker_get_title (gfp)
+	GnomeFontPicker *gfp
+
 ## GnomeFontPickerMode gnome_font_picker_get_mode (GnomeFontPicker *gfp) 
 GnomeFontPickerMode
 gnome_font_picker_get_mode (gfp)
@@ -70,9 +75,9 @@ GtkWidget *
 gnome_font_picker_uw_get_widget (gfp)
 	GnomeFontPicker *gfp
 
-## GdkFont* gnome_font_picker_get_font (GnomeFontPicker *gfp) 
-GdkFont*
-gnome_font_picker_get_font (gfp)
+## const gchar* gnome_font_picker_get_font_name (GnomeFontPicker *gfp) 
+const gchar*
+gnome_font_picker_get_font_name (gfp)
 	GnomeFontPicker *gfp
 
 ## gboolean gnome_font_picker_set_font_name (GnomeFontPicker *gfp, const gchar *fontname) 

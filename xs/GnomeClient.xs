@@ -21,7 +21,26 @@
 
 #include "gnome2perl.h"
 
-// typedef void (*GnomeInteractFunction) (GnomeClient *client, gint key, GnomeDialogType dialog_type, gpointer data) 
+static void
+gtk2perl_gnome_interact_function (GnomeClient *client,
+				  gint key,
+				  GnomeDialogType dialog_type,
+				  GPerlCallback * callback)
+{
+	gperl_callback_invoke (callback, NULL, client, key, dialog_type);
+}
+
+static GPerlCallback *
+gtk2perl_gnome_interact_function_create (SV * func, SV *data)
+{
+	GType param_types [] = {
+		GNOME_TYPE_CLIENT,
+		G_TYPE_INT,
+		GNOME_TYPE_DIALOG_TYPE,
+	};
+	return gperl_callback_new (func, data, G_N_ELEMENTS (param_types),
+				   param_types, 0);
+}
 
 
 MODULE = Gnome2::Client	PACKAGE = Gnome2::Client	PREFIX = gnome_client_
@@ -78,40 +97,53 @@ gnome_client_set_priority (client, priority)
 	GnomeClient *client
 	guint priority
 
-## FIXME get command line from perl arg stack
-### void gnome_client_set_restart_command (GnomeClient *client, gint argc, gchar *argv[]) 
-#void
-#gnome_client_set_restart_command (client, argc, g)
-#	GnomeClient *client
-#	gint argc
-#	gchar *argv[]
+## void gnome_client_set_restart_command (GnomeClient *client, gint argc, gchar *argv[]) 
+## void gnome_client_set_discard_command (GnomeClient *client, gint argc, gchar *argv[]) 
+## void gnome_client_set_resign_command (GnomeClient *client, gint argc, gchar *argv[]) 
+## void gnome_client_set_shutdown_command (GnomeClient *client, gint argc, gchar *argv[]) 
+## void gnome_client_set_clone_command (GnomeClient *client, gint argc, gchar *argv[]) 
+void
+set_commands (client, ...)
+	GnomeClient *client
+    ALIAS:
+	Gnome2::Client::set_restart_command = 1
+	Gnome2::Client::set_discard_command = 2
+	Gnome2::Client::set_resign_command = 3
+	Gnome2::Client::set_shutdown_command = 4
+	Gnome2::Client::set_clone_command = 5
+    PREINIT:
+	gint argc, i;
+	gchar ** argv;
+    CODE:
+	argc = items - 1;
+	argv = g_new0 (gchar*, argc);
 
-### void gnome_client_add_static_arg (GnomeClient *client, ...) 
-#void
-#gnome_client_add_static_arg (client, client)
-#	GnomeClient *client
-#	...
+	for (i = 1; i < items; i++)
+		argv[i - 1] = SvGChar (ST (i));
 
-### void gnome_client_set_discard_command (GnomeClient *client, gint argc, gchar *argv[]) 
-#void
-#gnome_client_set_discard_command (client, argc, g)
-#	GnomeClient *client
-#	gint argc
-#	gchar *argv[]
+	switch (ix) {
+		case 1: gnome_client_set_restart_command (client, argc, argv); break;
+		case 2: gnome_client_set_discard_command (client, argc, argv); break;
+		case 3: gnome_client_set_resign_command (client, argc, argv); break;
+		case 4: gnome_client_set_shutdown_command (client, argc, argv); break;
+		case 5: gnome_client_set_clone_command (client, argc, argv); break;
+	}
 
-### void gnome_client_set_resign_command (GnomeClient *client, gint argc, gchar *argv[]) 
-#void
-#gnome_client_set_resign_command (client, argc, g)
-#	GnomeClient *client
-#	gint argc
-#	gchar *argv[]
-#
-### void gnome_client_set_shutdown_command (GnomeClient *client, gint argc, gchar *argv[]) 
-#void
-#gnome_client_set_shutdown_command (client, argc, g)
-#	GnomeClient *client
-#	gint argc
-#	gchar *argv[]
+	g_free (argv);
+
+## void gnome_client_add_static_arg (GnomeClient *client, ...) 
+void
+gnome_client_add_static_arg (client, ...)
+	GnomeClient *client
+    PREINIT:
+	gint i;
+	gchar ** argv;
+    CODE:
+	argv = g_new0 (gchar*, items - 1);
+	for (i = 1; i < items; i++)
+		argv[i - 1] = SvGChar (ST (i));
+	gnome_client_add_static_arg (client, argv, NULL);
+	g_free (argv);
 
 ## void gnome_client_set_current_directory (GnomeClient *client, const gchar *dir) 
 void
@@ -125,13 +157,6 @@ gnome_client_set_environment (client, name, value)
 	GnomeClient *client
 	const gchar *name
 	const gchar *value
-
-### void gnome_client_set_clone_command (GnomeClient *client, gint argc, gchar *argv[]) 
-#void
-#gnome_client_set_clone_command (client, argc, g)
-#	GnomeClient *client
-#	gint argc
-#	gchar *argv[]
 
 ### these are not for applications
 ## void gnome_client_set_process_id (GnomeClient *client, pid_t pid) 
@@ -213,27 +238,32 @@ const gchar *
 gnome_client_get_desktop_id (client)
 	GnomeClient * client
 
+# FIXME: the callback isn't called. why?
+## void gnome_client_request_interaction (GnomeClient *client, GnomeDialogType dialog_type, GnomeInteractFunction function, gpointer data) 
+## void gnome_client_request_interaction_interp (GnomeClient *client, GnomeDialogType dialog_type, GtkCallbackMarshal function, gpointer data, GtkDestroyNotify destroy) 
+void
+gnome_client_request_interaction (client, dialog_type, function, data=NULL)
+	GnomeClient *client
+	GnomeDialogType dialog_type
+	SV * function
+	SV * data
+    ALIAS:
+	Gnome2::Client::request_interaction = 1
+	Gnome2::Client::request_interaction_interp = 2
+    PREINIT:
+	GPerlCallback * callback;
+    CODE:
+	callback = gtk2perl_gnome_interact_function_create (function, data);
+	gnome_client_request_interaction_interp (
+		client,
+		dialog_type,
+		(GtkCallbackMarshal) gtk2perl_gnome_interact_function,
+		callback,
+		(GtkDestroyNotify) gperl_callback_destroy);
 
-### void gnome_client_request_interaction (GnomeClient *client, GnomeDialogType dialog_type, GnomeInteractFunction function, gpointer data) 
-#void
-#gnome_client_request_interaction (client, dialog_type, function, data)
-#	GnomeClient *client
-#	GnomeDialogType dialog_type
-#	GnomeInteractFunction function
-#	gpointer data
-
-### void gnome_client_request_interaction_interp (GnomeClient *client, GnomeDialogType dialog_type, GtkCallbackMarshal function, gpointer data, GtkDestroyNotify destroy) 
-#void
-#gnome_client_request_interaction_interp (client, dialog_type, function, data, destroy)
-#	GnomeClient *client
-#	GnomeDialogType dialog_type
-#	GtkCallbackMarshal function
-#	gpointer data
-#	GtkDestroyNotify destroy
-#
-### void gnome_interaction_key_return (gint key, gboolean cancel_shutdown) 
-#void
-#gnome_interaction_key_return (key, cancel_shutdown)
-#	gint key
-#	gboolean cancel_shutdown
-
+# FIXME: needs renaming/aliasing.
+## void gnome_interaction_key_return (gint key, gboolean cancel_shutdown) 
+void
+gnome_interaction_key_return (key, cancel_shutdown)
+	gint key
+	gboolean cancel_shutdown

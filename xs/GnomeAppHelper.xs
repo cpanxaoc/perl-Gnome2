@@ -124,7 +124,7 @@ gnome2perl_parse_uiinfo_sv (SV * sv,
 		if ((s = av_fetch (a, 5, 0)) && SvOK (*s))
 			info->pixmap_info = SvPV_nolen (*s);
 		if ((s = av_fetch (a, 6, 0)) && SvOK (*s)) /* keysym */
-			info->accelerator_key = SvIV (*s);		
+			info->accelerator_key = SvIV (*s);		  
 		if ((s = av_fetch (a, 7, 0)) && SvOK (*s))
 			info->ac_mods = SvGdkModifierType (*s);
 	}
@@ -254,7 +254,7 @@ do_ui_signal_connect (GnomeUIInfo * uiinfo,
 		                      (char*) signal_name,
 		                      uiinfo->moreinfo,
 		                      uiinfo->user_data,
-				      G_SIGNAL_RUN_FIRST);
+		                      G_SIGNAL_RUN_FIRST);
 }
 
 /* typedef void (* GnomeUISignalConnectFunc) (GnomeUIInfo *uiinfo, const char *signal_name, GnomeUIBuilderData *uibdata)  */
@@ -268,7 +268,7 @@ gnome_accelerators_sync (class)
     C_ARGS:
 	/*void*/
 
-MODULE = Gnome2::AppHelper	PACKAGE = Gnome2::App	PREFIX = gnome_app_
+MODULE = Gnome2::AppHelper	PACKAGE = Gtk2::MenuShell	PREFIX = gnome_app_
 
 ### void gnome_app_fill_menu (GtkMenuShell *menu_shell, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gboolean uline_accels, gint pos) 
 ### void gnome_app_fill_menu_with_data (GtkMenuShell *menu_shell, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gboolean uline_accels, gint pos, gpointer user_data) 
@@ -292,6 +292,43 @@ gnome_app_fill_menu (menu_shell, uiinfo, accel_group, uline_accels, pos)
 	                            accel_group, uline_accels, pos);
 	refill_infos (ST (1), uiinfo);
 
+
+##  GtkWidget *gnome_app_find_menu_pos (GtkWidget *parent, const gchar *path, gint *pos)
+void
+gnome_app_find_menu_pos (parent, path)
+	GtkWidget *parent
+	const gchar *path
+    PREINIT:
+	gint pos;
+	GtkWidget *widget;
+    PPCODE:
+	EXTEND (sp, 2);
+	widget = gnome_app_find_menu_pos (parent, path, &pos);
+	PUSHs (sv_2mortal (newSVGtkWidget (widget)));
+	PUSHs (sv_2mortal (newSViv (pos)));
+
+MODULE = Gnome2::AppHelper	PACKAGE = Gtk2::Toolbar	PREFIX = gnome_app_
+
+## void gnome_app_fill_toolbar (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group) 
+### void gnome_app_fill_toolbar_with_data (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gpointer user_data) 
+### void gnome_app_fill_toolbar_custom (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata, GtkAccelGroup *accel_group) 
+void
+gnome_app_fill_toolbar (toolbar, uiinfo, accel_group)
+	GtkToolbar *toolbar
+	GnomeUIInfo *uiinfo
+	GtkAccelGroup *accel_group
+    PREINIT:
+	GnomeUIBuilderData uibdata;
+    CODE:
+	uibdata.connect_func = do_ui_signal_connect;
+	uibdata.data = NULL;
+	uibdata.is_interp = FALSE;
+	uibdata.relay_func = NULL;
+	uibdata.destroy_func = NULL;
+	gnome_app_fill_toolbar_custom (toolbar, uiinfo, &uibdata, accel_group);
+	refill_infos (ST (1), uiinfo);
+
+MODULE = Gnome2::AppHelper	PACKAGE = Gnome2::App	PREFIX = gnome_app_
 
 #### void gnome_app_ui_configure_configurable (GnomeUIInfo* uiinfo) 
 ##void
@@ -328,15 +365,15 @@ gnome_app_create_menus (app, uiinfo)
 	refill_infos (ST (1), uiinfo);
 
 
-## void gnome_app_fill_toolbar (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group) 
-### void gnome_app_fill_toolbar_with_data (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gpointer user_data) 
-### void gnome_app_fill_toolbar_custom (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata, GtkAccelGroup *accel_group) 
+### void gnome_app_insert_menus (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo) 
+### void gnome_app_insert_menus_custom (GnomeApp *app, const gchar *path, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata) 
+### void gnome_app_insert_menus_with_data (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo, gpointer data) 
+### void gnome_app_insert_menus_interp (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo, GtkCallbackMarshal relay_func, gpointer data, GtkDestroyNotify destroy_func) 
 void
-gnome_app_fill_toolbar (class, toolbar, uiinfo, accel_group)
-	SV * class
-	GtkToolbar *toolbar
-	GnomeUIInfo *uiinfo
-	GtkAccelGroup *accel_group
+gnome_app_insert_menus (app, path, menuinfo)
+	GnomeApp *app
+	const gchar *path
+	GnomeUIInfo *menuinfo
     PREINIT:
 	GnomeUIBuilderData uibdata;
     CODE:
@@ -345,82 +382,60 @@ gnome_app_fill_toolbar (class, toolbar, uiinfo, accel_group)
 	uibdata.is_interp = FALSE;
 	uibdata.relay_func = NULL;
 	uibdata.destroy_func = NULL;
-	gnome_app_fill_toolbar_custom (toolbar, uiinfo, &uibdata, accel_group);
-	refill_infos (ST (2), uiinfo);
+	gnome_app_insert_menus_custom (app, path, menuinfo, &uibdata);
+	refill_infos (ST (2), menuinfo);
+	
 
+## void gnome_app_remove_menus (GnomeApp *app, const gchar *path, gint items) 
+void
+gnome_app_remove_menus (app, path, items)
+	GnomeApp *app
+	const gchar *path
+	gint items
 
-### void gnome_app_remove_menus (GnomeApp *app, const gchar *path, gint items) 
-#void
-#gnome_app_remove_menus (app, path, items)
-#	GnomeApp *app
-#	const gchar *path
-#	gint items
-#
-### void gnome_app_remove_menu_range (GnomeApp *app, const gchar *path, gint start, gint items) 
-#void
-#gnome_app_remove_menu_range (app, path, start, items)
-#	GnomeApp *app
-#	const gchar *path
-#	gint start
-#	gint items
-#
-### void gnome_app_insert_menus_custom (GnomeApp *app, const gchar *path, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata) 
-#void
-#gnome_app_insert_menus_custom (app, path, uiinfo, uibdata)
-#	GnomeApp *app
-#	const gchar *path
-#	GnomeUIInfo *uiinfo
-#	GnomeUIBuilderData *uibdata
-#
-### void gnome_app_insert_menus (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo) 
-#void
-#gnome_app_insert_menus (app, path, menuinfo)
-#	GnomeApp *app
-#	const gchar *path
-#	GnomeUIInfo *menuinfo
-#
-### void gnome_app_insert_menus_with_data (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo, gpointer data) 
-#void
-#gnome_app_insert_menus_with_data (app, path, menuinfo, data)
-#	GnomeApp *app
-#	const gchar *path
-#	GnomeUIInfo *menuinfo
-#	gpointer data
-#
-### void gnome_app_insert_menus_interp (GnomeApp *app, const gchar *path, GnomeUIInfo *menuinfo, GtkCallbackMarshal relay_func, gpointer data, GtkDestroyNotify destroy_func) 
-#void
-#gnome_app_insert_menus_interp (app, path, menuinfo, relay_func, data, destroy_func)
-#	GnomeApp *app
-#	const gchar *path
-#	GnomeUIInfo *menuinfo
-#	GtkCallbackMarshal relay_func
-#	gpointer data
-#	GtkDestroyNotify destroy_func
-#
-### void gnome_app_install_appbar_menu_hints (GnomeAppBar* appbar, GnomeUIInfo* uiinfo) 
-#void
-#gnome_app_install_appbar_menu_hints (class, appbar, uiinfo)
-#	SV * class
-#	GnomeAppBar* appbar
-#	GnomeUIInfo* uiinfo
-#
-### void gnome_app_install_statusbar_menu_hints (GtkStatusbar* bar, GnomeUIInfo* uiinfo) 
-#void
-#gnome_app_install_statusbar_menu_hints (class, bar, uiinfo)
-#	SV * class
-#	GtkStatusbar* bar
-#	GnomeUIInfo* uiinfo
-#
-### void gnome_app_install_menu_hints (GnomeApp *app, GnomeUIInfo *uiinfo) 
-#void
-#gnome_app_install_menu_hints (app, uiinfo)
-#	GnomeApp *app
-#	GnomeUIInfo *uiinfo
-#
-## FIXME need bonobo stuff for this
-#### void gnome_app_setup_toolbar (GtkToolbar *toolbar, BonoboDockItem *dock_item) 
-##void
-##gnome_app_setup_toolbar (toolbar, dock_item)
-##	GtkToolbar *toolbar
-##	BonoboDockItem *dock_item
+## void gnome_app_remove_menu_range (GnomeApp *app, const gchar *path, gint start, gint items) 
+void
+gnome_app_remove_menu_range (app, path, start, items)
+	GnomeApp *app
+	const gchar *path
+	gint start
+	gint items
 
+## void gnome_app_install_menu_hints (GnomeApp *app, GnomeUIInfo *uiinfo) 
+void
+gnome_app_install_menu_hints (app, uiinfo)
+	GnomeApp *app
+	GnomeUIInfo *uiinfo
+
+## void gnome_app_setup_toolbar (GtkToolbar *toolbar, BonoboDockItem *dock_item) 
+void
+gnome_app_setup_toolbar (class, toolbar, dock_item)
+	SV *class
+	GtkToolbar *toolbar
+	BonoboDockItem *dock_item
+    C_ARGS:
+	toolbar, dock_item
+
+MODULE = Gnome2::AppHelper	PACKAGE = Gnome2::AppBar	PREFIX = gnome_app_
+
+## void gnome_app_install_appbar_menu_hints (GnomeAppBar* appbar, GnomeUIInfo* uiinfo) 
+void
+gnome_app_install_appbar_menu_hints (appbar, uiinfo)
+	GnomeAppBar* appbar
+	GnomeUIInfo* uiinfo
+    ALIAS:
+	Gnome2::AppBar::install_menu_hints = 1
+    C_ARGS:
+	appbar, uiinfo
+
+MODULE = Gnome2::AppHelper	PACKAGE = Gtk2::Statusbar	PREFIX = gnome_app_
+
+## void gnome_app_install_statusbar_menu_hints (GtkStatusbar* bar, GnomeUIInfo* uiinfo) 
+void
+gnome_app_install_statusbar_menu_hints (bar, uiinfo)
+	GtkStatusbar* bar
+	GnomeUIInfo* uiinfo
+    ALIAS:
+	Gtk2::Statusbar::install_menu_hints = 1
+    C_ARGS:
+	bar, uiinfo
