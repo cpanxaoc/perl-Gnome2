@@ -1,3 +1,7 @@
+2003/11/09 03:22 (+0100) kaffeetisch
+
+	* Makefile.PL: Require Glib 1.01.  Remove const_cccmd hack.
+
 2003/11/07 19:35 (+0100) kaffeetisch
 
 	* xs/BonoboDock.xs

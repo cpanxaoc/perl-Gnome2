@@ -13,7 +13,7 @@ use File::Spec;
 our %build_reqs = (
 	'perl-ExtUtils-Depends'   => '0.1',
 	'perl-ExtUtils-PkgConfig' => '0.1',
-	'perl-Glib'               => '1.00',
+	'perl-Glib'               => '1.01',
 	'perl-Gtk2'               => '1.00',
 	'Gnome'                   => '2.0.0',
 	'Bonobo'                  => '2.0.0',
@@ -128,19 +128,7 @@ WriteMakefile(
     $gnome2->get_makefile_vars,
 );
 
-#
-# there's a bug in the MakeMaker output which results in .xs files in a
-# subdirectory being turned into .o files in this dir.  the bug is a missing
-# -o on the compiler command line.  this is a hackish fix for it.
-#
 package MY;
-use Cwd;
-
-sub const_cccmd {
-	my $inherited = shift->SUPER::const_cccmd (@_);
-	$inherited .= ' -o $@';
-	$inherited;
-}
 
 sub postamble
 {
