@@ -1,3 +1,8 @@
+2003/08/19 21:11 rwmcfa1
+
+	* Makefile.PL: added realclean removal of build dir to postamble 
+	section.
+
 2003/08/18 21:16 muppetman
 
 	* xs/GnomeAppHelper.xs: all the parts were there, they just weren't
