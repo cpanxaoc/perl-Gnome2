@@ -57,16 +57,19 @@ data_to_hv (const GnomeIconData * data)
 GnomeIconData * 
 SvGnomeIconData (SV * sv)
 {
+	HV * hv = (HV*) SvRV (sv);
+	SV ** value;
+	GnomeIconData * data = gperl_alloc_temp (sizeof (GnomeIconData));
+
+	SV ** points = hv_fetch (hv, "attach_points", 13, FALSE);
+
+	int i;
+	AV * av = (AV*) SvRV (*points);
+
 	if (! (sv && SvOK (sv) && SvROK (sv) && SvTYPE (SvRV (sv)) == SVt_PVHV))
 		croak ("malformed icon data; use a reference to a hash as icon data");
 
-	HV * hv = (HV*) SvRV (sv);
-
-	GnomeIconData * data = gperl_alloc_temp (sizeof (GnomeIconData));
-
 	/* ----------------------------------------------------------------- */
-
-	SV ** value;
 
 	value = hv_fetch (hv, "has_embedded_rect", 17, FALSE);
 	if (value) data->has_embedded_rect = SvUV (*value);
@@ -88,28 +91,22 @@ SvGnomeIconData (SV * sv)
 
 	/* ----------------------------------------------------------------- */
 
-	SV ** points = hv_fetch (hv, "attach_points", 13, FALSE);
-
 	if (! (*points && SvOK (*points) && SvROK (*points) && SvTYPE (SvRV (*points)) == SVt_PVAV))
 		croak ("malformed points data; use a reference to an array as points data");
-
-	int i;
-	AV * av = (AV*) SvRV (*points);
 
 	data->attach_points = gperl_alloc_temp (av_len (av) * sizeof (GnomeIconDataPoint));
 
 	for (i = 0; i <= av_len (av); i++) {
 		SV ** point = av_fetch (av, i, FALSE);
+		AV * av_point = (AV*) SvRV (*point);
+
+		GnomeIconDataPoint point_data;
 
 		if (! (*point && SvOK (*point) && SvROK (*point) && SvTYPE (SvRV (*point)) == SVt_PVAV))
 			croak ("malformed point data; use a reference to an array as point data");
 
-		AV * av_point = (AV*) SvRV (*point);
-
 		if (av_len (av) != 1)
 			croak ("malformed point data; point data must have two elements");
-
-		GnomeIconDataPoint point_data;
 
 		point = av_fetch (av_point, 0, FALSE);
 		if (point) point_data.x = SvIV (*point);

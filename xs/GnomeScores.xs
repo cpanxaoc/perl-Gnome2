@@ -65,6 +65,8 @@ gnome_scores_new (class, names, scores, times, clear)
 	    scores && SvOK (scores) && SvRV (scores) && SvTYPE (SvRV (scores)) == SVt_PVAV &&
 	    times && SvOK (times) && SvRV (times) && SvTYPE (SvRV (times)) == SVt_PVAV) {
 		AV *a = (AV*) SvRV (names);
+		AV *b = (AV*) SvRV (scores);
+		AV *c = (AV*) SvRV (times);
 
 		length = av_len (a);
 		real_names = g_new0 (gchar *, length + 1);
@@ -74,8 +76,6 @@ gnome_scores_new (class, names, scores, times, clear)
 				real_names[i] = SvGChar (*s);
 
 		/* --------------------------------------------------------- */
-
-		AV *b = (AV*) SvRV (scores);
 
 		if (av_len (b) != length)
 			croak ("All three array references must have the same number of elements");
@@ -87,8 +87,6 @@ gnome_scores_new (class, names, scores, times, clear)
 				real_scores[i] = SvNV (*s);
 
 		/* --------------------------------------------------------- */
-
-		AV *c = (AV*) SvRV (times);
 
 		if (av_len (c) != length)
 			croak ("All three array references must have the same number of elements");

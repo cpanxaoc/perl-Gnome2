@@ -1,3 +1,10 @@
+2003/10/01 18:45 (+0200) kaffeetisch
+
+	* xs/GnomeIconTheme.xs
+	* xs/GnomeScores.xs: Move variable declarations to the beginning
+	of the block to make it compile on compilers that attach more
+	importance to standards.  Found by Nelis Lamprecht.
+	
 2003/09/30 15:56 (+0200) kaffeetisch
 
 	* druid.pl: Use Gnome2::Program->get_program instead of ->get.
