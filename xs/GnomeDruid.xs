@@ -94,6 +94,11 @@ gnome_druid_set_page (druid, page)
 	GnomeDruid *druid
 	GnomeDruidPage *page
 
+=for apidoc
+
+Returns a GnomeDruid and a GtkWindow.
+
+=cut
 ## GtkWidget * gnome_druid_new_with_window (const char *title, GtkWindow *parent, gboolean close_on_cancel, GtkWidget **window);
 void
 gnome_druid_new_with_window (class, title, parent, close_on_cancel)

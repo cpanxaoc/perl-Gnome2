@@ -130,6 +130,11 @@ int
 gnome_icon_list_unselect_all (gil)
 	GnomeIconList *gil
 
+=for apidoc
+
+Returns a list of integers.
+
+=cut
 ##  GList * gnome_icon_list_get_selection (GnomeIconList *gil) 
 void
 gnome_icon_list_get_selection (gil)

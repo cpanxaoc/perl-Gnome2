@@ -65,6 +65,12 @@ GtkWidget *
 bonobo_dock_get_client_area (dock)
 	BonoboDock *dock
 
+=for apidoc
+
+Returns a BonoboDockItem, a BonoboDockPlacement and three unsigned integers
+correspoding to num_band, band_position and offset.
+
+=cut
 ##  BonoboDockItem *bonobo_dock_get_item_by_name (BonoboDock *dock, const gchar *name, BonoboDockPlacement *placement_return, guint *num_band_return, guint *band_position_return, guint *offset_return) 
 void
 bonobo_dock_get_item_by_name (dock, name)

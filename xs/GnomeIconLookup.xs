@@ -40,6 +40,11 @@ MODULE = Gnome2::IconLookup	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_
 #	 GnomeIconLookupFlags flags
 #	 GnomeIconLookupResultFlags *result
 
+=for apidoc
+
+Returns the icon name and a GnomeIconLookupFlags.
+
+=cut
 ##  char *gnome_icon_lookup_sync (GnomeIconTheme *icon_theme, GnomeThumbnailFactory *thumbnail_factory, const char *file_uri, const char *custom_icon, GnomeIconLookupFlags flags, GnomeIconLookupResultFlags *result) 
 void
 gnome_icon_lookup_sync (icon_theme, thumbnail_factory, file_uri, custom_icon, flags)
