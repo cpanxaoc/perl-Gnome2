@@ -61,11 +61,17 @@ gnome_icon_entry_set_history_id (ientry, history_id)
 	GnomeIconEntry *ientry
 	const gchar *history_id
 
+#### this appeared sometime between 2.3.0 and 2.3.3.1 ...
+
+#if LIBGNOMEUI_CHECK_VERSION(2,3,3)
+
 ##  void gnome_icon_entry_set_max_saved (GnomeIconEntry *ientry, guint max_saved) 
 void
 gnome_icon_entry_set_max_saved (ientry, max_saved)
 	GnomeIconEntry *ientry
 	guint max_saved
+
+#endif
 
 ##  GtkWidget *gnome_icon_entry_pick_dialog (GnomeIconEntry *ientry) 
 GtkWidget *
