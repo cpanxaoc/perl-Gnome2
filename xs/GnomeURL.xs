@@ -22,6 +22,8 @@
 
 MODULE = Gnome2::URL	PACKAGE = Gnome2::URL	PREFIX = gnome_url_
 
+=for apidoc __gerror__
+=cut
 ##  gboolean gnome_url_show (const char *url, GError **error) 
 gboolean
 gnome_url_show (class, url)
@@ -38,6 +40,8 @@ gnome_url_show (class, url)
 
 #if LIBGNOME_CHECK_VERSION (2,1,1)
 
+=for apidoc __gerror__
+=cut
 ##  gboolean gnome_url_show_with_env (const char *url, char **envp, GError **error) 
 gboolean
 gnome_url_show_with_env (class, url, env_ref)
