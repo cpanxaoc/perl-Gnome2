@@ -22,8 +22,240 @@
 #include "gnome2perl.h"
 
 /*
-FIXME need typedef for GnomeUIInfo
+custom handling for GnomeUIInfo
 */
+#if 0
+typedef struct {
+	GnomeUIInfoType type;		/* Type of item */
+	gchar const *label;		/* String to use in item's label */
+	gchar const *hint;		/* Tooltip for toolbar items, status 
+					   bar message for menu items. */
+	gpointer moreinfo;		/* Extra information; depends on the
+					   type. */
+	gpointer user_data;		/* User data sent to the callback. */
+	gpointer unused_data;		/* Should be NULL (reserved). */
+	GnomeUIPixmapType pixmap_type;	/* Type of pixmap for this item. */
+	gconstpointer pixmap_info;	/* Pointer to pixmap information. */
+	guint accelerator_key;		/* Accelerator key, or 0 for none. */
+	GdkModifierType ac_mods;	/* Mask of modifier keys for the 
+					   accelerator. */
+	GtkWidget *widget;		/* Filled in by the gnome_app_create* 
+					   functions. */
+} GnomeUIInfo;
+#endif
+
+static GnomeUIInfo * svrv_to_uiinfo_tree (SV* sv, char * name);
+static void gnome2perl_parse_uiinfo_sv (SV * sv, GnomeUIInfo * info);
+static void refill_one (SV *data, GnomeUIInfo *info);
+static void refill_infos (SV *data, GnomeUIInfo *info);
+
+
+/*
+ * this was originally SvGnomeUIInfo in Gtk-Perl-0.7008/Gnome/xs/Gnome.xs
+ */
+static void
+gnome2perl_parse_uiinfo_sv (SV * sv,
+                            GnomeUIInfo * info)
+{
+	g_assert (sv != NULL);
+	g_assert (info != NULL);
+
+	if (!SvOK (sv))
+		return; /* fail silently if undef */
+	if ((!SvRV (sv)) ||
+	    (SvTYPE (SvRV (sv)) != SVt_PVHV && SvTYPE (SvRV (sv)) != SVt_PVAV))
+		croak ("GnomeUIInfo must be a hash or array reference");
+
+	if (SvTYPE (SvRV (sv)) == SVt_PVHV) {
+		HV *h = (HV*) SvRV (sv);
+		SV **s;
+		STRLEN len;
+		if ((s = hv_fetch (h, "type", 4, 0)) && SvOK (*s))
+			info->type = SvGnomeUIInfoType(*s);
+		if ((s = hv_fetch (h, "label", 5, 0)) && SvOK (*s))
+			info->label = SvGChar (*s);
+		if ((s = hv_fetch (h, "hint", 4, 0)) && SvOK (*s))
+			info->hint = SvGChar (*s);
+
+		/* 'subtree' and 'callback' are also allowed - they
+                   have the bonus that we know what you mean if you
+                   use them */
+		if ((s = hv_fetch(h, "moreinfo", 8, 0)) && SvOK(*s)) {
+			info->moreinfo = *s;
+		} else if ((s = hv_fetch(h, "subtree", 7, 0)) && SvOK(*s)) {
+			if (info->type != GNOME_APP_UI_SUBTREE &&
+			    info->type != GNOME_APP_UI_SUBTREE_STOCK)
+				croak ("'subtree' argument specified, but "
+				       "GnomeUIInfo type is not 'subtree'");
+			info->moreinfo = *s;
+		} else if ((s = hv_fetch(h, "callback", 8, 0)) && SvOK(*s)) {
+			if ((info->type != GNOME_APP_UI_ITEM) &&
+			    (info->type != GNOME_APP_UI_TOGGLEITEM))
+				croak ("'callback' argument specified, but "
+				       "GnomeUIInfo type is not an item type");
+				info->moreinfo = *s;
+		}
+
+		if ((s = hv_fetch(h, "pixmap_type", 11, 0)) && SvOK(*s))
+			info->pixmap_type = SvGnomeUIPixmapType(*s);
+		if ((s = hv_fetch(h, "pixmap_info", 11, 0)) && SvOK(*s))
+			/* stock ids have no non-ascii (i hope), and this should
+			 * allow actual pixmap data through, too */
+			info->pixmap_info = SvPV_nolen (*s);
+		if ((s = hv_fetch(h, "accelerator_key", 15, 0)) && SvOK(*s)) /* keysym */
+			info->accelerator_key = SvIV(*s);
+		if ((s = hv_fetch(h, "ac_mods", 7, 0)) && SvOK(*s))
+			info->ac_mods = SvGdkModifierType(*s);
+	} else { /* As in Python - it's an array of:
+		    type, label, hint, moreinfo, pixmap_type, pixmap_info,
+		    accelerator_key, modifiers */
+		AV *a = (AV*)SvRV (sv);
+		SV **s;
+		if ((s = av_fetch (a, 0, 0)) && SvOK (*s))
+			info->type = SvGnomeUIInfoType (*s);
+		if ((s = av_fetch (a, 1, 0)) && SvOK (*s))
+			info->label = SvGChar (*s);
+		if ((s = av_fetch (a, 2, 0)) && SvOK (*s))
+			info->hint = SvGChar (*s);
+		if ((s = av_fetch (a, 3, 0)) && SvOK (*s))
+			info->moreinfo = *s;
+		if ((s = av_fetch (a, 4, 0)) && SvOK (*s))
+			info->pixmap_type = SvGnomeUIPixmapType (*s);
+		if ((s = av_fetch (a, 5, 0)) && SvOK (*s))
+			info->pixmap_info = SvPV_nolen (*s);
+		if ((s = av_fetch (a, 6, 0)) && SvOK (*s)) /* keysym */
+			info->accelerator_key = SvIV (*s);		
+		if ((s = av_fetch (a, 7, 0)) && SvOK (*s))
+			info->ac_mods = SvGdkModifierType (*s);
+	}
+
+	/* Decide what to do with the moreinfo */
+	switch (info->type) {
+	    case GNOME_APP_UI_SUBTREE:
+	    case GNOME_APP_UI_SUBTREE_STOCK:
+	    case GNOME_APP_UI_RADIOITEMS:
+		if (info->moreinfo == NULL)
+			croak ("GnomeUIInfo type requires a 'moreinfo' or "
+			       "'subtree' argument, but none was specified");
+		/* Now we can recurse */
+		/* Hope user_data doesn't get mangled... */
+		info->user_data = info->moreinfo;
+		info->moreinfo = svrv_to_uiinfo_tree (info->moreinfo,
+		                                      "'subtree' or 'moreinfo'");
+		break;
+
+	    case GNOME_APP_UI_ITEM:
+	    case GNOME_APP_UI_ITEM_CONFIGURABLE:
+	    case GNOME_APP_UI_TOGGLEITEM:
+		/* thanks to gperl_signal_connect and GnomeUIBuilderInfo,
+		 * there's nothing interesting to do at this point to set
+		 * up a callback.  :-) */
+		break;
+
+	    case GNOME_APP_UI_HELP:
+		if (info->moreinfo == NULL)
+			croak("GnomeUIInfo type requires a 'moreinfo' argument, "
+			      "but none was specified");
+		/* It's just a string */
+		info->moreinfo = SvGChar ((SV*)info->moreinfo);
+		break;
+
+	    default:
+		/* Do nothing */
+		break;
+	}
+}
+
+static GnomeUIInfo *
+svrv_to_uiinfo_tree (SV* sv, char * name)
+{
+	AV * av;
+	int i, count;
+	GnomeUIInfo * infos;
+
+	g_assert (sv != NULL);
+	if ((!SvOK (sv)) || (!SvRV (sv)) || (SvTYPE (SvRV (sv)) != SVt_PVAV))
+		croak ("%s must be a reference to an array of Gnome UI "
+		       "Info Entries", name);
+
+	av = (AV*)SvRV (sv);
+	/* add one to turn from last index to length... */
+	count = av_len (av) + 1;
+	/* and stick another one on the end of the array as the terminator */
+	infos = gperl_alloc_temp (sizeof(GnomeUIInfo) * (count+1));
+	for (i = 0; i < count; i++) {
+		SV ** svp = av_fetch (av, i, FALSE);
+		gnome2perl_parse_uiinfo_sv (*svp, infos + i);
+	}
+	infos[count].type = GNOME_APP_UI_ENDOFINFO;
+	
+	return infos;
+}
+
+
+GnomeUIInfo *
+SvGnomeUIInfo (SV * sv)
+{
+	return svrv_to_uiinfo_tree (sv, "variable");
+}
+
+
+static void
+refill_one (SV *data, GnomeUIInfo *info)
+{
+	SV * sv_subtree = NULL;
+	if (info->widget) {
+		if (SvTYPE(SvRV(data)) == SVt_PVHV) {
+			hv_store ((HV*)SvRV(data), "widget", 6,
+			          newSVGtkWidget (info->widget), FALSE);
+		} else {
+			/* Always on the last position */
+			int pos = av_len((AV*)SvRV(data)) + 1;
+			av_store ((AV*)SvRV(data), pos,
+			          newSVGtkWidget (info->widget));
+		}
+	}
+	switch (info->type) {
+	    case GNOME_APP_UI_SUBTREE:
+	    case GNOME_APP_UI_SUBTREE_STOCK:
+	    case GNOME_APP_UI_RADIOITEMS:
+		/* in gnome2perl_parse_uiinfo_sv, we stashed a pointer to
+		 * the SV reference to the subtree array in info->user_data.
+		 * it should still be there, provided there's no mangling
+		 * in the library. */
+		refill_infos (info->user_data, info->moreinfo);
+		break;
+
+	    default:
+		break;
+	}
+}
+
+static void
+refill_infos (SV *data, GnomeUIInfo *infos)
+{
+	int i, count;
+	AV* a = (AV*)SvRV (data);
+	count = av_len(a) + 1;
+	for (i = 0; i < count; i++) {
+		SV** s = av_fetch(a, i, 0);
+		refill_one (*s, infos + i);
+	}
+}
+
+static void
+do_ui_signal_connect (GnomeUIInfo * uiinfo,
+                      const char * signal_name,
+                      GnomeUIBuilderData * uibdata)
+{
+	/*warn ("do_ui_signal_connect (moreinfo:0x%x)\n", uiinfo->moreinfo);*/
+	if (uiinfo->moreinfo)
+		gperl_signal_connect (newSVGObject (G_OBJECT (uiinfo->widget)),
+		                      (char*) signal_name,
+		                      uiinfo->moreinfo,
+		                      uiinfo->user_data,
+				      G_SIGNAL_RUN_FIRST);
+}
 
 /* typedef void (* GnomeUISignalConnectFunc) (GnomeUIInfo *uiinfo, const char *signal_name, GnomeUIBuilderData *uibdata)  */
 
@@ -34,130 +266,89 @@ void
 gnome_accelerators_sync (class)
 	SV * class
     C_ARGS:
-	
+	/*void*/
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gnome2::App	PREFIX = gnome_app_
 
 ### void gnome_app_fill_menu (GtkMenuShell *menu_shell, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gboolean uline_accels, gint pos) 
-#void
-#gnome_app_fill_menu (menu_shell, uiinfo, accel_group, uline_accels, pos)
-#	GtkMenuShell *menu_shell
-#	GnomeUIInfo *uiinfo
-#	GtkAccelGroup *accel_group
-#	gboolean uline_accels
-#	gint pos
-#
 ### void gnome_app_fill_menu_with_data (GtkMenuShell *menu_shell, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gboolean uline_accels, gint pos, gpointer user_data) 
-#void
-#gnome_app_fill_menu_with_data (class, menu_shell, uiinfo, accel_group, uline_accels, pos, user_data)
-#	SV * class
-#	GtkMenuShell *menu_shell
-#	GnomeUIInfo *uiinfo
-#	GtkAccelGroup *accel_group
-#	gboolean uline_accels
-#	gint pos
-#	gpointer user_data
-#
 ### void gnome_app_fill_menu_custom (GtkMenuShell *menu_shell, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata, GtkAccelGroup *accel_group, gboolean uline_accels, gint pos) 
-#void
-#gnome_app_fill_menu_custom (class, menu_shell, uiinfo, uibdata, accel_group, uline_accels, pos)
-#	SV * class
-#	GtkMenuShell *menu_shell
-#	GnomeUIInfo *uiinfo
-#	GnomeUIBuilderData *uibdata
-#	GtkAccelGroup *accel_group
-#	gboolean uline_accels
-#	gint pos
-#
+void
+gnome_app_fill_menu (menu_shell, uiinfo, accel_group, uline_accels, pos)
+	GtkMenuShell *menu_shell
+	GnomeUIInfo *uiinfo
+	GtkAccelGroup *accel_group
+	gboolean uline_accels
+	gint pos
+    PREINIT:
+	GnomeUIBuilderData uibdata;
+    CODE:
+	uibdata.connect_func = do_ui_signal_connect;
+	uibdata.data = NULL;
+	uibdata.is_interp = FALSE;
+	uibdata.relay_func = NULL;
+	uibdata.destroy_func = NULL;
+	gnome_app_fill_menu_custom (menu_shell, uiinfo, &uibdata,
+	                            accel_group, uline_accels, pos);
+	/*refill_one*/
+
+
 #### void gnome_app_ui_configure_configurable (GnomeUIInfo* uiinfo) 
 ##void
 ##gnome_app_ui_configure_configurable (uiinfo)
 ##	GnomeUIInfo* uiinfo
-#
+
 ### void gnome_app_create_menus (GnomeApp *app, GnomeUIInfo *uiinfo) 
-#void
-#gnome_app_create_menus (app, uiinfo)
-#	GnomeApp *app
-#	GnomeUIInfo *uiinfo
-#
 ### void gnome_app_create_menus_interp (GnomeApp *app, GnomeUIInfo *uiinfo, GtkCallbackMarshal relay_func, gpointer data, GtkDestroyNotify destroy_func) 
-#void
-#gnome_app_create_menus_interp (app, uiinfo, relay_func, data, destroy_func)
-#	GnomeApp *app
-#	GnomeUIInfo *uiinfo
-#	GtkCallbackMarshal relay_func
-#	gpointer data
-#	GtkDestroyNotify destroy_func
-#
 ### void gnome_app_create_menus_with_data (GnomeApp *app, GnomeUIInfo *uiinfo, gpointer user_data) 
-#void
-#gnome_app_create_menus_with_data (app, uiinfo, user_data)
-#	GnomeApp *app
-#	GnomeUIInfo *uiinfo
-#	gpointer user_data
-#
 ### void gnome_app_create_menus_custom (GnomeApp *app, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata) 
-#void
-#gnome_app_create_menus_custom (app, uiinfo, uibdata)
-#	GnomeApp *app
-#	GnomeUIInfo *uiinfo
-#	GnomeUIBuilderData *uibdata
-#
-### void gnome_app_fill_toolbar (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group) 
-#void
-#gnome_app_fill_toolbar (class, toolbar, uiinfo, accel_group)
-#	SV * class
-#	GtkToolbar *toolbar
-#	GnomeUIInfo *uiinfo
-#	GtkAccelGroup *accel_group
-#
-### void gnome_app_fill_toolbar_with_data (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gpointer user_data) 
-#void
-#gnome_app_fill_toolbar_with_data (class, toolbar, uiinfo, accel_group, user_data)
-#	SV * class
-#	GtkToolbar *toolbar
-#	GnomeUIInfo *uiinfo
-#	GtkAccelGroup *accel_group
-#	gpointer user_data
-#
-### void gnome_app_fill_toolbar_custom (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata, GtkAccelGroup *accel_group) 
-#void
-#gnome_app_fill_toolbar_custom (class, toolbar, uiinfo, uibdata, accel_group)
-#	SV * class
-#	GtkToolbar *toolbar
-#	GnomeUIInfo *uiinfo
-#	GnomeUIBuilderData *uibdata
-#	GtkAccelGroup *accel_group
-#
-### void gnome_app_create_toolbar (GnomeApp *app, GnomeUIInfo *uiinfo) 
-#void
-#gnome_app_create_toolbar (app, uiinfo)
-#	GnomeApp *app
-#	GnomeUIInfo *uiinfo
-#
+## void gnome_app_create_toolbar (GnomeApp *app, GnomeUIInfo *uiinfo) 
 ### void gnome_app_create_toolbar_interp (GnomeApp *app, GnomeUIInfo *uiinfo, GtkCallbackMarshal relay_func, gpointer data, GtkDestroyNotify destroy_func) 
-#void
-#gnome_app_create_toolbar_interp (app, uiinfo, relay_func, data, destroy_func)
-#	GnomeApp *app
-#	GnomeUIInfo *uiinfo
-#	GtkCallbackMarshal relay_func
-#	gpointer data
-#	GtkDestroyNotify destroy_func
-#
 ### void gnome_app_create_toolbar_with_data (GnomeApp *app, GnomeUIInfo *uiinfo, gpointer user_data) 
-#void
-#gnome_app_create_toolbar_with_data (app, uiinfo, user_data)
-#	GnomeApp *app
-#	GnomeUIInfo *uiinfo
-#	gpointer user_data
-#
 ### void gnome_app_create_toolbar_custom (GnomeApp *app, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata) 
-#void
-#gnome_app_create_toolbar_custom (app, uiinfo, uibdata)
-#	GnomeApp *app
-#	GnomeUIInfo *uiinfo
-#	GnomeUIBuilderData *uibdata
-#
+void
+gnome_app_create_menus (app, uiinfo)
+	GnomeApp *app
+	GnomeUIInfo *uiinfo
+    ALIAS:
+	create_menus = 0
+	create_toolbar = 1
+    PREINIT:
+	GnomeUIBuilderData uibdata;
+    CODE:
+	uibdata.connect_func = do_ui_signal_connect;
+	uibdata.data = NULL;
+	uibdata.is_interp = FALSE;
+	uibdata.relay_func = NULL;
+	uibdata.destroy_func = NULL;
+	if (ix == 0)
+		gnome_app_create_menus_custom (app, uiinfo, &uibdata);
+	else
+		gnome_app_create_toolbar_custom (app, uiinfo, &uibdata);
+	/*refill_one*/
+
+
+## void gnome_app_fill_toolbar (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group) 
+### void gnome_app_fill_toolbar_with_data (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gpointer user_data) 
+### void gnome_app_fill_toolbar_custom (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata, GtkAccelGroup *accel_group) 
+void
+gnome_app_fill_toolbar (class, toolbar, uiinfo, accel_group)
+	SV * class
+	GtkToolbar *toolbar
+	GnomeUIInfo *uiinfo
+	GtkAccelGroup *accel_group
+    PREINIT:
+	GnomeUIBuilderData uibdata;
+    CODE:
+	uibdata.connect_func = do_ui_signal_connect;
+	uibdata.data = NULL;
+	uibdata.is_interp = FALSE;
+	uibdata.relay_func = NULL;
+	uibdata.destroy_func = NULL;
+	gnome_app_fill_toolbar_custom (toolbar, uiinfo, &uibdata, accel_group);
+	/*refill_one*/
+
+
 ### void gnome_app_remove_menus (GnomeApp *app, const gchar *path, gint items) 
 #void
 #gnome_app_remove_menus (app, path, items)

@@ -1,0 +1,8 @@
+TYPEMAP
+
+GnomeUIInfo *	T_GNOME_UI_INFO
+
+INPUT
+
+T_GNOME_UI_INFO
+	$var = SvGnomeUIInfo ($arg);

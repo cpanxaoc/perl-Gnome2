@@ -28,4 +28,10 @@
 #include <libgnome/libgnometypebuiltins.h>
 #include "gnome2perl-autogen.h"
 
+/*
+ * custom typemap handling for GnomeUIInfo, defined in GnomeAppHelper.xs
+ */
+GnomeUIInfo * SvGnomeUIInfo (SV * sv);
+
+
 #endif /* _GNOME2PERL_H_ */
