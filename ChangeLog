@@ -1,3 +1,11 @@
+2003/07/02 16:12 rwmcfa1
+
+	* maps: removed all of the deprecated widgets, they had no xs files
+	so they wouldn't be useful anyway.
+
+	* t/00.Gnome2.t: initial import, just uses the module for now, i.e. 
+	makes sure that we don't have undefined symbols and the like
+
 2003/06/20 11:34 muppetman
 
 	* README, Gnome2.pm, Makefile.PL: bump version info and prepare for 
