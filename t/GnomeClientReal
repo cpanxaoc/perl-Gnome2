@@ -1,0 +1,48 @@
+#!/usr/bin/perl -w
+use strict;
+use Test::More tests => 1;
+use Gnome2;
+
+# $Header$
+
+###############################################################################
+
+SKIP: {
+  skip("You don't appear to have the GNOME session manager running.", 1)
+    unless (-d "$ENV{ HOME }/.gconfd" &&
+            -d "$ENV{ HOME }/.gnome2");
+
+  my $application = Gnome2::Program -> init("Test", "0.1", "libgnomeui");
+
+  skip("Couldn't connect to the session manager.", 1)
+    unless (Gnome2::Client -> new() -> connected());
+
+  ###############################################################################
+
+  my $client = Gnome2::Client -> master();
+
+  $client -> set_restart_style("if_running");
+
+  $client -> signal_connect(save_yourself => sub {
+                              my ($client,
+                                  $phase,
+                                  $save_style,
+                                  $shutting_down,
+                                  $interact_style,
+                                  $fast) = @_;
+
+                              warn "bla";
+
+                              return 1;
+                            });
+
+  ###############################################################################
+
+  Glib::Idle -> add(sub {
+                      $client -> disconnect();
+                      Gtk2 -> main_quit();
+                      return 0;
+                    });
+
+  Gtk2 -> main();
+}
