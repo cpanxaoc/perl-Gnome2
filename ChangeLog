@@ -1,3 +1,17 @@
+2004/01/27 19:40 (+0100) kaffeetisch
+
+	* t/GnomeClient: Use the correct
+	Gnome2::Client->interaction_key_return syntax.
+
+	* xs/GnomeAppHelper.xs: Mark ix unused in some places.
+
+	* xs/GnomeClient.xs
+	* xs/GnomeUtil.xs: Avoid creating two xsubs with ALIAS when we
+	really only want one.
+
+	* gnome2perl.h
+	* xs/GnomeWindow.xs: Remove some apparently unneeded #include's.
+
 2004/01/26 01:47 (-0500) muppetman
 
 	* xs/GnomeWindow.xs: bad muppet, that should've been

@@ -22,6 +22,7 @@
 #undef GNOME_DISABLE_DEPRECATED
 
 #include "gnome2perl.h"
+#include <libgnomeui/gnome-window.h>
 
 MODULE = Gnome2::Window	PACKAGE = Gtk2::Window	PREFIX = gnome_window_
 

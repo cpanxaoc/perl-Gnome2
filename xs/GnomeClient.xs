@@ -254,12 +254,8 @@ gnome_client_request_interaction (client, dialog_type, function, data=NULL)
 
 ## void gnome_interaction_key_return (gint key, gboolean cancel_shutdown) 
 void
-gnome_interaction_key_return (class, key, cancel_shutdown)
+gnome_client_interaction_key_return (class, key, cancel_shutdown)
 	gint key
 	gboolean cancel_shutdown
-    ALIAS:
-	Gnome2::Client::interaction_key_return = 0
-    C_ARGS:
-	key, cancel_shutdown
-    CLEANUP:
-	PERL_UNUSED_VAR (ix);
+    CODE:
+    	gnome_interaction_key_return (key, cancel_shutdown);

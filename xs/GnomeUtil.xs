@@ -23,14 +23,12 @@
 MODULE = Gnome2::Util	PACKAGE = Gnome2::Util	PREFIX = gnome_util_
 
 const char *
-g_extension_pointer (class, path)
+gnome_util_extension (class, path)
 	const char *path
-    ALIAS:
-	extension = 0
-    C_ARGS:
-	path
-    CLEANUP:
-	PERL_UNUSED_VAR (ix);
+    CODE:
+	RETVAL = g_extension_pointer (path);
+    OUTPUT:
+	RETVAL
 
 gchar_own *
 gnome_util_prepend_user_home (class, file)

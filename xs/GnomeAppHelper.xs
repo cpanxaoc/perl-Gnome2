@@ -572,6 +572,8 @@ gnome_app_install_appbar_menu_hints (appbar, uiinfo)
 	Gnome2::AppBar::install_menu_hints = 0
     C_ARGS:
 	appbar, uiinfo
+    CLEANUP:
+	PERL_UNUSED_VAR (ix);
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gtk2::Statusbar	PREFIX = gnome_app_
 
@@ -588,3 +590,5 @@ gnome_app_install_statusbar_menu_hints (bar, uiinfo)
 	Gtk2::Statusbar::install_menu_hints = 0
     C_ARGS:
 	bar, uiinfo
+    CLEANUP:
+	PERL_UNUSED_VAR (ix);

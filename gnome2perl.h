@@ -29,10 +29,7 @@
 #include <gnome.h>
 #include <libgnome/libgnometypebuiltins.h>
 
-#include <libbonobo.h>
 #include <libbonoboui.h>
-#include <bonobo/bonobo-dock.h>
-#include <bonobo/bonobo-dock-item.h>
 
 #include "gnome2perl-version.h"
 #include "gnome2perl-autogen.h"

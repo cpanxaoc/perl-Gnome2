@@ -85,7 +85,7 @@ SKIP: {
       warn $key;
       is($dialog_type, "error");
 
-      Gnome2::Client::gnome_interaction_key_return($key, 0);
+      Gnome2::Client -> interaction_key_return($key, 0);
     });
 
     return 1;
