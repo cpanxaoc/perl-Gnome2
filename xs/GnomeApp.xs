@@ -23,45 +23,33 @@
 
 MODULE = Gnome2::App	PACKAGE = Gnome2::App	PREFIX = gnome_app_
 
-##struct _GnomeApp {
-##	GtkWindow parent_object;
-##
-##	/* Application name. */
-##	gchar *name;
-##
-##	/* Prefix for gnome-config (used to save the layout).  */
-##	gchar *prefix;
-##
-##        /* The dock.  */
-##        GtkWidget *dock;
-##
-##	/* The status bar.  */
-##        GtkWidget *statusbar;
-##
-##	/* The vbox widget that ties them.  */
-##	GtkWidget *vbox;
-##
-##	/* The menubar.  This is a pointer to a widget contained into
-##           the dock.  */
-##	GtkWidget *menubar;
-##
-##	/* The contents.  This is a pointer to dock->client_area.  */
-##	GtkWidget *contents;
-##
-##	/* Dock layout.  */
-##	BonoboDockLayout *layout;
-##
-##	/* Main accelerator group for this window (hotkeys live here).  */
-##	GtkAccelGroup *accel_group;
-##
-##	/* If TRUE, the application uses gnome-config to retrieve and
-##           save the docking configuration automagically.  */
-##	guint enable_layout_config : 1;
-##
-##	/*< private >*/
-##	GnomeAppPrivate *_priv;
-##};
-
+SV *
+members (app)
+	GnomeApp *app
+    ALIAS:
+	Gnome2::App::prefix = 1
+	Gnome2::App::dock = 2
+	Gnome2::App::statusbar = 3
+	Gnome2::App::vbox = 4
+	Gnome2::App::menubar = 5
+	Gnome2::App::contents = 6
+	Gnome2::App::layout = 7
+	Gnome2::App::accel_group = 8
+	Gnome2::App::get_enable_layout_config = 9
+    CODE:
+	switch (ix) {
+		case 1: RETVAL = newSVGChar (app->prefix); break;
+		case 2: RETVAL = newSVGtkWidget (app->dock); break;
+		case 3: RETVAL = newSVGtkWidget (app->statusbar); break;
+		case 4: RETVAL = newSVGtkWidget (app->vbox); break;
+		case 5: RETVAL = newSVGtkWidget (app->menubar); break;
+		case 6: RETVAL = newSVGtkWidget (app->contents); break;
+		case 7: RETVAL = newSVBonoboDockLayout (app->layout); break;
+		case 8: RETVAL = newSVGtkAccelGroup (app->accel_group); break;
+		case 9: RETVAL = newSVuv (app->enable_layout_config); break;
+	}
+    OUTPUT:
+	RETVAL
 
 ## Create a new (empty) application window.  You must specify the application's
 ## name (used internally as an identifier).  The window title can be left as
@@ -83,40 +71,17 @@ void gnome_app_set_statusbar (GnomeApp *app, GtkWidget *statusbar);
 ## container widget rather than creating a new one.
 void gnome_app_set_statusbar_custom (GnomeApp *app, GtkWidget *container, GtkWidget *statusbar);
 
-### Sets the content area of the application window 
+## Sets the content area of the application window 
 void gnome_app_set_contents (GnomeApp *app, GtkWidget *contents);
 
-### TODO these require bonobo typemaps
-##void gnome_app_add_toolbar (GnomeApp *app,
-##			    GtkToolbar *toolbar,
-##			    const gchar *name,
-##			    BonoboDockItemBehavior behavior,
-##			    BonoboDockPlacement placement,
-##			    gint band_num,
-##			    gint band_position,
-##			    gint offset);
-##
-##GtkWidget *gnome_app_add_docked (GnomeApp *app,
-##				 GtkWidget *widget,
-##				 const gchar *name,
-##				 BonoboDockItemBehavior behavior,
-##				 BonoboDockPlacement placement,
-##				 gint band_num,
-##				 gint band_position,
-##				 gint offset);
-##
-##void gnome_app_add_dock_item (GnomeApp *app,
-##			      BonoboDockItem *item,
-##			      BonoboDockPlacement placement,
-##			      gint band_num,
-##			      gint band_position,
-##			      gint offset);
+void gnome_app_add_toolbar (GnomeApp *app, GtkToolbar *toolbar, const gchar *name, BonoboDockItemBehavior behavior, BonoboDockPlacement placement, gint band_num, gint band_position, gint offset);
+
+GtkWidget *gnome_app_add_docked (GnomeApp *app, GtkWidget *widget, const gchar *name, BonoboDockItemBehavior behavior, BonoboDockPlacement placement, gint band_num, gint band_position, gint offset);
+
+void gnome_app_add_dock_item (GnomeApp *app, BonoboDockItem *item, BonoboDockPlacement placement, gint band_num, gint band_position, gint offset);
 
 void gnome_app_enable_layout_config (GnomeApp *app, gboolean enable);
 
-### TODO these require bonobo typemaps
-#
-##BonoboDock *gnome_app_get_dock (GnomeApp *app);
-##
-##BonoboDockItem *gnome_app_get_dock_item_by_name (GnomeApp *app, const gchar *name);
+BonoboDock *gnome_app_get_dock (GnomeApp *app);
 
+BonoboDockItem *gnome_app_get_dock_item_by_name (GnomeApp *app, const gchar *name);
