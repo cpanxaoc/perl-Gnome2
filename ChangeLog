@@ -1,3 +1,17 @@
+2003/09/24 19:10 (+0200) kaffeetisch
+
+	* t/GnomeApp.t
+	* t/GnomeAppBar.t: Fix indention.
+
+	* t/GnomeIconTheme.t: Use undef instead of "".
+
+	* xs/GnomeIconList.xs: Added FIXME comment.
+
+	A xs/GnomeHelp.xs
+	A xs/GnomeURL.xs
+	* TODO: Initial implementation of GnomeHelp and GnomeURL.  No tests
+	since they can't be tested without user interaction.
+
 2003/09/23 09:26 rwmcfa1
 
 	* t/GnomeIconTheme.t: return value of test #2 is an array, have to 

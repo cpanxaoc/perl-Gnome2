@@ -14,8 +14,6 @@ libgnome:
 	gnome-exec (perl offers the same features natively)
 	gnome-config
 	gnome-i18n
-	gnome-help
-	gnome-url
 	gnome-score
 	gnome-triggers
 
@@ -23,7 +21,6 @@ libgnomeui:
 	gnome-ui-init (the parameters... the gnome_init stuff is deprecated)
 	GnomeIconLookup
 	GnomeThemeFile
-
 	gnome-stock-icons (not all are deprecated)
 	gnome-uidefs (like gnome-stock-icons, not GEnums, looks messy)
 	gnome-vfs-util (no bindings for gnome-vfs, either!)
