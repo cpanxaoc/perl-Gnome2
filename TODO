@@ -28,3 +28,4 @@ librsvg:
 	the Gnome2::* namespace?)
 
 Also, libgstreamer should be wrapped, as soon as it's considered stable.
+	(Brett Kosinki has been working on this for several months)
