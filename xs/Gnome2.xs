@@ -27,8 +27,15 @@ MODULE = Gnome2		PACKAGE = Gnome2	PREFIX = gnome_
 =cut
 
 BOOT:
+	{
 #include "register.xsh"
 #include "boot.xsh"
+	/* route Gnome's log domains through perl's warn() and croak() */
+	gperl_handle_logs_for ("Gnome");
+	gperl_handle_logs_for ("GnomeUI");
+	gperl_handle_logs_for ("Bonobo");
+	gperl_handle_logs_for ("BonoboUI");
+	}
 
 void
 gnome_get_version_info (class)
