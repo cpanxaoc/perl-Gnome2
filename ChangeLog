@@ -1,4 +1,12 @@
-2004/03/11 16:07 (+0100) kaffeetisch
+2004/03/11 16:17 (+0100) kaffeetisch
+
+	* Gnome2.pm
+	* Makefile.PL
+	* NEWS
+	* README: Version 0.94.
+
+	* Gnome2.pm: Provide an import() implementation that relays
+	everything to UNIVERSAL::VERSION to make version checking work.
 
 	* xs/GnomeHelp.xs
 	* xs/GnomeURL.xs: Use the new __gerror__ keyword to mark those

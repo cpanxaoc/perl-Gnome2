@@ -13,7 +13,12 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.93';
+our $VERSION = '0.94';
+
+sub import {
+  my $self = shift();
+  $self -> VERSION(@_);
+}
 
 sub dl_load_flags { 0x01 }
 

@@ -1,3 +1,8 @@
+Overview of changes in Gnome2 0.94
+==================================
+
+* Document which functions may croak on error.
+
 Overview of changes in Gnome2 0.93
 ==================================
 
