@@ -83,3 +83,4 @@ xs/GnomeUIDefs.xs
 xs/GnomeURL.xs
 xs/GnomeUtil.xs
 xs/GnomeWindow.xs
+xs/GnomeWindowIcon.xs
