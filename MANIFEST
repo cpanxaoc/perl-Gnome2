@@ -64,10 +64,10 @@ xs/GnomeHelp.xs
 xs/GnomeHRef.xs
 xs/GnomeI18N.xs
 xs/GnomeIconEntry.xs
-xs/GnomeIconItem.xs
 xs/GnomeIconList.xs
 xs/GnomeIconLookup.xs
 xs/GnomeIconSelection.xs
+xs/GnomeIconTextItem.xs
 xs/GnomeIconTheme.xs
 xs/GnomeInit.xs
 xs/GnomeModuleInfo.xs

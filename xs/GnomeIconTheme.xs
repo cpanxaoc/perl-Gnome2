@@ -147,7 +147,7 @@ gnome_icon_theme_set_search_path (theme, first_path, ...)
 	for (i = 1; i < items; i++)
 		path[i - 1] = SvPV_nolen (ST (i));
 
-	gnome_icon_theme_set_search_path (theme, path, i - 1);		      
+	gnome_icon_theme_set_search_path (theme, path, i - 1);
 
 ##  void gnome_icon_theme_get_search_path (GnomeIconTheme *theme, char **path[], int *n_elements) 
 void

@@ -4,6 +4,12 @@
 	* t/GnomeIconList.t
 	* MANIFEST: Initial implementation and test for GnomeIconTextItem.
 
+	* xs/GnomeIconLookup.xs: Fix critical bug in
+	Gnome2::IconTheme::lookup that caused a segfault.
+
+	* xs/GnomeIconTheme.xs: Remove needless spaces at the end of a
+	line.
+
 2003/11/29 17:01 (+0100) kaffeetisch
 
 	* gnome2perl.h: Include bonobo/bonobo-dock.h and

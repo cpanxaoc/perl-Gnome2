@@ -45,13 +45,13 @@ gnome_icon_lookup (icon_theme, thumbnail_factory, file_uri, custom_icon, file_in
 	 GnomeIconLookupFlags flags
     PREINIT:
 	GnomeIconLookupResultFlags result;
-	char *icon;
+	char *icon = NULL;
 	const char *real_custom_icon = NULL;
     PPCODE:
 	if (SvPOK (custom_icon))
 		real_custom_icon = (const char *) SvPV_nolen (custom_icon);
 
-	gnome_icon_lookup (icon_theme, thumbnail_factory, file_uri, real_custom_icon, file_info, mime_type, flags, &result);
+	icon = gnome_icon_lookup (icon_theme, thumbnail_factory, file_uri, real_custom_icon, file_info, mime_type, flags, &result);
 
 	if (icon == NULL)
 		XSRETURN_UNDEF;
