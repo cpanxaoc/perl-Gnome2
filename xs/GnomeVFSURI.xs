@@ -23,10 +23,10 @@
 /* this doesn't get included via gnome.h in all gnome versions */
 #include <libgnomevfs/gnome-vfs-uri.h>
 
-GnomeVFSURI * 
+GnomeVFSURI *
 SvGnomeVFSURI (SV * object)
 {
-	GnomeVFSURI * uri;
+	GnomeVFSURI *uri;
 	MAGIC *mg;
 
 	if (!object || !SvOK (object) || !SvROK (object) || !(mg = mg_find (SvRV (object), PERL_MAGIC_ext)))
@@ -57,6 +57,19 @@ uri_to_object (GnomeVFSURI *uri) {
 
 MODULE = Gnome2::VFS::URI	PACKAGE = Gnome2::VFS::URI	PREFIX = gnome_vfs_uri_
 
+void
+DESTROY (object)
+	SV *object
+    CODE:
+	GnomeVFSURI *uri;
+	MAGIC *mg;
+
+	if (!object || !SvOK (object) || !SvROK (object) || !(mg = mg_find (SvRV (object), PERL_MAGIC_ext)))
+		return;
+
+	gnome_vfs_uri_unref ((GnomeVFSURI *) mg->mg_ptr);
+	sv_unmagic (SvRV (object), PERL_MAGIC_ext);
+
 ##  GnomeVFSURI *gnome_vfs_uri_new (const gchar *text_uri) 
 SV *
 gnome_vfs_uri_new (class, text_uri)
@@ -78,7 +91,11 @@ gnome_vfs_uri_resolve_relative (base, relative_reference)
     PREINIT:
 	GnomeVFSURI *uri;
     CODE:
+#if GNOME_VFS_CHECK_VERSION(1,9,1)
 	uri = gnome_vfs_uri_resolve_relative (base, relative_reference);
+#else
+	uri = gnome_vfs_uri_relative_new (base, relative_reference);
+#endif
 	RETVAL = uri_to_object (uri);
     OUTPUT:
 	RETVAL
@@ -265,7 +282,7 @@ gnome_vfs_uri_extract_short_path_name (uri)
 void
 gnome_vfs_uri_list_parse (class, uri_list)
 	SV *class
-	const gchar* uri_list
+	const gchar *uri_list
     PREINIT:
 	GList *list, *i;
     PPCODE:

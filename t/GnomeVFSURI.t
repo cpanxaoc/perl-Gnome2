@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 25;
+use constant TESTS => 26;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -58,6 +58,7 @@ SKIP: {
 
   $uri = Gnome2::VFS::URI -> new("/usr/bin/perl");
 
+  ok($uri -> exists());
   is($uri -> get_path(), "/usr/bin/perl");
   # XXX: $uri -> get_fragment_identifier();
 

@@ -30,8 +30,13 @@
 #include <libbonobo.h>
 #include <libbonoboui.h>
 
+#include <libgnomevfs/gnome-vfs-handle.h>
+
 #include "gnome2perl-vfs-gtypes.h"
 #include "gnome2perl-version.h"
 #include "gnome2perl-autogen.h"
+
+GnomeVFSURI * SvGnomeVFSURI (SV *object);
+SV * newSVGnomeVFSURI (GnomeVFSURI *uri);
 
 #endif /* _GNOME2PERL_H_ */

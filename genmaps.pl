@@ -116,7 +116,7 @@ print '
 close FOO;
 select STDOUT;
 
-system 'gcc -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -Wall -o foo foo.c `pkg-config libgnomeui-2.0 libgnomecanvas-2.0 --cflags --libs`'
+system 'gcc -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -Wall -o foo foo.c xs/gnome2perl-vfs-gtypes.c `pkg-config libgnomeui-2.0 libgnomecanvas-2.0 --cflags --libs`'
 	and die "couldn't compile helper program";
 
 # these are matched in order; for example, GnomePrinter must test before

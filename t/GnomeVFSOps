@@ -1,0 +1,51 @@
+#!/usr/bin/perl -w
+use strict;
+use Gnome2;
+
+use constant TESTS => 20;
+use Test::More tests => TESTS;
+
+# $Header$
+
+###############################################################################
+
+SKIP: {
+  skip("You don't appear to have the GNOME session manager running.", TESTS)
+    unless (-d "$ENV{ HOME }/.gconfd" &&
+            -d "$ENV{ HOME }/.gnome2");
+
+  my $application = Gnome2::Program -> init("Test", "0.1");
+
+  skip("Couldn't connect to the session manager.", TESTS)
+    unless (Gnome2::Client -> new() -> connected());
+
+  #############################################################################
+
+  Gnome2::VFS -> init();
+
+  foreach ([Gnome2::VFS -> open("/usr/bin/perl", "read")],
+           [Gnome2::VFS -> open_uri(Gnome2::VFS::URI -> new("/usr/bin/perl"), "read")],
+           [Gnome2::VFS -> create("/tmp/blaaaaaaaaa", "write", 1, 0755)],
+           [Gnome2::VFS -> create_uri(Gnome2::VFS::URI -> new("/tmp/bleeeeeeeee"), "write", 1, 0644)]) {
+    my ($result, $handle) = @{$_};
+
+    is($result, "ok");
+    isa_ok($handle, "Gnome2::VFS::Handle");
+
+    is($handle -> close(), "ok");
+  }
+
+  is(Gnome2::VFS -> move("/tmp/blaaaaaaaaa", "/tmp/bla", 0), "ok");
+  is(Gnome2::VFS -> move_uri(Gnome2::VFS::URI -> new("/tmp/bleeeeeeeee"), Gnome2::VFS::URI -> new("/tmp/ble"), 0), "ok");
+
+  is_deeply([Gnome2::VFS -> check_same_fs("/tmp/bla", "/tmp/ble")], ["ok", 1]);
+  is_deeply([Gnome2::VFS -> check_same_fs_uris(Gnome2::VFS::URI -> new("/tmp/bla"), Gnome2::VFS::URI -> new("/tmp/ble"))], ["ok", 1]);
+
+  is(Gnome2::VFS -> create_symbolic_link(Gnome2::VFS::URI -> new("/tmp/bli"), "/usr/bin/perl"), "ok");
+
+  is(Gnome2::VFS -> unlink("/tmp/bla"), "ok");
+  is(Gnome2::VFS -> unlink_from_uri(Gnome2::VFS::URI -> new("/tmp/ble")), "ok");
+  is(Gnome2::VFS -> unlink("/tmp/bli"), "ok");
+
+  Gnome2::VFS -> shutdown();
+}
