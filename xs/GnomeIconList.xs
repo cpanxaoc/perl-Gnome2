@@ -143,7 +143,7 @@ gnome_icon_list_get_selection (gil)
 	if (!list)
 		XSRETURN_EMPTY;
 	for (i = list ; i != NULL ; i = i->next)
-		# cast to avoid warning.
+		/* cast to avoid warning. */
 		XPUSHs (sv_2mortal (newSViv ((gint) i->data)));
 	g_list_free (list);
 

@@ -1,20 +1,22 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 19;
 use Gnome2;
+
+use constant TESTS => 19;
+use Test::More tests => TESTS;
 
 # $Header$
 
 ###############################################################################
 
 SKIP: {
-  skip("You don't appear to have the GNOME session manager running.", 19)
+  skip("You don't appear to have the GNOME session manager running.", TESTS)
     unless (-d "$ENV{ HOME }/.gconfd" &&
             -d "$ENV{ HOME }/.gnome2");
 
   my $application = Gnome2::Program -> init("Test", "0.1");
 
-  skip("Couldn't connect to the session manager.", 19)
+  skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
   ###############################################################################
@@ -31,6 +33,13 @@ SKIP: {
   ok(-e Gnome2 -> user_dir_get());
   ok(-e Gnome2 -> user_private_dir_get());
   ok(-e Gnome2 -> user_accels_dir_get());
+
+  ###############################################################################
+
+  is(Gnome2::UIDefs -> pad, 8);
+  is(Gnome2::UIDefs -> key_name_find, "f");
+  is(Gnome2::UIDefs -> key_name_replace, "r");
+  like(Gnome2::UIDefs -> key_name_pause_game, qr/^\d+$/);
 
   ###############################################################################
 

@@ -1,3 +1,31 @@
+2003/09/25 16:22 (+0200) kaffeetisch
+
+	A t/GnomeI18N.t
+	A xs/GnomeI18N.xs
+	* MANIFEST
+	* TODO: Initial implementation of GnomeI18N.
+
+	A t/GnomeScore
+	A xs/GnomeScore.xs
+	* MANIFEST
+	* TODO: Initial implementation of GnomeScore.  The test isn't run by
+	make test because it would require certain privileges.
+
+	A xs/GnomeUIDefs.xs
+	* t/Gnome.t
+	* MANIFEST
+	* TODO: Implemented GnomeUIDefs.  Wow, what a PITA.
+
+	* MANIFEST: Added xs/BonoboDock.xs and xs/BonoboDockItem.xs.
+
+	* t/*: Use a constant for the number of tests.
+
+	* xs/GnomeIconList.xs: Change comment to use /* */ instead of #.
+
+	* xs/GnomeProgram.xs
+	* t/GnomeProgram.t: Rename Gnome2::Program->get to
+	Gnome2::Program->get_program to avoid clash with Glib::Object->get.
+
 2003/09/24 19:10 (+0200) kaffeetisch
 
 	* t/GnomeApp.t

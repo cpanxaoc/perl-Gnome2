@@ -4,7 +4,7 @@ Gnome2.pm
 LICENSE
 MANIFEST
 MANIFEST.SKIP
-META.yml                                Module meta-data in YAML
+META.yml			Module meta-data in YAML
 Makefile.PL
 README
 TODO
@@ -31,6 +31,7 @@ t/GnomeEntry.t
 t/GnomeFileEntry.t
 t/GnomeFontPicker.t
 t/GnomeHRef.t
+t/GnomeI18N.t
 t/GnomeIconEntry.t
 t/GnomeIconList.t
 t/GnomeIconSelection.t
@@ -38,8 +39,11 @@ t/GnomeIconTheme.t
 t/GnomePixmapEntry.t
 t/GnomePopupMenu.t
 t/GnomeProgram.t
+t/GnomeScore
 t/GnomeScores.t
 t/GnomeThumbnail.t
+xs/BonoboDock.xs
+xs/BonoboDockItem.xs
 xs/Gnome2.xs
 xs/GnomeAbout.xs
 xs/GnomeApp.xs
@@ -57,6 +61,8 @@ xs/GnomeFileEntry.xs
 xs/GnomeFontPicker.xs
 xs/GnomeGConf.xs
 xs/GnomeHRef.xs
+xs/GnomeHelp.xs
+xs/GnomeI18N.xs
 xs/GnomeIconEntry.xs
 xs/GnomeIconList.xs
 xs/GnomeIconLookup.xs
@@ -67,7 +73,10 @@ xs/GnomeModuleInfo.xs
 xs/GnomePixmapEntry.xs
 xs/GnomePopupMenu.xs
 xs/GnomeProgram.xs
+xs/GnomeScore.xs
 xs/GnomeScores.xs
 xs/GnomeSound.xs
 xs/GnomeThumbnail.xs
+xs/GnomeUIDefs.xs
+xs/GnomeURL.xs
 xs/GnomeWindow.xs

@@ -1,20 +1,22 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 3;
 use Gnome2;
+
+use constant TESTS => 3;
+use Test::More tests => TESTS;
 
 # $Header$
 
 ###############################################################################
 
 SKIP: {
-  skip("You don't appear to have the GNOME session manager running.", 3)
+  skip("You don't appear to have the GNOME session manager running.", TESTS)
     unless (-d "$ENV{ HOME }/.gconfd" &&
             -d "$ENV{ HOME }/.gnome2");
 
   my $application = Gnome2::Program -> init("Test", "0.1");
 
-  skip("Couldn't connect to the session manager.", 3)
+  skip("Couldn't connect to the session manager.", TESTS)
     unless (Gnome2::Client -> new() -> connected());
 
   ###############################################################################
@@ -33,7 +35,7 @@ SKIP: {
   ok(not defined($entry -> pick_dialog()));
 
   $entry -> set_max_saved(23)
-      if (join("", Gnome2 -> get_version_info()) >= 233);
+    if (join("", Gnome2 -> get_version_info()) >= 233);
 
   ###############################################################################
 

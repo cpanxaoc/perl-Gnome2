@@ -13,8 +13,6 @@ libbonobo:
 libgnome:
 	gnome-exec (perl offers the same features natively)
 	gnome-config
-	gnome-i18n
-	gnome-score
 	gnome-triggers
 
 libgnomeui:
@@ -22,6 +20,5 @@ libgnomeui:
 	GnomeIconLookup
 	GnomeThemeFile
 	gnome-stock-icons (not all are deprecated)
-	gnome-uidefs (like gnome-stock-icons, not GEnums, looks messy)
 	gnome-vfs-util (no bindings for gnome-vfs, either!)
 

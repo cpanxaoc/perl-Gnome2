@@ -141,12 +141,14 @@ gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
 	RETVAL
 
 
-# FIXME: rename to avoid clash with g_object_get?
 ##  GnomeProgram * gnome_program_get (void) 
 GnomeProgram_ornull *
-gnome_program_get (class)
+gnome_program_get_program (class)
 	SV * class
-    C_ARGS:
+    CODE:
+	RETVAL = gnome_program_get ();
+    OUTPUT:
+	RETVAL
 	
 
 const char * gnome_program_get_human_readable_name (GnomeProgram * program);
