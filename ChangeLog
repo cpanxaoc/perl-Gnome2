@@ -1,3 +1,8 @@
+2004/08/13 10:19 (+0200) kaffeetisch
+
+	* t/GnomeProgram.t, xs/GnomeProgram.xs: If available, use the new
+	gnome_program_init_paramv to wrap gnome_program_init properly.
+
 2004/07/19 12:51 (+0200) kaffeetisch
 
 	* Gnome2.pm, NEWS: Version 1.012.

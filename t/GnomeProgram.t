@@ -31,11 +31,23 @@ SKIP: {
 
   @ARGV = qw(--name bla --class blub --urgs);
 
-  my $application = Gnome2::Program -> init("Test",
-                                            "0.1",
-                                            "libgnomeui",
-                                            app_prefix => "/gtk2perl",
-                                            app_sysconfdir => "/gtk2perl/etc");
+  my $application;
+
+  if (Gnome2 -> CHECK_VERSION (2, 7, 2)) { # FIXME: 2.8
+    $application = Gnome2::Program -> init("Test",
+                                           "0.1",
+                                           "libgnomeui",
+                                           app_prefix => "/gtk2perl",
+                                           app_sysconfdir => "/gtk2perl/etc",
+                                           human_readable_name => "Test");
+  }
+  else {
+    $application = Gnome2::Program -> init("Test",
+                                           "0.1",
+                                           "libgnomeui",
+                                           app_prefix => "/gtk2perl",
+                                           app_sysconfdir => "/gtk2perl/etc");
+  }
 
   is_deeply([$application -> get(qw(app_prefix app_sysconfdir))], [qw(/gtk2perl /gtk2perl/etc)]);
   is_deeply(\@ARGV, [qw(--name bla --class blub --urgs)]);

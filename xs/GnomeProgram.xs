@@ -64,11 +64,13 @@ gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
 	GPerlArgv *pargv;
 	const GnomeModuleInfo * real_module_info = NULL;
     CODE:
+#define FIRST_VAR_ARG 4
+
 	/* check validity of stack item count before doing anything else */
-	if (items > 4 && 0 != ((items - 4) % 2)) {
+	if (items > FIRST_VAR_ARG && 0 != ((items - FIRST_VAR_ARG) % 2)) {
 		/* caller didn't specify an even number of parameters... */
 		croak ("Usage: Gnome2::Program->init (app_id, app_version, module_info)\n"
-		       "   or: Gnome2::Program->init (app_id, app_ver, mod_info, prop => val, ...)\n"
+		       "   or: Gnome2::Program->init (app_id, app_version, module_info, prop => val, ...)\n"
 		       "   there may be any number of prop/val pairs, but there must be a value\n"
 		       "   for every prop");
 	}
@@ -79,16 +81,59 @@ gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
 	/* we're good to go.  let's get a hold of @ARGV and $0 so we can
 	 * synthesize the argv that gnome_program_init wants. */
 	pargv = gperl_argv_new ();
-	/* note that we have *not* modifed @ARGV. */
+	/* note that we have *not* modifed @ARGV.
+	 */
+#if LIBGNOME_CHECK_VERSION (2, 7, 2) /* FIXME: 2.8 */
+{
+	GObjectClass *class;
+	GParameter *params = NULL;
+	guint nparams;
+	int j;
 
+	class = g_type_class_ref (GNOME_TYPE_PROGRAM);
+
+	nparams = (items - FIRST_VAR_ARG) / 2;
+	params = g_new0 (GParameter, nparams);
+
+	/* get properties off the stack and set them */
+	for (i = FIRST_VAR_ARG, j = 0 ; i < items ; i += 2, j++) {
+		GParamSpec * pspec;
+
+		params[j].name = SvGChar (ST (i));
+		pspec = g_object_class_find_property (class, params[j].name);
+		if (!pspec)
+			/* we should do a lot more cleanup here, 
+			 * in principle, but the GnomeProgram is a 
+			 * singleton, and most people aren't going to
+			 * accept an exception on initializing it. */
+			croak ("property %s not found in object class %s",
+			       params[j].name,
+			       g_type_name (GNOME_TYPE_PROGRAM));
+
+		g_value_init (&params[j].value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+		gperl_value_from_sv (&params[j].value, ST (i+1));
+	}
+
+	RETVAL = gnome_program_init_paramv (GNOME_TYPE_PROGRAM,
+	                                    app_id, app_version,
+	                                    real_module_info,
+	                                    pargv->argc, pargv->argv,
+	                                    nparams, params);
+
+	for (j = 0 ; j < nparams ; j++) {
+		g_value_unset (&params[j].value);
+	}
+
+	g_free (params);
+	g_type_class_unref (class);
+}
+#else
 	RETVAL = gnome_program_init (app_id, app_version, real_module_info,
 	                             pargv->argc, pargv->argv,
 	                             GNOME_PARAM_NONE);
 
-	gperl_argv_free (pargv);
-
 	/* get properties off the stack and set them */
-	for (i = 4 ; i < items ; i += 2) {
+	for (i = FIRST_VAR_ARG ; i < items ; i += 2) {
 		const char * property_name;
 		GValue gvalue = {0,};
 		GParamSpec * pspec;
@@ -111,7 +156,9 @@ gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
 		                       &gvalue);
 		g_value_unset (&gvalue);
 	}
+#endif
 
+	gperl_argv_free (pargv);
     OUTPUT:
 	RETVAL
 
