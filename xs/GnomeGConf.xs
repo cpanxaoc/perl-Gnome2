@@ -22,6 +22,10 @@
 
 MODULE = Gnome2::GConf	PACKAGE = Gnome2::GConf	PREFIX = gnome_gconf_
 
+=for object Gnome2::main
+
+=cut
+
 ##  gchar *gnome_gconf_get_gnome_libs_settings_relative (const gchar *subkey) 
 gchar_own *
 gnome_gconf_get_gnome_libs_settings_relative (class, subkey)

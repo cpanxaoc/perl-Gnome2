@@ -13,7 +13,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.38';
+our $VERSION = '0.49';
 
 sub dl_load_flags { 0x01 }
 

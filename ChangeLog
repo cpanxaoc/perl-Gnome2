@@ -1,3 +1,18 @@
+2003/11/28 22:19 (+0100) kaffeetisch
+
+	* Gnome2.pm
+	* META.yml
+	* README: Prepare the release of 0.49.
+
+	* t/GnomePasswordDialog.t
+	* xs/Gnome2.xs: Change the package name from
+	Gnome2::Authentication::Manager to Gnome2::AuthenticationManager.
+
+	* xs/GnomeAppHelper: Add API documentation.
+
+	* xs/GnomeGConf.xs: Put API documentation into Gnome2::main so
+	that we don't overwrite Gnome2::GConf's POD/man pages.
+
 2003/11/26 14:37 (-0500) muppetman
 
 	* gnome2perl.h

@@ -372,7 +372,11 @@ gnome_app_fill_menu (menu_shell, uiinfo, accel_group, uline_accels, pos)
 	                            accel_group, uline_accels, pos);
 	refill_infos (ST (1), uiinfo);
 
+=for apidoc
 
+Returns the GtkWidget and the position associated with the path.
+
+=cut
 ##  GtkWidget *gnome_app_find_menu_pos (GtkWidget *parent, const gchar *path, gint *pos)
 void
 gnome_app_find_menu_pos (parent, path)

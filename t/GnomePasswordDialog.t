@@ -13,7 +13,7 @@ SKIP: {
     unless (Gnome2 -> check_version(2, 3, 6));
 
   Gtk2 -> init();
-  Gnome2::Authentication::Manager -> init();
+  Gnome2::AuthenticationManager -> init();
 
   my $dialog = Gnome2::PasswordDialog -> new("Bla", "Bla!", "bla", "alb", 1);
   isa_ok($dialog, "Gnome2::PasswordDialog");
