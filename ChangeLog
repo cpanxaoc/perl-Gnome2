@@ -1,3 +1,9 @@
+2003/08/18 21:16 muppetman
+
+	* xs/GnomeAppHelper.xs: all the parts were there, they just weren't
+	plugged in.  refilling the GnomeUIInfo after creating menus and such
+	now works.
+
 2003/08/18 12:34 muppetman
 
 	* debian/*: patch from james curbo adds debian packaging stuff
