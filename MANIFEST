@@ -42,6 +42,7 @@ t/GnomeScores.t
 t/GnomeThumbnail.t
 t/GnomeURL
 t/GnomeUtil.t
+t/TestBoilerplate
 TODO
 xs/BonoboDock.xs
 xs/BonoboDockItem.xs
