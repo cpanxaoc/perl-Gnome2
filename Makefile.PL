@@ -5,14 +5,11 @@
 use 5.008;
 use ExtUtils::MakeMaker;
 use Cwd;
-use blib '../G';
-use blib '../Gtk2';
-use blib '..';
 use ExtUtils::Depends;
-use G::PkgConfig;
+use Glib::PkgConfig;
 use Gtk2::CodeGen;
 
-%pkgcfg = G::PkgConfig->find ('libgnomeui-2.0');
+%pkgcfg = Glib::PkgConfig->find ('libgnomeui-2.0');
 
 mkdir 'build', 0777;
 
@@ -24,10 +21,10 @@ Gtk2::CodeGen->write_boot;
 
 # now we're ready to start creating the makefile.
 # we need to use ExtUtils::Depends to get relevant information out of
-# the G extension, and to save config information for other modules which
+# the Glib extension, and to save config information for other modules which
 # will chain from this one.
 
-$gnome2 = ExtUtils::Depends->new ('Gnome2', 'Gtk2', 'G');
+$gnome2 = ExtUtils::Depends->new ('Gnome2', 'Gtk2', 'Glib');
 $gnome2->set_inc ($pkgcfg{cflags});
 $gnome2->set_libs ($pkgcfg{libs});
 $gnome2->add_xs (<xs/*.xs>);
