@@ -1,3 +1,9 @@
+2004/01/14 18:16 (-0500) muppetman
+
+	* t/GnomePasswordDialog.t: GnomePasswordDialog and
+	GnomeAuthenticationManager didn't appear until 2.3.6, use version
+	guards to skip tests on older releases.
+
 2003/12/31 11:45 (+0100) kaffeetisch
 
 	* xs/BonoboDockItem.xs: Remove functions that weren't supposed to
