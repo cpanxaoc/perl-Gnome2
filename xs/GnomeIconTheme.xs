@@ -216,7 +216,7 @@ gnome_icon_theme_lookup_icon (theme, icon_name, size)
 
 	EXTEND (sp, 3);
 	PUSHs (sv_2mortal (newSVpv (filename, PL_na)));
-	PUSHs (sv_2mortal (newRV_inc ((SV*) data_to_hv (icon_data))));
+	PUSHs (sv_2mortal (newRV_noinc ((SV*) data_to_hv (icon_data))));
 	PUSHs (sv_2mortal (newSViv (base_size)));
 
 ##  gboolean gnome_icon_theme_has_icon (GnomeIconTheme *theme, const char *icon_name) 
@@ -225,7 +225,6 @@ gnome_icon_theme_has_icon (theme, icon_name)
 	GnomeIconTheme *theme
 	const char *icon_name
 
-# FIXME: this needs testing, but I don't know how to *use* it.
 ##  GList * gnome_icon_theme_list_icons (GnomeIconTheme *theme, const char *context) 
 void
 gnome_icon_theme_list_icons (theme, context=NULL)

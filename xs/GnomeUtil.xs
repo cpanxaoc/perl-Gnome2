@@ -27,7 +27,7 @@ g_extension_pointer (class, path)
 	SV *class
 	const char *path
     ALIAS:
-	extension = 1
+	extension = 0
     C_ARGS:
 	path
 

@@ -20,7 +20,7 @@ SKIP: {
   Gnome2::Program -> module_register("libgnome");
   ok(Gnome2::Program -> module_registered("libgnome"));
 
-  # XXX
+  # FIXME
   # isa_ok(Gnome2::Program -> module_load("/usr/lib/libgnome-2.so"),
   #        "Gnome2::ModuleInfo");
 

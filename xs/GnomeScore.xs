@@ -61,7 +61,7 @@ gnome_score_get_notable (class, gamename, level)
 		av_store (set, 1, newSVnv (scores[i]));
 		av_store (set, 2, newSViv (scoretimes[i]));
 
-		XPUSHs (sv_2mortal (newRV_inc ((SV*) set)));
+		XPUSHs (sv_2mortal (newRV_noinc ((SV*) set)));
 	}
 
 	g_free (names);

@@ -111,7 +111,7 @@ SKIP: {
   my $appbar = Gnome2::AppBar -> new(1, 1, "always");
   my $statusbar = Gtk2::Statusbar -> new();
 
-  # XXX: why do these give me warnings?
+  # FIXME: why do these give me warnings?
   # $appbar -> install_menu_hints($appbar_info);
   # $statusbar -> install_menu_hints($statusbar_info);
   # $app -> install_menu_hints($menu_info);

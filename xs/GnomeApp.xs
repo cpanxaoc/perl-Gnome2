@@ -26,26 +26,26 @@ SV *
 members (app)
 	GnomeApp *app
     ALIAS:
-	Gnome2::App::prefix = 1
-	Gnome2::App::dock = 2
-	Gnome2::App::statusbar = 3
-	Gnome2::App::vbox = 4
-	Gnome2::App::menubar = 5
-	Gnome2::App::contents = 6
-	Gnome2::App::layout = 7
-	Gnome2::App::accel_group = 8
-	Gnome2::App::get_enable_layout_config = 9
+	Gnome2::App::prefix = 0
+	Gnome2::App::dock = 1
+	Gnome2::App::statusbar = 2
+	Gnome2::App::vbox = 3
+	Gnome2::App::menubar = 4
+	Gnome2::App::contents = 5
+	Gnome2::App::layout = 6
+	Gnome2::App::accel_group = 7
+	Gnome2::App::get_enable_layout_config = 8
     CODE:
 	switch (ix) {
-		case 1: RETVAL = newSVGChar (app->prefix); break;
-		case 2: RETVAL = newSVGtkWidget (app->dock); break;
-		case 3: RETVAL = newSVGtkWidget (app->statusbar); break;
-		case 4: RETVAL = newSVGtkWidget (app->vbox); break;
-		case 5: RETVAL = newSVGtkWidget (app->menubar); break;
-		case 6: RETVAL = newSVGtkWidget (app->contents); break;
-		case 7: RETVAL = newSVBonoboDockLayout (app->layout); break;
-		case 8: RETVAL = newSVGtkAccelGroup (app->accel_group); break;
-		case 9: RETVAL = newSVuv (app->enable_layout_config); break;
+		case 0: RETVAL = newSVGChar (app->prefix); break;
+		case 1: RETVAL = newSVGtkWidget (app->dock); break;
+		case 2: RETVAL = newSVGtkWidget (app->statusbar); break;
+		case 3: RETVAL = newSVGtkWidget (app->vbox); break;
+		case 4: RETVAL = newSVGtkWidget (app->menubar); break;
+		case 5: RETVAL = newSVGtkWidget (app->contents); break;
+		case 6: RETVAL = newSVBonoboDockLayout (app->layout); break;
+		case 7: RETVAL = newSVGtkAccelGroup (app->accel_group); break;
+		case 8: RETVAL = newSVuv (app->enable_layout_config); break;
 	}
     OUTPUT:
 	RETVAL

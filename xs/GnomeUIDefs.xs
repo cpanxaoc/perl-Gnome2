@@ -26,6 +26,8 @@ SV *
 constants (class)
 	SV *class
     ALIAS:
+	dummy_to_get_the_docs_right_without_having_to_renumber_everything = 0
+
 	pad = 1
 	pad_small = 2
 	pad_big = 3

@@ -429,7 +429,7 @@ gnome_app_install_appbar_menu_hints (appbar, uiinfo)
 	GnomeAppBar* appbar
 	GnomeUIInfo* uiinfo
     ALIAS:
-	Gnome2::AppBar::install_menu_hints = 1
+	Gnome2::AppBar::install_menu_hints = 0
     C_ARGS:
 	appbar, uiinfo
 
@@ -441,6 +441,6 @@ gnome_app_install_statusbar_menu_hints (bar, uiinfo)
 	GtkStatusbar* bar
 	GnomeUIInfo* uiinfo
     ALIAS:
-	Gtk2::Statusbar::install_menu_hints = 1
+	Gtk2::Statusbar::install_menu_hints = 0
     C_ARGS:
 	bar, uiinfo

@@ -105,11 +105,11 @@ void
 set_commands (client, ...)
 	GnomeClient *client
     ALIAS:
-	Gnome2::Client::set_restart_command = 1
-	Gnome2::Client::set_discard_command = 2
-	Gnome2::Client::set_resign_command = 3
-	Gnome2::Client::set_shutdown_command = 4
-	Gnome2::Client::set_clone_command = 5
+	Gnome2::Client::set_restart_command = 0
+	Gnome2::Client::set_discard_command = 1
+	Gnome2::Client::set_resign_command = 2
+	Gnome2::Client::set_shutdown_command = 3
+	Gnome2::Client::set_clone_command = 4
     PREINIT:
 	gint argc, i;
 	gchar ** argv;
@@ -121,11 +121,11 @@ set_commands (client, ...)
 		argv[i - 1] = SvGChar (ST (i));
 
 	switch (ix) {
-		case 1: gnome_client_set_restart_command (client, argc, argv); break;
-		case 2: gnome_client_set_discard_command (client, argc, argv); break;
-		case 3: gnome_client_set_resign_command (client, argc, argv); break;
-		case 4: gnome_client_set_shutdown_command (client, argc, argv); break;
-		case 5: gnome_client_set_clone_command (client, argc, argv); break;
+		case 0: gnome_client_set_restart_command (client, argc, argv); break;
+		case 1: gnome_client_set_discard_command (client, argc, argv); break;
+		case 2: gnome_client_set_resign_command (client, argc, argv); break;
+		case 3: gnome_client_set_shutdown_command (client, argc, argv); break;
+		case 4: gnome_client_set_clone_command (client, argc, argv); break;
 	}
 
 	g_free (argv);
@@ -260,9 +260,12 @@ gnome_client_request_interaction (client, dialog_type, function, data=NULL)
 	                        callback,
 	                        (GDestroyNotify) gperl_callback_destroy);
 
-# FIXME: needs renaming/aliasing.
 ## void gnome_interaction_key_return (gint key, gboolean cancel_shutdown) 
 void
-gnome_interaction_key_return (key, cancel_shutdown)
+gnome_interaction_key_return (class, key, cancel_shutdown)
 	gint key
 	gboolean cancel_shutdown
+    ALIAS:
+	Gnome2::Client::interaction_key_return = 0
+    C_ARGS:
+	key, cancel_shutdown

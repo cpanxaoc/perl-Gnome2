@@ -26,15 +26,15 @@ GnomeModuleInfo *
 module_info (class)
 	SV * class
     ALIAS:
-	Gnome2::ModuleInfo::libgnome = 1
-	Gnome2::ModuleInfo::libgnomeui = 2
-	Gnome2::ModuleInfo::bonobo = 3
+	Gnome2::ModuleInfo::libgnome = 0
+	Gnome2::ModuleInfo::libgnomeui = 1
+	Gnome2::ModuleInfo::bonobo = 2
     CODE:
 	switch (ix) {
 		/* casting off const to avoid compiler warnings */
+		case 0: RETVAL = (GnomeModuleInfo*) LIBGNOME_MODULE; break;
 		case 1: RETVAL = (GnomeModuleInfo*) LIBGNOME_MODULE; break;
-		case 2: RETVAL = (GnomeModuleInfo*) LIBGNOME_MODULE; break;
-		case 3: RETVAL = (GnomeModuleInfo*) gnome_bonobo_module_info_get (); break;
+		case 2: RETVAL = (GnomeModuleInfo*) gnome_bonobo_module_info_get (); break;
 	}
     OUTPUT:
 	RETVAL
@@ -44,16 +44,16 @@ SV *
 members (module_info)
 	GnomeModuleInfo * module_info
     ALIAS:
-	Gnome2::ModuleInfo::name	= 1
-	Gnome2::ModuleInfo::version	= 2
-	Gnome2::ModuleInfo::description = 3
-	Gnome2::ModuleInfo::opt_prefix	= 4
+	Gnome2::ModuleInfo::name	= 0
+	Gnome2::ModuleInfo::version	= 1
+	Gnome2::ModuleInfo::description = 2
+	Gnome2::ModuleInfo::opt_prefix	= 3
     CODE:
 	switch (ix) {
-		case 1: RETVAL = newSVpv (module_info->name, PL_na); break;
-		case 2: RETVAL = newSVpv (module_info->version, PL_na); break;
-		case 3: RETVAL = newSVpv (module_info->description, PL_na); break;
-		case 4: RETVAL = newSVpv (module_info->opt_prefix, PL_na); break;
+		case 0: RETVAL = newSVpv (module_info->name, PL_na); break;
+		case 1: RETVAL = newSVpv (module_info->version, PL_na); break;
+		case 2: RETVAL = newSVpv (module_info->description, PL_na); break;
+		case 3: RETVAL = newSVpv (module_info->opt_prefix, PL_na); break;
 	}
     OUTPUT:
 	RETVAL

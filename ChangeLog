@@ -1,3 +1,31 @@
+2003/11/02 20:37 (+0100) kaffeetisch
+
+	* xs/GnomeApp.xs
+	* xs/GnomeAppHelper.xs
+	* xs/GnomeClient.xs
+	* xs/GnomeInit.xs
+	* xs/GnomeModuleInfo.xs
+	* xs/GnomeUIDefs.xs
+	* xs/GnomeUtil.xs: Rearranged ALIAS numbers to start at 0 to
+	signal to the documentation generator that the original function
+	name shouldn't be listed.
+
+	* xs/GnomeAbout.xs: Added documentation for authors and
+	documenters parameters.
+
+	* xs/GnomeClient.xs: Alias gnome_interaction_key_return to
+	Gnome2::Client::interaction_key_return.
+
+	* xs/GnomeIconList.xs: Remove FIXME comment.
+
+	* xs/GnomeScore.xs
+	* xs/GnomeIconTheme.xs: Use newRV_noinc instead of newRV_inc.
+	Remove a FIXME comment.
+
+	* t/*: Replace XXX with FIXME.
+
+	* t/GnomeIconList.t: Comment out $list -> clear().
+
 2003/11/02 11:49 (-0500) rwmcfa1
 
 	* Makefile.PL: MakeHelper'd things, including pod generation.

@@ -41,7 +41,7 @@ SKIP: {
   $factory -> save_thumbnail($thumbnail, $uri, $mtime);
   $factory -> create_failed_thumbnail($uri, $mtime);
 
-  # XXX: why do these segfault?
+  # FIXME: why do these segfault?
   # $thumbnail -> has_uri($uri);
   # $thumbnail -> is_valid($uri, $mtime);
 

@@ -27,7 +27,7 @@ SKIP: {
   my $theme = Gnome2::IconTheme -> new();
   isa_ok($theme, "Gnome2::IconTheme");
 
-  # XXX: $theme -> get_example_icon_name();
+  # FIXME: $theme -> get_example_icon_name();
 
   my @icon = $theme -> lookup_sync(undef, "/usr/bin/perl", undef, "none");
   ok( scalar(@icon) == 2 and defined($icon[0]) );
@@ -41,7 +41,7 @@ SKIP: {
       $size) = $theme -> lookup_icon("gnome-starthere", 48);
 
   ok(-e $file);
-  # XXX: $icon_data?
+  # FIXME: $icon_data?
   like($size, qr/^\d+$/);
 
   $theme -> set_allow_svg(1);
@@ -51,7 +51,7 @@ SKIP: {
 
   $theme -> set_search_path("/usr/share/icons");
 
-  # XXX: these seem to do nothing.
+  # FIXME: these seem to do nothing.
   $theme -> append_search_path("/usr/share/pixmaps");
   $theme -> prepend_search_path("/usr/share/images");
 

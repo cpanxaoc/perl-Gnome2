@@ -30,14 +30,14 @@ const char *
 dirs (class)
 	SV * class
     ALIAS:
-	Gnome2::user_dir_get = 1
-	Gnome2::user_private_dir_get = 2
-	Gnome2::user_accels_dir_get = 3
+	Gnome2::user_dir_get = 0
+	Gnome2::user_private_dir_get = 1
+	Gnome2::user_accels_dir_get = 2
     CODE:
 	switch (ix) {
-		case 1: RETVAL = gnome_user_dir_get (); break;
-		case 2: RETVAL = gnome_user_private_dir_get (); break;
-		case 3: RETVAL = gnome_user_accels_dir_get (); break;
+		case 0: RETVAL = gnome_user_dir_get (); break;
+		case 1: RETVAL = gnome_user_private_dir_get (); break;
+		case 2: RETVAL = gnome_user_accels_dir_get (); break;
 	}
     OUTPUT:
 	RETVAL

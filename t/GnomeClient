@@ -79,7 +79,7 @@ SKIP: {
     $client -> save_any_dialog(Gtk2::Dialog -> new());
     $client -> save_error_dialog(Gtk2::Dialog -> new());
 
-    # XXX
+    # FIXME
     $client -> request_interaction("error", sub {
       my ($client, $key, $dialog_type);
 
