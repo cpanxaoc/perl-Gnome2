@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 7;
+use constant TESTS => 8;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -29,10 +29,14 @@ SKIP: {
   # isa_ok(Gnome2::Program -> module_load("/usr/lib/libgnome-2.so"),
   #        "Gnome2::ModuleInfo");
 
+  @ARGV = qw(--name bla --class blub --urgs);
+
   my $application = Gnome2::Program -> init("Test",
                                             "0.1",
                                             "libgnomeui",
                                             human_readable_name => "Test 0.1");
+
+  is_deeply(\@ARGV, [qw(--name bla --class blub --urgs)]);
 
   isa_ok($application, "Gnome2::Program");
   is($application -> get_program(), $application);

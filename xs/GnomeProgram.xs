@@ -46,33 +46,6 @@ handle_module_info (SV * module_info)
 	return real_module_info;
 }
 
-void
-handle_argv (int * argc, char ** argv[])
-{
-	AV * ARGV;
-	SV * ARGV0;
-	int len, i;
-
-	*argv = NULL;
-	ARGV = get_av ("ARGV", FALSE);
-	ARGV0 = get_sv ("0", FALSE);
-
-	/* construct the argv argument... we'll have to prepend @ARGV with $0
-	 * to make it look real. */
-	len = av_len (ARGV) + 1;
-	*argc = len + 1;
-	*argv = g_new0 (char*, *argc);
-	(*argv)[0] = SvPV_nolen (ARGV0);
-	/* warn ("argc = %d\n", *argc); */
-	/* warn ("argv[0] = %s\n", *argv[0]); */
-	for (i = 0 ; i < len ; i++) {
-		SV ** sv = av_fetch (ARGV, i, FALSE);
-		(*argv)[i+1] = sv ? SvPV_nolen (*sv) : "";
-		/* warn ("argv[%d] = %s\n", i+1, *argv[i+1]); */
-	}
-}
-
-
 MODULE = Gnome2::Program	PACKAGE = Gnome2::Program	PREFIX = gnome_program_
 
 =for apidoc
@@ -87,8 +60,8 @@ gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
 	const char * app_version
 	SV * module_info
     PREINIT:
-	int argc, i;
-	char ** argv;
+	int i;
+	GPerlArgv *pargv;
 	const GnomeModuleInfo * real_module_info = NULL;
     CODE:
 	/* check validity of stack item count before doing anything else */
@@ -105,15 +78,14 @@ gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
 
 	/* we're good to go.  let's get a hold of @ARGV and $0 so we can
 	 * synthesize the argv that gnome_program_init wants. */
-	handle_argv (&argc, &argv);
+	pargv = gperl_argv_new ();
 	/* note that we have *not* modifed @ARGV. */
 
 	RETVAL = gnome_program_init (app_id, app_version, real_module_info,
-	                             argc, argv, GNOME_PARAM_NONE);
+	                             pargv->argc, pargv->argv,
+	                             GNOME_PARAM_NONE);
 
-	/* don't need this anymore -- note, do NOT destroy the strings
-	 * themselves (they are still owned by their SVs) */
-	g_free (argv);
+	gperl_argv_free (pargv);
 
 	/* get properties off the stack and set them */
 	for (i = 4 ; i < items ; i += 2) {

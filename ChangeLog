@@ -1,6 +1,12 @@
+2004/02/11 02:02 (+0100) kaffeetisch
+
+	* Makefile.PL
+	* xs/GnomeProgram.xs
+	* t/GnomeProgram.t: Use and test the new GPerlArgv helper.
+
 2004/02/10 19:01 (+0100) kaffeetisch
 
-	* t/GnomeConfig.t: Re-enable the get_float_with_default, with
+	* t/GnomeConfig.t: Re-enable the get_float_with_default test, with
 	skips.  The relevant bug has been fixed in libgnomeui 2.5.4.
 
 	* t/GnomeIconSelection.t: Don't check the return value of

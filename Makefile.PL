@@ -13,7 +13,7 @@ use File::Spec;
 our %build_reqs = (
 	'perl-ExtUtils-Depends'   => '0.200',
 	'perl-ExtUtils-PkgConfig' => '0.103',
-	'perl-Glib'               => '1.02',
+	'perl-Glib'               => '1.034',
 	'perl-Gtk2'               => '1.00',
 	'perl-Gnome2-Canvas'      => '0.91',
 	'perl-Gnome2-VFS'         => '0.01',
