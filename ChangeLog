@@ -1,3 +1,7 @@
+2003/10/19 16:06 (+0200) kaffeetisch
+
+	* Gnome2.pm: Correct a few mistakes.
+
 2003/10/18 22:53 (+0200) kaffeetisch
 
 	* t/GnomeIconList.t: Alter $list -> get_selection test to be more

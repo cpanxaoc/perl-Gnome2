@@ -26,7 +26,7 @@ __END__
 
 =head1 NAME
 
-Gnome2 - Perl interface to the 2.x series of the Gnome libraries
+Gnome2 - Perl interface to the 2.x series of the GNOME libraries
 
 =head1 SYNOPSIS
 
@@ -38,13 +38,13 @@ Gnome2 - Perl interface to the 2.x series of the Gnome libraries
 
 =head1 ABSTRACT
 
-Perl bindings to the 2.x series of the Gnome libraries.  This module allows you
-to interface with the libgnome and libgnomeui library to create Gnome
+Perl bindings to the 2.x series of the GNOME libraries.  This module allows you
+to interface with the libgnome and libgnomeui libraries to create GNOME
 applications.
 
 =head1 DESCRIPTION
 
-Since this module tries to stick very closely to the C API.  The documentation
+Since this module tries to stick very closely to the C API the documentation
 found at
 
   http://developer.gnome.org/doc/API/2.0/libgnome/index.html
