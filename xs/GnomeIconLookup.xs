@@ -27,18 +27,40 @@ MODULE = Gnome2::IconLookup	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_
 
 #ifdef GNOME_TYPE_ICON_THEME
 
-# FIXME: need GnomeVFSFileInfo typemap for this.
-###  char *gnome_icon_lookup (GnomeIconTheme *icon_theme, GnomeThumbnailFactory *thumbnail_factory, const char *file_uri, const char *custom_icon, GnomeVFSFileInfo *file_info, const char *mime_type, GnomeIconLookupFlags flags, GnomeIconLookupResultFlags *result) 
-#char *
-#gnome_icon_lookup (icon_theme, thumbnail_factory, file_uri, custom_icon, file_info, mime_type, flags, result)
-#	 GnomeIconTheme *icon_theme
-#	 GnomeThumbnailFactory *thumbnail_factory
-#	 const char *file_uri
-#	 const char *custom_icon
-#	 GnomeVFSFileInfo *file_info
-#	 const char *mime_type
-#	 GnomeIconLookupFlags flags
-#	 GnomeIconLookupResultFlags *result
+=for apidoc
+
+Returns the icon name and a GnomeIconLookupFlags.
+
+=cut
+
+##  char *gnome_icon_lookup (GnomeIconTheme *icon_theme, GnomeThumbnailFactory *thumbnail_factory, const char *file_uri, const char *custom_icon, GnomeVFSFileInfo *file_info, const char *mime_type, GnomeIconLookupFlags flags, GnomeIconLookupResultFlags *result) 
+void
+gnome_icon_lookup (icon_theme, thumbnail_factory, file_uri, custom_icon, file_info, mime_type, flags)
+	 GnomeIconTheme *icon_theme
+	 GnomeThumbnailFactory_ornull *thumbnail_factory
+	 const char *file_uri
+	 SV *custom_icon
+	 GnomeVFSFileInfo *file_info
+	 const char *mime_type
+	 GnomeIconLookupFlags flags
+    PREINIT:
+	GnomeIconLookupResultFlags result;
+	char *icon;
+	const char *real_custom_icon = NULL;
+    PPCODE:
+	if (SvPOK (custom_icon))
+		real_custom_icon = (const char *) SvPV_nolen (custom_icon);
+
+	gnome_icon_lookup (icon_theme, thumbnail_factory, file_uri, real_custom_icon, file_info, mime_type, flags, &result);
+
+	if (icon == NULL)
+		XSRETURN_UNDEF;
+
+	EXTEND (sp, 2);
+	PUSHs (sv_2mortal (newSVpv (icon, PL_na)));
+	PUSHs (sv_2mortal (newSVGnomeIconLookupFlags (result)));
+
+	g_free (icon);
 
 =for apidoc
 
@@ -62,8 +84,14 @@ gnome_icon_lookup_sync (icon_theme, thumbnail_factory, file_uri, custom_icon, fl
 		real_custom_icon = (const char *) SvPV_nolen (custom_icon);
 
 	icon = gnome_icon_lookup_sync (icon_theme, thumbnail_factory, file_uri, real_custom_icon, flags, &result);
+
+	if (icon == NULL)
+		XSRETURN_UNDEF;
+
 	EXTEND (sp, 2);
 	PUSHs (sv_2mortal (newSVpv (icon, PL_na)));
 	PUSHs (sv_2mortal (newSVGnomeIconLookupFlags (result)));
+
+	g_free (icon);
 
 #endif /* have GNOME_TYPE_ICON_THEME */

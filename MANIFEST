@@ -10,8 +10,8 @@ README
 TODO
 examples/druid.pl
 genmaps.pl
+gnome.typemap
 gnome2perl.h
-gnome2perl.typemap
 maps
 perl-Gnome2.spec.in
 t/Gnome.t
@@ -33,6 +33,7 @@ t/GnomeIconEntry.t
 t/GnomeIconList.t
 t/GnomeIconSelection.t
 t/GnomeIconTheme.t
+t/GnomePasswordDialog.t
 t/GnomePixmapEntry.t
 t/GnomePopupMenu.t
 t/GnomeProgram.t
@@ -69,6 +70,7 @@ xs/GnomeIconSelection.xs
 xs/GnomeIconTheme.xs
 xs/GnomeInit.xs
 xs/GnomeModuleInfo.xs
+xs/GnomePasswordDialog.xs
 xs/GnomePixmapEntry.xs
 xs/GnomePopupMenu.xs
 xs/GnomeProgram.xs

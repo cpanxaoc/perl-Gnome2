@@ -2,8 +2,10 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 8;
+use constant TESTS => 9;
 use Test::More tests => TESTS;
+
+Gnome2::VFS -> init();
 
 # $Header$
 
@@ -30,7 +32,17 @@ SKIP: {
   # FIXME: $theme -> get_example_icon_name();
 
   my @icon = $theme -> lookup_sync(undef, "/usr/bin/perl", undef, "none");
-  ok( scalar(@icon) == 2 and defined($icon[0]) );
+  ok(scalar(@icon) == 2 and defined($icon[0]));
+
+  my ($result, $info) = Gnome2::VFS -> get_file_info("/usr/bin/perl", "get-mime-type");
+
+  @icon = $theme -> lookup(undef,
+                           "/usr/bin/perl",
+                           undef,
+                           $info,
+                           "application/x-executable-binary",
+                           "none");
+  ok(scalar(@icon) == 2 and defined($icon[0]));
 
   ok($theme -> list_icons());
 
@@ -59,3 +71,7 @@ SKIP: {
 
   $theme -> set_custom_theme("Crux");
 }
+
+###############################################################################
+
+Gnome2::VFS -> shutdown();

@@ -64,3 +64,15 @@ bonobo_get_version_info (class)
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MAJOR_VERSION)));
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MINOR_VERSION)));
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MICRO_VERSION)));
+
+MODULE = Gnome2		PACKAGE = Gnome2::Authentication::Manager	PREFIX = gnome_authentication_manager_
+
+#if LIBGNOMEUI_CHECK_VERSION (2, 3, 6)
+
+## void gnome_authentication_manager_init (void)
+void
+gnome_authentication_manager_init (class)
+   C_ARGS:
+	/* void */
+
+#endif

@@ -22,6 +22,8 @@
 #define _GNOME2PERL_H_
 
 #include <gtk2perl.h>
+#include <vfs2perl.h>
+
 #undef _ /* gnome and perl disagree on this one */
 
 #include <gnome.h>

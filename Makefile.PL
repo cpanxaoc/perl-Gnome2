@@ -15,6 +15,7 @@ our %build_reqs = (
 	'perl-ExtUtils-PkgConfig' => '0.1',
 	'perl-Glib'               => '1.01',
 	'perl-Gtk2'               => '1.00',
+	'perl-Gnome2-VFS'         => '0.01',
 	'Gnome'                   => '2.0.0',
 	'Bonobo'                  => '2.0.0',
 );
@@ -34,6 +35,7 @@ unless (eval "use ExtUtils::Depends;"
            # it's recent enough, too 
            . "use Glib '$build_reqs{'perl-Glib'}';"
            . "use Gtk2 '$build_reqs{'perl-Gtk2'}';"
+           . "use Gnome2::VFS '$build_reqs{'perl-Gnome2-VFS'}';"
            . "1") {
    warn "$@\n";
    WriteMakefile(
@@ -41,6 +43,7 @@ unless (eval "use ExtUtils::Depends;"
          PREREQ_PM    => {
             'Glib'                => $build_reqs{'perl-Glib'},
             'Gtk2'                => $build_reqs{'perl-Gtk2'},
+            'Gnome2::VFS'         => $build_reqs{'perl-Gnome2-VFS'},
             'ExtUtils::Depends'   => $build_reqs{'perl-ExtUtils-Depends'},
             'ExtUtils::PkgConfig' => $build_reqs{'perl-ExtUtils-PkgConfig'},
          },
@@ -75,7 +78,7 @@ our %pod_files = (
 	# re-run to pick up new XS files, so that's not such a big deal. 
 	Glib::MakeHelper->do_pod_files (@xs_files),
 );
-	
+
 Glib::MakeHelper->do_pod_files (@xs_files),
 
 #
@@ -106,12 +109,12 @@ close VERSION;
 # the Glib extension, and to save config information for other modules which
 # will chain from this one.
 
-my $gnome2 = ExtUtils::Depends->new ('Gnome2', 'Gtk2', 'Glib');
+my $gnome2 = ExtUtils::Depends->new ('Gnome2', 'Gtk2', 'Glib', 'Gnome2::VFS');
 $gnome2->set_inc ($gnome_pkgcfg{cflags} . " " . $bonobo_pkgcfg{cflags});
 $gnome2->set_libs ($gnome_pkgcfg{libs} . " " . $bonobo_pkgcfg{libs});
 $gnome2->add_xs (@xs_files);
 $gnome2->add_pm ('Gnome2.pm' => '$(INST_LIBDIR)/Gnome2.pm');
-$gnome2->add_typemaps (map {File::Spec->catfile(cwd(), $_)} 'build/gnome2perl.typemap', 'gnome2perl.typemap');
+$gnome2->add_typemaps (map {File::Spec->catfile(cwd(), $_)} 'build/gnome2perl.typemap', 'gnome.typemap');
 $gnome2->add_headers ('gnome2perl.h');
 
 $gnome2->install (qw(gnome2perl.h
