@@ -1,3 +1,10 @@
+2003/12/19 18:18 (+0100) kaffeetisch
+
+	* gnome2perl.h
+	* xs/GnomeHelp.xs
+	* xs/GnomeURL.xs: Rename SvGnomeCharArray to SvEnvArray and move
+	it to Gnome2-VFS.
+
 2003/12/18 22:13 (+0100) kaffeetisch
 
 	* Gnome2.pm: Mention Gnome2::index.

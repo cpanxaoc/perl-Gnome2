@@ -47,7 +47,7 @@ gnome_url_show_with_env (class, url, env_ref)
 	char **envp;
 	GError *error = NULL;
     CODE:
-	envp = SvGnomeCharArray (env_ref);
+	envp = SvEnvArray (env_ref);
 
 	RETVAL = gnome_url_show_with_env (url, envp, &error);
 	if (!RETVAL)
