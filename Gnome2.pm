@@ -14,7 +14,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '1.012';
+our $VERSION = '1.013';
 
 sub import {
   my $self = shift();
@@ -25,11 +25,8 @@ sub dl_load_flags { 0x01 }
 
 Gnome2 -> bootstrap($VERSION);
 
-# Preloaded methods go here.
-
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 

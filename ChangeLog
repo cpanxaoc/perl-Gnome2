@@ -1,3 +1,7 @@
+2004/08/13 10:27 (+0200) kaffeetisch
+
+	* Gnome2.pm, NEWS: Version 1.013.
+
 2004/08/13 10:19 (+0200) kaffeetisch
 
 	* t/GnomeProgram.t, xs/GnomeProgram.xs: If available, use the new
