@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 2;
+use constant TESTS => 4;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -35,9 +35,13 @@ SKIP: {
   $factory -> save_thumbnail($thumbnail, $uri, $mtime);
   $factory -> create_failed_thumbnail($uri, $mtime);
 
-  # FIXME: why do these segfault?
-  # $thumbnail -> has_uri($uri);
-  # $thumbnail -> is_valid($uri, $mtime);
+  SKIP: {
+    skip("has_uri and is_valid are broken", 2)
+      unless (0); # FIXME: add version check once #141044 is fixed.
+
+    like($thumbnail -> has_uri($uri), qr/^(|1)$/);
+    like($thumbnail -> is_valid($uri, $mtime), qr/^(|1)$/);
+  }
 
   $thumbnail -> md5($uri);
   $thumbnail -> path_for_uri($uri, "large");

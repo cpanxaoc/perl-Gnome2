@@ -1,3 +1,11 @@
+2004/04/25 13:38 (+0200) kaffeetisch
+
+	* t/GnomeDruid.t: Add reference to the relevant bug to the
+	set_contents_background comment.
+
+	* t/GnomeThumbnail.t: Test has_uri and is_valid but skip them for
+	now since they're broken.
+
 2004/03/29 19:55 (+0200) kaffeetisch
 
 	* Gnome2.pm
