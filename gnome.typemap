@@ -1,8 +1,4 @@
 TYPEMAP
 
-GnomeUIInfo *	T_GNOME_UI_INFO
-
-INPUT
-
-T_GNOME_UI_INFO
-	$var = SvGnomeUIInfo ($arg);
+GnomeUIInfo *	T_GPERL_GENERIC_WRAPPER
+Gnome2PerlIconListFlags	T_GPERL_GENERIC_WRAPPER

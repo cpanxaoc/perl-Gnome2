@@ -70,6 +70,7 @@ gnome_help_display (class, file_name, link_id=NULL)
 #    OUTPUT:
 #	RETVAL
 
+# FIXME: implement?
 ###  gboolean gnome_help_display_uri_with_env (const char *help_uri, char **envp, GError **error) 
 #gboolean
 #gnome_help_display_uri_with_env (help_uri, envp, error)
@@ -93,6 +94,7 @@ gnome_help_display_desktop (class, program, doc_id, file_name, link_id=NULL)
     OUTPUT:
 	RETVAL
 
+# FIXME: implement?
 ###  gboolean gnome_help_display_desktop_with_env (GnomeProgram *program, const char *doc_id, const char *file_name, const char *link_id, char **envp, GError **error) 
 #gboolean
 #gnome_help_display_desktop_with_env (program, doc_id, file_name, link_id, envp, error)

@@ -1,3 +1,18 @@
+2003/12/02 20:40 (+0100) kaffeetisch
+
+	* gnome.typemap: Use T_GPERL_GENERIC_WRAPPER for GnomeUIInfo's.
+
+	* gnome.typemap
+	* t/GnomeIconList.t
+	* xs/GnomeIconList.xs: Create and register a custom GFlags type so
+	we can use the cool flags magician in Gnome2::IconList::new.
+
+	* xs/GnomeIconTextItem.xs
+	* xs/GnomePasswordDialog.xs: Add license boilerplate.
+
+	* xs/GnomeHelp.xs
+	* xs/GnomeURL.xs: Add FIXME comments.
+
 2003/11/30 14:48 (+0100) kaffeetisch
 
 	A xs/GnomeIconTextItem.xs

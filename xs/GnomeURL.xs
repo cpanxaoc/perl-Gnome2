@@ -35,6 +35,7 @@ gnome_url_show (class, url)
     OUTPUT:
 	RETVAL
 
+# FIXME: implement.
 ###  gboolean gnome_url_show_with_env (const char *url, char **envp, GError **error) 
 #gboolean
 #gnome_url_show_with_env (url, envp, error)

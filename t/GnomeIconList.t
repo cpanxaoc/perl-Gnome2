@@ -22,12 +22,7 @@ SKIP: {
   #############################################################################
 
   my $adjustment = Gtk2::Adjustment -> new(50, 0, 100, 5, 5, 20);
-
-  # FIXME: flags ...
-  my $list =
-    Gnome2::IconList -> new(23,
-                            $adjustment,
-                            0);
+  my $list = Gnome2::IconList -> new(23, $adjustment, [qw(static-text is-editable)]);
   isa_ok($list, "Gnome2::IconList");
 
   $list -> set_hadjustment($adjustment);
