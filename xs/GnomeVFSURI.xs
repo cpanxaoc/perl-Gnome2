@@ -20,6 +20,9 @@
 
 #include "gnome2perl.h"
 
+/* this doesn't get included via gnome.h in all gnome versions */
+#include <libgnomevfs/gnome-vfs-uri.h>
+
 GnomeVFSURI * 
 SvGnomeVFSURI (SV * object)
 {

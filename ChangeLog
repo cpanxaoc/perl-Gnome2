@@ -1,3 +1,9 @@
+2003/10/07 10:34 (-0400) muppetman
+
+	* xs/GnomeVFSURI.xs: gnome-vfs-uri.h apparently gets #included via
+	the standard gnome headers in newer releases but not in older ones.
+	include libgnomevfs/gnome-vfs-uri.h directly to compile on gnome 2.0.
+
 2003/10/07 03:19 (+0200) kaffeetisch
 
 	* Makefile.PL: Use xs/gnome2perl-vfs-gtypes.c as the place for the
