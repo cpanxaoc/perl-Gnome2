@@ -1,3 +1,11 @@
+2003/12/31 11:45 (+0100) kaffeetisch
+
+	* xs/BonoboDockItem.xs: Remove functions that weren't supposed to
+	be bound in the first place (namely set_lock, detach, attach,
+	unfloat, grab_pointer, drag_floating, handle_size_request,
+	get_floating_position, and get_grip).  That also hushes compiler
+	warnings.  Thanks to muppet for catching this.
+
 2003/12/31 02:10 (-0500) muppetman
 
 	more warnings fixes:
