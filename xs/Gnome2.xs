@@ -87,4 +87,14 @@ gnome_authentication_manager_init (class)
    C_ARGS:
 	/* void */
 
+#if LIBGNOMEUI_CHECK_VERSION (2, 7, 92) /* FIXME: 2.8 */
+
+## gboolean gnome_authentication_manager_dialog_is_visible (void)
+gboolean
+gnome_authentication_manager_dialog_is_visible (class)
+    C_ARGS:
+	/* void */
+
+#endif
+
 #endif

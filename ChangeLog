@@ -1,3 +1,8 @@
+2004/08/28 13:55 (+0200) kaffeetisch
+
+	* t/GnomePasswordDialog.t, xs/Gnome2.xs: Bind and test the newly
+	added gnome_authentication_manager_dialog_is_visible.
+
 2004/08/23 21:05 (+0200) kaffeetisch
 
 	* MANIFEST, Makefile.PL, podifyenums.pl: Patch from Kevin

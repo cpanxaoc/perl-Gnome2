@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 6;
+use constant TESTS => 7;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -16,6 +16,13 @@ SKIP: {
     unless (Gnome2 -> CHECK_VERSION(2, 4, 0));
 
   Gnome2::AuthenticationManager -> init();
+
+  SKIP: {
+    skip("dialog_is_visible is new in 2.8", 1)
+      unless (Gnome2 -> CHECK_VERSION(2, 7, 92)); # FIXME: 2.8
+
+    ok(!Gnome2::AuthenticationManager -> dialog_is_visible());
+  }
 
   my $dialog = Gnome2::PasswordDialog -> new("Bla", "Bla!", "bla", "alb", 1);
   isa_ok($dialog, "Gnome2::PasswordDialog");
