@@ -128,5 +128,7 @@ sub MY::postamble {
 				$build_reqs{'perl-ExtUtils-PkgConfig'},
 			'PERL_GLIB' => $build_reqs{'perl-Glib'},
 			'PERL_GTK' => $build_reqs{'perl-Gtk2'},
+			'PERL_GNOME_CANVAS' => $build_reqs{'perl-Gnome2-Canvas'},
+			'PERL_GNOME_VFS' => $build_reqs{'perl-Gnome2-VFS'},
 		);
 }

@@ -1,3 +1,8 @@
+2004/02/15 13:32 (-0500) rwmcfa1
+
+	* Makefile.PL, perl-Gnome2.spec.in: fixed some of the dependancies, 
+	added Gnome2-VFS, Gnome2-Canvas to the spec file and the postable_rpms.
+
 2004/02/12 19:55 (+0100) kaffeetisch
 
 	* Gnome2.pm

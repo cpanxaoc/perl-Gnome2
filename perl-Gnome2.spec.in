@@ -13,9 +13,13 @@ BuildRequires: perl-ExtUtils-Depends >= @PERL_EXTUTILS_DEPENDS@
 BuildRequires: perl-ExtUtils-PkgConfig >= @PERL_EXTUTILS_PKGCONFIG@
 BuildRequires: perl-Glib >= @PERL_GLIB@
 BuildRequires: perl-Gtk2 >= @PERL_GTK@
+BuildRequires: perl-Gnome2-Canvas >= @PERL_GNOME_CANVAS@
+BuildRequires: perl-Gnome2-VFS >= @PERL_GNOME_VFS@
 Requires: libgnomeui >= %(pkg-config --modversion libgnomeui-2.0)
 Requires: perl-Glib >= @PERL_GLIB@
 Requires: perl-Gtk2 >= @PERL_GTK@
+Requires: perl-Gnome2-Canvas >= @PERL_GNOME_CANVAS@
+Requires: perl-Gnome2-VFS >= @PERL_GNOME_VFS@
 Requires: %(perl -MConfig -le 'if (defined $Config{useithreads}) { print "perl(:WITH_ITHREADS)" } else { print "perl(:WITHOUT_ITHREADS)" }')
 Requires: %(perl -MConfig -le 'if (defined $Config{usethreads}) { print "perl(:WITH_THREADS)" } else { print "perl(:WITHOUT_THREADS)" }')
 Requires: %(perl -MConfig -le 'if (defined $Config{uselargefiles}) { print "perl(:WITH_LARGEFILES)" } else { print "perl(:WITHOUT_LARGEFILES)" }')
