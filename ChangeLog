@@ -1,3 +1,10 @@
+2003/06/20 11:34 muppetman
+
+	* README, Gnome2.pm, Makefile.PL: bump version info and prepare for 
+	0.24 release.  yeah, i know this skips 0.22, but it works with other
+	0.24 versions.  no one has claimed ownership of Gnome2 and it will
+	probably continue to stagnate like this until they do.
+
 2003/06/05 23:11 muppetman
 
 	* maps: removed GnomeCanvas stuff, so that it can go into its own
