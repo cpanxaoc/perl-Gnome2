@@ -1,0 +1,37 @@
+
+these haven't been done yet (going from the reference doc indices):
+
+libbonobo:
+	not touched.  should it go in a separate module?  (still in this
+	namespace, but...)
+
+libgnome:
+	gnome-exec (perl offers the same features natively)
+	gnome-config
+	gnome-i18n
+	gnome-help
+	gnome-url
+	gnome-score
+	gnome-triggers
+
+libgnomeui:
+	anything that has to do with bonobo
+	anything that has to do with GnomeUIInfo, all the gnome-app-helper stuff
+	gnome-ui-init (the parameters... the gnome_init stuff is deprecated)
+	gnome-window
+	gnome-popup-menu (more GnomeUIInfo)
+	GnomeIconEntry
+	GnomeIconList
+	GnomeIconLookup
+	GnomeIconTheme
+	GnomeIconSelection
+	GnomeThemeFile
+	GnomeThumbnail
+	GnomePixmap
+	GnomePixmapEntry
+	GnomeScores
+
+	gnome-stock-icons (not all are deprecated)
+	gnome-uidefs (like gnome-stock-icons, not GEnums, looks messy)
+	gnome-vfs-util (no bindings for gnome-vfs, either!)
+
