@@ -10,7 +10,6 @@ GNOME_TYPE_APP	GnomeApp	GtkObject	Gnome2::App
 GNOME_TYPE_CLIENT	GnomeClient	GtkObject	Gnome2::Client
 GNOME_TYPE_COLOR_PICKER	GnomeColorPicker	GtkObject	Gnome2::ColorPicker
 GNOME_TYPE_DATE_EDIT	GnomeDateEdit	GtkObject	Gnome2::DateEdit
-GNOME_TYPE_DIALOG	GnomeDialog	GtkObject	Gnome2::Dialog
 GNOME_TYPE_DRUID	GnomeDruid	GtkObject	Gnome2::Druid
 GNOME_TYPE_DRUID_PAGE_EDGE	GnomeDruidPageEdge	GtkObject	Gnome2::DruidPageEdge
 GNOME_TYPE_DRUID_PAGE	GnomeDruidPage	GtkObject	Gnome2::DruidPage
@@ -23,19 +22,13 @@ GNOME_TYPE_ICON_ENTRY	GnomeIconEntry	GtkObject	Gnome2::IconEntry
 GNOME_TYPE_ICON_TEXT_ITEM	GnomeIconTextItem	GtkObject	Gnome2::IconTextItem
 GNOME_TYPE_ICON_LIST	GnomeIconList	GtkObject	Gnome2::IconList
 GNOME_TYPE_ICON_SELECTION	GnomeIconSelection	GtkObject	Gnome2::IconSelection
-GNOME_TYPE_MDI_CHILD	GnomeMDIChild	GtkObject	Gnome2::MDIChild
-GNOME_TYPE_MDI_GENERIC_CHILD	GnomeMDIGenericChild	GtkObject	Gnome2::MDIGenericChild
-GNOME_TYPE_MDI	GnomeMDI	GtkObject	Gnome2::MDI
-GNOME_TYPE_MESSAGE_BOX	GnomeMessageBox	GtkObject	Gnome2::MessageBox
 GNOME_TYPE_PIXMAP_ENTRY	GnomePixmapEntry	GtkObject	Gnome2::PixmapEntry
 GNOME_TYPE_PIXMAP	GnomePixmap	GtkObject	Gnome2::Pixmap
-GNOME_TYPE_PROPERTY_BOX	GnomePropertyBox	GtkObject	Gnome2::PropertyBox
 GNOME_TYPE_SCORES	GnomeScores	GtkObject	Gnome2::Scores
 GNOME_TYPE_UI_INFO_TYPE	GnomeUIInfoType	GEnum	Gnome2::UIInfoType
 GNOME_TYPE_UI_INFO_CONFIGURABLE_TYPES	GnomeUIInfoConfigurableTypes	GEnum	Gnome2::UIInfoConfigurableTypes
 GNOME_TYPE_UI_PIXMAP_TYPE	GnomeUIPixmapType	GEnum	Gnome2::UIPixmapType
 GNOME_TYPE_INTERACT_STYLE	GnomeInteractStyle	GEnum	Gnome2::InteractStyle
-GNOME_TYPE_DIALOG_TYPE	GnomeDialogType	GEnum	Gnome2::DialogType
 GNOME_TYPE_SAVE_STYLE	GnomeSaveStyle	GEnum	Gnome2::SaveStyle
 GNOME_TYPE_RESTART_STYLE	GnomeRestartStyle	GEnum	Gnome2::RestartStyle
 GNOME_TYPE_CLIENT_STATE	GnomeClientState	GEnum	Gnome2::ClientState
@@ -44,5 +37,4 @@ GNOME_TYPE_DATE_EDIT_FLAGS	GnomeDateEditFlags	GFlags	Gnome2::DateEditFlags
 GNOME_TYPE_EDGE_POSITION	GnomeEdgePosition	GEnum	Gnome2::EdgePosition
 GNOME_TYPE_FONT_PICKER_MODE	GnomeFontPickerMode	GEnum	Gnome2::FontPickerMode
 GNOME_TYPE_ICON_LIST_MODE	GnomeIconListMode	GEnum	Gnome2::IconListMode
-GNOME_TYPE_MDI_MODE	GnomeMDIMode	GEnum	Gnome2::MDIMode
 GNOME_TYPE_PREFERENCES_TYPE	GnomePreferencesType	GEnum	Gnome2::PreferencesType
