@@ -247,19 +247,19 @@ gnome_client_request_interaction (client, dialog_type, function, data=NULL)
 	GnomeDialogType dialog_type
 	SV * function
 	SV * data
-    ALIAS:
-	Gnome2::Client::request_interaction = 1
-	Gnome2::Client::request_interaction_interp = 2
     PREINIT:
 	GPerlCallback * callback;
     CODE:
 	callback = gtk2perl_gnome_interact_function_create (function, data);
-	gnome_client_request_interaction_interp (
-		client,
-		dialog_type,
-		(GtkCallbackMarshal) gtk2perl_gnome_interact_function,
-		callback,
-		(GtkDestroyNotify) gperl_callback_destroy);
+	gnome_client_request_interaction (client,
+	                                  dialog_type,
+	                                  (GnomeInteractFunction)
+	                                  	gtk2perl_gnome_interact_function,
+	                                  callback);
+	g_object_set_data_full (G_OBJECT (client),
+	                        "_interact_callback",
+	                        callback,
+	                        (GDestroyNotify) gperl_callback_destroy);
 
 # FIXME: needs renaming/aliasing.
 ## void gnome_interaction_key_return (gint key, gboolean cancel_shutdown) 

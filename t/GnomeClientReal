@@ -24,25 +24,25 @@ SKIP: {
   $client -> set_restart_style("if_running");
 
   $client -> signal_connect(save_yourself => sub {
-                              my ($client,
-                                  $phase,
-                                  $save_style,
-                                  $shutting_down,
-                                  $interact_style,
-                                  $fast) = @_;
+    my ($client,
+        $phase,
+        $save_style,
+        $shutting_down,
+        $interact_style,
+        $fast) = @_;
 
-                              warn "bla";
+    warn "bla";
 
-                              return 1;
-                            });
+    return 1;
+  });
 
   ###############################################################################
 
   Glib::Idle -> add(sub {
-                      $client -> disconnect();
-                      Gtk2 -> main_quit();
-                      return 0;
-                    });
+    $client -> disconnect();
+    Gtk2 -> main_quit();
+    return 0;
+  });
 
   Gtk2 -> main();
 }
