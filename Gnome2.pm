@@ -80,7 +80,7 @@ FIXME we have no other documentation, but we probably need it.
 
 =head1 SEE ALSO
 
-perl(1), G(1), Gtk2(1).
+perl(1), Glib(1), Gtk2(1).
 
 =head1 AUTHOR
 
