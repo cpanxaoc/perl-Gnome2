@@ -52,6 +52,13 @@ SKIP: {
   $list -> unselect_icon(1);
   $list -> unselect_all();
 
+  SKIP: {
+    skip("select_all is new in 2.8", 0)
+      unless (Gnome2 -> CHECK_VERSION(2, 7, 1)); # FIXME: 2.8
+
+    $list -> select_all();
+  }
+
   $list -> focus_icon(1);
 
   $list -> set_icon_width(42);

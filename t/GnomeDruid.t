@@ -77,8 +77,13 @@ SKIP: {
   $middle -> set_background(Gtk2::Gdk::Color -> new(0, 255, 0));
   $middle -> set_logo_background(Gtk2::Gdk::Color -> new(0, 0, 255));
   $middle -> set_title_foreground(Gtk2::Gdk::Color -> new(255, 255, 0));
-  # FIXME: borken, see #119298.
-  # $middle -> set_contents_background(Gtk2::Gdk::Color -> new(255, 255, 0));
+
+  SKIP: {
+    skip("set_contents_background was broken prior to 2.8", 0)
+      unless (Gnome2 -> CHECK_VERSION(2, 8, 0));
+
+    $middle -> set_contents_background(Gtk2::Gdk::Color -> new(255, 255, 0));
+  }
 
   $middle -> set_title("Schmuh");
 

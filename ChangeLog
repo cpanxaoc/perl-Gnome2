@@ -1,3 +1,11 @@
+2004/06/14 19:35 (+0200) kaffeetisch
+
+	* t/GnomeDruid.t: Test the fixed set_contents_background, now that
+	the properties were added.
+
+	* t/GnomeIconList.t
+	* xs/GnomeIconList.xs: Bind and test select_all.
+
 2004/05/29 18:39 (+0200) kaffeetisch
 
 	* Gnome2.pm
