@@ -1,4 +1,4 @@
-2003/11/02 11:49 (+0100) kaffeetisch
+2003/11/02 11:49 (-0500) rwmcfa1
 
 	* Makefile.PL: MakeHelper'd things, including pod generation.
 
