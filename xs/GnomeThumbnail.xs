@@ -23,6 +23,8 @@
 
 MODULE = Gnome2::Thumbnail	PACKAGE = Gnome2::ThumbnailFactory	PREFIX = gnome_thumbnail_factory_
 
+#ifdef GNOME_TYPE_THUMBNAIL_FACTORY
+
 ##  GnomeThumbnailFactory *gnome_thumbnail_factory_new (GnomeThumbnailSize size) 
 GnomeThumbnailFactory *
 gnome_thumbnail_factory_new (class, size)
@@ -114,3 +116,4 @@ gnome_thumbnail_scale_down_pixbuf (pixbuf, dest_width, dest_height)
 	int dest_width
 	int dest_height
 
+#endif /* have GnomeThumbnailFactory */

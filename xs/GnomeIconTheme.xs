@@ -21,6 +21,8 @@
 
 #include "gnome2perl.h"
 
+#ifdef GNOME_TYPE_ICON_THEME
+
 HV * 
 data_to_hv (const GnomeIconData * data)
 {
@@ -123,7 +125,11 @@ SvGnomeIconData (SV * sv)
 	return data;
 }
 
+#endif
+
 MODULE = Gnome2::IconTheme	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_theme_
+
+#ifdef GNOME_TYPE_ICON_THEME
 
 ##  GnomeIconTheme *gnome_icon_theme_new (void) 
 GnomeIconTheme *
@@ -262,3 +268,4 @@ MODULE = Gnome2::IconTheme	PACKAGE = Gnome2::IconData	PREFIX = gnome_icon_data_
 #gnome_icon_data_free (icon_data)
 #	 GnomeIconData *icon_data
 
+#endif

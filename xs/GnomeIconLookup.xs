@@ -23,6 +23,11 @@
 
 MODULE = Gnome2::IconLookup	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_
 
+### GnomeIconTheme didn't appear until about 2.0.6, according to the changelogs
+### for libgnomeui.
+
+#ifdef GNOME_TYPE_ICON_THEME
+
 # FIXME: need GnomeVFSFileInfo typemap for this.
 ###  char *gnome_icon_lookup (GnomeIconTheme *icon_theme, GnomeThumbnailFactory *thumbnail_factory, const char *file_uri, const char *custom_icon, GnomeVFSFileInfo *file_info, const char *mime_type, GnomeIconLookupFlags flags, GnomeIconLookupResultFlags *result) 
 #char *
@@ -54,3 +59,5 @@ gnome_icon_lookup_sync (icon_theme, thumbnail_factory, file_uri, custom_icon, fl
 	EXTEND (sp, 2);
 	PUSHs (sv_2mortal (newSVpv (icon, PL_na)));
 	PUSHs (sv_2mortal (newSVGnomeIconLookupFlags (result)));
+
+#endif /* have GNOME_TYPE_ICON_THEME */
