@@ -262,7 +262,7 @@ do_ui_signal_connect (GnomeUIInfo * uiinfo,
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gnome2	PREFIX = gnome_
 
-=for object Gnome2::main
+=for object Gnome2::AppHelper
 
 =for apidoc
 
@@ -349,6 +349,9 @@ gnome_accelerators_sync (class)
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gtk2::MenuShell	PREFIX = gnome_app_
 
+=for object Gnome2::AppHelper
+=cut
+
 ### void gnome_app_fill_menu (GtkMenuShell *menu_shell, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gboolean uline_accels, gint pos) 
 ### void gnome_app_fill_menu_with_data (GtkMenuShell *menu_shell, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gboolean uline_accels, gint pos, gpointer user_data) 
 ### void gnome_app_fill_menu_custom (GtkMenuShell *menu_shell, GnomeUIInfo *uiinfo, GnomeUIBuilderData *uibdata, GtkAccelGroup *accel_group, gboolean uline_accels, gint pos) 
@@ -387,6 +390,9 @@ gnome_app_find_menu_pos (parent, path)
 	PUSHs (sv_2mortal (newSViv (pos)));
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gtk2::Toolbar	PREFIX = gnome_app_
+
+=for object Gnome2::AppHelper
+=cut
 
 ## void gnome_app_fill_toolbar (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group) 
 ### void gnome_app_fill_toolbar_with_data (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group, gpointer user_data) 
@@ -507,6 +513,9 @@ gnome_app_install_appbar_menu_hints (appbar, uiinfo)
 	appbar, uiinfo
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gtk2::Statusbar	PREFIX = gnome_app_
+
+=for object Gnome2::AppHelper
+=cut
 
 ## void gnome_app_install_statusbar_menu_hints (GtkStatusbar* bar, GnomeUIInfo* uiinfo) 
 void

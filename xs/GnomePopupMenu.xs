@@ -47,6 +47,9 @@ gnome_popup_menu_new (class, uiinfo, accelgroup=NULL)
 
 MODULE = Gnome2::PopupMenu	PACKAGE = Gtk2::Menu	PREFIX = gnome_popup_menu_
 
+=for object Gnome2::PopupMenu
+=cut
+
 ## same as gtk_menu_get_accel_group
 ##  GtkAccelGroup *gnome_popup_menu_get_accel_group(GtkMenu *menu) 
 
@@ -150,6 +153,9 @@ gnome_popup_menu_append (popup, uiinfo)
 	GnomeUIInfo *uiinfo
 
 MODULE = Gnome2::PopupMenu	PACKAGE = Gtk2::Widget	PREFIX = gnome_gtk_widget_
+
+=for object Gnome2::PopupMenu
+=cut
 
 ##  void gnome_gtk_widget_add_popup_items (GtkWidget *widget, GnomeUIInfo *uiinfo, gpointer user_data) 
 void

@@ -77,6 +77,9 @@ gnome_thumbnail_factory_create_failed_thumbnail (factory, uri, mtime)
 
 MODULE = Gnome2::Thumbnail	PACKAGE = Gtk2::Gdk::Pixbuf	PREFIX = gnome_thumbnail_
 
+=for object Gnome2::Thumbnail
+=cut
+
 ##  gboolean gnome_thumbnail_has_uri (GdkPixbuf *pixbuf, const char *uri) 
 gboolean
 gnome_thumbnail_has_uri (pixbuf, uri)

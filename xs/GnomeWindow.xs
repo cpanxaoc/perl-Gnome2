@@ -22,6 +22,9 @@
 
 MODULE = Gnome2::Window	PACKAGE = Gtk2::Window	PREFIX = gnome_window_
 
+=for object Gnome2::Window
+=cut
+
 ##  void gnome_window_toplevel_set_title (GtkWindow *window, const gchar *doc_name, const gchar *app_name, const gchar *extension) 
 void
 gnome_window_toplevel_set_title (window, doc_name, app_name, extension)
