@@ -31,37 +31,28 @@ g_extension_pointer (class, path)
     C_ARGS:
 	path
 
-void
+gchar *
 gnome_util_prepend_user_home (class, file)
 	SV *class
 	gchar *file
-    PREINIT:
-	gchar *result;
-    PPCODE:
-	result = gnome_util_prepend_user_home (file);
-	EXTEND (sp, 1);
-	PUSHs (sv_2mortal (newSVGChar (result)));
-	g_free (result);
+    C_ARGS:
+	file
+    CLEANUP:
+	g_free (RETVAL);
 
-void
+gchar *
 gnome_util_home_file (class, file)
 	SV *class
 	gchar *file
-    PREINIT:
-	gchar *result;
-    PPCODE:
-	result = gnome_util_home_file (file);
-	EXTEND (sp, 1);
-	PUSHs (sv_2mortal (newSVGChar (result)));
-	g_free (result);
+    C_ARGS:
+	file
+    CLEANUP:
+	g_free (RETVAL);
 
-void
+char *
 gnome_util_user_shell (class)
 	SV *class
-    PREINIT:
-	char *result;
-    PPCODE:
-	result = gnome_util_user_shell ();
-	EXTEND (sp, 1);
-	PUSHs (sv_2mortal (newSVpv (result, PL_na)));
-	g_free (result);
+    C_ARGS:
+	/* void */
+    CLEANUP:
+	g_free (RETVAL);

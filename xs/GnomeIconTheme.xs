@@ -197,6 +197,11 @@ gnome_icon_theme_set_custom_theme (theme, theme_name)
 	GnomeIconTheme *theme
 	const char *theme_name
 
+=for apidoc
+
+Returns the filename, the icon data and the base size.
+
+=cut
 # FIXME: it seems like icon_data never gets filled.
 ##  char * gnome_icon_theme_lookup_icon (GnomeIconTheme *theme, const char *icon_name, int size, const GnomeIconData **icon_data, int *base_size) 
 void

@@ -40,6 +40,11 @@ gnome_score_log (class, score, level, higher_to_lower_score_order)
     C_ARGS:
 	score, level, higher_to_lower_score_order
 
+=for apidoc
+
+Returns a reference to an array per player, containing the name, the score and the score time.
+
+=cut
 ##  gint gnome_score_get_notable(const gchar *gamename, const gchar *level, gchar ***names, gfloat **scores, time_t **scoretimes);
 SV *
 gnome_score_get_notable (class, gamename, level)

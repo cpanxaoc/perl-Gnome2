@@ -75,6 +75,11 @@ handle_argv (int * argc, char ** argv[])
 
 MODULE = Gnome2::Program	PACKAGE = Gnome2::Program	PREFIX = gnome_program_
 
+=for apidoc
+
+The list argument is for property-value pairs.
+
+=cut
 ##  GnomeProgram * gnome_program_init (const char *app_id, const char *app_version, const GnomeModuleInfo *module_info, int argc, char **argv, const char *first_property_name, ...) 
 GnomeProgram *
 gnome_program_init (class, app_id, app_version, module_info=NULL, ...)

@@ -44,6 +44,15 @@ gnome_scores_display_with_pixmap (class, pixmap_logo, app_name, level, pos)
     C_ARGS:
 	pixmap_logo, app_name, level, pos
 
+=for apidoc
+
+=for arg names - reference to an array
+
+=for arg scores - reference to an array
+
+=for arg times - reference to an array
+
+=cut
 ##  GtkWidget* gnome_scores_new (guint n_scores, gchar **names, gfloat *scores, time_t *times, gboolean clear) 
 GtkWidget*
 gnome_scores_new (class, names, scores, times, clear)

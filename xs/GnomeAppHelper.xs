@@ -264,6 +264,81 @@ MODULE = Gnome2::AppHelper	PACKAGE = Gnome2	PREFIX = gnome_
 
 =for object Gnome2::main
 
+=for apidoc
+
+=head1 GnomeUIInfo
+
+In Gnome2 GnomeUIInfo's are often used as a convenient way to create GUI's.  In
+Perl, GnomeUIInfo's are always references to arrays of items.  Items can either
+be references to hashs or references to arrays:
+
+=over
+
+=item Hash Reference
+
+When using hash references, items are specified by giving key-value pairs.  A
+typical example:
+
+  { type => "item", label => "Quit", callback => sub { exit(0); } }
+
+For the list of valid keys, see below.
+
+=item Array References
+
+When using array references, items are a list of the following keys, in this
+order:
+
+  type,
+  label,
+  hint,
+  moreinfo,
+  pixmap_type,
+  pixmap_info,
+  accelerator_key and
+  modifiers.
+
+The example from above would become:
+
+  [ "item", "Item", undef, sub { exit(0); },
+    undef, undef, undef, undef ]
+
+=back
+
+To create multi-level structures, you use the "subtree" type and the "subtree"
+key, as in the following example:
+
+  {
+    type => "subtree",
+    label => "Radio Items",
+    subtree => [
+      {
+        type => "radioitems",
+        moreinfo => [
+          {
+            type => "item",
+            label => "A"
+          },
+          {
+            type => "item",
+            label => "B"
+          },
+          {
+            type => "item",
+            label => "C"
+          },
+          {
+            type => "item",
+            label => "D"
+          },
+          {
+            type => "item",
+            label => "E"
+          }
+        ]
+      }
+    ]
+  }
+
 =cut
 
 ## void gnome_accelerators_sync (void) 

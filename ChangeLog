@@ -1,3 +1,18 @@
+2003/11/03 22:26 (+0100) kaffeetisch
+
+	* xs/GnomeAppHelper.xs: Document GnomeUIInfo.
+
+	* xs/GnomeIconTheme.xs
+	* xs/GnomeProgram.xs
+	* xs/GnomeScore.xs
+	* xs/GnomeScores.xs: Add miscellaneous API documentation for
+	things we handle differently from C.
+
+	* xs/GnomeUIDefs.xs: Rearrange the ALIAS section.
+
+	* xs/GnomeUtil.xs: Simplify house cleaning by using CLEANUP
+	sections.
+
 2003/11/02 14:22 (-0500) muppetman
 
 	* Makefile.PL: Gtk2 and Glib have been corrected, no more silly
