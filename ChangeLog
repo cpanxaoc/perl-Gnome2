@@ -1,3 +1,10 @@
+2003/09/22 09:26 rwmcfa1
+
+	* t/GnomeIconTheme.t: return value of test #2 is an array, have to 
+	catch it as such or else we'll get only the flags which on my system
+	is empty and thus the test fails. now check that we get a 2 element 
+	array back and that the first element is defined.
+
 2003/09/23 13:38 (+0200) kaffeetisch
 
 	* t/GnomeIconTheme.t: Altered test #2 to only check whether the return

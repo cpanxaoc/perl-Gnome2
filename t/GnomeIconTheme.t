@@ -27,8 +27,9 @@ SKIP: {
 
   # XXX: $theme -> get_example_icon_name();
 
-  my $icon = $theme -> lookup_sync(undef, "/usr/bin/perl", "", "none");
-  ok(defined($icon -> [0]));
+  
+  my @icon = $theme -> lookup_sync(undef, "/usr/bin/perl", "", "none");
+  ok( scalar(@icon) == 2 and defined($icon[0]) );
 
   # XXX: $theme -> list_icons("gnome-unknown");
 
