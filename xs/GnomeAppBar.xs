@@ -25,7 +25,6 @@ MODULE = Gnome2::AppBar	PACKAGE = Gnome2::AppBar	PREFIX = gnome_appbar_
 ## GtkWidget* gnome_appbar_new (gboolean has_progress, gboolean has_status, GnomePreferencesType interactivity) 
 GtkWidget*
 gnome_appbar_new (class, has_progress, has_status, interactivity)
-	SV * class
 	gboolean has_progress
 	gboolean has_status
 	GnomePreferencesType interactivity

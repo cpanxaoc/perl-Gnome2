@@ -32,7 +32,6 @@ MODULE = Gnome2::PopupMenu	PACKAGE = Gnome2::PopupMenu	PREFIX = gnome_popup_menu
 ##  GtkWidget *gnome_popup_menu_new_with_accelgroup (GnomeUIInfo *uiinfo, GtkAccelGroup *accelgroup) 
 GtkWidget *
 gnome_popup_menu_new (class, uiinfo, accelgroup=NULL)
-	SV * class
 	GnomeUIInfo *uiinfo
 	GtkAccelGroup *accelgroup
     ALIAS:

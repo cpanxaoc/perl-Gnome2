@@ -83,7 +83,6 @@ The list argument is for property-value pairs.
 ##  GnomeProgram * gnome_program_init (const char *app_id, const char *app_version, const GnomeModuleInfo *module_info, int argc, char **argv, const char *first_property_name, ...) 
 GnomeProgram *
 gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
-	SV * class
 	const char * app_id
 	const char * app_version
 	SV * module_info
@@ -148,7 +147,6 @@ gnome_program_init (class, app_id, app_version, module_info=NULL, ...)
 ##  GnomeProgram * gnome_program_get (void) 
 GnomeProgram_ornull *
 gnome_program_get_program (class)
-	SV * class
     CODE:
 	RETVAL = gnome_program_get ();
     OUTPUT:
@@ -192,7 +190,6 @@ gnome_program_locate_file (program, domain, file_name, only_if_exists)
 ##  void gnome_program_module_register (const GnomeModuleInfo *module_info) 
 void
 gnome_program_module_register (class, module_info)
-	SV * class
 	SV * module_info
     PREINIT:
 	const GnomeModuleInfo * real_module_info = NULL;
@@ -204,7 +201,6 @@ gnome_program_module_register (class, module_info)
 ##  gboolean gnome_program_module_registered (const GnomeModuleInfo *module_info) 
 gboolean
 gnome_program_module_registered (class, module_info)
-	SV * class
 	SV * module_info
     PREINIT:
 	const GnomeModuleInfo * real_module_info = NULL;
@@ -218,7 +214,6 @@ gnome_program_module_registered (class, module_info)
 ##  const GnomeModuleInfo * gnome_program_module_load (const char * mod_name) 
 GnomeModuleInfo *
 gnome_program_module_load (class, mod_name)
-	SV * class
 	const char * mod_name
     CODE:
 	/* just to keep the compiler from complaining about const */

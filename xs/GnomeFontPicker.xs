@@ -24,9 +24,8 @@ MODULE = Gnome2::FontPicker	PACKAGE = Gnome2::FontPicker	PREFIX = gnome_font_pic
 
 GtkWidget *
 gnome_font_picker_new (class)
-	SV * class
     C_ARGS:
-	
+	/* void */
 
 ## void gnome_font_picker_set_title (GnomeFontPicker *gfp, const gchar *title) 
 void

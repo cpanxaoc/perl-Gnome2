@@ -28,7 +28,6 @@ MODULE = Gnome2::Init	PACKAGE = Gnome2	PREFIX = gnome_
 
 const char *
 dirs (class)
-	SV * class
     ALIAS:
 	Gnome2::user_dir_get = 0
 	Gnome2::user_private_dir_get = 1

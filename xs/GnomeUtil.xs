@@ -24,7 +24,6 @@ MODULE = Gnome2::Util	PACKAGE = Gnome2::Util	PREFIX = gnome_util_
 
 const char *
 g_extension_pointer (class, path)
-	SV *class
 	const char *path
     ALIAS:
 	extension = 0
@@ -33,7 +32,6 @@ g_extension_pointer (class, path)
 
 gchar *
 gnome_util_prepend_user_home (class, file)
-	SV *class
 	gchar *file
     C_ARGS:
 	file
@@ -42,7 +40,6 @@ gnome_util_prepend_user_home (class, file)
 
 gchar *
 gnome_util_home_file (class, file)
-	SV *class
 	gchar *file
     C_ARGS:
 	file
@@ -51,7 +48,6 @@ gnome_util_home_file (class, file)
 
 char *
 gnome_util_user_shell (class)
-	SV *class
     C_ARGS:
 	/* void */
     CLEANUP:

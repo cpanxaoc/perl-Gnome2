@@ -27,7 +27,6 @@ MODULE = Gnome2::Thumbnail	PACKAGE = Gnome2::ThumbnailFactory	PREFIX = gnome_thu
 ##  GnomeThumbnailFactory *gnome_thumbnail_factory_new (GnomeThumbnailSize size) 
 GnomeThumbnailFactory *
 gnome_thumbnail_factory_new (class, size)
-	SV * class
 	GnomeThumbnailSize size
     C_ARGS:
 	size
@@ -94,7 +93,6 @@ gnome_thumbnail_is_valid (pixbuf, uri, mtime)
 ##  char * gnome_thumbnail_md5 (const char *uri) 
 char *
 gnome_thumbnail_md5 (class, uri)
-	SV * class
 	const char *uri
     C_ARGS:
 	uri
@@ -102,7 +100,6 @@ gnome_thumbnail_md5 (class, uri)
 ##  char * gnome_thumbnail_path_for_uri (const char *uri, GnomeThumbnailSize size) 
 char *
 gnome_thumbnail_path_for_uri (class, uri, size)
-	SV * class
 	const char *uri
 	GnomeThumbnailSize size
     C_ARGS:

@@ -53,7 +53,9 @@ members (app)
 ## Create a new (empty) application window.  You must specify the application's
 ## name (used internally as an identifier).  The window title can be left as
 ## NULL, in which case the window's title will not be set.
-GtkWidget *gnome_app_new (SV * class, const gchar *appname, const gchar *title=NULL)
+GtkWidget *gnome_app_new (class, appname, title=NULL)
+	const gchar *appname
+	const gchar *title
     C_ARGS:
 	appname, title
 

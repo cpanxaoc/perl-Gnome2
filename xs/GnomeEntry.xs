@@ -25,7 +25,6 @@ MODULE = Gnome2::Entry	PACKAGE = Gnome2::Entry	PREFIX = gnome_entry_
 ## GtkWidget * gnome_entry_new (const gchar *history_id) 
 GtkWidget *
 gnome_entry_new (class, history_id=NULL)
-	SV * class
 	const gchar * history_id
     C_ARGS:
 	history_id

@@ -57,7 +57,6 @@ connected (client)
 
 GnomeClient *
 gnome_client_master (class)
-	SV * class
     CODE:
 	RETVAL = gnome_master_client ();
     OUTPUT:
@@ -199,15 +198,13 @@ gnome_client_flush (client)
 
 GnomeClient *
 gnome_client_new (class)
-	SV * class
     C_ARGS:
-	
+	/* void */
 
 GnomeClient *
 gnome_client_new_without_connection (class)
-	SV * class
     C_ARGS:
-	
+	/* void */
 
 ## void gnome_client_connect (GnomeClient *client) 
 void

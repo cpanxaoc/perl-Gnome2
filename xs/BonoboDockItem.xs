@@ -25,7 +25,6 @@ MODULE = Gnome2::Bonobo::DockItem	PACKAGE = Gnome2::Bonobo::DockItem	PREFIX = bo
 ##  GtkWidget *bonobo_dock_item_new (const gchar *name, BonoboDockItemBehavior behavior) 
 GtkWidget *
 bonobo_dock_item_new (class, name, behavior)
-	SV *class
 	const gchar *name
 	BonoboDockItemBehavior behavior
     C_ARGS:

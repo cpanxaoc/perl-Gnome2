@@ -24,7 +24,6 @@ MODULE = Gnome2::HRef	PACKAGE = Gnome2::HRef	PREFIX = gnome_href_
 
 GtkWidget *
 gnome_href_new (class, url, text)
-	SV * class
 	const gchar *url
 	const gchar *text
     C_ARGS:

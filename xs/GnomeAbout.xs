@@ -30,7 +30,6 @@ MODULE = Gnome2::About	PACKAGE = Gnome2::About	PREFIX = gnome_about_
 =cut
 GtkWidget *
 gnome_about_new (class, name, version, copyright, comments, authors, documenters=NULL, translator_credits=NULL, logo_pixbuf=NULL)
-	SV               * class
 	const gchar      * name
 	const gchar      * version
 	const gchar      * copyright

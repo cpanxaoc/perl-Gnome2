@@ -25,7 +25,6 @@ MODULE = Gnome2::Score	PACKAGE = Gnome2::Score	PREFIX = gnome_score_
 ##  gint gnome_score_init (const gchar *gamename) 
 gint
 gnome_score_init (class, gamename)
-	SV *class
 	const gchar *gamename
     C_ARGS:
 	gamename
@@ -33,7 +32,6 @@ gnome_score_init (class, gamename)
 ##  gint gnome_score_log (gfloat score, const gchar *level, gboolean higher_to_lower_score_order);
 gint
 gnome_score_log (class, score, level, higher_to_lower_score_order)
-	SV *class
 	gfloat score
 	const gchar *level
 	gboolean higher_to_lower_score_order
@@ -48,7 +46,6 @@ Returns a reference to an array per player, containing the name, the score and t
 ##  gint gnome_score_get_notable(const gchar *gamename, const gchar *level, gchar ***names, gfloat **scores, time_t **scoretimes);
 SV *
 gnome_score_get_notable (class, gamename, level)
-	SV *class
 	const gchar *gamename
 	const gchar *level
     PREINIT:

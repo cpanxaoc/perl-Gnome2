@@ -24,7 +24,6 @@ MODULE = Gnome2::FileEntry	PACKAGE = Gnome2::FileEntry	PREFIX = gnome_file_entry
 
 GtkWidget *
 gnome_file_entry_new (class, history_id, browse_dialog_title)
-	SV * class
 	const char *history_id
 	const char *browse_dialog_title
     C_ARGS:

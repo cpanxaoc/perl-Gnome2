@@ -130,7 +130,6 @@ MODULE = Gnome2::IconTheme	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_theme
 ##  GnomeIconTheme *gnome_icon_theme_new (void) 
 GnomeIconTheme *
 gnome_icon_theme_new (class)
-	SV * class
     C_ARGS:
 	/* void */
 
@@ -138,7 +137,7 @@ gnome_icon_theme_new (class)
 void
 gnome_icon_theme_set_search_path (theme, first_path, ...)
 	GnomeIconTheme *theme
-	SV * first_path
+	const char* first_path
     PREINIT:
 	int i;
 	const char **path = NULL;

@@ -1,3 +1,51 @@
+2003/11/07 19:35 (+0100) kaffeetisch
+
+	* xs/BonoboDock.xs
+	* xs/BonoboDockItem.xs
+	* xs/Gnome2.xs
+	* xs/GnomeAbout.xs
+	* xs/GnomeApp.xs
+	* xs/GnomeAppBar.xs
+	* xs/GnomeAppHelper.xs
+	* xs/GnomeClient.xs
+	* xs/GnomeColorPicker.xs
+	* xs/GnomeDateEdit.xs
+	* xs/GnomeDruid.xs
+	* xs/GnomeDruidPage.xs
+	* xs/GnomeDruidPageEdge.xs
+	* xs/GnomeDruidPageStandard.xs
+	* xs/GnomeEntry.xs
+	* xs/GnomeFileEntry.xs
+	* xs/GnomeFontPicker.xs
+	* xs/GnomeGConf.xs
+	* xs/GnomeHRef.xs
+	* xs/GnomeHelp.xs
+	* xs/GnomeI18N.xs
+	* xs/GnomeIconEntry.xs
+	* xs/GnomeIconList.xs
+	* xs/GnomeIconSelection.xs
+	* xs/GnomeIconTheme.xs
+	* xs/GnomeInit.xs
+	* xs/GnomeModuleInfo.xs
+	* xs/GnomePixmapEntry.xs
+	* xs/GnomePopupMenu.xs
+	* xs/GnomeProgram.xs
+	* xs/GnomeScore.xs
+	* xs/GnomeScores.xs
+	* xs/GnomeSound.xs
+	* xs/GnomeThumbnail.xs
+	* xs/GnomeUIDefs.xs
+	* xs/GnomeURL.xs
+	* xs/GnomeUtil.xs: Remove declarations of class variables to
+	silence compiler warnings and make the documentation generator
+	create correct POD.
+
+	* xs/GnomeIconTheme.xs: Use "const char*" as the type of the
+	(ignored) first_path parameter of gnome_icon_theme_set_search_path
+	to indicate that it wants strings.
+
+	* MANIFEST: druid.pl -> examples/druid.pl.  Add perl-Gnome2.spec.in.
+
 2003/11/06 10:35 (-0500) muppetman
 
 	* perl-Gnome2.spec.in: dependencies were b0rken

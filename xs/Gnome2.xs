@@ -39,7 +39,6 @@ BOOT:
 
 void
 gnome_get_version_info (class)
-	SV * class
     PPCODE:
 	EXTEND (SP, 3);
 	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MAJOR_VERSION)));
@@ -60,7 +59,6 @@ MODULE = Gnome2		PACKAGE = Gnome2::Bonobo	PREFIX = bonobo_
 
 void
 bonobo_get_version_info (class)
-	SV * class
     PPCODE:
 	EXTEND (SP, 3);
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MAJOR_VERSION)));

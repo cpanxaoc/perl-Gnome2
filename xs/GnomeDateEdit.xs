@@ -31,7 +31,6 @@ MODULE = Gnome2::DateEdit	PACKAGE = Gnome2::DateEdit	PREFIX = gnome_date_edit_
 
 GtkWidget *
 gnome_date_edit_new (class, the_time, show_time, use_24_format)
-	SV * class
 	time_t the_time
 	gboolean show_time
 	gboolean use_24_format
@@ -40,7 +39,6 @@ gnome_date_edit_new (class, the_time, show_time, use_24_format)
 
 GtkWidget *
 gnome_date_edit_new_flags (class, the_time, flags)
-	SV * class
 	time_t the_time
 	GnomeDateEditFlags flags
     C_ARGS:

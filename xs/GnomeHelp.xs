@@ -25,7 +25,6 @@ MODULE = Gnome2::Help	PACKAGE = Gnome2::Help	PREFIX = gnome_help_
 ##  gboolean gnome_help_display (const char *file_name, const char *link_id, GError **error) 
 gboolean
 gnome_help_display (class, file_name, link_id=NULL)
-	SV * class
 	const char *file_name
 	const char *link_id
     PREINIT:
@@ -61,7 +60,6 @@ gnome_help_display (class, file_name, link_id=NULL)
 ###  gboolean gnome_help_display_uri (const char *help_uri, GError **error) 
 #gboolean
 #gnome_help_display_uri (class, help_uri)
-#	SV * class
 #	const char *help_uri
 #    PREINIT:
 #	GError *error = NULL;
@@ -82,7 +80,6 @@ gnome_help_display (class, file_name, link_id=NULL)
 ##  gboolean gnome_help_display_desktop (GnomeProgram *program, const char *doc_id, const char *file_name, const char *link_id, GError **error) 
 gboolean
 gnome_help_display_desktop (class, program, doc_id, file_name, link_id=NULL)
-	SV * class
 	GnomeProgram_ornull *program
 	const char *doc_id
 	const char *file_name

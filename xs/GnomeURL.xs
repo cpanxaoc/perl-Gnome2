@@ -25,7 +25,6 @@ MODULE = Gnome2::URL	PACKAGE = Gnome2::URL	PREFIX = gnome_url_
 ##  gboolean gnome_url_show (const char *url, GError **error) 
 gboolean
 gnome_url_show (class, url)
-	SV * class
 	const char *url
     PREINIT:
 	GError *error = NULL;

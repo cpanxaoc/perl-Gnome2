@@ -25,7 +25,6 @@ MODULE = Gnome2::Scores	PACKAGE = Gnome2::Scores	PREFIX = gnome_scores_
 ##  GtkWidget * gnome_scores_display (const gchar *title, const gchar *app_name, const gchar *level, int pos) 
 GtkWidget *
 gnome_scores_display (class, title, app_name, level, pos)
-	SV * class
 	const gchar *title
 	const gchar *app_name
 	const gchar *level
@@ -36,7 +35,6 @@ gnome_scores_display (class, title, app_name, level, pos)
 ##  GtkWidget * gnome_scores_display_with_pixmap (const gchar *pixmap_logo, const gchar *app_name, const gchar *level, int pos) 
 GtkWidget *
 gnome_scores_display_with_pixmap (class, pixmap_logo, app_name, level, pos)
-	SV * class
 	const gchar *pixmap_logo
 	const gchar *app_name
 	const gchar *level
@@ -56,7 +54,6 @@ gnome_scores_display_with_pixmap (class, pixmap_logo, app_name, level, pos)
 ##  GtkWidget* gnome_scores_new (guint n_scores, gchar **names, gfloat *scores, time_t *times, gboolean clear) 
 GtkWidget*
 gnome_scores_new (class, names, scores, times, clear)
-	SV * class
 	SV * names
 	SV * scores
 	SV * times

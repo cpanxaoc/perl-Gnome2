@@ -25,7 +25,6 @@ MODULE = Gnome2::PixmapEntry	PACKAGE = Gnome2::PixmapEntry	PREFIX = gnome_pixmap
 ##  GtkWidget *gnome_pixmap_entry_new (const gchar *history_id, const gchar *browse_dialog_title, gboolean do_preview) 
 GtkWidget *
 gnome_pixmap_entry_new (class, history_id, browse_dialog_title, do_preview)
-	SV * class
 	const gchar *history_id
 	const gchar *browse_dialog_title
 	gboolean do_preview

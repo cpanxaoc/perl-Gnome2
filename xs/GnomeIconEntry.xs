@@ -25,7 +25,6 @@ MODULE = Gnome2::IconEntry	PACKAGE = Gnome2::IconEntry	PREFIX = gnome_icon_entry
 ##  GtkWidget *gnome_icon_entry_new (const gchar *history_id, const gchar *browse_dialog_title) 
 GtkWidget *
 gnome_icon_entry_new (class, history_id, browse_dialog_title)
-	SV * class
 	const gchar *history_id
 	const gchar *browse_dialog_title
     C_ARGS:

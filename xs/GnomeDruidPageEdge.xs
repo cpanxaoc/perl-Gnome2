@@ -25,7 +25,6 @@ MODULE = Gnome2::DruidPageEdge	PACKAGE = Gnome2::DruidPageEdge	PREFIX = gnome_dr
 ## GtkWidget * gnome_druid_page_edge_new (GnomeEdgePosition position);
 GtkWidget *
 gnome_druid_page_edge_new (class, position)
-	SV * class
 	GnomeEdgePosition position
     C_ARGS:
 	position
@@ -33,7 +32,6 @@ gnome_druid_page_edge_new (class, position)
 ## GtkWidget * gnome_druid_page_edge_new_aa (GnomeEdgePosition position);
 GtkWidget *
 gnome_druid_page_edge_new_aa (class, position)
-	SV * class
 	GnomeEdgePosition position
     C_ARGS:
 	position
@@ -41,7 +39,6 @@ gnome_druid_page_edge_new_aa (class, position)
 ## GtkWidget * gnome_druid_page_edge_new_with_vals (GnomeEdgePosition position, gboolean antialiased, const gchar *title, const gchar *text, GdkPixbuf *logo, GdkPixbuf *watermark, GdkPixbuf *top_watermark);
 GtkWidget *
 gnome_druid_page_edge_new_with_vals (class, position, antialiased, title=NULL, text=NULL, logo=NULL, watermark=NULL, top_watermark=NULL)
-	SV * class
 	GnomeEdgePosition position
 	gboolean antialiased
 	const gchar *title

@@ -25,7 +25,6 @@ MODULE = Gnome2::Bonobo::Dock	PACKAGE = Gnome2::Bonobo::Dock	PREFIX = bonobo_doc
 ##  GtkWidget *bonobo_dock_new (void) 
 GtkWidget *
 bonobo_dock_new (class)
-	SV * class
     C_ARGS:
 	/* void */
 

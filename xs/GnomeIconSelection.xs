@@ -25,7 +25,6 @@ MODULE = Gnome2::IconSelection	PACKAGE = Gnome2::IconSelection	PREFIX = gnome_ic
 ##  GtkWidget * gnome_icon_selection_new (void) 
 GtkWidget *
 gnome_icon_selection_new (class)
-	SV * class
     C_ARGS:
 	/* void */
 

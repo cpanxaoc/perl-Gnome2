@@ -344,7 +344,6 @@ key, as in the following example:
 ## void gnome_accelerators_sync (void) 
 void
 gnome_accelerators_sync (class)
-	SV * class
     C_ARGS:
 	/*void*/
 
@@ -490,7 +489,6 @@ gnome_app_install_menu_hints (app, uiinfo)
 ## void gnome_app_setup_toolbar (GtkToolbar *toolbar, BonoboDockItem *dock_item) 
 void
 gnome_app_setup_toolbar (class, toolbar, dock_item)
-	SV *class
 	GtkToolbar *toolbar
 	BonoboDockItem *dock_item
     C_ARGS:

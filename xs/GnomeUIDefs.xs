@@ -24,7 +24,6 @@ MODULE = Gnome2::UIDefs	PACKAGE = Gnome2::UIDefs
 
 SV *
 constants (class)
-	SV *class
     ALIAS:
 	pad = 1
 	pad_small = 2

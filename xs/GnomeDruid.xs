@@ -45,9 +45,8 @@ buttons (druid)
 
 GtkWidget *
 gnome_druid_new (class)
-	SV * class
     C_ARGS:
-	
+	/* void */
 
 ## void gnome_druid_set_buttons_sensitive (GnomeDruid *druid, gboolean back_sensitive, gboolean next_sensitive, gboolean cancel_sensitive, gboolean help_sensitive) 
 void
@@ -98,7 +97,6 @@ gnome_druid_set_page (druid, page)
 ## GtkWidget * gnome_druid_new_with_window (const char *title, GtkWindow *parent, gboolean close_on_cancel, GtkWidget **window);
 void
 gnome_druid_new_with_window (class, title, parent, close_on_cancel)
-	SV * class
 	const char * title
 	GtkWindow_ornull * parent
 	gboolean close_on_cancel

@@ -25,14 +25,12 @@ MODULE = Gnome2::DruidPageStandard	PACKAGE = Gnome2::DruidPageStandard	PREFIX = 
 ## GtkWidget*  gnome_druid_page_standard_new   (void);
 GtkWidget * 
 gnome_druid_page_standard_new (class)
-	SV * class
     C_ARGS:
-	
+	/* void */
 
 ## GtkWidget*  gnome_druid_page_standard_new_with_vals (const gchar *title, GdkPixbuf *logo, GdkPixbuf *top_watermark);
 GtkWidget *
 gnome_druid_page_standard_new_with_vals (class, title, logo=NULL, top_watermark=NULL)
-	SV * class
 	const gchar *title
 	GdkPixbuf *logo
 	GdkPixbuf *top_watermark

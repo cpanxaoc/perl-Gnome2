@@ -24,9 +24,8 @@ MODULE = Gnome2::DruidPage	PACKAGE = Gnome2::DruidPage	PREFIX = gnome_druid_page
 
 GtkWidget *
 gnome_druid_page_new (class)
-	SV * class
     C_ARGS:
-	
+	/* void */
 
 gboolean
 gnome_druid_page_next (druid_page)

@@ -13,11 +13,12 @@ debian/compat
 debian/control
 debian/copyright
 debian/rules
-druid.pl
+examples/druid.pl
 genmaps.pl
 gnome2perl.h
 gnome2perl.typemap
 maps
+perl-Gnome2.spec.in
 t/Gnome.t
 t/GnomeApp.t
 t/GnomeAppBar.t
@@ -30,8 +31,8 @@ t/GnomeDruid.t
 t/GnomeEntry.t
 t/GnomeFileEntry.t
 t/GnomeFontPicker.t
-t/GnomeHelp
 t/GnomeHRef.t
+t/GnomeHelp
 t/GnomeI18N.t
 t/GnomeIconEntry.t
 t/GnomeIconList.t

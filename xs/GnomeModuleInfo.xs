@@ -24,7 +24,6 @@ MODULE = Gnome2::ModuleInfo	PACKAGE = Gnome2::ModuleInfo
 
 GnomeModuleInfo *
 module_info (class)
-	SV * class
     ALIAS:
 	Gnome2::ModuleInfo::libgnome = 0
 	Gnome2::ModuleInfo::libgnomeui = 1

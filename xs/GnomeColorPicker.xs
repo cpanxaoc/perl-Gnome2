@@ -24,9 +24,8 @@ MODULE = Gnome2::ColorPicker	PACKAGE = Gnome2::ColorPicker	PREFIX = gnome_color_
 
 GtkWidget *
 gnome_color_picker_new (class)
-	SV * class
     C_ARGS:
-	
+	/* void */
 
 ## void gnome_color_picker_set_d (GnomeColorPicker *cp, gdouble r, gdouble g, gdouble b, gdouble a) 
 void
