@@ -1,3 +1,12 @@
+2003/07/11 01:00 muppetman
+
+	* gnomeuiinfo.typemap, gnome2perl.h, Makefile.PL, xs/GnomeAppHelper.xs:
+	added support for GnomeUIInfo, and thus for $app->create_menu,
+	$app->create_toolbar, and a couple other of the gnome-app-helper.h functions.
+	ported the code from gtk-perl to retain some unity in the code, but 
+	expect a reference to an array of GnomeUIInfo hashes, not a list of them
+	on the stack.
+
 2003/07/05 07:08 pcg
 
 	* META.yml: Add module meta-data in YAML for CPAN.
