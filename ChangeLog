@@ -1,3 +1,8 @@
+2003/09/20 23:32 rwmcfa1
+
+	* xs/GnomeIconTheme.xs: list -> results, type-o i guess. wouldn't 
+	compile now does.
+
 2003/09/21 02:00 kaffeetisch
 
 	Big overhaul.

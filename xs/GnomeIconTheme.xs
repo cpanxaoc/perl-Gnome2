@@ -233,7 +233,7 @@ gnome_icon_theme_list_icons (theme, context=NULL)
 	GList * results, * i;
     PPCODE:
 	results = gnome_icon_theme_list_icons (theme, context);
-	if (!list)
+	if (!results)
 		XSRETURN_EMPTY;
 	for (i = results ; i != NULL ; i = i->next)
 		XPUSHs (sv_2mortal (newSVpv (i->data, PL_na)));
