@@ -1,3 +1,9 @@
+Overview of changes in Gnome2 1.012
+===================================
+
+* Fix man small glitches in the test suite; add a new test for GnomeSound.
+* Bind and test new API in GnomePasswordDialog.
+
 Overview of changes in Gnome2 1.011
 ===================================
 
