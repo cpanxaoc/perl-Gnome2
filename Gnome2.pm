@@ -32,7 +32,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.20';
 
 sub dl_load_flags { 0x01 }
 
@@ -50,13 +50,10 @@ Gnome2 - Perl interface to the 2.x series of the Gnome libraries
 
 =head1 SYNOPSIS
 
-  use Gtk2;
-  Gtk2->init;
-  my $window = Gtk2::Window->new ('toplevel');
-  my $button = Gtk2::Button->new ('Quit');
-  $button->signal_connect (clicked => sub { Gtk2->main_quit });
-  $window->add ($button);
-  $window->show_all;
+  use Gnome2;
+  Gnome2::Program->init ($appname, $appversion);
+  my $app = Gnome2::App->new ($appname);
+  $app->show;
   Gtk2->main;
 
 =head1 ABSTRACT
@@ -85,6 +82,8 @@ perl(1), Glib(1), Gtk2(1).
 =head1 AUTHOR
 
 muppet E<lt>scott@asofyet.orgE<gt>
+
+If you want to own this project, please let me know.
 
 =head1 COPYRIGHT AND LICENSE
 
