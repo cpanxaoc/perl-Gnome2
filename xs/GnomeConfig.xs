@@ -177,6 +177,61 @@ get_bool_with_default (class, path)
 	PUSHs (sv_2mortal (newSVuv (def)));
 	PUSHs (sv_2mortal (newSVuv (retval)));
 
+SV *
+get_vector (class, path)
+	const char *path
+    ALIAS:
+	Gnome2::Config::get_vector = 0
+	Gnome2::Config::Private::get_vector = 1
+    PREINIT:
+	char **argv = NULL;
+	int argc, i;
+	AV *array = newAV ();
+    CODE:
+	switch (ix) {
+		case 0: gnome_config_get_vector (path, &argc, &argv); break;
+		case 1: gnome_config_private_get_vector (path, &argc, &argv); break;
+	}
+
+	if (argv != NULL) {
+		for (i = 0; i < argc; i++)
+			av_push (array, newSVpv (argv[i], PL_na));
+
+		g_free (argv);
+	}
+
+	RETVAL = newRV_noinc ((SV *) array);
+    OUTPUT:
+	RETVAL
+
+void
+get_vector_with_default (class, path)
+	const char *path
+    ALIAS:
+	Gnome2::Config::get_vector_with_default = 0
+	Gnome2::Config::Private::get_vector_with_default = 1
+    PREINIT:
+	gboolean def;
+	char **argv = NULL;
+	int argc, i;
+	AV *array = newAV ();
+    PPCODE:
+	switch (ix) {
+		case 0: gnome_config_get_vector_with_default (path, &argc, &argv, &def); break;
+		case 1: gnome_config_private_get_vector_with_default (path, &argc, &argv, &def); break;
+	}
+
+	if (argv != NULL) {
+		for (i = 0; i < argc; i++)
+			av_push (array, newSVpv (argv[i], PL_na));
+
+		g_free (argv);
+	}
+
+	EXTEND (sp, 2);
+	PUSHs (sv_2mortal (newSVuv (def)));
+	PUSHs (sv_2mortal (newRV_noinc ((SV *) array)));
+
 # --------------------------------------------------------------------------- #
 
 void
@@ -233,6 +288,38 @@ set_bool (class, path, value)
 	switch (ix) {
 		case 0: gnome_config_set_bool (path, value); break;
 		case 1: gnome_config_private_set_bool (path, value); break;
+	}
+
+void
+set_vector (class, path, value)
+	const char *path
+	SV *value
+    ALIAS:
+	Gnome2::Config::set_vector = 0
+	Gnome2::Config::Private::set_vector = 1
+    PREINIT:
+	char **argv;
+	int length, i;
+	AV *array;
+	SV **string;
+    CODE:
+	if (! (SvOK (value) && SvROK (value) && SvTYPE (SvRV (value)) == SVt_PVAV))
+		croak ("the vector paramter must be a reference to an array");
+
+	array = (AV *) SvRV (value);
+	length = av_len (array);
+
+	argv = g_new0 (char *, length + 1);
+
+	for (i = 0; i <= length; i++) {
+		string = av_fetch (array, i, 0);
+		if (string)
+			argv[i] = SvPV_nolen (*string);
+	}
+
+	switch (ix) {
+		case 0: gnome_config_set_vector (path, length + 1, (const char **) argv); break;
+		case 1: gnome_config_private_set_vector (path, length + 1, (const char **) argv); break;
 	}
 
 # --------------------------------------------------------------------------- #
@@ -321,14 +408,6 @@ gnome_config_pop_prefix (class)
 	/* void */
 
 # --------------------------------------------------------------------------- #
-
-###  void gnome_config_set_vector_ (const char *path, int argc, const char * const argv[], gboolean priv) 
-#void
-#gnome_config_set_vector_ (path, argc, B, priv)
-#	const char *path
-#	int argc
-#	const char * const argv[]
-#	gboolean priv
 
 ###  void gnome_config_make_vector (const char *string, int *argcp, char ***argvp) 
 #void

@@ -297,3 +297,7 @@ GObject *
 gnome_icon_list_get_icon_pixbuf_item (gil, idx)
 	GnomeIconList *gil
 	int idx
+    CODE:
+	RETVAL = (GObject *) gnome_icon_list_get_icon_pixbuf_item (gil, idx);
+    OUTPUT:
+	RETVAL

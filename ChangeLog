@@ -1,3 +1,12 @@
+2003/12/12 03:35 (+0100) kaffeetisch
+
+	* xs/GnomeIconList.xs: Cast the return value of
+	gnome_icon_list_get_icon_pixbuf_item to silence the compiler.
+
+	* t/GnomeConfig.t
+	* xs/GnomeConfig.xs: Implement and test vector setters and
+	getters.
+
 2003/12/12 00:38 (+0100) kaffeetisch
 
 	* xs/GnomeDruidPageEdge.xs

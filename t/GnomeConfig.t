@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 34;
+use constant TESTS => 40;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -36,6 +36,12 @@ SKIP: {
 
   is_deeply([Gnome2::Config -> get_translated_string_with_default("/State/Whops=bla")], [1, "bla"]);
   is_deeply([Gnome2::Config -> get_translated_string_with_default("/State/Shit")], [0, "Oh yes."]);
+
+  Gnome2::Config -> set_vector("/State/Env", ["bla=blub", "blub=bla"]);
+  is_deeply(Gnome2::Config -> get_vector("/State/Env"), ["bla=blub", "blub=bla"]);
+
+  is_deeply([Gnome2::Config -> get_vector_with_default("/State/Whops")], [1, []]);
+  is_deeply([Gnome2::Config -> get_vector_with_default("/State/Env")], [0, ["bla=blub", "blub=bla"]]);
 
   Gnome2::Config -> set_int("/Geometry/Width", 1024);
   is(Gnome2::Config -> get_int("/Geometry/Width"), 1024);
@@ -71,6 +77,12 @@ SKIP: {
 
   is_deeply([Gnome2::Config::Private -> get_translated_string_with_default("/State/Whops=bla")], [1, "bla"]);
   is_deeply([Gnome2::Config::Private -> get_translated_string_with_default("/State/Shit")], [0, "Oh yes."]);
+
+  Gnome2::Config::Private -> set_vector("/State/Env", ["bla=blub", "blub=bla"]);
+  is_deeply(Gnome2::Config::Private -> get_vector("/State/Env"), ["bla=blub", "blub=bla"]);
+
+  is_deeply([Gnome2::Config::Private -> get_vector_with_default("/State/Whops")], [1, []]);
+  is_deeply([Gnome2::Config::Private -> get_vector_with_default("/State/Env")], [0, ["bla=blub", "blub=bla"]]);
 
   Gnome2::Config::Private -> set_int("/Geometry/Width", 1024);
   is(Gnome2::Config::Private -> get_int("/Geometry/Width"), 1024);
