@@ -16,7 +16,7 @@ debian/rules
 druid.pl
 genmaps.pl
 gnome2perl.h
-gnomeuiinfo.typemap
+gnome2perl.typemap
 maps
 t/Gnome.t
 t/GnomeApp.t
@@ -45,6 +45,7 @@ t/GnomeScores.t
 t/GnomeThumbnail.t
 t/GnomeURL
 t/GnomeUtil.t
+t/GnomeVFSURI.t
 xs/BonoboDock.xs
 xs/BonoboDockItem.xs
 xs/Gnome2.xs
@@ -83,4 +84,6 @@ xs/GnomeThumbnail.xs
 xs/GnomeUIDefs.xs
 xs/GnomeURL.xs
 xs/GnomeUtil.xs
+xs/GnomeVFSInit.xs
+xs/GnomeVFSURI.xs
 xs/GnomeWindow.xs

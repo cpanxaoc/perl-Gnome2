@@ -2,14 +2,14 @@
 Gnome2 version 0.38
 ===================
 
-The Gnome2 module allows a perl developer to use the Gnome libraries.
-Find out more about Gnome+ at http://www.gnome.org.
+The Gnome2 module allows a perl developer to use the Gnome libraries.  Find out
+more about Gnome+ at http://www.gnome.org.
 
 The perl bindings follow the C API very closely, and the C reference
 documentation should be considered the canonical source.
 
-To discuss gtk2-perl, ask questions and flame/praise the authors,
-join gtk-perl-list@gnome.org at lists.gnome.org.
+To discuss gtk2-perl, ask questions and flame/praise the authors, join
+gtk-perl-list@gnome.org at lists.gnome.org.
 
 Also have a look at the gtk2-perl website and sourceforge project page,
 http://gtk2-perl.sourceforge.net
@@ -27,8 +27,8 @@ To install this module type the following:
    make install
 
 
-To avoid installing to a system directory, since this is a beta release,
-you can change the installation prefix at Makefile.PL time with
+To avoid installing to a system directory, since this is a beta release, you
+can change the installation prefix at Makefile.PL time with
 
    perl Makefile.PL PREFIX=/some/other/place
 
@@ -55,6 +55,8 @@ This module requires these other modules and libraries:
   Glib >= 1.00rc2 (perl module and requisite C libraries)
   Gtk2 >= 1.00rc2 (perl module and requisite C libraries)
   libgnomeui > 2.x (C library) and dependencies
+  libbonoboui > 2.x (C library) and dependencies
+  gnome-vfs > 2.x (C library) and dependencies
 
 To build this module from source, you'll also need
 
@@ -63,21 +65,18 @@ To build this module from source, you'll also need
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2003 by the gtk2-perl team (see the file AUTHORS for a
-complete list)
+Copyright (C) 2003 by the gtk2-perl team (see the file AUTHORS)
 
-This library is free software; you can redistribute it and/or
-modify it under the terms of the GNU Library General Public
-License as published by the Free Software Foundation; either
-version 2 of the License, or (at your option) any later version.
+This library is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation; either version 2.1 of the License, or (at your option) any
+later version.
 
-This library is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-Library General Public License for more details.
+This library is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
+details.
 
-You should have received a copy of the GNU Library General Public
-License along with this library; if not, write to the 
-Free Software Foundation, Inc., 59 Temple Place - Suite 330, 
-Boston, MA  02111-1307  USA.
-
+You should have received a copy of the GNU Lesser General Public License along
+with this library; if not, write to the Free Software Foundation, Inc.,
+59 Temple Place, Suite 330, Boston, MA  02111-1307  USA

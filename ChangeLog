@@ -1,4 +1,23 @@
-2003/10/04 16:26 (+0200)
+2003/10/07 02:32 (+0200) kaffeetisch
+
+	* LICENSE
+	* Gnome2.pm
+	* README
+	* xs/*: Update license terms.
+
+	* MANIFEST
+	* Makefile.PL
+	* genmaps.pl
+	* gnome2perl.h
+	* maps
+	R gnomeuiinfo.typemap
+	A gnome2perl.typemap
+	A t/GnomeVFSURI.t
+	A xs/GnomeVFSInit.xs
+	A xs/GnomeVFSURI.xs: Add first parts of GnomeVFS bindings and the
+	necessary infrastructure.
+
+2003/10/04 16:26 (+0200) kaffeetisch
 
 	* Gnome2.pm: Alter documentation to better describe Gnome2.  Don't
 	repeat what Gtk2.pm says, but rather point the reader to it.  Add

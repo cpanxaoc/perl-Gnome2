@@ -20,31 +20,25 @@
 
 #include "gnome2perl.h"
 
-MODULE = Gnome2::I18N	PACKAGE = Gnome2::I18N	PREFIX = gnome_i18n_
+MODULE = Gnome2::VFS::Init	PACKAGE = Gnome2::VFS	PREFIX = gnome_vfs_
 
-##  const GList * gnome_i18n_get_language_list (const gchar *category_name)
-void
-gnome_i18n_get_language_list (class, category_name=NULL)
-	SV *class
-	const gchar *category_name
-    PREINIT:
-	const GList *results;
-    PPCODE:
-	results = gnome_i18n_get_language_list (category_name);
-	for ( ; results != NULL; results = results->next)
-		XPUSHs (sv_2mortal (newSVpv (results->data, PL_na)));
-
-##  void gnome_i18n_push_c_numeric_locale (void) 
-void
-gnome_i18n_push_c_numeric_locale (class)
+##  gboolean gnome_vfs_init (void) 
+gboolean
+gnome_vfs_init (class)
 	SV *class
     C_ARGS:
 	/* void */
 
-##  void gnome_i18n_pop_c_numeric_locale (void) 
-void
-gnome_i18n_pop_c_numeric_locale (class)
+##  gboolean gnome_vfs_initialized (void) 
+gboolean
+gnome_vfs_initialized (class)
 	SV *class
     C_ARGS:
 	/* void */
 
+##  void gnome_vfs_shutdown (void) 
+void
+gnome_vfs_shutdown (class)
+	SV *class
+    C_ARGS:
+	/* void */
