@@ -290,7 +290,7 @@ gnome_app_fill_menu (menu_shell, uiinfo, accel_group, uline_accels, pos)
 	uibdata.destroy_func = NULL;
 	gnome_app_fill_menu_custom (menu_shell, uiinfo, &uibdata,
 	                            accel_group, uline_accels, pos);
-	/*refill_one*/
+	refill_infos (ST (1), uiinfo);
 
 
 #### void gnome_app_ui_configure_configurable (GnomeUIInfo* uiinfo) 
@@ -325,7 +325,7 @@ gnome_app_create_menus (app, uiinfo)
 		gnome_app_create_menus_custom (app, uiinfo, &uibdata);
 	else
 		gnome_app_create_toolbar_custom (app, uiinfo, &uibdata);
-	/*refill_one*/
+	refill_infos (ST (1), uiinfo);
 
 
 ## void gnome_app_fill_toolbar (GtkToolbar *toolbar, GnomeUIInfo *uiinfo, GtkAccelGroup *accel_group) 
@@ -346,7 +346,7 @@ gnome_app_fill_toolbar (class, toolbar, uiinfo, accel_group)
 	uibdata.relay_func = NULL;
 	uibdata.destroy_func = NULL;
 	gnome_app_fill_toolbar_custom (toolbar, uiinfo, &uibdata, accel_group);
-	/*refill_one*/
+	refill_infos (ST (2), uiinfo);
 
 
 ### void gnome_app_remove_menus (GnomeApp *app, const gchar *path, gint items) 
