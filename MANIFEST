@@ -37,5 +37,6 @@ xs/GnomeFontPicker.xs
 xs/GnomeGConf.xs
 xs/GnomeHRef.xs
 xs/GnomeInit.xs
+xs/GnomePopupMenu.xs
 xs/GnomeProgram.xs
 xs/GnomeSound.xs

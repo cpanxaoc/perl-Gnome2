@@ -1,3 +1,11 @@
+2003/09/04 21:32 muppetman
+
+	* Gnome2.pm, README, debian/changelog, META.yml: prep for 0.34 release
+
+	* xs/GnomePopupMenu.xs, MANIFEST: new stuff.
+
+	* TODO: updated
+
 2003/08/22 01:57 muppetman
 
 	* Gnome2.pm, README, META.yml, debian/changelog, MANIFEST:
