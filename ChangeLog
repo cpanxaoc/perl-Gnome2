@@ -1,3 +1,10 @@
+2003/12/14 20:48 (+0100) kaffeetisch
+
+	* xs/GnomeAppHelper.xs: In the custom marshaller for GnomePopupMenu
+	callbacks, don't use GPERL_CALLBACK_MARSHAL_INIT on callback because it
+	would try to access callback->priv, which doesn't exist since callback
+	is a plain SV.
+
 2003/12/14 05:37 (+0100) kaffeetisch
 
 	* xs/GnomeAppHelper.xs

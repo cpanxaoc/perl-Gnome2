@@ -31,22 +31,25 @@ gnome2perl_popup_menu_activate_func (GtkObject *object,
 
 	if (callback) {
 		dGPERL_CALLBACK_MARSHAL_SP;
-		GPERL_CALLBACK_MARSHAL_INIT (callback);
-		
+#ifdef PERL_IMPLICIT_CONTEXT
+		PERL_SET_CONTEXT (callback);
+		SPAGAIN;
+#endif
+
 		ENTER;
 		SAVETMPS;
-		
+
 		PUSHMARK (SP);
-		
+
 		EXTEND (SP, 3);
 		PUSHs (sv_2mortal (newSVGtkObject (object)));
 		PUSHs (sv_2mortal (newSVsv (data)));
 		PUSHs (sv_2mortal (newSVGtkWidget (for_widget)));
-		
+
 		PUTBACK;
-		
+
 		call_sv (callback, G_DISCARD);
-		
+
 		FREETMPS;
 		LEAVE;
 	}
