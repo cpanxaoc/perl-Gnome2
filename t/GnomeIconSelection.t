@@ -29,7 +29,7 @@ SKIP: {
   $selection -> clear(1);
 
   $selection -> add_defaults();
-  $selection -> add_directory("/usr/share/icons");
+  $selection -> add_directory("/usr/share/pixmaps");
 
   $selection -> stop_loading();
   $selection -> show_icons();

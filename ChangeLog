@@ -1,3 +1,12 @@
+2003/12/10 00:54 (+0100) kaffeetisch
+
+	A xs/GnomeWindowIcon.xs
+	* t/Gnome.t
+	* MANIFEST: Implement and test GnomeWindowIcon.
+
+	* t/GnomeIconSelection.t: Add /usr/share/pixmaps to the search
+	path as recent libgnomeui's don't seem to do it anymore.
+
 2003/12/09 15:41 (-0500) muppetman
 
 	* Makefile.PL: a little bit churn on the pkg-config names, so we can

@@ -56,6 +56,13 @@ SKIP: {
   $window -> toplevel_set_title("test.doc", "Test", ".doc");
   is($window -> get_title(), "test : Test");
 
+  Gnome2::WindowIcon -> init();
+  Gnome2::WindowIcon -> set_from_default($window);
+  Gnome2::WindowIcon -> set_from_file($window, "/usr/share/pixmaps/yes.xpm");
+  Gnome2::WindowIcon -> set_from_file_list($window, ["/usr/share/pixmaps/yes.xpm"]);
+  Gnome2::WindowIcon -> set_default_from_file("/usr/share/pixmaps/yes.xpm");
+  Gnome2::WindowIcon -> set_default_from_file_list(["/usr/share/pixmaps/yes.xpm"]);
+
   #############################################################################
 
   my $about = Gnome2::About -> new("Test",
