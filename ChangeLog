@@ -1,3 +1,13 @@
+2003/11/03 22:40 (+0100) kaffeetisch
+
+	* README: Remove FIXME comment about lack of documentation.
+
+	* Gnome2.pm: Remove TODO comment.
+
+	R druid.pl
+	A examples/druid.pl: Move the druid example to a new sub
+	directory.
+
 2003/11/03 22:26 (+0100) kaffeetisch
 
 	* xs/GnomeAppHelper.xs: Document GnomeUIInfo.

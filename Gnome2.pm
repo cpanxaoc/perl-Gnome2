@@ -117,8 +117,6 @@ GObject->get.
 
 =over
 
-TODO: GnomeUIInfo.
-
 =item gnome_client_set_restart_command
 
 =item gnome_client_set_discard_command
