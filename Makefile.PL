@@ -56,7 +56,7 @@ $runtime_reqs{Gnome} = $gnome_pkgcfg{modversion};
 	ExtUtils::PkgConfig->find("libbonoboui-2.0 >= $build_reqs{Bonobo}");
 
 %cfgs = (libgnomeui => \%gnome_pkgcfg,
-         libbonobo => \%bonobo_pkgcfg,
+         libbonoboui => \%bonobo_pkgcfg,
 	);
 
 mkdir 'build', 0777;

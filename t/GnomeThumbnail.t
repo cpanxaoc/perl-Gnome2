@@ -17,6 +17,9 @@ SKIP: {
   skip("Couldn't connect to the session manager.", 2)
     unless (Gnome2::Client -> new() -> connected());
 
+  skip("GnomeThumbnail is new in 2.0.6", 2)
+    unless (join("", Gnome2 -> get_version_info()) >= 206);
+
   ###############################################################################
 
   my $uri = "file:///usr/share/pixmaps/yes.xpm";

@@ -1,3 +1,16 @@
+2003/09/21 17:46 kaffeetisch
+
+	* Makefile.PL: Use libbonoboui instead of libbonobo as the hash key to
+	generate correct macros.
+
+	* xs/Gnome2.xs: Implement gnome_get_version_info and
+	bonobo_get_version_info.
+
+	* t/GnomeEntry.t
+	* t/GnomeIconTheme.t
+	* t/GnomeThumbnail.t: Use the new version methods to find out if certain
+	tests are to be skipped.
+
 2003/09/21 11:00 muppetman
 
 	* Makefile.PL, gnome2perl.h: add a slight hack to generate version-

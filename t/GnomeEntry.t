@@ -27,8 +27,13 @@ SKIP: {
   $entry -> set_history_id("urgs");
   is($entry -> get_history_id(), "urgs");
 
-  $entry -> set_max_saved(23);
-  is($entry -> get_max_saved(), 23);
+  SKIP: {
+    skip("set_max_saved is new in 2.3.3", 1)
+      unless (join("", Gnome2 -> get_version_info()) >= 233);
+
+    $entry -> set_max_saved(23);
+    is($entry -> get_max_saved(), 23);
+  }
 
   $entry -> prepend_history(1, "blub");
   $entry -> append_history(0, "blab");

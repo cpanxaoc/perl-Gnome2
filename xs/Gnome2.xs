@@ -23,7 +23,28 @@
 
 MODULE = Gnome2		PACKAGE = Gnome2	PREFIX = gnome_
 
-
 BOOT:
 #include "register.xsh"
 #include "boot.xsh"
+
+void
+gnome_get_version_info (class)
+	SV * class
+    PPCODE:
+	UNUSED (class);
+	EXTEND (SP, 3);
+	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MAJOR_VERSION)));
+	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MINOR_VERSION)));
+	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MICRO_VERSION)));
+
+MODULE = Gnome2		PACKAGE = Gnome2::Bonobo	PREFIX = bonobo_
+
+void
+bonobo_get_version_info (class)
+	SV * class
+    PPCODE:
+	UNUSED (class);
+	EXTEND (SP, 3);
+	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MAJOR_VERSION)));
+	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MINOR_VERSION)));
+	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MICRO_VERSION)));
