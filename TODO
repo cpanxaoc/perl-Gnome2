@@ -2,7 +2,6 @@
 # $Header$
 #
 
-test suite!!!
 need examples
 
 these haven't been done yet (going from the reference doc indices):
@@ -21,21 +20,10 @@ libgnome:
 	gnome-triggers
 
 libgnomeui:
-	anything that has to do with bonobo
-	anything that has to do with GnomeUIInfo, all the gnome-app-helper stuff
 	gnome-ui-init (the parameters... the gnome_init stuff is deprecated)
-	gnome-window
-	gnome-popup-menu (well, it's not complete)
-	GnomeIconEntry
-	GnomeIconList
 	GnomeIconLookup
-	GnomeIconTheme
-	GnomeIconSelection
 	GnomeThemeFile
-	GnomeThumbnail
 	GnomePixmap
-	GnomePixmapEntry
-	GnomeScores
 
 	gnome-stock-icons (not all are deprecated)
 	gnome-uidefs (like gnome-stock-icons, not GEnums, looks messy)
