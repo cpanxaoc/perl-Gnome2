@@ -22,6 +22,10 @@
 
 MODULE = Gnome2		PACKAGE = Gnome2	PREFIX = gnome_
 
+=for object Gnome2::main
+
+=cut
+
 BOOT:
 #include "register.xsh"
 #include "boot.xsh"

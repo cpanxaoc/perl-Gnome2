@@ -22,6 +22,10 @@
 
 MODULE = Gnome2::Init	PACKAGE = Gnome2	PREFIX = gnome_
 
+=for object Gnome2::main
+
+=cut
+
 const char *
 dirs (class)
 	SV * class

@@ -262,6 +262,10 @@ do_ui_signal_connect (GnomeUIInfo * uiinfo,
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gnome2	PREFIX = gnome_
 
+=for object Gnome2::main
+
+=cut
+
 ## void gnome_accelerators_sync (void) 
 void
 gnome_accelerators_sync (class)

@@ -1,3 +1,10 @@
+2003/11/02 11:49 (+0100) kaffeetisch
+
+	* Makefile.PL: MakeHelper'd things, including pod generation.
+
+	* xs/Gnome2.xs, xs/GnomeAppHelper.xs, xs/GnomeInit.xs: added a for 
+	object pod so that Gnome2.pm's won't be overwritten.
+
 2003/11/01 13:21 (+0100) kaffeetisch
 
 	* xs/Gnome2.xs: Implement Gnome2::check_version.
