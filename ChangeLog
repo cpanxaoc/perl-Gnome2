@@ -1,3 +1,7 @@
+2003/09/21 20:19 rwmcfa1
+
+	* Makefile.PL: fixed bug in specfile generation
+
 2003/09/21 20:13 kaffeetisch
 
 	* xs/GnomeIconLookup.xs: Allow undef to be passed for the cutom_icon
