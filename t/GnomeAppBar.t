@@ -50,9 +50,9 @@ SKIP: {
   #############################################################################
 
   Glib::Idle -> add(sub {
-                      Gtk2 -> main_quit();
-                      return 0;
-                    });
+    Gtk2 -> main_quit();
+    return 0;
+  });
 
   Gtk2 -> main();
 }
