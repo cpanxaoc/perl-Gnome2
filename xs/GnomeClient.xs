@@ -101,10 +101,9 @@ gnome_client_set_priority (client, priority)
 ## void gnome_client_set_shutdown_command (GnomeClient *client, gint argc, gchar *argv[]) 
 ## void gnome_client_set_clone_command (GnomeClient *client, gint argc, gchar *argv[]) 
 void
-set_commands (client, ...)
+set_restart_command (client, ...)
 	GnomeClient *client
     ALIAS:
-	Gnome2::Client::set_restart_command = 0
 	Gnome2::Client::set_discard_command = 1
 	Gnome2::Client::set_resign_command = 2
 	Gnome2::Client::set_shutdown_command = 3

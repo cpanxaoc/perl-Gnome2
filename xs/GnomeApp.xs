@@ -23,10 +23,9 @@
 MODULE = Gnome2::App	PACKAGE = Gnome2::App	PREFIX = gnome_app_
 
 SV *
-members (app)
+prefix (app)
 	GnomeApp *app
     ALIAS:
-	Gnome2::App::prefix = 0
 	Gnome2::App::dock = 1
 	Gnome2::App::statusbar = 2
 	Gnome2::App::vbox = 3

@@ -507,7 +507,6 @@ gnome_app_create_menus (app, uiinfo)
 	GnomeApp *app
 	GnomeUIInfo *uiinfo
     ALIAS:
-	create_menus = 0
 	create_toolbar = 1
     CODE:
 	if (ix == 0)

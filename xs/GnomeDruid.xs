@@ -23,10 +23,9 @@
 MODULE = Gnome2::Druid	PACKAGE = Gnome2::Druid	PREFIX = gnome_druid_
 
 GtkWidget *
-buttons (druid)
+help (druid)
 	GnomeDruid * druid
     ALIAS:
-	Gnome2::Druid::help = 0
 	Gnome2::Druid::back = 1
 	Gnome2::Druid::next = 2
 	Gnome2::Druid::cancel = 3

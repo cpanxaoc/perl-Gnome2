@@ -1,3 +1,15 @@
+2004/03/02 04:34 (+0100) kaffeetisch
+
+	* xs/GnomeApp.xs
+	* xs/GnomeAppHelper.xs
+	* xs/GnomeClient.xs
+	* xs/GnomeConfig.xs
+	* xs/GnomeDruid.xs
+	* xs/GnomeInit.xs
+	* xs/GnomeModuleInfo.xs
+	* xs/GnomeUIDefs.xs: Rearrange ALIAS sections to avoid unneeded
+	xsubs.
+
 2004/03/02 03:35 (+0100) kaffeetisch
 
 	* t/GnomeConfig.t

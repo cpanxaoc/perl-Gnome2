@@ -23,9 +23,8 @@
 MODULE = Gnome2::ModuleInfo	PACKAGE = Gnome2::ModuleInfo
 
 GnomeModuleInfo *
-module_info (class)
+libgnome (class)
     ALIAS:
-	Gnome2::ModuleInfo::libgnome = 0
 	Gnome2::ModuleInfo::libgnomeui = 1
 	Gnome2::ModuleInfo::bonobo = 2
     CODE:
@@ -41,13 +40,12 @@ module_info (class)
 
 
 SV *
-members (module_info)
+name (module_info)
 	GnomeModuleInfo * module_info
     ALIAS:
-	Gnome2::ModuleInfo::name	= 0
-	Gnome2::ModuleInfo::version	= 1
+	Gnome2::ModuleInfo::version = 1
 	Gnome2::ModuleInfo::description = 2
-	Gnome2::ModuleInfo::opt_prefix	= 3
+	Gnome2::ModuleInfo::opt_prefix = 3
     CODE:
 	switch (ix) {
 		case 0: RETVAL = newSVpv (module_info->name, PL_na); break;

@@ -52,7 +52,6 @@ char *
 get_string (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_string = 0
 	Gnome2::Config::get_translated_string = 1
 	Gnome2::Config::Private::get_string = 2
 	Gnome2::Config::Private::get_translated_string = 3
@@ -78,7 +77,6 @@ void
 get_string_with_default (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_string_with_default = 0
 	Gnome2::Config::get_translated_string_with_default = 1
 	Gnome2::Config::Private::get_string_with_default = 2
 	Gnome2::Config::Private::get_translated_string_with_default = 3
@@ -104,7 +102,6 @@ int
 get_int (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_int = 0
 	Gnome2::Config::Private::get_int = 1
     CODE:
 	switch (ix) {
@@ -124,7 +121,6 @@ void
 get_int_with_default (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_int_with_default = 0
 	Gnome2::Config::Private::get_int_with_default = 1
     PREINIT:
 	int retval = 0;
@@ -143,7 +139,6 @@ gdouble
 get_float (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_float = 0
 	Gnome2::Config::Private::get_float = 1
     CODE:
 	switch (ix) {
@@ -163,7 +158,6 @@ void
 get_float_with_default (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_float_with_default = 0
 	Gnome2::Config::Private::get_float_with_default = 1
     PREINIT:
 	gdouble retval = 0.0;
@@ -182,7 +176,6 @@ gboolean
 get_bool (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_bool = 0
 	Gnome2::Config::Private::get_bool = 1
     CODE:
 	switch (ix) {
@@ -202,7 +195,6 @@ void
 get_bool_with_default (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_bool_with_default = 0
 	Gnome2::Config::Private::get_bool_with_default = 1
     PREINIT:
 	gboolean retval = FALSE;
@@ -221,7 +213,6 @@ SV *
 get_vector (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_vector = 0
 	Gnome2::Config::Private::get_vector = 1
     PREINIT:
 	char **argv = NULL;
@@ -253,7 +244,6 @@ void
 get_vector_with_default (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::get_vector_with_default = 0
 	Gnome2::Config::Private::get_vector_with_default = 1
     PREINIT:
 	gboolean def;
@@ -284,7 +274,6 @@ set_string (class, path, value)
 	const char *path
 	const char *value
     ALIAS:
-	Gnome2::Config::set_string = 0
 	Gnome2::Config::set_translated_string = 1
 	Gnome2::Config::Private::set_string = 2
 	Gnome2::Config::Private::set_translated_string = 3
@@ -301,7 +290,6 @@ set_int (class, path, value)
 	const char *path
 	int value
     ALIAS:
-	Gnome2::Config::set_int = 0
 	Gnome2::Config::Private::set_int = 1
     CODE:
 	switch (ix) {
@@ -314,7 +302,6 @@ set_float (class, path, value)
 	const char *path
 	gdouble value
     ALIAS:
-	Gnome2::Config::set_float = 0
 	Gnome2::Config::Private::set_float = 1
     CODE:
 	switch (ix) {
@@ -327,7 +314,6 @@ set_bool (class, path, value)
 	const char *path
 	gboolean value
     ALIAS:
-	Gnome2::Config::set_bool = 0
 	Gnome2::Config::Private::set_bool = 1
     CODE:
 	switch (ix) {
@@ -340,7 +326,6 @@ set_vector (class, path, value)
 	const char *path
 	SV *value
     ALIAS:
-	Gnome2::Config::set_vector = 0
 	Gnome2::Config::Private::set_vector = 1
     PREINIT:
 	char **argv;
@@ -370,10 +355,9 @@ set_vector (class, path, value)
 # --------------------------------------------------------------------------- #
 
 gboolean
-bools (class, path)
+has_section (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::has_section = 0
 	Gnome2::Config::Private::has_section = 1
 	Gnome2::Config::sync_file = 2
 	Gnome2::Config::Private::sync_file = 3
@@ -389,10 +373,9 @@ bools (class, path)
 	RETVAL
 
 void
-voids (class, path)
+drop_file (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::drop_file = 0
 	Gnome2::Config::Private::drop_file = 1
 	Gnome2::Config::clean_file = 2
 	Gnome2::Config::Private::clean_file = 3
@@ -416,7 +399,6 @@ gchar *
 get_real_path (class, path)
 	gchar *path
     ALIAS:
-	Gnome2::Config::get_real_path = 0
 	Gnome2::Config::Private::get_real_path = 1
     CODE:
 	switch (ix) {
@@ -460,7 +442,6 @@ SV *
 gnome_config_init_iterator (class, path)
 	const char *path
     ALIAS:
-	Gnome2::Config::init_iterator = 0
 	Gnome2::Config::init_iterator_sections = 1
 	Gnome2::Config::Private::init_iterator = 2
 	Gnome2::Config::Private::init_iterator_sections = 3
