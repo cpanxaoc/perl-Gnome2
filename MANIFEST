@@ -8,11 +8,6 @@ META.yml			Module meta-data in YAML
 Makefile.PL
 README
 TODO
-debian/changelog
-debian/compat
-debian/control
-debian/copyright
-debian/rules
 examples/druid.pl
 genmaps.pl
 gnome2perl.h
