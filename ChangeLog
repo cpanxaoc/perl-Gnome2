@@ -1,3 +1,12 @@
+2003/11/01 13:21 (+0100) kaffeetisch
+
+	* xs/Gnome2.xs: Implement Gnome2::check_version.
+
+	* t/GnomeThumbnail.t
+	* t/GnomeIconTheme.t
+	* t/GnomeIconEntry.t
+	* t/GnomeEntry.t: Use the new Gnome2::check_version.
+
 2003/11/01 01:33 (-0500) muppetman
 
 	* t/GnomeIconList.t: put in a FIXME 

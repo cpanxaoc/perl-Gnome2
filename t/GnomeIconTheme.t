@@ -20,7 +20,7 @@ SKIP: {
     unless (Gnome2::Client -> new() -> connected());
 
   skip("GnomeIconTheme is new in 2.0.6", TESTS)
-    unless (join("", Gnome2 -> get_version_info()) >= 206);
+    unless (Gnome2 -> check_version(2, 0, 6));
 
   #############################################################################
 

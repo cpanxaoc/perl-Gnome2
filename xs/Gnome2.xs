@@ -35,6 +35,16 @@ gnome_get_version_info (class)
 	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MINOR_VERSION)));
 	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MICRO_VERSION)));
 
+bool
+gnome_check_version (class, major, minor, micro)
+	int major
+	int minor
+	int micro
+    CODE:
+	RETVAL = LIBGNOMEUI_CHECK_VERSION (major, minor, micro);
+    OUTPUT:
+	RETVAL
+
 MODULE = Gnome2		PACKAGE = Gnome2::Bonobo	PREFIX = bonobo_
 
 void
