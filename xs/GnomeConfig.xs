@@ -68,6 +68,11 @@ get_string (class, path)
     CLEANUP:
 	g_free (RETVAL);
 
+=for apidoc
+
+Returns a boolean indicating whether the default was used and the actual value.
+
+=cut
 void
 get_string_with_default (class, path)
 	const char *path
@@ -108,6 +113,11 @@ get_int (class, path)
     OUTPUT:
 	RETVAL
 
+=for apidoc
+
+Returns a boolean indicating whether the default was used and the actual value.
+
+=cut
 void
 get_int_with_default (class, path)
 	const char *path
@@ -141,6 +151,11 @@ get_float (class, path)
     OUTPUT:
 	RETVAL
 
+=for apidoc
+
+Returns a boolean indicating whether the default was used and the actual value.
+
+=cut
 # FIXME: seems to return integers instead of floats.
 void
 get_float_with_default (class, path)
@@ -175,6 +190,11 @@ get_bool (class, path)
     OUTPUT:
 	RETVAL
 
+=for apidoc
+
+Returns a boolean indicating whether the default was used and the actual value.
+
+=cut
 void
 get_bool_with_default (class, path)
 	const char *path
@@ -221,6 +241,11 @@ get_vector (class, path)
     OUTPUT:
 	RETVAL
 
+=for apidoc
+
+Returns a boolean indicating whether the default was used and the actual value.
+
+=cut
 void
 get_vector_with_default (class, path)
 	const char *path
@@ -453,6 +478,11 @@ gnome_config_init_iterator (class, path)
 
 MODULE = Gnome2::Config	PACKAGE = Gnome2::Config::Iterator	PREFIX = gnome_config_iterator_
 
+=for apidoc
+
+Returns the new GnomeConfigIterator, the key, and the value.
+
+=cut
 void
 gnome_config_iterator_next (handle)
 	SV *handle

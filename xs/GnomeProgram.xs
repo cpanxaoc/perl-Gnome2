@@ -162,6 +162,11 @@ const char* gnome_program_get_app_id (GnomeProgram *program);
 const char* gnome_program_get_app_version (GnomeProgram *program);
 
 
+=for apidoc
+
+Returns a list of locations.
+
+=cut
 ##  gchar * gnome_program_locate_file (GnomeProgram *program, GnomeFileDomain domain, const gchar *file_name, gboolean only_if_exists, GSList **ret_locations) 
 void
 gnome_program_locate_file (program, domain, file_name, only_if_exists)

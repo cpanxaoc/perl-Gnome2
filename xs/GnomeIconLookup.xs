@@ -32,7 +32,6 @@ MODULE = Gnome2::IconLookup	PACKAGE = Gnome2::IconTheme	PREFIX = gnome_icon_
 Returns the icon name and a GnomeIconLookupFlags.
 
 =cut
-
 ##  char *gnome_icon_lookup (GnomeIconTheme *icon_theme, GnomeThumbnailFactory *thumbnail_factory, const char *file_uri, const char *custom_icon, GnomeVFSFileInfo *file_info, const char *mime_type, GnomeIconLookupFlags flags, GnomeIconLookupResultFlags *result) 
 void
 gnome_icon_lookup (icon_theme, thumbnail_factory, file_uri, custom_icon, file_info, mime_type, flags)

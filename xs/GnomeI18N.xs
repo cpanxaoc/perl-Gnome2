@@ -22,6 +22,11 @@
 
 MODULE = Gnome2::I18N	PACKAGE = Gnome2::I18N	PREFIX = gnome_i18n_
 
+=for apidoc
+
+Returns a list of languages.
+
+=cut
 ##  const GList * gnome_i18n_get_language_list (const gchar *category_name)
 void
 gnome_i18n_get_language_list (class, category_name=NULL)
