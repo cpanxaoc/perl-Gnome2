@@ -130,6 +130,7 @@ foreach (`./foo`) {
 		}
 	}
 	(my $fullname = $p[1]) =~ s/^$prefix/$pkg\::/;
+	$fullname =~ s/\::$//;
 	print join("\t", @p, $fullname), "\n";
 }
 
