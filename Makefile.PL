@@ -9,6 +9,31 @@ use ExtUtils::Depends;
 use Glib::PkgConfig;
 use Gtk2::CodeGen;
 
+# minimum required version of Gtk2 with which we can work.
+my $req_gtk2_ver = '0.90';
+
+# Writing a fake Makefile ensures that CPAN will pick up the correct
+# dependencies and install them.
+unless (eval "use ExtUtils::Depends;"
+           . "use Glib::PkgConfig;"
+           # just seeing if Glib is available isn't enough, make sure
+           # it's recent enough, too 
+           . "use Gtk2 $req_gtk2_ver;"
+           . "1") {
+   warn "$@\n";
+   WriteMakefile(
+         PREREQ_FATAL => 1,
+         PREREQ_PM    => {
+            Gtk2::              => $req_gtk2_ver, # keep this in sync
+            ExtUtils::Depends:: => 0.1,
+         },
+   );
+   exit 1; # not reached
+}
+
+# now let's get started on the real work...
+# in theory, getting what we need to build libgnomeui should 
+# also get everything we need for libgnome.
 %pkgcfg = Glib::PkgConfig->find ('libgnomeui-2.0');
 
 mkdir 'build', 0777;
@@ -38,7 +63,6 @@ $gnome2->save_config ('build/IFiles.pm');
 WriteMakefile(
     NAME            => 'Gnome2',
     VERSION_FROM    => 'Gnome2.pm', # finds $VERSION
-    PREREQ_PM       => {Gtk2 => 0.24}, # e.g., Module::Name => 1.1
     ABSTRACT_FROM   => 'Gnome2.pm', # retrieve abstract from module
     XSPROTOARG      => '-noprototypes',
     $gnome2->get_makefile_vars,

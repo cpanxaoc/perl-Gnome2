@@ -1,3 +1,8 @@
+2003/07/23 16:46 muppetman
+
+	* README, Makefile.PL: update required versionf of Gtk2 and Glib to
+	ensure that the gchar_own typemap (introduced in 0.90) is available.
+
 2003/07/18 12:49 muppetman
 
 	* xs/GnomeProgram.xs: change default for the module_info to
