@@ -81,7 +81,16 @@ SKIP: {
 
   like($list -> get_items_per_line(), qr/^\d+$/);
 
-  isa_ok($list -> get_icon_text_item(1), "Gnome2::IconTextItem");
+  my $item = $list -> get_icon_text_item(1);
+  isa_ok($item, "Gnome2::IconTextItem");
+  $item -> configure(10, 10, 23, "Sans 12", "BLA!", 0, 1);
+  is($item -> get_text(), "BLA!");
+  $item -> setxy(11, 11);
+  $item -> select(1);
+  $item -> focus(1);
+  $item -> start_editing();
+  isa_ok($item -> get_editable(), "Gtk2::Editable");
+  $item -> stop_editing(0);
 
   # isa_ok($list -> get_icon_pixbuf_item(1), "Gnome2::Canvas::Pixbuf");
 
