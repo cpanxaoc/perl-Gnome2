@@ -1,3 +1,7 @@
+2003/09/21 18:24 kaffeetisch
+
+	* xs/GnomeIconTheme.xs: Free strdup'ed strings.
+
 2003/09/21 17:46 kaffeetisch
 
 	* Makefile.PL: Use libbonoboui instead of libbonobo as the hash key to

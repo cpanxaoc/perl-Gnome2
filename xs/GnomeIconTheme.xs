@@ -241,8 +241,10 @@ gnome_icon_theme_list_icons (theme, context=NULL)
 	results = gnome_icon_theme_list_icons (theme, context);
 	if (!results)
 		XSRETURN_EMPTY;
-	for (i = results ; i != NULL ; i = i->next)
+	for (i = results ; i != NULL ; i = i->next) {
 		XPUSHs (sv_2mortal (newSVpv (i->data, PL_na)));
+		g_free (i->data);
+	}
 	g_list_free (results);
 
 ##  char * gnome_icon_theme_get_example_icon_name (GnomeIconTheme *theme) 
