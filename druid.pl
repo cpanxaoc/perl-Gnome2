@@ -1,11 +1,7 @@
-#!/usr/bin/perl -w -I ../G/blib/arch -I ../Gtk2/blib/arch -I ../G/blib/lib -I ../Gtk2/blib/lib -I ../blib/arch -I ../blib/lib -Iblib/arch -Iblib/lib
+#!/usr/bin/perl -w
 #
 # $Header$
 #
-
-#use blib '../G';
-#use blib '../Gtk2';
-#use blib '.';
 
 use Gnome2;
 use Cwd;
@@ -32,10 +28,10 @@ Gnome2::Program->init ('Druid Test', '1.0beta', 'libgnomeui',
 		       app_libdir => cwd);
 
 ## we have to use get_property instead of get here because 
-## Gnome2::Program::get clobbers G::Object::get.
+## Gnome2::Program::get clobbers Glib::Object::get.
 print "app-libdir ".(Gnome2::Program->get->get_property ('app_libdir'))."\n";
 ## or, we could do it this way.
-print "app-libdir ".(G::Object::get (Gnome2::Program->get, 'app_libdir'))."\n";
+print "app-libdir ".(Glib::Object::get (Gnome2::Program->get, 'app_libdir'))."\n";
 
 #use Data::Dumper;
 #print Dumper([ Gnome2::Program->get->list_properties ]);
