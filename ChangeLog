@@ -1,3 +1,8 @@
+2003/11/11 00:36 (-0500) muppetman
+
+	* MANIFEST, debian/*: remove the debian packaging files, since having
+	them in the upstream dist makes it difficult for the maintainers
+
 2003/11/09 03:22 (+0100) kaffeetisch
 
 	* Makefile.PL: Require Glib 1.01.  Remove const_cccmd hack.
