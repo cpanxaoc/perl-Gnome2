@@ -23,6 +23,7 @@
 
 MODULE = Gnome2::IconList	PACKAGE = Gnome2::IconList	PREFIX = gnome_icon_list_
 
+# FIXME: should somehow enable the cool flags wrapping for this one too.
 ##  GtkWidget *gnome_icon_list_new (guint icon_width, GtkAdjustment *adj, int flags) 
 GtkWidget *
 gnome_icon_list_new (class, icon_width, adj, flags)
