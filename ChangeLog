@@ -1,3 +1,95 @@
+2003/09/21 02:00 kaffeetisch
+
+	Big overhaul.
+
+	* Makefile.PL
+	* genmaps.pl
+	* gnome2perl.h: Add libbonoboui to the requirements.
+
+	* maps: Add Bonobo typemaps.
+
+	A xs/BonoboDock.xs
+	A xs/BonoboDockItem.xs,
+	* MANIFEST: First parts of Bonobo.  Necessary for GnomeApp and
+	GnomeAppHelper.
+
+	* xs/GnomeAbout.xs: Fix indention.
+
+	* xs/GnomeApp.xs: Provide member accessors.  Implement
+	gnome_app_add_toolbar, gnome_app_add_docked,
+	gnome_app_add_dock_item, gnome_app_get_dock and
+	gnome_app_get_dock_item_by_name.
+
+	* xs/GnomeAppHelper.xs: Import the menu functions into the
+	Gtk2::MenuShell namespace.  Implement gnome_app_find_menu_pos,
+	gnome_app_fill_toolbar*, gnome_app_insert_menus*,
+	gnome_app_remove_menus, gnome_app_remove_menu_range,
+	gnome_app_install_menu_hints, gnome_app_setup_toolbar,
+	gnome_app_install_appbar_menu_hints and
+	gnome_app_install_statusbar_menu_hints.
+
+	* xs/GnomeClient.xs: Implement gnome_client_set_*_command and
+	gnome_client_add_static_arg.
+
+	* xs/GnomeDateEdit.xs: Add FIXME comment.
+
+	* xs/GnomeEntry.xs: Provide a default for the history_id parameter.
+
+	* xs/GnomeFontPicker.xs: Implement gnome_font_picker_get_title,
+	gnome_font_picker_get_font_name.  Remove
+	gnome_font_picker_get_font.
+
+	A xs/GnomeIconEntry.xs
+	A xs/GnomeIconList.xs
+	A xs/GnomeIconLookup.xs
+	A xs/GnomeIconSelection.xs
+	A xs/GnomeIconTheme.xs
+	A xs/GnomePixmapEntry.xs,
+	A xs/GnomeScores.xs,
+	A xs/GnomeThumbnail.xs,
+	A xs/GnomeWindow.xs,
+	* MANIFEST: Initial implementation.
+
+	A xs/GnomeModuleInfo.xs
+	* xs/GnomeInit.xs,
+	* MANIFEST: Moved ModuleInfo accessors into their own file.
+	Implemented member accessors.
+
+	* xs/GnomePopupMenu.xs: Fix bug that kept you from passing undef
+	for the accelgroup parameter to gnome_popup_menu_new.  Import
+	gnome_gtk_widget_add_popup_items into the Gtk2::Widget namespace.
+
+	* xs/GnomeProgram.xs: Create convenience functions to handle ARGV and
+	ModuleInfo's.  In gnome_program_locate_file, initialize the lists,
+	check if the returned value is non-NULL and use newSVGChar instead of
+	newSVpv.  Make gnome_program_module_register and
+	gnome_program_module_registered work.
+
+	R t/00.Gnome2.t
+	A t/Gnome.t
+	A t/GnomeApp.t
+	A t/GnomeAppBar.t
+	A t/GnomeAppHelper.t
+	A t/GnomeClient
+	A t/GnomeClientReal
+	A t/GnomeColorPicker.t
+	A t/GnomeDateEdit.t
+	A t/GnomeDruid.t
+	A t/GnomeEntry.t
+	A t/GnomeFileEntry.t
+	A t/GnomeFontPicker.t
+	A t/GnomeHRef.t
+	A t/GnomeIconEntry.t
+	A t/GnomeIconList.t
+	A t/GnomeIconSelection.t
+	A t/GnomeIconTheme.t
+	A t/GnomePixmapEntry.t
+	A t/GnomePopupMenu.t
+	A t/GnomeProgram.t
+	A t/GnomeScores.t
+	A t/GnomeThumbnail.t
+	* MANIFEST: New, fairly comprehensive test suite.
+
 2003/09/17 10:44 rwmcfa1
 
 	* Makefile.PL: ExtUtils::PkgConfig can now deal with version 
