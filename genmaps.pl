@@ -10,7 +10,6 @@ my @dirs = (
   '/usr/include/libgnomecanvas-2.0/libgnomecanvas',
   '/usr/include/libbonobo-2.0/bonobo',
   '/usr/include/libbonoboui-2.0/bonobo',
-  'build',
 );
 
 foreach my $dir (@dirs) {
@@ -34,13 +33,6 @@ print '#include <stdio.h>
 
 #include <libbonobo.h>
 #include <libbonoboui.h>
-
-#include <libgnomevfs/gnome-vfs-types.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-monitor.h>
-#include <libgnomevfs/gnome-vfs-mime-handlers.h>
-#include <libgnomevfs/gnome-vfs-directory.h>
-#include "build/gnome2perl-vfs-gtypes.h"
 
 const char * find_base (GType gtype)
 {
@@ -95,13 +87,12 @@ print '
 close FOO;
 select STDOUT;
 
-system 'gcc -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -Wall -o foo foo.c xs/gnome2perl-vfs-gtypes.c `pkg-config libgnomeui-2.0 --cflags --libs`'
+system 'gcc -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -Wall -o foo foo.c `pkg-config libgnomeui-2.0 --cflags --libs`'
 	and die "couldn't compile helper program";
 
 # these are matched in order; for example, GnomePrinter must test before
 # GnomePrint to avoid matching the wrong thing.
 my @packagemap = (
-  [ GnomeVFS     => 'Gnome2::VFS' ],
   [ Bonobo       => 'Gnome2::Bonobo' ],
   [ Gnome        => 'Gnome2' ], # fallback
 );

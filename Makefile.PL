@@ -16,7 +16,6 @@ our %build_reqs = (
 	'perl-Gtk2'               => '1.00rc1',
 	'Gnome'                   => '2.0.0',
 	'Bonobo'                  => '2.0.0',
-	'GnomeVFS'                => '2.0.0',
 );
 
 # minimum required version of dependancies we need to run
@@ -55,48 +54,12 @@ $runtime_reqs{Gnome} = $gnome_pkgcfg{modversion};
 
 my %bonobo_pkgcfg = ExtUtils::PkgConfig->find("libbonoboui-2.0 >= $build_reqs{Bonobo}");
 
-my %gnome_vfs_pkgcfg = ExtUtils::PkgConfig->find("gnome-vfs-2.0 >= $build_reqs{GnomeVFS}");
-
 my %cfgs = (
 	libgnomeui => \%gnome_pkgcfg,
 	libbonoboui => \%bonobo_pkgcfg,
-	gnome_vfs => \%gnome_vfs_pkgcfg,
 );
 
 mkdir 'build', 0777;
-
-chomp(my $vfs_includes = `pkg-config --variable includedir gnome-vfs-2.0`);
-my @vfs_headers = glob($vfs_includes . "/gnome-vfs-2.0/libgnomevfs/*.h");
-
-system(q(glib-mkenums --fhead "#ifndef __GNOME2PERL_VFS_GTYPES_H__\n" ) .
-                    q(--fhead "#define __GNOME2PERL_VFS_GTYPES_H__ 1\n\n" ) .
-                    q(--fhead "#include <glib-object.h>\n\n" ) .
-                    q(--fhead "G_BEGIN_DECLS\n\n" ) .
-                    q(--eprod "#define GNOME_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" ) .
-                    q(--eprod "GType @enum_name@_get_type (void);\n" ) .
-                    q(--ftail "G_END_DECLS\n\n" ) .
-                    q(--ftail "#endif /* __GNOME2PERL_VFS_GTYPES_H__ */\n" ) .
-                    "@vfs_headers > build/gnome2perl-vfs-gtypes.h");
-
-system(q(glib-mkenums --fhead "#include <libgnomevfs/gnome-vfs-types.h>\n" ) .
-                    q(--fhead "#include <libgnomevfs/gnome-vfs-utils.h>\n" ) .
-                    q(--fhead "#include <libgnomevfs/gnome-vfs-monitor.h>\n" ) .
-                    q(--fhead "#include <libgnomevfs/gnome-vfs-mime-handlers.h>\n" ) .
-                    q(--fhead "#include <libgnomevfs/gnome-vfs-directory.h>\n" ) .
-                    q(--eprod "#define GNOME_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" ) .
-                    q(--vhead "static const G@Type@Value _@enum_name@_values[] = {" ) .
-                    q(--vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," ) .
-                    q(--vtail "  { 0, NULL, NULL }\n};\n\n" ) .
-                    q(--vtail "GType\n@enum_name@_get_type (void)\n{\n" ) .
-                    q(--vtail "  static GType type = 0;\n\n" ) .
-                    q(--vtail "  if (!type)\n" ) .
-                    q(--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" ) .
-                    q(--vtail "  return type;\n}\n\n" ) .
-                    "@vfs_headers > xs/gnome2perl-vfs-gtypes.c");
-
-# UGLY, UGLY, UGLY!
-system("perl -pi -e 's/GNOME_TYPE_VFSURI_HIDE_OPTIONS/GNOME_TYPE_VFS_URI_HIDE_OPTIONS/g;
-                     s/gnome_vfsuri_hide_options/gnome_vfs_uri_hide_options/g' build/gnome2perl-vfs-gtypes.h xs/gnome2perl-vfs-gtypes.c");
 
 #
 # autogeneration
@@ -127,18 +90,16 @@ close VERSION;
 # will chain from this one.
 
 my $gnome2 = ExtUtils::Depends->new ('Gnome2', 'Gtk2', 'Glib');
-$gnome2->set_inc ($gnome_pkgcfg{cflags} . " " . $bonobo_pkgcfg{cflags} . " " . $gnome_vfs_pkgcfg{cflags});
-$gnome2->set_libs ($gnome_pkgcfg{libs} . " " . $bonobo_pkgcfg{libs} . " " . $gnome_vfs_pkgcfg{libs});
+$gnome2->set_inc ($gnome_pkgcfg{cflags} . " " . $bonobo_pkgcfg{cflags});
+$gnome2->set_libs ($gnome_pkgcfg{libs} . " " . $bonobo_pkgcfg{libs});
 $gnome2->add_xs (<xs/*.xs>);
-$gnome2->add_c ("xs/gnome2perl-vfs-gtypes.c");
 $gnome2->add_pm ('Gnome2.pm' => '$(INST_LIBDIR)/Gnome2.pm');
 $gnome2->add_typemaps (map {File::Spec->catfile(cwd(), $_)} 'build/gnome2perl.typemap', 'gnome2perl.typemap');
 $gnome2->add_headers ('gnome2perl.h');
 
 $gnome2->install (qw(gnome2perl.h
                      build/gnome2perl-autogen.h
-                     build/gnome2perl-version.h
-                     build/gnome2perl-vfs-gtypes.h));
+                     build/gnome2perl-version.h));
 $gnome2->save_config ('build/IFiles.pm');
 
 WriteMakefile(
@@ -188,7 +149,7 @@ sub postamble
 
 	"
 realclean ::
-	-\$(RM_RF) build perl-\$(DISTNAME).spec xs/gnome2perl-vfs-gtypes.c
+	-\$(RM_RF) build perl-\$(DISTNAME).spec
 
 rpms/:
 	-mkdir @dirs

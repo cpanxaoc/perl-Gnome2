@@ -56,7 +56,6 @@ This module requires these other modules and libraries:
   Gtk2 >= 1.00rc2 (perl module and requisite C libraries)
   libgnomeui > 2.x (C library) and dependencies
   libbonoboui > 2.x (C library) and dependencies
-  gnome-vfs > 2.x (C library) and dependencies
 
 To build this module from source, you'll also need
 

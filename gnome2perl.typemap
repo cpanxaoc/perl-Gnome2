@@ -2,27 +2,7 @@ TYPEMAP
 
 GnomeUIInfo *	T_GNOME_UI_INFO
 
-GnomeVFSURI *	T_GNOME_VFS_URI
-const GnomeVFSURI *	T_GNOME_VFS_URI
-
-GnomeVFSHandle *	T_GNOME_VFS_HANDLE
-const GnomeVFSHandle *	T_GNOME_VFS_HANDLE
-
 INPUT
 
 T_GNOME_UI_INFO
 	$var = SvGnomeUIInfo ($arg);
-
-T_GNOME_VFS_URI
-	$var = SvGnomeVFSURI ($arg);
-
-T_GNOME_VFS_HANDLE
-	$var = SvGnomeVFSHandle ($arg);
-
-OUTPUT
-
-T_GNOME_VFS_URI
-	$arg = newSVGnomeVFSURI ($var);
-
-T_GNOME_VFS_HANDLE
-	$arg = newSVGnomeVFSHandle ($var);

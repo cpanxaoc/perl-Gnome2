@@ -1,3 +1,18 @@
+2003/10/17 22:02 (+0200) kaffeetisch
+
+	R t/GnomeVFSOps
+	R t/GnomeVFSURI.t
+	R xs/GnomeVFSInit.xs
+	R xs/GnomeVFSOps.xs
+	R xs/GnomeVFSURI.xs
+	* MANIFEST
+	* Makefile.PL
+	* README
+	* genmaps.pl
+	* gnome2perl.h
+	* gnome2perl.typemap
+	* maps: Remove all references to GnomeVFS.  It's going to get its own package.
+
 2003/10/12 21:49 (+0200) kaffeetisch
 
 	* xs/Gnome2.xs: Remove calls to UNUSED.

@@ -45,8 +45,6 @@ t/GnomeScores.t
 t/GnomeThumbnail.t
 t/GnomeURL
 t/GnomeUtil.t
-t/GnomeVFSOps
-t/GnomeVFSURI.t
 xs/BonoboDock.xs
 xs/BonoboDockItem.xs
 xs/Gnome2.xs
@@ -85,7 +83,4 @@ xs/GnomeThumbnail.xs
 xs/GnomeUIDefs.xs
 xs/GnomeURL.xs
 xs/GnomeUtil.xs
-xs/GnomeVFSInit.xs
-xs/GnomeVFSOps.xs
-xs/GnomeVFSURI.xs
 xs/GnomeWindow.xs
