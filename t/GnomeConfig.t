@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-use constant TESTS => 40;
+use constant TESTS => 48;
 use Test::More tests => TESTS;
 
 # $Header$
@@ -104,6 +104,37 @@ SKIP: {
 
   ok(Gnome2::Config::Private -> has_section("/State"));
   ok(not Gnome2::Config::Private -> has_section("/Whops"));
+
+  #############################################################################
+
+  my $handle = Gnome2::Config -> init_iterator("/Geometry");
+  isa_ok($handle, "Gnome2::Config::Iterator");
+
+  $handle = Gnome2::Config::Private -> init_iterator("/Geometry");
+  isa_ok($handle, "Gnome2::Config::Iterator");
+
+  my ($key, $value);
+
+  while (@_ = $handle -> next()) {
+    ($handle, $key, $value) = @_;
+    ok($key eq "Ratio" || $key eq "Width");
+    ok($value == 1.23 || $value == 1024);
+  }
+
+  #############################################################################
+
+  # FIXME: hrm, no sections?
+
+  $handle = Gnome2::Config -> init_iterator_sections("Test");
+  isa_ok($handle, "Gnome2::Config::Iterator");
+
+  $handle = Gnome2::Config::Private -> init_iterator_sections("Test");
+  isa_ok($handle, "Gnome2::Config::Iterator");
+
+  while (@_ = $handle -> next()) {
+    ($handle, $key, $value) = @_;
+    warn $key, $value;
+  }
 
   #############################################################################
 

@@ -20,14 +20,31 @@
 
 #include "gnome2perl.h"
 
-/*
+/* ------------------------------------------------------------------------- */
 
-gnome_config_get_vector
-gnome_config_private_get_vector
-gnome_config_get_vector_with_default
-gnome_config_private_get_vector_with_default
+void *
+SvGnomeConfigIterator (SV *object)
+{
+	MAGIC *mg;
 
-*/
+	if (!object || !SvOK (object) || !SvROK (object) || !(mg = mg_find (SvRV (object), PERL_MAGIC_ext)))
+		return NULL;
+
+	return (void *) mg->mg_ptr;
+}
+
+SV *
+newSVGnomeConfigIterator (const char *app_id)
+{
+	SV *object = (SV *) newHV ();
+
+	sv_magic (object, 0, PERL_MAGIC_ext, (const char *) app_id, 0);
+
+	return sv_bless (newRV_noinc (object),
+	                 gv_stashpv ("Gnome2::Config::Iterator", 1));
+}
+
+/* ------------------------------------------------------------------------- */
 
 MODULE = Gnome2::Config	PACKAGE = Gnome2::Config	PREFIX = gnome_config_
 
@@ -367,7 +384,7 @@ voids (class, path)
 	}
 
 gchar *
-get_real_path (class, path=NULL)
+get_real_path (class, path)
 	gchar *path
     ALIAS:
 	Gnome2::Config::get_real_path = 0
@@ -409,6 +426,64 @@ gnome_config_pop_prefix (class)
 
 # --------------------------------------------------------------------------- #
 
+SV *
+gnome_config_init_iterator (class, path)
+	const char *path
+    ALIAS:
+	Gnome2::Config::init_iterator = 0
+	Gnome2::Config::init_iterator_sections = 1
+	Gnome2::Config::Private::init_iterator = 2
+	Gnome2::Config::Private::init_iterator_sections = 3
+    PREINIT:
+	void *pointer = NULL;
+    CODE:
+	switch (ix) {
+		case 0: pointer = gnome_config_init_iterator (path); break;
+		case 1: pointer = gnome_config_init_iterator_sections (path); break;
+		case 2: pointer = gnome_config_private_init_iterator (path); break;
+		case 3: pointer = gnome_config_private_init_iterator_sections (path); break;
+	}
+
+	if (pointer)
+		RETVAL = newSVGnomeConfigIterator (pointer);
+	else
+		XSRETURN_UNDEF;
+    OUTPUT:
+	RETVAL
+
+MODULE = Gnome2::Config	PACKAGE = Gnome2::Config::Iterator	PREFIX = gnome_config_iterator_
+
+void
+gnome_config_iterator_next (handle)
+	SV *handle
+    PREINIT:
+	void *new = NULL, *old = NULL;
+	char *key = NULL, *value = NULL;
+    PPCODE:
+	old = SvGnomeConfigIterator (handle);
+	new = gnome_config_iterator_next (old, &key, &value);
+
+	if (new && key && value) {
+		EXTEND (sp, 3);
+
+		PUSHs (sv_2mortal (newSVGnomeConfigIterator (new)));
+		PUSHs (sv_2mortal (newSVpv (key, PL_na)));
+		PUSHs (sv_2mortal (newSVpv (value, PL_na)));
+
+		g_free (key);
+		g_free (value);
+	}
+	else
+		XSRETURN_EMPTY;
+
+void
+DESTROY (handle)
+	SV *handle
+    CODE:
+	sv_unmagic (SvRV (handle), PERL_MAGIC_ext);
+
+# --------------------------------------------------------------------------- #
+
 ###  void gnome_config_make_vector (const char *string, int *argcp, char ***argvp) 
 #void
 #gnome_config_make_vector (string, argcp, argvp)
@@ -421,24 +496,3 @@ gnome_config_pop_prefix (class)
 #gnome_config_assemble_vector (argc, )
 #	int argc
 #	const char *const argv []
-
-# --------------------------------------------------------------------------- #
-
-###  void *gnome_config_init_iterator_ (const char *path, gboolean priv) 
-#void *
-#gnome_config_init_iterator_ (path, priv)
-#	const char *path
-#	gboolean priv
-
-###  void *gnome_config_init_iterator_sections_ (const char *path, gboolean priv) 
-#void *
-#gnome_config_init_iterator_sections_ (path, priv)
-#	const char *path
-#	gboolean priv
-
-###  void *gnome_config_iterator_next (void *iterator_handle, char **key, char **value) 
-#void *
-#gnome_config_iterator_next (iterator_handle, key, value)
-#	void *iterator_handle
-#	char **key
-#	char **value

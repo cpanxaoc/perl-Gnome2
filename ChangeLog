@@ -1,3 +1,8 @@
+2003/12/13 23:41 (+0100) kaffeetisch
+
+	* t/GnomeConfig.t
+	* xs/GnomeConfig.xs: Implement and test iterators.
+
 2003/12/13 21:35 (+0100) kaffeetisch
 
 	* t/GnomeAppHelper.t: Change the callback tests so that it's easy
