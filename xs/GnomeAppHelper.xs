@@ -562,33 +562,23 @@ gnome_app_setup_toolbar (class, toolbar, dock_item)
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gnome2::AppBar	PREFIX = gnome_app_
 
-# FIXME: get rid of the ALIAS.
 ## void gnome_app_install_appbar_menu_hints (GnomeAppBar* appbar, GnomeUIInfo* uiinfo) 
 void
-gnome_app_install_appbar_menu_hints (appbar, uiinfo)
+gnome_app_install_menu_hints (appbar, uiinfo)
 	GnomeAppBar* appbar
 	GnomeUIInfo* uiinfo
-    ALIAS:
-	Gnome2::AppBar::install_menu_hints = 0
-    C_ARGS:
-	appbar, uiinfo
-    CLEANUP:
-	PERL_UNUSED_VAR (ix);
+    CODE:
+	gnome_app_install_appbar_menu_hints (appbar, uiinfo);
 
 MODULE = Gnome2::AppHelper	PACKAGE = Gtk2::Statusbar	PREFIX = gnome_app_
 
 =for object Gnome2::AppHelper
 =cut
 
-# FIXME: get rid of the ALIAS.
 ## void gnome_app_install_statusbar_menu_hints (GtkStatusbar* bar, GnomeUIInfo* uiinfo) 
 void
-gnome_app_install_statusbar_menu_hints (bar, uiinfo)
+gnome_app_install_menu_hints (bar, uiinfo)
 	GtkStatusbar* bar
 	GnomeUIInfo* uiinfo
-    ALIAS:
-	Gtk2::Statusbar::install_menu_hints = 0
-    C_ARGS:
-	bar, uiinfo
-    CLEANUP:
-	PERL_UNUSED_VAR (ix);
+    CODE:
+	gnome_app_install_statusbar_menu_hints (bar, uiinfo);

@@ -128,7 +128,7 @@ gnome_popup_menu_do_popup_modal (popup, pos_func, pos_data, event, user_data, fo
 
 ##  void gnome_popup_menu_append (GtkWidget *popup, GnomeUIInfo *uiinfo) 
 void
-gnome_popup_menu_append (popup, uiinfo)
+gnome_popup_menu_append_from (popup, uiinfo)
 	GtkWidget *popup
 	GnomeUIInfo *uiinfo
     CODE:

@@ -1,3 +1,36 @@
+2004/03/02 03:35 (+0100) kaffeetisch
+
+	* t/GnomeConfig.t
+	* t/GnomeEntry.t
+	* t/GnomeIconEntry.t
+	* t/GnomeIconTheme.t
+	* t/GnomePasswordDialog.t
+	* t/GnomeThumbnail.t
+	* xs/Gnome2.xs: Stick to the new version information policy:
+	Uppercase names for compile time related functions.
+
+	* xs/GnomeAppHelper.xs: Don't use ALIAS 0 as a way to override an
+	xsub's name.  Do it properly instead.
+
+	* xs/GnomeClient.xs: Free the return value of
+	gnome_client_get_global_config_prefix.
+
+	* xs/GnomeConfig.xs: Remove a now invalid FIXME comment.
+
+	* maps
+	* t/GnomePasswordDialog.t
+	* xs/GnomePasswordDialog.xs: Bind and test API that was added in
+	2.5.1: set_show_username, set_show_domain, set_show_password,
+	set_domain, set_readonly_domain, set_show_remember, set_remember,
+	get_remember, and get_domain.
+
+	* t/GnomePopupMenu.t
+	* xs/GnomePopupMenu.xs: Change the binding for
+	gnome_popup_menu_append to Gtk2::Menu::append_from.  This is
+	necessary to avoid a collision with gtk_menu_append.  Applications
+	using Gtk2::Menu::append and expecting to get
+	gnome_popup_menu_append will have to be changed.
+
 2004/02/15 13:32 (-0500) rwmcfa1
 
 	* Makefile.PL, perl-Gnome2.spec.in: fixed some of the dependancies, 

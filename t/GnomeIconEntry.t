@@ -29,5 +29,5 @@ SKIP: {
   ok(not defined($entry -> pick_dialog()));
 
   $entry -> set_max_saved(23)
-    if (Gnome2 -> check_version(2, 3, 3));
+    if (Gnome2 -> CHECK_VERSION(2, 3, 3));
 }

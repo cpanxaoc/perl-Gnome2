@@ -67,11 +67,11 @@ const gchar *
 gnome_client_get_config_prefix (client)
 	GnomeClient *client
 
-### FIXME the docs say the string is newly allocated but the signature says
-###       it shouldn't be freed.  who do we believe?
 const gchar *
 gnome_client_get_global_config_prefix (client)
 	GnomeClient *client
+    CLEANUP:
+	g_free ((gchar *) RETVAL);
 
 ## void gnome_client_set_global_config_prefix (GnomeClient *client, const gchar* prefix) 
 void

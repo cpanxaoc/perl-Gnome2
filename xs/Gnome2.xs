@@ -20,7 +20,7 @@
 
 #include "gnome2perl.h"
 
-MODULE = Gnome2		PACKAGE = Gnome2	PREFIX = gnome_
+MODULE = Gnome2		PACKAGE = Gnome2
 
 =for object Gnome2::main
 
@@ -38,7 +38,7 @@ BOOT:
 	}
 
 void
-gnome_get_version_info (class)
+GET_VERSION_INFO (class)
     PPCODE:
 	EXTEND (SP, 3);
 	PUSHs (sv_2mortal (newSViv (LIBGNOMEUI_MAJOR_VERSION)));
@@ -47,7 +47,7 @@ gnome_get_version_info (class)
 	PERL_UNUSED_VAR (ax);
 
 bool
-gnome_check_version (class, major, minor, micro)
+CHECK_VERSION (class, major, minor, micro)
 	int major
 	int minor
 	int micro
@@ -56,16 +56,26 @@ gnome_check_version (class, major, minor, micro)
     OUTPUT:
 	RETVAL
 
-MODULE = Gnome2		PACKAGE = Gnome2::Bonobo	PREFIX = bonobo_
+MODULE = Gnome2		PACKAGE = Gnome2::Bonobo
 
 void
-bonobo_get_version_info (class)
+GET_VERSION_INFO (class)
     PPCODE:
 	EXTEND (SP, 3);
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MAJOR_VERSION)));
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MINOR_VERSION)));
 	PUSHs (sv_2mortal (newSViv (LIBBONOBOUI_MICRO_VERSION)));
 	PERL_UNUSED_VAR (ax);
+
+bool
+CHECK_VERSION (class, major, minor, micro)
+	int major
+	int minor
+	int micro
+    CODE:
+	RETVAL = LIBBONOBOUI_CHECK_VERSION (major, minor, micro);
+    OUTPUT:
+	RETVAL
 
 MODULE = Gnome2		PACKAGE = Gnome2::AuthenticationManager	PREFIX = gnome_authentication_manager_
 

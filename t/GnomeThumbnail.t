@@ -14,7 +14,7 @@ SKIP: {
   do "t/TestBoilerplate";
 
   skip("GnomeThumbnail is new in 2.0.6", 2)
-    unless (Gnome2 -> check_version(2, 0, 6));
+    unless (Gnome2 -> CHECK_VERSION(2, 0, 6));
 
   #############################################################################
 

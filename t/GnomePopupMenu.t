@@ -58,7 +58,7 @@ SKIP: {
   isa_ok($popup, "Gtk2::Menu");
   isa_ok($popup -> get_accel_group(), "Gtk2::AccelGroup");
 
-  $popup -> append($additional_uiinfo);
+  $popup -> append_from($additional_uiinfo);
 
   my $window = Gtk2::Window -> new("toplevel");
   my $button = Gtk2::Button -> new("BUH!");

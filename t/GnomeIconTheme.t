@@ -16,7 +16,7 @@ SKIP: {
   do "t/TestBoilerplate";
 
   skip("GnomeIconTheme is new in 2.0.6", TESTS)
-    unless (Gnome2 -> check_version(2, 0, 6));
+    unless (Gnome2 -> CHECK_VERSION(2, 0, 6));
 
   #############################################################################
 

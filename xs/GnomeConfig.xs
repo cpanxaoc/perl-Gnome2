@@ -159,7 +159,6 @@ get_float (class, path)
 Returns a boolean indicating whether the default was used and the actual value.
 
 =cut
-# FIXME: seems to return integers instead of floats.
 void
 get_float_with_default (class, path)
 	const char *path

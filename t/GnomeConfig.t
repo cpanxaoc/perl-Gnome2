@@ -89,7 +89,7 @@ SKIP: {
 
   SKIP: {
     skip("get_float_with_default was broken prior to 2.5.4", 2)
-      unless (Gnome2 -> check_version(2, 5, 4));
+      unless (Gnome2 -> CHECK_VERSION(2, 5, 4));
 
     is_deeply([Gnome2::Config::Private -> get_float_with_default("/Geometry/Whops=0.5")], [1, 0.5]);
     is_deeply([Gnome2::Config::Private -> get_float_with_default("/Geometry/Ratio")], [0, 1.23]);

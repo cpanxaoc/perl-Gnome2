@@ -58,19 +58,6 @@ gnome_password_dialog_set_readonly_username (password_dialog, readonly)
 	GnomePasswordDialog *password_dialog
 	gboolean readonly
 
-# FIXME: *_remember* present in the headers but not in the library?
-###  void gnome_password_dialog_set_remember (GnomePasswordDialog *password_dialog, gboolean remember) 
-#void
-#gnome_password_dialog_set_remember (password_dialog, remember)
-#	GnomePasswordDialog *password_dialog
-#	gboolean remember
-
-###  void gnome_password_dialog_set_remember_label_text (GnomePasswordDialog *password_dialog, const char *remember_label_text) 
-#void
-#gnome_password_dialog_set_remember_label_text (password_dialog, remember_label_text)
-#	GnomePasswordDialog *password_dialog
-#	const char *remember_label_text
-
 ##  char * gnome_password_dialog_get_username (GnomePasswordDialog *password_dialog) 
 char *
 gnome_password_dialog_get_username (password_dialog)
@@ -85,9 +72,64 @@ gnome_password_dialog_get_password (password_dialog)
     CLEANUP:
 	g_free (RETVAL);
 
-###  gboolean gnome_password_dialog_get_remember (GnomePasswordDialog *password_dialog) 
-#gboolean
-#gnome_password_dialog_get_remember (password_dialog)
-#	GnomePasswordDialog *password_dialog
+# --------------------------------------------------------------------------- #
+
+#if LIBGNOMEUI_CHECK_VERSION (2, 5, 1)
+
+## void gnome_password_dialog_set_show_username (GnomePasswordDialog *password_dialog, gboolean show)
+void
+gnome_password_dialog_set_show_username (password_dialog, show)
+	GnomePasswordDialog *password_dialog
+	gboolean show
+
+## void gnome_password_dialog_set_show_domain (GnomePasswordDialog *password_dialog, gboolean show)
+void
+gnome_password_dialog_set_show_domain (password_dialog, show)
+	GnomePasswordDialog *password_dialog
+	gboolean show
+
+## void gnome_password_dialog_set_show_password (GnomePasswordDialog *password_dialog, gboolean show)
+void
+gnome_password_dialog_set_show_password (password_dialog, show)
+	GnomePasswordDialog *password_dialog
+	gboolean show
+
+##  void gnome_password_dialog_set_domain (GnomePasswordDialog *password_dialog, const char *domain) 
+void
+gnome_password_dialog_set_domain (password_dialog, domain)
+	GnomePasswordDialog *password_dialog
+	const char *domain
+
+##  void gnome_password_dialog_set_readonly_domain (GnomePasswordDialog *password_dialog, gboolean readonly) 
+void
+gnome_password_dialog_set_readonly_domain (password_dialog, readonly)
+	GnomePasswordDialog *password_dialog
+	gboolean readonly
+
+##  void gnome_password_dialog_set_show_remember (GnomePasswordDialog *password_dialog, gboolean show_remember) 
+void
+gnome_password_dialog_set_show_remember (password_dialog, show_remember)
+	GnomePasswordDialog *password_dialog
+	gboolean show_remember
+
+##  void gnome_password_dialog_set_remember (GnomePasswordDialog *password_dialog, GnomePasswordDialogRemember remember) 
+void
+gnome_password_dialog_set_remember (password_dialog, remember)
+	GnomePasswordDialog *password_dialog
+	GnomePasswordDialogRemember remember
+
+##  GnomePasswordDialogRemember gnome_password_dialog_get_remember (GnomePasswordDialog *password_dialog) 
+GnomePasswordDialogRemember
+gnome_password_dialog_get_remember (password_dialog)
+	GnomePasswordDialog *password_dialog
+
+##  char * gnome_password_dialog_get_domain (GnomePasswordDialog *password_dialog) 
+char *
+gnome_password_dialog_get_domain (password_dialog)
+	GnomePasswordDialog *password_dialog
+    CLEANUP:
+	g_free (RETVAL);
+
+#endif /* 2.5.1 */
 
 #endif /* GNOME_TYPE_PASSWORD_DIALOG */

@@ -39,6 +39,7 @@ GNOME_TYPE_INTERACT_STYLE	GnomeInteractStyle	GEnum	Gnome2::InteractStyle
 GNOME_TYPE_MDI_MODE	GnomeMDIMode	GEnum	Gnome2::MDIMode
 GNOME_TYPE_MODULE_INFO	GnomeModuleInfo	GBoxed	Gnome2::ModuleInfo
 GNOME_TYPE_PASSWORD_DIALOG	GnomePasswordDialog	GtkObject	Gnome2::PasswordDialog
+GNOME_TYPE_PASSWORD_DIALOG_REMEMBER      GnomePasswordDialogRemember     GEnum       Gnome2::PasswordDialogRemember
 GNOME_TYPE_PIXMAP_ENTRY	GnomePixmapEntry	GtkObject	Gnome2::PixmapEntry
 GNOME_TYPE_PREFERENCES_TYPE	GnomePreferencesType	GEnum	Gnome2::PreferencesType
 GNOME_TYPE_PROGRAM	GnomeProgram	GObject	Gnome2::Program
