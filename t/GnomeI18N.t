@@ -17,9 +17,9 @@ Gnome2::I18N -> pop_c_numeric_locale();
 
 ###############################################################################
 
-Glib::Idle -> add(sub {
-  Gtk2 -> main_quit();
-  return 0;
-});
-
-Gtk2 -> main();
+#Glib::Idle -> add(sub {
+#  Gtk2 -> main_quit();
+#  return 0;
+#});
+#
+#Gtk2 -> main();

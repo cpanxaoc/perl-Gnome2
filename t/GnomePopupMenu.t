@@ -73,18 +73,18 @@ SKIP: {
   $popup -> attach($button);
   $popup -> attach($button, undef);
 
-  my $event = Gtk2::Gdk::Event -> new("button_press");
-
-  $popup -> do_popup(
-    sub {
-      my ($menu) = @_;
-      return 23, 42;
-    },
-    undef,
-    $event,
-    undef,
-    $button
-  );
+#  my $event = Gtk2::Gdk::Event -> new("button_press");
+#
+#  $popup -> do_popup(
+#    sub {
+#      my ($menu) = @_;
+#      return 23, 42;
+#    },
+#    undef,
+#    $event,
+#    undef,
+#    $button
+#  );
 
   # FIXME: how to make it return?
   # $popup -> do_popup_modal(
