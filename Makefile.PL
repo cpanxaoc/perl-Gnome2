@@ -5,6 +5,7 @@
 use 5.008;
 use ExtUtils::MakeMaker;
 use Cwd;
+use File::Spec;
 use ExtUtils::Depends;
 use Glib::PkgConfig;
 use Gtk2::CodeGen;
@@ -54,7 +55,8 @@ $gnome2->set_inc ($pkgcfg{cflags});
 $gnome2->set_libs ($pkgcfg{libs});
 $gnome2->add_xs (<xs/*.xs>);
 $gnome2->add_pm ('Gnome2.pm' => '$(INST_LIBDIR)/Gnome2.pm');
-$gnome2->add_typemaps (map {cwd().'/'.$_} 'build/gnome2perl.typemap', 'gnomeuiinfo.typemap');
+my $cwd = cwd();
+$gnome2->add_typemaps (map {File::Spec->catfile($cwd,$_)} 'build/gnome2perl.typemap', 'gnomeuiinfo.typemap');
 $gnome2->add_headers ('gnome2perl.h');
 
 $gnome2->install (qw(gnome2perl.h build/gnome2perl-autogen.h));
