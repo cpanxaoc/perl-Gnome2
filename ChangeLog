@@ -1,3 +1,7 @@
+2003/11/29 09:15 (-0500) muppetman
+
+	* xs/GnomeAppHelper.xs: remove unused variables.
+
 2003/11/28 22:19 (+0100) kaffeetisch
 
 	* Gnome2.pm

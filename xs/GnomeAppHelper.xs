@@ -68,7 +68,6 @@ gnome2perl_parse_uiinfo_sv (SV * sv,
 	if (SvTYPE (SvRV (sv)) == SVt_PVHV) {
 		HV *h = (HV*) SvRV (sv);
 		SV **s;
-		STRLEN len;
 		if ((s = hv_fetch (h, "type", 4, 0)) && SvOK (*s))
 			info->type = SvGnomeUIInfoType(*s);
 		if ((s = hv_fetch (h, "label", 5, 0)) && SvOK (*s))
@@ -202,7 +201,6 @@ SvGnomeUIInfo (SV * sv)
 static void
 refill_one (SV *data, GnomeUIInfo *info)
 {
-	SV * sv_subtree = NULL;
 	if (info->widget) {
 		if (SvTYPE(SvRV(data)) == SVt_PVHV) {
 			hv_store ((HV*)SvRV(data), "widget", 6,
