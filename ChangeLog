@@ -7,6 +7,9 @@
 
 	* xs/GnomeClient.xs: Remove a FIXME comment.
 
+	* TODO: Update to reflect presence: GnomeClient, GnomeIconLookup
+	and libvte are bound and the GNOME stock icons work.
+
 2003/12/10 02:02 (+0100) kaffeetisch
 
 	A t/GnomeConfig.t

@@ -12,22 +12,16 @@ libbonobo, libbonoboui:
 
 libgnome:
 	gnome-exec (perl offers the same features natively)
-	gnome-config (the docs say it's not for mainstream apps)
 	gnome-triggers (failed to implement this one)
 
 libgnomeui:
 	gnome-ui-init (the parameters... the gnome_init stuff is deprecated)
-	GnomeIconLookup
 	GnomeThemeFile (no GObject, so I'll wait till someone begs for it)
-	gnome-stock-icons (not all are deprecated)
-	gnome-vfs-util (no bindings for gnome-vfs, either!)
+	gnome-vfs-util
 
 libnautilus-2.0:
 	needed for writing nautilus components in perl, but requires binding
 	for libbonobo/libbonobo-ui
-
-libvte:
-	this is terminal emulator widget that deprecated libzvt
 
 librsvg:
 	this is the library that renders SVG (Scalable Vector Graphics) images;
