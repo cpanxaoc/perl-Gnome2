@@ -92,11 +92,11 @@ system(q(glib-mkenums --fhead "#include <libgnomevfs/gnome-vfs-types.h>\n" ) .
                     q(--vtail "  if (!type)\n" ) .
                     q(--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" ) .
                     q(--vtail "  return type;\n}\n\n" ) .
-                    "@vfs_headers > xs/GnomeVFSGTypes.xs");
+                    "@vfs_headers > xs/gnome2perl-vfs-gtypes.c");
 
 # UGLY, UGLY, UGLY!
 system("perl -pi -e 's/GNOME_TYPE_VFSURI_HIDE_OPTIONS/GNOME_TYPE_VFS_URI_HIDE_OPTIONS/g;
-                     s/gnome_vfsuri_hide_options/gnome_vfs_uri_hide_options/g' build/gnome2perl-vfs-gtypes.h xs/GnomeVFSGTypes.xs");
+                     s/gnome_vfsuri_hide_options/gnome_vfs_uri_hide_options/g' build/gnome2perl-vfs-gtypes.h xs/gnome2perl-vfs-gtypes.c");
 
 #
 # autogeneration
@@ -130,6 +130,7 @@ my $gnome2 = ExtUtils::Depends->new ('Gnome2', 'Gtk2', 'Glib');
 $gnome2->set_inc ($gnome_pkgcfg{cflags} . " " . $bonobo_pkgcfg{cflags} . " " . $gnome_vfs_pkgcfg{cflags});
 $gnome2->set_libs ($gnome_pkgcfg{libs} . " " . $bonobo_pkgcfg{libs} . " " . $gnome_vfs_pkgcfg{libs});
 $gnome2->add_xs (<xs/*.xs>);
+$gnome2->add_c ("xs/gnome2perl-vfs-gtypes.c");
 $gnome2->add_pm ('Gnome2.pm' => '$(INST_LIBDIR)/Gnome2.pm');
 $gnome2->add_typemaps (map {File::Spec->catfile(cwd(), $_)} 'build/gnome2perl.typemap', 'gnome2perl.typemap');
 $gnome2->add_headers ('gnome2perl.h');
@@ -186,7 +187,7 @@ sub postamble
 
 	"
 realclean ::
-	-\$(RM_RF) build perl-\$(DISTNAME).spec xs/GnomeVFSGTypes.xs
+	-\$(RM_RF) build perl-\$(DISTNAME).spec xs/gnome2perl-vfs-gtypes.c
 
 rpms/:
 	-mkdir @dirs

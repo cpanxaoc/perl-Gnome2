@@ -1,3 +1,8 @@
+2003/10/07 03:19 (+0200) kaffeetisch
+
+	* Makefile.PL: Use xs/gnome2perl-vfs-gtypes.c as the place for the
+	GTypes for GnomeVFS.
+
 2003/10/07 02:32 (+0200) kaffeetisch
 
 	* LICENSE
