@@ -20,6 +20,7 @@ t/GnomeAppHelper.t
 t/GnomeClient
 t/GnomeClientReal
 t/GnomeColorPicker.t
+t/GnomeConfig.t
 t/GnomeDateEdit.t
 t/GnomeDruid.t
 t/GnomeEntry.t
@@ -51,6 +52,7 @@ xs/GnomeAppBar.xs
 xs/GnomeAppHelper.xs
 xs/GnomeClient.xs
 xs/GnomeColorPicker.xs
+xs/GnomeConfig.xs
 xs/GnomeDateEdit.xs
 xs/GnomeDruid.xs
 xs/GnomeDruidPage.xs
