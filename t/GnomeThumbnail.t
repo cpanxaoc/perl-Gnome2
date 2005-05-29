@@ -22,28 +22,33 @@ SKIP: {
   my $file = "/usr/share/pixmaps/yes.xpm";
   my $mtime = (stat($file))[9];
 
-  my $factory = Gnome2::ThumbnailFactory -> new("normal");
-  isa_ok($factory, "Gnome2::ThumbnailFactory");
-
-  $factory -> lookup($uri, $mtime);
-  $factory -> has_valid_failed_thumbnail($uri, $mtime);
-  $factory -> can_thumbnail($uri, "image/xpm", $mtime);
-
-  my $thumbnail = $factory -> generate_thumbnail($uri, $mtime);
-  isa_ok($thumbnail, "Gtk2::Gdk::Pixbuf");
-
-  $factory -> save_thumbnail($thumbnail, $uri, $mtime);
-  $factory -> create_failed_thumbnail($uri, $mtime);
-
   SKIP: {
-    skip("has_uri and is_valid are broken", 2)
-      unless (Gnome2 -> CHECK_VERSION(2, 8, 0));
+    skip "yes.xpm not found", 4
+      unless defined $mtime;
 
-    like($thumbnail -> has_uri($uri), qr/^(|1)$/);
-    like($thumbnail -> is_valid($uri, $mtime), qr/^(|1)$/);
+    my $factory = Gnome2::ThumbnailFactory -> new("normal");
+    isa_ok($factory, "Gnome2::ThumbnailFactory");
+
+    $factory -> lookup($uri, $mtime);
+    $factory -> has_valid_failed_thumbnail($uri, $mtime);
+    $factory -> can_thumbnail($uri, "image/xpm", $mtime);
+
+    my $thumbnail = $factory -> generate_thumbnail($uri, $mtime);
+    isa_ok($thumbnail, "Gtk2::Gdk::Pixbuf");
+
+    $factory -> save_thumbnail($thumbnail, $uri, $mtime);
+    $factory -> create_failed_thumbnail($uri, $mtime);
+
+    SKIP: {
+      skip("has_uri and is_valid are broken", 2)
+        unless (Gnome2 -> CHECK_VERSION(2, 8, 0));
+
+      like($thumbnail -> has_uri($uri), qr/^(|1)$/);
+      like($thumbnail -> is_valid($uri, $mtime), qr/^(|1)$/);
+    }
+
+    $thumbnail -> md5($uri);
+    $thumbnail -> path_for_uri($uri, "large");
+    $thumbnail -> scale_down_pixbuf(5, 5);
   }
-
-  $thumbnail -> md5($uri);
-  $thumbnail -> path_for_uri($uri, "large");
-  $thumbnail -> scale_down_pixbuf(5, 5);
 }

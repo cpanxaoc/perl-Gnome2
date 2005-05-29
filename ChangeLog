@@ -1,3 +1,13 @@
+2005/05/29	kaffeetisch
+
+	* t/GnomeDateEdit.t: Remove the TODO around a test that previously
+	failed due to the now resolved Test::More bug.
+
+	* t/GnomeIconList.t: Skip all tests as GnomeIconList seems to be
+	broken right now.
+
+	* t/GnomeThumbnail.t: Skip tests if yes.xpm can't be found.
+
 2005/03/06	kaffeetisch
 
 	* Gnome2.pm, META.yml, NEWS, README: Version 1.021.
