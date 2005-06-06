@@ -13,7 +13,6 @@ copyright.pod
 doctypes
 examples/druid.pl
 examples/session-management.pl
-genmaps.pl
 gnome.typemap
 gnome2perl.h
 maps

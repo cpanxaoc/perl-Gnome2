@@ -1,3 +1,10 @@
+2005/06/06	kaffeetisch
+
+	* genmaps.pl, MANIFEST: Remove the old lad genmaps.pl since it's
+	unused nowadays.
+
+	* Gnome2.pm, META.yml, NEWS: Version 1.0.22.
+
 2005/05/29	kaffeetisch
 
 	* t/GnomeDateEdit.t: Remove the TODO around a test that previously
