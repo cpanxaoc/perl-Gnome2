@@ -1,3 +1,7 @@
+2005/06/23	kaffeetisch
+
+	* Gnome2.pm, Makefile.PL, META.yml, NEWS: Version 1.022.
+
 2005/06/22	kaffeetisch
 
 	* t/GnomeDateEdit.t: Use is() instead of is_deeply() to test flags

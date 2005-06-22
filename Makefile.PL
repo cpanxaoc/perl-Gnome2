@@ -21,6 +21,15 @@ our %build_reqs = (
 	'Bonobo'                  => '2.0.0',
 );
 
+our %PREREQ_PM = (
+	'Glib'                => $build_reqs{'perl-Glib'},
+	'Gtk2'                => $build_reqs{'perl-Gtk2'},
+	'Gnome2::Canvas'      => $build_reqs{'perl-Gnome2-Canvas'},
+	'Gnome2::VFS'         => $build_reqs{'perl-Gnome2-VFS'},
+	'ExtUtils::Depends'   => $build_reqs{'perl-ExtUtils-Depends'},
+	'ExtUtils::PkgConfig' => $build_reqs{'perl-ExtUtils-PkgConfig'},
+);
+
 # Writing a fake Makefile ensures that CPAN will pick up the correct
 # dependencies and install them.
 unless (eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
@@ -35,14 +44,7 @@ unless (eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
    warn "$@\n";
    WriteMakefile(
          PREREQ_FATAL => 1,
-         PREREQ_PM    => {
-            'Glib'                => $build_reqs{'perl-Glib'},
-            'Gtk2'                => $build_reqs{'perl-Gtk2'},
-            'Gnome2::Canvas'      => $build_reqs{'perl-Gnome2-Canvas'},
-            'Gnome2::VFS'         => $build_reqs{'perl-Gnome2-VFS'},
-            'ExtUtils::Depends'   => $build_reqs{'perl-ExtUtils-Depends'},
-            'ExtUtils::PkgConfig' => $build_reqs{'perl-ExtUtils-PkgConfig'},
-         },
+         PREREQ_PM    => \%PREREQ_PM,
    );
    exit 1; # not reached
 }
@@ -113,6 +115,7 @@ WriteMakefile(
     ABSTRACT_FROM   => 'Gnome2.pm', # retrieve abstract from module
     XSPROTOARG      => '-noprototypes',
     MAN3PODS        => \%pod_files,
+    PREREQ_PM    => \%PREREQ_PM,
     $gnome2->get_makefile_vars,
 );
 
