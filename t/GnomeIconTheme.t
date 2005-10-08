@@ -46,9 +46,14 @@ SKIP: {
       $icon_data,
       $size) = $theme -> lookup_icon("gnome-fs-directory", 48);
 
-  ok(-e $file);
-  isa_ok($icon_data, "HASH");
-  like($size, qr/^\d+$/);
+  SKIP: {
+    skip "lookup_icon aftermath", 3
+      unless defined $file;
+
+    ok(-e $file);
+    isa_ok($icon_data, "HASH");
+    like($size, qr/^\d+$/);
+  }
 
   $theme -> set_allow_svg(1);
   is($theme -> get_allow_svg(), 1);

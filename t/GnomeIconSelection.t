@@ -20,6 +20,10 @@ SKIP: {
   isa_ok($selection -> get_gil(), "Gnome2::IconList");
   isa_ok($selection -> get_box(), "Gtk2::VBox");
 
+  my $window = Gtk2::Window -> new();
+  $window -> add($selection);
+  $selection -> realize();
+
   $selection -> clear(1);
 
   $selection -> add_defaults();

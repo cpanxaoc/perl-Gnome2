@@ -1,3 +1,13 @@
+2005/10/08	kaffeetisch
+
+	* t/GnomeDateEdit.t: Use is_deeply() on a flags value.
+
+	* t/GnomeIconList.t: Realize the list to avoid thousands of
+	warnings.
+
+	* t/GnomeIconTheme.t: Fix a failure reported by ultradm at cpan
+	dot org.
+
 2005/06/23	kaffeetisch
 
 	* Gnome2.pm, Makefile.PL, META.yml, NEWS: Version 1.022.
