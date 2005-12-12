@@ -1,3 +1,7 @@
+2005/12/12	kaffeetisch
+
+	* Gnome2.pm, NEWS: Unstable release 1.030.
+
 2005/10/08	kaffeetisch
 
 	* t/GnomeDateEdit.t: Use is_deeply() on a flags value.
