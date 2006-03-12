@@ -44,7 +44,7 @@ ways:
 
   in the code of your perl script:
     use lib '/some/other/place/lib/perl5/site_perl';
-  
+
 
 				 Dependencies
 				--------------
@@ -67,4 +67,4 @@ To build this module from source, you'll also need:
 				   Copyright
 				  -----------
 
-Copyright (C) 2003-2005 by the gtk2-perl team (see the file AUTHORS)
+Copyright (C) 2003-2006 by the gtk2-perl team (see the file AUTHORS)

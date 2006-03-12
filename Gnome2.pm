@@ -14,7 +14,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '1.030';
+our $VERSION = '1.040';
 
 sub import {
   my $self = shift();
@@ -162,13 +162,13 @@ L<Gtk2::api>(3pm).
 
 muppet E<lt>scott at asofyet dot orgE<gt> did the initial stuff.
 
-Torsten Schoenfeld E<lt>kaffeetisch at web dot deE<gt> took over between 0.34
+Torsten Schoenfeld E<lt>kaffeetisch at gmx dot deE<gt> took over between 0.34
 and 0.36, and implemented lots of tests and missing functionality, and
 corrected several of muppet's mistakes.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2003-2005 by the gtk2-perl team (see the file AUTHORS)
+Copyright (C) 2003-2006 by the gtk2-perl team (see the file AUTHORS)
 
 This library is free software; you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the Free
