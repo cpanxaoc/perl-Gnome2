@@ -151,7 +151,7 @@ Instead of argc and argv you simply pass in a list.
 Gnome2::Program->init automagically fills argc and argv so just omit these
 parameters.
 
-=over
+=back
 
 =head1 SEE ALSO
 

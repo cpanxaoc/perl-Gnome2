@@ -1,3 +1,7 @@
+2006-10-03	kaffeetisch
+
+	* Gnome2.pm: Fix a POD error.
+
 2006/03/12	kaffeetisch
 
 	* Gnome2.pm, NEWS, README: Stable release 1.040.
