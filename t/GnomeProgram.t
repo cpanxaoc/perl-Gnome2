@@ -1,5 +1,6 @@
 #!/usr/bin/perl -w
 use strict;
+use Glib qw(:constants);
 use Gnome2;
 
 use constant TESTS => 9;
@@ -39,7 +40,8 @@ SKIP: {
                                            "libgnomeui",
                                            app_prefix => "/gtk2perl",
                                            app_sysconfdir => "/gtk2perl/etc",
-                                           human_readable_name => "Test");
+                                           human_readable_name => "Test",
+                                           sm_connect => FALSE);
   }
   else {
     $application = Gnome2::Program -> init("Test",

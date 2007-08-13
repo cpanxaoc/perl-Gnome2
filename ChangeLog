@@ -1,3 +1,11 @@
+2007-08-13	kaffeetisch
+
+	* t/GnomeProgram.t
+	* xs/GnomeProgram.xs: Special-case GNOME_CLIENT_PARAM_SM_CONNECT
+	in the xsub for gnome_program_connect.  It's not yet installed in
+	the type system when we try to lookup the types of the passed in
+	properties.
+
 2006-12-30	kaffeetisch
 
 	* Gnome2.pm, NEWS: Stable release 1.041.
