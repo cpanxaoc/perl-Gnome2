@@ -1,3 +1,8 @@
+Overview of changes in Gnome2 1.042
+===================================
+
+* Support the sm-connect property in Gnome2::Program::init.
+
 Overview of changes in Gnome2 1.041
 ===================================
 
