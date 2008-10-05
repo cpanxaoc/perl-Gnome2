@@ -2,7 +2,7 @@
 use strict;
 use Gnome2;
 
-# $Header$
+# $Id$
 
 my $application = Gnome2::Program -> init("Test", "0.1", "libgnomeui");
 my $client = Gnome2::Client -> master();

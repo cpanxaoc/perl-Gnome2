@@ -6,7 +6,7 @@ use Gnome2;
 use constant TESTS => 9;
 use Test::More tests => TESTS;
 
-# $Header$
+# $Id$
 
 ###############################################################################
 
