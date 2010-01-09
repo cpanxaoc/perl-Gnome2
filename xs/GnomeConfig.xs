@@ -334,7 +334,7 @@ set_vector (class, path, value)
 	SV **string;
     CODE:
 	if (! (SvOK (value) && SvROK (value) && SvTYPE (SvRV (value)) == SVt_PVAV))
-		croak ("the vector paramter must be a reference to an array");
+		croak ("the vector parameter must be a reference to an array");
 
 	array = (AV *) SvRV (value);
 	length = av_len (array);
