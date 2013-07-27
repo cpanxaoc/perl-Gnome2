@@ -51,11 +51,11 @@ applications.
 Since this module tries to stick very closely to the C API, the documentation
 found at
 
-  http://developer.gnome.org/doc/API/2.0/libgnome/index.html
+  http://developer.gnome.org/libgnome
 
 and
 
-  http://developer.gnome.org/doc/API/2.0/libgnomeui/index.html
+  http://developer.gnome.org/libgnomeui
 
 is the canonical reference.
 
