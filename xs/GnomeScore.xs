@@ -59,7 +59,7 @@ gnome_score_get_notable (class, gamename, level)
 	for (i = 0; i < results; i++) {
 		AV *set = newAV ();
 
-		av_store (set, 0, newSVpv (names[i], PL_na));
+		av_store (set, 0, newSVpv (names[i], 0));
 		av_store (set, 1, newSVnv (scores[i]));
 		av_store (set, 2, newSViv (scoretimes[i]));
 

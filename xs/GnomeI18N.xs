@@ -36,7 +36,7 @@ gnome_i18n_get_language_list (class, category_name=NULL)
     PPCODE:
 	results = gnome_i18n_get_language_list (category_name);
 	for ( ; results != NULL; results = results->next)
-		XPUSHs (sv_2mortal (newSVpv (results->data, PL_na)));
+		XPUSHs (sv_2mortal (newSVpv (results->data, 0)));
 
 ##  void gnome_i18n_push_c_numeric_locale (void) 
 void

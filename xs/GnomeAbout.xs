@@ -51,12 +51,12 @@ gnome_about_new (class, name, version, copyright, comments, authors, documenters
 			a = g_new0 (const gchar*, av_len(av)+2);
 
 			for(i=0;i<=av_len(av);i++) {
-				a[i] = SvPV(*av_fetch(av, i, 0), PL_na);
+				a[i] = SvPV_nolen(*av_fetch(av, i, 0));
 			}
 			a[i] = NULL;
 		} else {
 			a = (const gchar**)malloc(sizeof(const gchar*) * 2);
-			a[0] = SvPV(authors, PL_na);
+			a[0] = SvPV_nolen(authors);
 			a[1] = NULL;
 		}
 	} else {
@@ -73,12 +73,12 @@ gnome_about_new (class, name, version, copyright, comments, authors, documenters
 			d = g_new (const gchar*, av_len(av)+2);
 
 			for(i=0;i<=av_len(av);i++) {
-				d[i] = SvPV(*av_fetch(av, i, 0), PL_na);
+				d[i] = SvPV_nolen(*av_fetch(av, i, 0));
 			}
 			d[i] = NULL;
 		} else {
 			d = (const gchar**)malloc(sizeof(const gchar*) * 2);
-			d[0] = SvPV(documenters, PL_na);
+			d[0] = SvPV_nolen(documenters);
 			d[1] = NULL;
 		}
 	}

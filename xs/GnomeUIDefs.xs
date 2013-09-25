@@ -83,76 +83,76 @@ pad (class)
 		case 1: RETVAL = newSViv (GNOME_PAD_SMALL); break;
 		case 2: RETVAL = newSViv (GNOME_PAD_BIG); break;
 
-		case 4: key[0] = GNOME_KEY_NAME_QUIT; RETVAL = newSVpv (key, PL_na); break;
+		case 4: key[0] = GNOME_KEY_NAME_QUIT; RETVAL = newSVpv (key, 0); break;
 		case 5: RETVAL = newSViv (GNOME_KEY_MOD_QUIT); break;
 
-		case 8: key[0] = GNOME_KEY_NAME_CLOSE; RETVAL = newSVpv (key, PL_na); break;
+		case 8: key[0] = GNOME_KEY_NAME_CLOSE; RETVAL = newSVpv (key, 0); break;
 		case 9: RETVAL = newSViv (GNOME_KEY_MOD_CLOSE); break;
 
-		case 10: key[0] = GNOME_KEY_NAME_CUT; RETVAL = newSVpv (key, PL_na); break;
+		case 10: key[0] = GNOME_KEY_NAME_CUT; RETVAL = newSVpv (key, 0); break;
 		case 11: RETVAL = newSViv (GNOME_KEY_MOD_CUT); break;
 
-		case 12: key[0] = GNOME_KEY_NAME_COPY; RETVAL = newSVpv (key, PL_na); break;
+		case 12: key[0] = GNOME_KEY_NAME_COPY; RETVAL = newSVpv (key, 0); break;
 		case 13: RETVAL = newSViv (GNOME_KEY_MOD_COPY); break;
 
-		case 14: key[0] = GNOME_KEY_NAME_PASTE; RETVAL = newSVpv (key, PL_na); break;
+		case 14: key[0] = GNOME_KEY_NAME_PASTE; RETVAL = newSVpv (key, 0); break;
 		case 15: RETVAL = newSViv (GNOME_KEY_MOD_PASTE); break;
 
-		case 16: key[0] = GNOME_KEY_NAME_SELECT_ALL; RETVAL = newSVpv (key, PL_na); break;
+		case 16: key[0] = GNOME_KEY_NAME_SELECT_ALL; RETVAL = newSVpv (key, 0); break;
 		case 17: RETVAL = newSViv (GNOME_KEY_MOD_SELECT_ALL); break;
 
-		case 18: key[0] = GNOME_KEY_NAME_CLEAR; RETVAL = newSVpv (key, PL_na); break;
+		case 18: key[0] = GNOME_KEY_NAME_CLEAR; RETVAL = newSVpv (key, 0); break;
 		case 19: RETVAL = newSViv (GNOME_KEY_MOD_CLEAR); break;
 
-		case 20: key[0] = GNOME_KEY_NAME_UNDO; RETVAL = newSVpv (key, PL_na); break;
+		case 20: key[0] = GNOME_KEY_NAME_UNDO; RETVAL = newSVpv (key, 0); break;
 		case 21: RETVAL = newSViv (GNOME_KEY_MOD_UNDO); break;
 
-		case 22: key[0] = GNOME_KEY_NAME_REDO; RETVAL = newSVpv (key, PL_na); break;
+		case 22: key[0] = GNOME_KEY_NAME_REDO; RETVAL = newSVpv (key, 0); break;
 		case 23: RETVAL = newSViv (GNOME_KEY_MOD_REDO); break;
 
-		case 24: key[0] = GNOME_KEY_NAME_SAVE; RETVAL = newSVpv (key, PL_na); break;
+		case 24: key[0] = GNOME_KEY_NAME_SAVE; RETVAL = newSVpv (key, 0); break;
 		case 25: RETVAL = newSViv (GNOME_KEY_MOD_SAVE); break;
 
-		case 26: key[0] = GNOME_KEY_NAME_OPEN; RETVAL = newSVpv (key, PL_na); break;
+		case 26: key[0] = GNOME_KEY_NAME_OPEN; RETVAL = newSVpv (key, 0); break;
 		case 27: RETVAL = newSViv (GNOME_KEY_MOD_OPEN); break;
 
-		case 28: key[0] = GNOME_KEY_NAME_SAVE_AS; RETVAL = newSVpv (key, PL_na); break;
+		case 28: key[0] = GNOME_KEY_NAME_SAVE_AS; RETVAL = newSVpv (key, 0); break;
 		case 29: RETVAL = newSViv (GNOME_KEY_MOD_SAVE_AS); break;
 
-		case 30: key[0] = GNOME_KEY_NAME_NEW; RETVAL = newSVpv (key, PL_na); break;
+		case 30: key[0] = GNOME_KEY_NAME_NEW; RETVAL = newSVpv (key, 0); break;
 		case 31: RETVAL = newSViv (GNOME_KEY_MOD_NEW); break;
 
-		case 32: key[0] = GNOME_KEY_NAME_PRINT; RETVAL = newSVpv (key, PL_na); break;
+		case 32: key[0] = GNOME_KEY_NAME_PRINT; RETVAL = newSVpv (key, 0); break;
 		case 33: RETVAL = newSViv (GNOME_KEY_MOD_PRINT); break;
 
-		case 34: key[0] = GNOME_KEY_NAME_PRINT_SETUP; RETVAL = newSVpv (key, PL_na); break;
+		case 34: key[0] = GNOME_KEY_NAME_PRINT_SETUP; RETVAL = newSVpv (key, 0); break;
 		case 35: RETVAL = newSViv (GNOME_KEY_MOD_PRINT_SETUP); break;
 
-		case 36: key[0] = GNOME_KEY_NAME_FIND; RETVAL = newSVpv (key, PL_na); break;
+		case 36: key[0] = GNOME_KEY_NAME_FIND; RETVAL = newSVpv (key, 0); break;
 		case 37: RETVAL = newSViv (GNOME_KEY_MOD_FIND); break;
 
-		case 38: key[0] = GNOME_KEY_NAME_FIND_AGAIN; RETVAL = newSVpv (key, PL_na); break;
+		case 38: key[0] = GNOME_KEY_NAME_FIND_AGAIN; RETVAL = newSVpv (key, 0); break;
 		case 39: RETVAL = newSViv (GNOME_KEY_MOD_FIND_AGAIN); break;
 
-		case 40: key[0] = GNOME_KEY_NAME_REPLACE; RETVAL = newSVpv (key, PL_na); break;
+		case 40: key[0] = GNOME_KEY_NAME_REPLACE; RETVAL = newSVpv (key, 0); break;
 		case 41: RETVAL = newSViv (GNOME_KEY_MOD_REPLACE); break;
 
-		case 42: key[0] = GNOME_KEY_NAME_NEW_WINDOW; RETVAL = newSVpv (key, PL_na); break;
+		case 42: key[0] = GNOME_KEY_NAME_NEW_WINDOW; RETVAL = newSVpv (key, 0); break;
 		case 43: RETVAL = newSViv (GNOME_KEY_MOD_NEW_WINDOW); break;
 
-		case 44: key[0] = GNOME_KEY_NAME_CLOSE_WINDOW; RETVAL = newSVpv (key, PL_na); break;
+		case 44: key[0] = GNOME_KEY_NAME_CLOSE_WINDOW; RETVAL = newSVpv (key, 0); break;
 		case 45: RETVAL = newSViv (GNOME_KEY_MOD_CLOSE_WINDOW); break;
 
-		case 46: key[0] = GNOME_KEY_NAME_REDO_MOVE; RETVAL = newSVpv (key, PL_na); break;
+		case 46: key[0] = GNOME_KEY_NAME_REDO_MOVE; RETVAL = newSVpv (key, 0); break;
 		case 47: RETVAL = newSViv (GNOME_KEY_MOD_REDO_MOVE); break;
 
-		case 48: key[0] = GNOME_KEY_NAME_UNDO_MOVE; RETVAL = newSVpv (key, PL_na); break;
+		case 48: key[0] = GNOME_KEY_NAME_UNDO_MOVE; RETVAL = newSVpv (key, 0); break;
 		case 49: RETVAL = newSViv (GNOME_KEY_MOD_UNDO_MOVE); break;
 
 		case 50: RETVAL = newSViv (GNOME_KEY_NAME_PAUSE_GAME); break;
 		case 51: RETVAL = newSViv (GNOME_KEY_MOD_PAUSE_GAME); break;
 
-		case 52: key[0] = GNOME_KEY_NAME_NEW_GAME; RETVAL = newSVpv (key, PL_na); break;
+		case 52: key[0] = GNOME_KEY_NAME_NEW_GAME; RETVAL = newSVpv (key, 0); break;
 		case 53: RETVAL = newSViv (GNOME_KEY_MOD_NEW_GAME); break;
 
 		default: RETVAL = &PL_sv_undef;

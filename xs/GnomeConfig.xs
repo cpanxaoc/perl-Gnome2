@@ -94,7 +94,7 @@ get_string_with_default (class, path)
 	EXTEND (sp, 1);
 	PUSHs (sv_2mortal (newSVuv (def)));
 	if (retval != NULL)
-		XPUSHs (sv_2mortal (newSVpv (retval, PL_na)));
+		XPUSHs (sv_2mortal (newSVpv (retval, 0)));
 
 	g_free (retval);
 
@@ -226,7 +226,7 @@ get_vector (class, path)
 
 	if (argv != NULL) {
 		for (i = 0; i < argc; i++)
-			av_push (array, newSVpv (argv[i], PL_na));
+			av_push (array, newSVpv (argv[i], 0));
 
 		g_free (argv);
 	}
@@ -258,7 +258,7 @@ get_vector_with_default (class, path)
 
 	if (argv != NULL) {
 		for (i = 0; i < argc; i++)
-			av_push (array, newSVpv (argv[i], PL_na));
+			av_push (array, newSVpv (argv[i], 0));
 
 		g_free (argv);
 	}
@@ -483,8 +483,8 @@ gnome_config_iterator_next (handle)
 		EXTEND (sp, 3);
 
 		PUSHs (sv_2mortal (newSVGnomeConfigIterator (new)));
-		PUSHs (sv_2mortal (newSVpv (key, PL_na)));
-		PUSHs (sv_2mortal (newSVpv (value, PL_na)));
+		PUSHs (sv_2mortal (newSVpv (key, 0)));
+		PUSHs (sv_2mortal (newSVpv (value, 0)));
 
 		g_free (key);
 		g_free (value);

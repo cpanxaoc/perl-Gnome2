@@ -48,10 +48,10 @@ name (module_info)
 	Gnome2::ModuleInfo::opt_prefix = 3
     CODE:
 	switch (ix) {
-		case 0: RETVAL = newSVpv (module_info->name, PL_na); break;
-		case 1: RETVAL = newSVpv (module_info->version, PL_na); break;
-		case 2: RETVAL = newSVpv (module_info->description, PL_na); break;
-		case 3: RETVAL = newSVpv (module_info->opt_prefix, PL_na); break;
+		case 0: RETVAL = newSVpv (module_info->name, 0); break;
+		case 1: RETVAL = newSVpv (module_info->version, 0); break;
+		case 2: RETVAL = newSVpv (module_info->description, 0); break;
+		case 3: RETVAL = newSVpv (module_info->opt_prefix, 0); break;
 		default: RETVAL = &PL_sv_undef;
 	}
     OUTPUT:

@@ -62,7 +62,7 @@ gnome_icon_lookup (icon_theme, thumbnail_factory, file_uri, custom_icon, file_in
 		XSRETURN_UNDEF;
 
 	EXTEND (sp, 2);
-	PUSHs (sv_2mortal (newSVpv (icon, PL_na)));
+	PUSHs (sv_2mortal (newSVpv (icon, 0)));
 	PUSHs (sv_2mortal (newSVGnomeIconLookupFlags (result)));
 
 	g_free (icon);
@@ -94,7 +94,7 @@ gnome_icon_lookup_sync (icon_theme, thumbnail_factory, file_uri, custom_icon, fl
 		XSRETURN_UNDEF;
 
 	EXTEND (sp, 2);
-	PUSHs (sv_2mortal (newSVpv (icon, PL_na)));
+	PUSHs (sv_2mortal (newSVpv (icon, 0)));
 	PUSHs (sv_2mortal (newSVGnomeIconLookupFlags (result)));
 
 	g_free (icon);
