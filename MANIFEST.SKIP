@@ -8,6 +8,7 @@ build
 \.gitigore$
 Makefile$
 Makefile\.old$
+MYMETA.*
 \.o$
 \.spec$
 \.sw.$

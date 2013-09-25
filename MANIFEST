@@ -16,6 +16,7 @@ examples/session-management.pl
 gnome.typemap
 gnome2perl.h
 maps
+perl-Gnome2.doap
 perl-Gnome2.spec.in
 podifyenums.pl
 t/Gnome.t
