@@ -182,6 +182,7 @@ sub MY::postamble {
 		)
           . "
 \$(INST_LIB)/\$(FULLEXT)/enums.pod : \$(BLIB_DONE) maps podifyenums.pl
+	mkdir blib/lib/\$(NAME)
 	\$(PERLRUNINST) -M\$(NAME) podifyenums.pl \$(NAME) maps > \$@
 ";
 }
