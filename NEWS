@@ -1,9 +1,11 @@
-Overview of changes in Gnome2 <next>
+Overview of changes in Gnome2 1.043
 ===================================
 
 * Avoid misusing the macro PL_na, thus preventing issues when Gnome2 is used in
   conjunction with certain XS modules, among them XML::Parser and
   String::Approx.
+* Created %meta_merge, which is used to pass META_MERGE values to EU::MM and
+  CPAN::Meta; these populate META.[yml|json] and MYMETA.[yml|json]
 
 Overview of changes in Gnome2 1.042
 ===================================
