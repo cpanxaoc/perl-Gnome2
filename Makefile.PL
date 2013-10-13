@@ -181,8 +181,7 @@ sub MY::postamble {
 			'PERL_GNOME_VFS' => $build_reqs{'perl-Gnome2-VFS'},
 		)
           . "
-\$(INST_LIB)/\$(FULLEXT)/enums.pod : \$(BLIB_DONE) maps podifyenums.pl
-	mkdir blib/lib/\$(NAME)
+\$(INST_LIB)/\$(FULLEXT)/enums.pod : \$(BLIB_DONE) \$(INST_LIB)/\$(FULLEXT)/ maps podifyenums.pl
 	\$(PERLRUNINST) -M\$(NAME) podifyenums.pl \$(NAME) maps > \$@
 ";
 }
