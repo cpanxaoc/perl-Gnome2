@@ -1,3 +1,9 @@
+Overview of changes in Gnome2 1.044
+===================================
+
+* RT#89191: Fix FSF's address
+* RT#89188: Make enums.pod depend on Gnome2 directory creation
+
 Overview of changes in Gnome2 1.043
 ===================================
 
