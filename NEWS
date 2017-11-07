@@ -1,3 +1,8 @@
+Overview of changes in Gnome2 1.047
+===================================
+
+* RT#121440 - Fix test failures when '.' missing from @INC path
+
 Overview of changes in Gnome2 1.046
 ===================================
 
