@@ -4,7 +4,7 @@
          xmlns:gnome="http://api.gnome.org/doap-extensions#"
          xmlns="http://usefulinc.com/ns/doap#">
 
-  <name xml:lang="en">Gnome2</name>
+  <name xml:lang="en">Gnome2 (DEPRECATED)</name>
   <shortdesc xml:lang="en">Perl interface to the 2.x series of the GNOME libraries</shortdesc>
   <homepage rdf:resource="http://gtk2-perl.sourceforge.net/" />
   <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/gtk-perl-list" />
