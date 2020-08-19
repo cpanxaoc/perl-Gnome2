@@ -35,6 +35,7 @@ my %meta_merge = (
             version => '2',
             url     => 'http://search.cpan.org/perldoc?CPAN::Meta::Spec',
         },
+        x_deprecated => 1,
         author              =>
             ['Gnome2 Perl Team <gtk-perl-list at gnome dot org>'],
         release_status      => 'stable',
@@ -51,9 +52,9 @@ my %meta_merge = (
                     mailto  => 'bug-Gnome2 [at] rt.cpan.org',
             },
             repository  => {
-                    url     => 'git://git.gnome.org/perl-Gnome2',
+                    url     => 'https://gitlab.gnome.org/GNOME/perl-gnome2.git',
                     type    => 'git',
-                    web     => 'http://git.gnome.org/browse/perl-Gnome2',
+                    web     => 'https://gitlab.gnome.org/GNOME/perl-gnome2',
             },
         },
         prereqs => {
