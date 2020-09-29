@@ -4,14 +4,13 @@ name:         Gnome2
 version:      1.023
 version_from: Gnome2.pm
 installdirs:  site
-requires:
+configure_requires:
     ExtUtils::Depends:             0.20
     ExtUtils::PkgConfig:           1.03
     Glib:                          1.04
     Gnome2::Canvas:                1.00
     Gnome2::VFS:                   1.00
     Gtk2:                          1.00
-
 distribution_type: module
 generated_by: ExtUtils::MakeMaker version 6.30
 x_deprecated: 1
