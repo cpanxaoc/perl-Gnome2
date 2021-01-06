@@ -14,7 +14,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '1.047';
+our $VERSION = '1.048';
 
 sub import {
   my $self = shift();
@@ -30,7 +30,7 @@ __END__
 
 =head1 NAME
 
-Gnome2 - Perl interface to the 2.x series of the GNOME libraries
+Gnome2 - (DEPRECATED) Perl interface to the 2.x series of the GNOME libraries
 
 =head1 SYNOPSIS
 
